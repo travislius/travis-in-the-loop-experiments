@@ -1,0 +1,2145 @@
+{
+ "date": "2026-10-25 18:12:38 PDT",
+ "embedding_model": "text-embedding-3-small",
+ "chat_model": "gpt-4.1-mini",
+ "temperature": 0.7,
+ "top_k": 2,
+ "trials": 3,
+ "chunks": [
+  {
+   "id": 1,
+   "title": "What's in the box",
+   "chars": 359
+  },
+  {
+   "id": 2,
+   "title": "Choosing a dock location",
+   "chars": 334
+  },
+  {
+   "id": 3,
+   "title": "Laying the boundary wire",
+   "chars": 485
+  },
+  {
+   "id": 4,
+   "title": "Mowing area and slopes",
+   "chars": 273
+  },
+  {
+   "id": 5,
+   "title": "Cutting height",
+   "chars": 250
+  },
+  {
+   "id": 6,
+   "title": "Schedules and quiet mode",
+   "chars": 346
+  },
+  {
+   "id": 7,
+   "title": "Rain behaviour",
+   "chars": 330
+  },
+  {
+   "id": 8,
+   "title": "Lift, tilt and safety",
+   "chars": 366
+  },
+  {
+   "id": 9,
+   "title": "Indicator light codes",
+   "chars": 670
+  },
+  {
+   "id": 10,
+   "title": "Blade replacement",
+   "chars": 302
+  },
+  {
+   "id": 11,
+   "title": "Winter storage",
+   "chars": 294
+  },
+  {
+   "id": 12,
+   "title": "Firmware updates",
+   "chars": 301
+  },
+  {
+   "id": 13,
+   "title": "Anti-theft",
+   "chars": 332
+  },
+  {
+   "id": 14,
+   "title": "Warranty",
+   "chars": 342
+  },
+  {
+   "id": 15,
+   "title": "Technical support",
+   "chars": 239
+  }
+ ],
+ "corpus_sha256": "56a3e595e9e361db9c11e5844eafb1ac807206bd85580e51118ca1065df43fd6",
+ "retrieval": [
+  {
+   "qid": "q01",
+   "ranking": [
+    {
+     "section": 9,
+     "sim": 0.6185
+    },
+    {
+     "section": 15,
+     "sim": 0.6103
+    },
+    {
+     "section": 7,
+     "sim": 0.5125
+    },
+    {
+     "section": 12,
+     "sim": 0.5059
+    },
+    {
+     "section": 13,
+     "sim": 0.4795
+    },
+    {
+     "section": 14,
+     "sim": 0.4727
+    },
+    {
+     "section": 10,
+     "sim": 0.4726
+    },
+    {
+     "section": 1,
+     "sim": 0.4717
+    },
+    {
+     "section": 6,
+     "sim": 0.4532
+    },
+    {
+     "section": 8,
+     "sim": 0.4504
+    },
+    {
+     "section": 4,
+     "sim": 0.4299
+    },
+    {
+     "section": 11,
+     "sim": 0.3919
+    },
+    {
+     "section": 5,
+     "sim": 0.3853
+    },
+    {
+     "section": 3,
+     "sim": 0.339
+    },
+    {
+     "section": 2,
+     "sim": 0.2972
+    }
+   ],
+   "gold": 9,
+   "gold_rank": 1
+  },
+  {
+   "qid": "q02",
+   "ranking": [
+    {
+     "section": 7,
+     "sim": 0.7558
+    },
+    {
+     "section": 6,
+     "sim": 0.5369
+    },
+    {
+     "section": 15,
+     "sim": 0.5367
+    },
+    {
+     "section": 12,
+     "sim": 0.5198
+    },
+    {
+     "section": 1,
+     "sim": 0.504
+    },
+    {
+     "section": 14,
+     "sim": 0.498
+    },
+    {
+     "section": 4,
+     "sim": 0.4836
+    },
+    {
+     "section": 13,
+     "sim": 0.4671
+    },
+    {
+     "section": 5,
+     "sim": 0.4654
+    },
+    {
+     "section": 10,
+     "sim": 0.4417
+    },
+    {
+     "section": 11,
+     "sim": 0.4416
+    },
+    {
+     "section": 8,
+     "sim": 0.4381
+    },
+    {
+     "section": 3,
+     "sim": 0.429
+    },
+    {
+     "section": 2,
+     "sim": 0.3836
+    },
+    {
+     "section": 9,
+     "sim": 0.3809
+    }
+   ],
+   "gold": 7,
+   "gold_rank": 1
+  },
+  {
+   "qid": "q03",
+   "ranking": [
+    {
+     "section": 4,
+     "sim": 0.7263
+    },
+    {
+     "section": 5,
+     "sim": 0.5249
+    },
+    {
+     "section": 1,
+     "sim": 0.4981
+    },
+    {
+     "section": 7,
+     "sim": 0.4923
+    },
+    {
+     "section": 15,
+     "sim": 0.4894
+    },
+    {
+     "section": 13,
+     "sim": 0.4829
+    },
+    {
+     "section": 12,
+     "sim": 0.4726
+    },
+    {
+     "section": 6,
+     "sim": 0.4718
+    },
+    {
+     "section": 14,
+     "sim": 0.4585
+    },
+    {
+     "section": 8,
+     "sim": 0.4574
+    },
+    {
+     "section": 10,
+     "sim": 0.4437
+    },
+    {
+     "section": 3,
+     "sim": 0.4184
+    },
+    {
+     "section": 2,
+     "sim": 0.3969
+    },
+    {
+     "section": 11,
+     "sim": 0.3965
+    },
+    {
+     "section": 9,
+     "sim": 0.3342
+    }
+   ],
+   "gold": 4,
+   "gold_rank": 1
+  },
+  {
+   "qid": "q04",
+   "ranking": [
+    {
+     "section": 10,
+     "sim": 0.7971
+    },
+    {
+     "section": 14,
+     "sim": 0.6121
+    },
+    {
+     "section": 1,
+     "sim": 0.5588
+    },
+    {
+     "section": 12,
+     "sim": 0.5538
+    },
+    {
+     "section": 15,
+     "sim": 0.5378
+    },
+    {
+     "section": 6,
+     "sim": 0.5315
+    },
+    {
+     "section": 4,
+     "sim": 0.5302
+    },
+    {
+     "section": 7,
+     "sim": 0.5189
+    },
+    {
+     "section": 5,
+     "sim": 0.5066
+    },
+    {
+     "section": 8,
+     "sim": 0.4885
+    },
+    {
+     "section": 11,
+     "sim": 0.4831
+    },
+    {
+     "section": 13,
+     "sim": 0.4762
+    },
+    {
+     "section": 3,
+     "sim": 0.4196
+    },
+    {
+     "section": 9,
+     "sim": 0.4194
+    },
+    {
+     "section": 2,
+     "sim": 0.298
+    }
+   ],
+   "gold": 10,
+   "gold_rank": 1
+  },
+  {
+   "qid": "q05",
+   "ranking": [
+    {
+     "section": 8,
+     "sim": 0.6634
+    },
+    {
+     "section": 13,
+     "sim": 0.6298
+    },
+    {
+     "section": 15,
+     "sim": 0.5918
+    },
+    {
+     "section": 1,
+     "sim": 0.5057
+    },
+    {
+     "section": 7,
+     "sim": 0.4902
+    },
+    {
+     "section": 12,
+     "sim": 0.4783
+    },
+    {
+     "section": 6,
+     "sim": 0.4775
+    },
+    {
+     "section": 5,
+     "sim": 0.4544
+    },
+    {
+     "section": 14,
+     "sim": 0.4473
+    },
+    {
+     "section": 4,
+     "sim": 0.4465
+    },
+    {
+     "section": 10,
+     "sim": 0.4209
+    },
+    {
+     "section": 9,
+     "sim": 0.4003
+    },
+    {
+     "section": 3,
+     "sim": 0.3907
+    },
+    {
+     "section": 2,
+     "sim": 0.3806
+    },
+    {
+     "section": 11,
+     "sim": 0.3737
+    }
+   ],
+   "gold": 8,
+   "gold_rank": 1
+  },
+  {
+   "qid": "q06",
+   "ranking": [
+    {
+     "section": 3,
+     "sim": 0.7926
+    },
+    {
+     "section": 4,
+     "sim": 0.5757
+    },
+    {
+     "section": 2,
+     "sim": 0.5628
+    },
+    {
+     "section": 1,
+     "sim": 0.5551
+    },
+    {
+     "section": 12,
+     "sim": 0.4981
+    },
+    {
+     "section": 15,
+     "sim": 0.4642
+    },
+    {
+     "section": 7,
+     "sim": 0.4516
+    },
+    {
+     "section": 5,
+     "sim": 0.4509
+    },
+    {
+     "section": 11,
+     "sim": 0.4469
+    },
+    {
+     "section": 14,
+     "sim": 0.4468
+    },
+    {
+     "section": 13,
+     "sim": 0.44
+    },
+    {
+     "section": 10,
+     "sim": 0.416
+    },
+    {
+     "section": 6,
+     "sim": 0.4097
+    },
+    {
+     "section": 8,
+     "sim": 0.3534
+    },
+    {
+     "section": 9,
+     "sim": 0.3463
+    }
+   ],
+   "gold": 3,
+   "gold_rank": 1
+  },
+  {
+   "qid": "q07",
+   "ranking": [
+    {
+     "section": 5,
+     "sim": 0.7476
+    },
+    {
+     "section": 4,
+     "sim": 0.7019
+    },
+    {
+     "section": 1,
+     "sim": 0.6131
+    },
+    {
+     "section": 10,
+     "sim": 0.5998
+    },
+    {
+     "section": 6,
+     "sim": 0.594
+    },
+    {
+     "section": 12,
+     "sim": 0.562
+    },
+    {
+     "section": 14,
+     "sim": 0.5605
+    },
+    {
+     "section": 7,
+     "sim": 0.5583
+    },
+    {
+     "section": 15,
+     "sim": 0.5545
+    },
+    {
+     "section": 13,
+     "sim": 0.5519
+    },
+    {
+     "section": 8,
+     "sim": 0.5461
+    },
+    {
+     "section": 3,
+     "sim": 0.5188
+    },
+    {
+     "section": 11,
+     "sim": 0.4713
+    },
+    {
+     "section": 9,
+     "sim": 0.3873
+    },
+    {
+     "section": 2,
+     "sim": 0.3847
+    }
+   ],
+   "gold": 5,
+   "gold_rank": 1
+  },
+  {
+   "qid": "q08",
+   "ranking": [
+    {
+     "section": 15,
+     "sim": 0.4527
+    },
+    {
+     "section": 13,
+     "sim": 0.4398
+    },
+    {
+     "section": 14,
+     "sim": 0.4339
+    },
+    {
+     "section": 1,
+     "sim": 0.4186
+    },
+    {
+     "section": 12,
+     "sim": 0.3904
+    },
+    {
+     "section": 6,
+     "sim": 0.3584
+    },
+    {
+     "section": 4,
+     "sim": 0.3447
+    },
+    {
+     "section": 10,
+     "sim": 0.3325
+    },
+    {
+     "section": 5,
+     "sim": 0.3278
+    },
+    {
+     "section": 11,
+     "sim": 0.3017
+    },
+    {
+     "section": 7,
+     "sim": 0.2926
+    },
+    {
+     "section": 2,
+     "sim": 0.2876
+    },
+    {
+     "section": 3,
+     "sim": 0.281
+    },
+    {
+     "section": 8,
+     "sim": 0.2717
+    },
+    {
+     "section": 9,
+     "sim": 0.2235
+    }
+   ],
+   "gold": 13,
+   "gold_rank": 2
+  },
+  {
+   "qid": "q09",
+   "ranking": [
+    {
+     "section": 10,
+     "sim": 0.6959
+    },
+    {
+     "section": 1,
+     "sim": 0.5593
+    },
+    {
+     "section": 4,
+     "sim": 0.5302
+    },
+    {
+     "section": 5,
+     "sim": 0.5112
+    },
+    {
+     "section": 14,
+     "sim": 0.5094
+    },
+    {
+     "section": 15,
+     "sim": 0.5079
+    },
+    {
+     "section": 8,
+     "sim": 0.4869
+    },
+    {
+     "section": 6,
+     "sim": 0.4797
+    },
+    {
+     "section": 12,
+     "sim": 0.472
+    },
+    {
+     "section": 7,
+     "sim": 0.4331
+    },
+    {
+     "section": 13,
+     "sim": 0.4299
+    },
+    {
+     "section": 11,
+     "sim": 0.4138
+    },
+    {
+     "section": 3,
+     "sim": 0.4019
+    },
+    {
+     "section": 9,
+     "sim": 0.3583
+    },
+    {
+     "section": 2,
+     "sim": 0.3371
+    }
+   ],
+   "gold": 10,
+   "gold_rank": 1
+  },
+  {
+   "qid": "q10",
+   "ranking": [
+    {
+     "section": 14,
+     "sim": 0.7237
+    },
+    {
+     "section": 15,
+     "sim": 0.6431
+    },
+    {
+     "section": 12,
+     "sim": 0.5216
+    },
+    {
+     "section": 1,
+     "sim": 0.5186
+    },
+    {
+     "section": 13,
+     "sim": 0.517
+    },
+    {
+     "section": 10,
+     "sim": 0.4893
+    },
+    {
+     "section": 7,
+     "sim": 0.4833
+    },
+    {
+     "section": 11,
+     "sim": 0.4632
+    },
+    {
+     "section": 4,
+     "sim": 0.4544
+    },
+    {
+     "section": 6,
+     "sim": 0.4214
+    },
+    {
+     "section": 8,
+     "sim": 0.4063
+    },
+    {
+     "section": 5,
+     "sim": 0.3987
+    },
+    {
+     "section": 3,
+     "sim": 0.3713
+    },
+    {
+     "section": 2,
+     "sim": 0.3568
+    },
+    {
+     "section": 9,
+     "sim": 0.3554
+    }
+   ],
+   "gold": 14,
+   "gold_rank": 1
+  },
+  {
+   "qid": "q11",
+   "ranking": [
+    {
+     "section": 13,
+     "sim": 0.5493
+    },
+    {
+     "section": 4,
+     "sim": 0.5351
+    },
+    {
+     "section": 1,
+     "sim": 0.5227
+    },
+    {
+     "section": 15,
+     "sim": 0.5197
+    },
+    {
+     "section": 7,
+     "sim": 0.5094
+    },
+    {
+     "section": 12,
+     "sim": 0.4767
+    },
+    {
+     "section": 14,
+     "sim": 0.4592
+    },
+    {
+     "section": 5,
+     "sim": 0.4318
+    },
+    {
+     "section": 6,
+     "sim": 0.4109
+    },
+    {
+     "section": 8,
+     "sim": 0.3994
+    },
+    {
+     "section": 3,
+     "sim": 0.391
+    },
+    {
+     "section": 10,
+     "sim": 0.3827
+    },
+    {
+     "section": 2,
+     "sim": 0.3693
+    },
+    {
+     "section": 9,
+     "sim": 0.3647
+    },
+    {
+     "section": 11,
+     "sim": 0.3066
+    }
+   ],
+   "gold": null,
+   "gold_rank": null
+  },
+  {
+   "qid": "q12",
+   "ranking": [
+    {
+     "section": 4,
+     "sim": 0.5733
+    },
+    {
+     "section": 15,
+     "sim": 0.5449
+    },
+    {
+     "section": 6,
+     "sim": 0.5276
+    },
+    {
+     "section": 1,
+     "sim": 0.5237
+    },
+    {
+     "section": 13,
+     "sim": 0.5045
+    },
+    {
+     "section": 7,
+     "sim": 0.5043
+    },
+    {
+     "section": 12,
+     "sim": 0.4874
+    },
+    {
+     "section": 14,
+     "sim": 0.4851
+    },
+    {
+     "section": 5,
+     "sim": 0.4657
+    },
+    {
+     "section": 10,
+     "sim": 0.4618
+    },
+    {
+     "section": 8,
+     "sim": 0.4209
+    },
+    {
+     "section": 11,
+     "sim": 0.3859
+    },
+    {
+     "section": 3,
+     "sim": 0.3805
+    },
+    {
+     "section": 9,
+     "sim": 0.35
+    },
+    {
+     "section": 2,
+     "sim": 0.3015
+    }
+   ],
+   "gold": null,
+   "gold_rank": null
+  }
+ ],
+ "summary": {
+  "closed/answerable": {
+   "correct": 6,
+   "wrong": 21,
+   "abstain": 3,
+   "n": 30
+  },
+  "closed/unanswerable": {
+   "correct": 0,
+   "wrong": 6,
+   "abstain": 0,
+   "n": 6
+  },
+  "rag/answerable": {
+   "correct": 30,
+   "wrong": 0,
+   "abstain": 0,
+   "n": 30
+  },
+  "rag/unanswerable": {
+   "correct": 0,
+   "wrong": 0,
+   "abstain": 6,
+   "n": 6
+  },
+  "miss/answerable": {
+   "correct": 0,
+   "wrong": 0,
+   "abstain": 30,
+   "n": 30
+  }
+ },
+ "rows": [
+  {
+   "trial": 1,
+   "qid": "q01",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "A Bramble B4 status light blinking red three times fast repeatedly indicates that the mower has detected an obstacle or is experiencing a blade obstruction.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3WIlItrDS1Fks0vP3cS4UMrccam",
+   "log_n": 3
+  },
+  {
+   "trial": 1,
+   "qid": "q01",
+   "condition": "rag",
+   "context_sections": [
+    9,
+    15
+   ],
+   "answer": "When the Bramble B4 status light blinks red three times fast repeatedly, it means the blade motor is blocked and you should switch off the mower, wear gloves, and clear grass or debris from the blade disc.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3WJwW9jeip2oZChQWnqC8ZOqwX2",
+   "log_n": 4
+  },
+  {
+   "trial": 1,
+   "qid": "q01",
+   "condition": "miss",
+   "context_sections": [
+    15,
+    7
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3WQD0DF8S83RDfsu3JzdLwTRGl0",
+   "log_n": 5
+  },
+  {
+   "trial": 1,
+   "qid": "q02",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The default rain delay on the Bramble B4 is 24 hours.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3WRt7RkIAQOcKXMMI7x38ASa1Yl",
+   "log_n": 6
+  },
+  {
+   "trial": 1,
+   "qid": "q02",
+   "condition": "rag",
+   "context_sections": [
+    7,
+    6
+   ],
+   "answer": "The default rain delay on the Bramble B4 is 180 minutes.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3WSGGfZP0ymCiORMTAw7sTQudCE",
+   "log_n": 7
+  },
+  {
+   "trial": 1,
+   "qid": "q02",
+   "condition": "miss",
+   "context_sections": [
+    6,
+    15
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3WThtyAllcbh2d3VurTAQYh3hsn",
+   "log_n": 8
+  },
+  {
+   "trial": 1,
+   "qid": "q03",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4 can climb slopes up to 35%.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3WTBHgtebn82fB61p1I7U0AW7ro",
+   "log_n": 9
+  },
+  {
+   "trial": 1,
+   "qid": "q03",
+   "condition": "rag",
+   "context_sections": [
+    4,
+    5
+   ],
+   "answer": "The Bramble B4 can climb slopes up to 24 degrees (45 percent).",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3WUh1Jz9eu0LJZERuOpwp3yr9dB",
+   "log_n": 10
+  },
+  {
+   "trial": 1,
+   "qid": "q03",
+   "condition": "miss",
+   "context_sections": [
+    5,
+    1
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3WVX2otMz3mfnrKdr2NiSbtQjdJ",
+   "log_n": 11
+  },
+  {
+   "trial": 1,
+   "qid": "q04",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4 blades should be replaced every 3 to 4 months for optimal performance.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3WWjZbFAEzVeIzlUOXltmEtQQIg",
+   "log_n": 12
+  },
+  {
+   "trial": 1,
+   "qid": "q04",
+   "condition": "rag",
+   "context_sections": [
+    10,
+    14
+   ],
+   "answer": "The Bramble B4 blades should be replaced every 8 weeks during the mowing season, or sooner if the cut looks ragged.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3WX7QBLr33B23ycYucQJ0PdBpht",
+   "log_n": 13
+  },
+  {
+   "trial": 1,
+   "qid": "q04",
+   "condition": "miss",
+   "context_sections": [
+    14,
+    1
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3WXmqmWJ2VI2XtGyHUhx15iiBIH",
+   "log_n": 14
+  },
+  {
+   "trial": 1,
+   "qid": "q05",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The default Child Lock PIN on the Bramble B4 is 0000.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3WYzVWN22RmLmZp5G5tA0FUs5Md",
+   "log_n": 15
+  },
+  {
+   "trial": 1,
+   "qid": "q05",
+   "condition": "rag",
+   "context_sections": [
+    8,
+    13
+   ],
+   "answer": "The default Child Lock PIN on the Bramble B4 is 0000.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3WYNz9bdmStSXxaydpkplj2U24o",
+   "log_n": 16
+  },
+  {
+   "trial": 1,
+   "qid": "q05",
+   "condition": "miss",
+   "context_sections": [
+    13,
+    15
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3WZTGd5Py0umnbw6EeQmezsUibK",
+   "log_n": 17
+  },
+  {
+   "trial": 1,
+   "qid": "q06",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4 boundary wire should be laid approximately 30cm (about 12 inches) away from a wall.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3WaqynENhmwdzURTquTS2B3cr39",
+   "log_n": 18
+  },
+  {
+   "trial": 1,
+   "qid": "q06",
+   "condition": "rag",
+   "context_sections": [
+    3,
+    4
+   ],
+   "answer": "You should lay the Bramble B4 boundary wire 35 centimetres from walls.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3WbOpGQPjmcH0emzRPmWXjKlB79",
+   "log_n": 19
+  },
+  {
+   "trial": 1,
+   "qid": "q06",
+   "condition": "miss",
+   "context_sections": [
+    4,
+    2
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3WikZjs3uLFNPWw9syqTKU4VNca",
+   "log_n": 20
+  },
+  {
+   "trial": 1,
+   "qid": "q07",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4 supports a cutting height range of 20 to 60 mm.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3WjMrrVNBiJWj3LMABB2soQC8M1",
+   "log_n": 21
+  },
+  {
+   "trial": 1,
+   "qid": "q07",
+   "condition": "rag",
+   "context_sections": [
+    5,
+    4
+   ],
+   "answer": "The Bramble B4 supports a cutting height range from 22 millimetres to 62 millimetres, adjustable in 8 steps.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3WjsYNM4u8BruXl2SMIZMlnvF6u",
+   "log_n": 22
+  },
+  {
+   "trial": 1,
+   "qid": "q07",
+   "condition": "miss",
+   "context_sections": [
+    4,
+    1
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3WkNrd2z1MgUmyU2o3KMp95r1jc",
+   "log_n": 23
+  },
+  {
+   "trial": 1,
+   "qid": "q08",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "Bramble Connect costs £39.99 per year after the free first year.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3WlQZKbpsc8PfbgpokvmjGqpAig",
+   "log_n": 24
+  },
+  {
+   "trial": 1,
+   "qid": "q08",
+   "condition": "rag",
+   "context_sections": [
+    15,
+    13
+   ],
+   "answer": "Bramble Connect costs 2 euros per month after the free first year.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3WlFfVOB3WpMywf4NPtWsrGcnTG",
+   "log_n": 25
+  },
+  {
+   "trial": 1,
+   "qid": "q08",
+   "condition": "miss",
+   "context_sections": [
+    15,
+    14
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3Wm8auE4ViWwudFBiR9SbUrrAK0",
+   "log_n": 26
+  },
+  {
+   "trial": 1,
+   "qid": "q09",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3Wn6TqmaDxIAmqInLdAvd6xWwmf",
+   "log_n": 27
+  },
+  {
+   "trial": 1,
+   "qid": "q09",
+   "condition": "rag",
+   "context_sections": [
+    10,
+    1
+   ],
+   "answer": "You should tighten the T15 Torx screw holding each Bramble B4 blade to 1.2 newton-metres when fitting new blades.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3WnMR6L16kQpND435vVB9kz9eRA",
+   "log_n": 28
+  },
+  {
+   "trial": 1,
+   "qid": "q09",
+   "condition": "miss",
+   "context_sections": [
+    1,
+    4
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3WoPSc11xqGJoHTKkJhMNFFe2UJ",
+   "log_n": 29
+  },
+  {
+   "trial": 1,
+   "qid": "q10",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "You can get an extra year of warranty on your Bramble B4 by purchasing it from an authorized retailer, as the warranty is valid for 2 years when bought this way.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3WrUj9NFAPy3FqiZIB5bZkl1mAk",
+   "log_n": 30
+  },
+  {
+   "trial": 1,
+   "qid": "q10",
+   "condition": "rag",
+   "context_sections": [
+    14,
+    15
+   ],
+   "answer": "You can get an extra year of warranty on your Bramble B4 by registering the mower within 30 days of purchase.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3WsN3nfZXBOiLz7VGAizD3ms0Qm",
+   "log_n": 31
+  },
+  {
+   "trial": 1,
+   "qid": "q10",
+   "condition": "miss",
+   "context_sections": [
+    15,
+    12
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3WwbRnwzKCcr4x8mq7yLb3HBYXt",
+   "log_n": 32
+  },
+  {
+   "trial": 1,
+   "qid": "q11",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4 does not have a built-in camera for obstacle detection; it uses ultrasonic sensors and bump sensors instead.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3Wxc4NV2taDryVvJDHpgeMS6hpO",
+   "log_n": 33
+  },
+  {
+   "trial": 1,
+   "qid": "q11",
+   "condition": "rag",
+   "context_sections": [
+    13,
+    4
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3Wy5Wo5FOFxs0IpYIXIGMGLcxjA",
+   "log_n": 34
+  },
+  {
+   "trial": 1,
+   "qid": "q12",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4's top speed is 17 metres per minute, which is approximately 1.02 kilometres per hour.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3WyG7NSzXhvvC8vwLcgpIcJJgUp",
+   "log_n": 35
+  },
+  {
+   "trial": 1,
+   "qid": "q12",
+   "condition": "rag",
+   "context_sections": [
+    4,
+    15
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3WzkFCHDEhJJZDT7oeNjxsjbYzC",
+   "log_n": 36
+  },
+  {
+   "trial": 2,
+   "qid": "q01",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "When the Bramble B4 status light blinks red three times fast repeatedly, it indicates a problem with the blade motor or a blade jam.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3Wzf31Gj2mPGIwlNpzu7kQlWg00",
+   "log_n": 37
+  },
+  {
+   "trial": 2,
+   "qid": "q01",
+   "condition": "rag",
+   "context_sections": [
+    9,
+    15
+   ],
+   "answer": "When the Bramble B4 status light blinks red three times fast repeatedly, it means the blade motor is blocked and you should switch off the mower, wear gloves, and clear grass or debris from the blade disc.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3X0Zeuc4o7FQhVbmo53rRxX0lFE",
+   "log_n": 38
+  },
+  {
+   "trial": 2,
+   "qid": "q01",
+   "condition": "miss",
+   "context_sections": [
+    15,
+    7
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3X1x9z8s2L4lnWfEXIC2Y5Fz316",
+   "log_n": 39
+  },
+  {
+   "trial": 2,
+   "qid": "q02",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The default rain delay on the Bramble B4 is 120 minutes.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3X2bXNtzECl4yzaAaR6vo6RUJTG",
+   "log_n": 40
+  },
+  {
+   "trial": 2,
+   "qid": "q02",
+   "condition": "rag",
+   "context_sections": [
+    7,
+    6
+   ],
+   "answer": "The default rain delay on the Bramble B4 is 180 minutes.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3X2HNRQVNfpUdzTyRylpbQ5qKbI",
+   "log_n": 41
+  },
+  {
+   "trial": 2,
+   "qid": "q02",
+   "condition": "miss",
+   "context_sections": [
+    6,
+    15
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3X6Q2k2eCTEgxKmq8uKRXaHtIzN",
+   "log_n": 42
+  },
+  {
+   "trial": 2,
+   "qid": "q03",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4 can climb slopes up to 35%.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3X7cyF5zAfM1o5Q0xTtaiGHRQyL",
+   "log_n": 43
+  },
+  {
+   "trial": 2,
+   "qid": "q03",
+   "condition": "rag",
+   "context_sections": [
+    4,
+    5
+   ],
+   "answer": "The Bramble B4 can climb slopes up to 24 degrees (45 percent).",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3X7KHDoiwTV9R0kq2CqAWCW1bQX",
+   "log_n": 44
+  },
+  {
+   "trial": 2,
+   "qid": "q03",
+   "condition": "miss",
+   "context_sections": [
+    5,
+    1
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3X8HXTOianPmSXTp8ty7amnZCge",
+   "log_n": 45
+  },
+  {
+   "trial": 2,
+   "qid": "q04",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4 blades should be replaced approximately every 4 to 6 weeks during the mowing season, or sooner if they become dull or damaged.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3X87FYgWdlDzZ6iVJgWCSU6kBSo",
+   "log_n": 46
+  },
+  {
+   "trial": 2,
+   "qid": "q04",
+   "condition": "rag",
+   "context_sections": [
+    10,
+    14
+   ],
+   "answer": "The Bramble B4 blades should be replaced every 8 weeks during the mowing season, or sooner if the cut looks ragged.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XEbo32ExnBNpzUDXZa90JP21AT",
+   "log_n": 47
+  },
+  {
+   "trial": 2,
+   "qid": "q04",
+   "condition": "miss",
+   "context_sections": [
+    14,
+    1
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XEwsnrIg7SrEYOptiF3G9VQVEw",
+   "log_n": 48
+  },
+  {
+   "trial": 2,
+   "qid": "q05",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The default Child Lock PIN on the Bramble B4 is 0000.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XFIPQiwat9GJyZiEVyM8six1z8",
+   "log_n": 49
+  },
+  {
+   "trial": 2,
+   "qid": "q05",
+   "condition": "rag",
+   "context_sections": [
+    8,
+    13
+   ],
+   "answer": "The default Child Lock PIN on the Bramble B4 is 0000.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XF59B9YvmMdfqNXdRUVAQamYbh",
+   "log_n": 50
+  },
+  {
+   "trial": 2,
+   "qid": "q05",
+   "condition": "miss",
+   "context_sections": [
+    13,
+    15
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XGRpKVrwxcFdYi5u2DpTvzOVsS",
+   "log_n": 51
+  },
+  {
+   "trial": 2,
+   "qid": "q06",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "You should lay the Bramble B4 boundary wire approximately 10-15 cm (4-6 inches) away from the wall.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3XHPjWkIVkRe4WbPFHUEJ0n28Zv",
+   "log_n": 52
+  },
+  {
+   "trial": 2,
+   "qid": "q06",
+   "condition": "rag",
+   "context_sections": [
+    3,
+    4
+   ],
+   "answer": "You should lay the Bramble B4 boundary wire 35 centimetres from walls.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XI5U8EC53hVsGN0PawIOlPPFVH",
+   "log_n": 53
+  },
+  {
+   "trial": 2,
+   "qid": "q06",
+   "condition": "miss",
+   "context_sections": [
+    4,
+    2
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XJnONhy4njFKF1j9CyvbzikHry",
+   "log_n": 54
+  },
+  {
+   "trial": 2,
+   "qid": "q07",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4 supports a cutting height range of 20mm to 60mm.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3XKC5o8ylhfTlLAv7DyOvdeXeWx",
+   "log_n": 55
+  },
+  {
+   "trial": 2,
+   "qid": "q07",
+   "condition": "rag",
+   "context_sections": [
+    5,
+    4
+   ],
+   "answer": "The Bramble B4 supports a cutting height range from 22 millimetres to 62 millimetres, adjustable in 8 steps.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XK8dMndEDsPQOyrFpBFdea7lut",
+   "log_n": 56
+  },
+  {
+   "trial": 2,
+   "qid": "q07",
+   "condition": "miss",
+   "context_sections": [
+    4,
+    1
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XLREBrTujHjjT01P1NDgoUthia",
+   "log_n": 57
+  },
+  {
+   "trial": 2,
+   "qid": "q08",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "Bramble Connect costs £29.99 per year after the free first year.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3XMmlHovfxkNPDreqRoDZy9JQTS",
+   "log_n": 58
+  },
+  {
+   "trial": 2,
+   "qid": "q08",
+   "condition": "rag",
+   "context_sections": [
+    15,
+    13
+   ],
+   "answer": "Bramble Connect costs 2 euros per month after the free first year.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XMak83m8h00DjARnA6nW9fHABX",
+   "log_n": 59
+  },
+  {
+   "trial": 2,
+   "qid": "q08",
+   "condition": "miss",
+   "context_sections": [
+    15,
+    14
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XNARHqiILiHS3uid6pDGfKT35A",
+   "log_n": 60
+  },
+  {
+   "trial": 2,
+   "qid": "q09",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XOrPq8ZcQwUE2yWmQ6oqlmk1aJ",
+   "log_n": 61
+  },
+  {
+   "trial": 2,
+   "qid": "q09",
+   "condition": "rag",
+   "context_sections": [
+    10,
+    1
+   ],
+   "answer": "You should tighten the T15 Torx screws holding the blades to 1.2 newton-metres when fitting new Bramble B4 blades.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XO8kO8RErWC8yBSKGBu2iCLW3b",
+   "log_n": 62
+  },
+  {
+   "trial": 2,
+   "qid": "q09",
+   "condition": "miss",
+   "context_sections": [
+    1,
+    4
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XP3y1e2QWSoyP2Z1kKjN7mr5Na",
+   "log_n": 63
+  },
+  {
+   "trial": 2,
+   "qid": "q10",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "You can get an extra year of warranty on your Bramble B4 by registering your mower with Bramble within 30 days of purchase.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XSd43VVMuPC5KvWASBCoOekFqO",
+   "log_n": 64
+  },
+  {
+   "trial": 2,
+   "qid": "q10",
+   "condition": "rag",
+   "context_sections": [
+    14,
+    15
+   ],
+   "answer": "You can get an extra year of warranty on your Bramble B4 by registering it within 30 days of purchase.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XT1X1vUF9Xest9Yow9Hg8goL2g",
+   "log_n": 65
+  },
+  {
+   "trial": 2,
+   "qid": "q10",
+   "condition": "miss",
+   "context_sections": [
+    15,
+    12
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XT3XtxrS81h7ETSu5RjGQRmIzY",
+   "log_n": 66
+  },
+  {
+   "trial": 2,
+   "qid": "q11",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4 does not have a built-in camera for obstacle detection; it uses ultrasonic sensors instead.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3XZ7Az0WXvboQDe71bffrJvEhQn",
+   "log_n": 67
+  },
+  {
+   "trial": 2,
+   "qid": "q11",
+   "condition": "rag",
+   "context_sections": [
+    13,
+    4
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XaCgVedqoIB2nqaB0vYp0k1rt7",
+   "log_n": 68
+  },
+  {
+   "trial": 2,
+   "qid": "q12",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4's top speed is 0.3 kilometres per hour.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3XaUV6dVUC18W55Ubl8Wp1tnH55",
+   "log_n": 69
+  },
+  {
+   "trial": 2,
+   "qid": "q12",
+   "condition": "rag",
+   "context_sections": [
+    4,
+    15
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XbmNy0JPh662x1BJusrrXW7qd4",
+   "log_n": 70
+  },
+  {
+   "trial": 3,
+   "qid": "q01",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "A Bramble B4 status light blinking red three times fast repeatedly indicates that the mower's cutting blades have been obstructed or jammed.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XbjKTNidxkqyH2XVHNeJ0Z41v0",
+   "log_n": 71
+  },
+  {
+   "trial": 3,
+   "qid": "q01",
+   "condition": "rag",
+   "context_sections": [
+    9,
+    15
+   ],
+   "answer": "When the Bramble B4 status light blinks red three times fast repeatedly, it means the blade motor is blocked and you should switch off the mower, wear gloves, and clear grass or debris from the blade disc.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3Xcsu1UNeoe4pbnvmEQlog6wnyq",
+   "log_n": 72
+  },
+  {
+   "trial": 3,
+   "qid": "q01",
+   "condition": "miss",
+   "context_sections": [
+    15,
+    7
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XdAL0FUo8gK4uKFxRoKBFfMldP",
+   "log_n": 73
+  },
+  {
+   "trial": 3,
+   "qid": "q02",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The default rain delay on the Bramble B4 is 24 hours.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3XdLrk2L54Gn0ab2fwK4b8saN7k",
+   "log_n": 74
+  },
+  {
+   "trial": 3,
+   "qid": "q02",
+   "condition": "rag",
+   "context_sections": [
+    7,
+    6
+   ],
+   "answer": "The default rain delay on the Bramble B4 is 180 minutes.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XeUhiq9YlO5wsVOFPtv19HcyG6",
+   "log_n": 75
+  },
+  {
+   "trial": 3,
+   "qid": "q02",
+   "condition": "miss",
+   "context_sections": [
+    6,
+    15
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3Xfga2OzKYFzWuJvkOTWKEWXvHG",
+   "log_n": 76
+  },
+  {
+   "trial": 3,
+   "qid": "q03",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4 can climb slopes up to 35%.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3XfCGOoHxfLgYQasdMeRsIQwPZH",
+   "log_n": 77
+  },
+  {
+   "trial": 3,
+   "qid": "q03",
+   "condition": "rag",
+   "context_sections": [
+    4,
+    5
+   ],
+   "answer": "The Bramble B4 can climb slopes up to 24 degrees (45 percent).",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XgpD8tGHOOQSNfCaKVoZfJysh8",
+   "log_n": 78
+  },
+  {
+   "trial": 3,
+   "qid": "q03",
+   "condition": "miss",
+   "context_sections": [
+    5,
+    1
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3Xo7p7saCcNd2iKyUHFPgaoGJQg",
+   "log_n": 79
+  },
+  {
+   "trial": 3,
+   "qid": "q04",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4 blades should be replaced every 1-2 months for optimal performance.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3XpK3sEXlj4rtBEOofyuW44BlhR",
+   "log_n": 80
+  },
+  {
+   "trial": 3,
+   "qid": "q04",
+   "condition": "rag",
+   "context_sections": [
+    10,
+    14
+   ],
+   "answer": "The Bramble B4 blades should be replaced every 8 weeks during the mowing season, or sooner if the cut looks ragged.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XqVY8WWOPCylMa5OA1Ni5B90Ta",
+   "log_n": 81
+  },
+  {
+   "trial": 3,
+   "qid": "q04",
+   "condition": "miss",
+   "context_sections": [
+    14,
+    1
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XqkIV9efgHSj4uV8w55D9x4DOD",
+   "log_n": 82
+  },
+  {
+   "trial": 3,
+   "qid": "q05",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The default Child Lock PIN on the Bramble B4 is 0000.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XrsDyVfGJ6yDQmHxoPbmT9rqHf",
+   "log_n": 83
+  },
+  {
+   "trial": 3,
+   "qid": "q05",
+   "condition": "rag",
+   "context_sections": [
+    8,
+    13
+   ],
+   "answer": "The default Child Lock PIN on the Bramble B4 is 0000.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3XsJFX14g4oKaM0R57S5JrQsIoc",
+   "log_n": 84
+  },
+  {
+   "trial": 3,
+   "qid": "q05",
+   "condition": "miss",
+   "context_sections": [
+    13,
+    15
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XsbweSBtME9CjxqPgA0xjfdxu0",
+   "log_n": 85
+  },
+  {
+   "trial": 3,
+   "qid": "q06",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "You should lay the Bramble B4 boundary wire about 10-15 cm (4-6 inches) away from the wall.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3Xt72zp329vo6I5m3QsDkSPIk8I",
+   "log_n": 86
+  },
+  {
+   "trial": 3,
+   "qid": "q06",
+   "condition": "rag",
+   "context_sections": [
+    3,
+    4
+   ],
+   "answer": "You should lay the Bramble B4 boundary wire 35 centimetres from walls.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3Xus8iHkif46ociyW7hE4jsJdSl",
+   "log_n": 87
+  },
+  {
+   "trial": 3,
+   "qid": "q06",
+   "condition": "miss",
+   "context_sections": [
+    4,
+    2
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XufUHZmJEyUnNxVXTbputHWALP",
+   "log_n": 88
+  },
+  {
+   "trial": 3,
+   "qid": "q07",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4 supports a cutting height range of 20mm to 60mm.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3Xvzb1NZQhbC4lUzxfpdD7vyOSz",
+   "log_n": 89
+  },
+  {
+   "trial": 3,
+   "qid": "q07",
+   "condition": "rag",
+   "context_sections": [
+    5,
+    4
+   ],
+   "answer": "The Bramble B4 supports a cutting height range from 22 millimetres to 62 millimetres.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3Xv6TRiaVINP6T1GAC95ZDXKu9l",
+   "log_n": 90
+  },
+  {
+   "trial": 3,
+   "qid": "q07",
+   "condition": "miss",
+   "context_sections": [
+    4,
+    1
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3XwghJNPsYJlAYij7NfZrKEOixv",
+   "log_n": 91
+  },
+  {
+   "trial": 3,
+   "qid": "q08",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "Bramble Connect costs £50 per year after the free first year.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3Y7R6gF19hxgyr1NV5ldmOWsfsK",
+   "log_n": 92
+  },
+  {
+   "trial": 3,
+   "qid": "q08",
+   "condition": "rag",
+   "context_sections": [
+    15,
+    13
+   ],
+   "answer": "Bramble Connect costs 2 euros per month after the free first year.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3Y7BoijuAZtntqXHy41Xl3jb2Z9",
+   "log_n": 93
+  },
+  {
+   "trial": 3,
+   "qid": "q08",
+   "condition": "miss",
+   "context_sections": [
+    15,
+    14
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3Y8SVHXRVh6dbNdMI9HQ6jk0D36",
+   "log_n": 94
+  },
+  {
+   "trial": 3,
+   "qid": "q09",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3Y8HdyvIsXWW9bYK7hVLdjYwG1b",
+   "log_n": 95
+  },
+  {
+   "trial": 3,
+   "qid": "q09",
+   "condition": "rag",
+   "context_sections": [
+    10,
+    1
+   ],
+   "answer": "You should tighten the blades' T15 Torx screws to 1.2 newton-metres when fitting new Bramble B4 blades.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3Y9m22Tm4qpXbXmINhYOWamJy9t",
+   "log_n": 96
+  },
+  {
+   "trial": 3,
+   "qid": "q09",
+   "condition": "miss",
+   "context_sections": [
+    1,
+    4
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3Y9qyzocwzE1X9wANzHUoDI0d5K",
+   "log_n": 97
+  },
+  {
+   "trial": 3,
+   "qid": "q10",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "You can get an extra year of warranty on your Bramble B4 by registering your mower online within 14 days of purchase.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3YAwwkH3QvqUW3bgFymzdFQTdvr",
+   "log_n": 98
+  },
+  {
+   "trial": 3,
+   "qid": "q10",
+   "condition": "rag",
+   "context_sections": [
+    14,
+    15
+   ],
+   "answer": "You can get an extra year of warranty on your Bramble B4 by registering the mower within 30 days of purchase.",
+   "grade": "correct",
+   "response_id": "chatcmpl-Ed3YBU9LjnznmSRMNs6gR00abKboF",
+   "log_n": 99
+  },
+  {
+   "trial": 3,
+   "qid": "q10",
+   "condition": "miss",
+   "context_sections": [
+    15,
+    12
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3YBWvUr6YcKKGv69mnRpQzkH1Et",
+   "log_n": 100
+  },
+  {
+   "trial": 3,
+   "qid": "q11",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4 does not have a built-in camera for obstacle detection; it uses ultrasonic sensors and a cable sensor instead.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3YCxkkKbRL5QZvCCUxKE4FnfGld",
+   "log_n": 101
+  },
+  {
+   "trial": 3,
+   "qid": "q11",
+   "condition": "rag",
+   "context_sections": [
+    13,
+    4
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3YDZ4HZ57vPqbkbossEzhxP6NhO",
+   "log_n": 102
+  },
+  {
+   "trial": 3,
+   "qid": "q12",
+   "condition": "closed",
+   "context_sections": [],
+   "answer": "The Bramble B4's top speed is 20 metres per minute, which is equivalent to 1.2 kilometres per hour.",
+   "grade": "wrong",
+   "response_id": "chatcmpl-Ed3YDeqN2grEhqZD0QRD1D9E8eSiI",
+   "log_n": 103
+  },
+  {
+   "trial": 3,
+   "qid": "q12",
+   "condition": "rag",
+   "context_sections": [
+    4,
+    15
+   ],
+   "answer": "I don't know.",
+   "grade": "abstain",
+   "response_id": "chatcmpl-Ed3YMNiMa5op7vy0NWOPN4KBjThWU",
+   "log_n": 104
+  }
+ ],
+ "api_calls": 104
+}

@@ -1,0 +1,14 @@
+[
+ {"id":"q01","q":"What does it mean when the Bramble B4 status light blinks red three times fast, over and over?","gold_section":9,"must":[["blade"],["block","clog","jam","debris"]]},
+ {"id":"q02","q":"How long is the default rain delay on the Bramble B4?","gold_section":7,"must":[["180","three hours","3 hours"]]},
+ {"id":"q03","q":"What is the maximum slope the Bramble B4 can climb?","gold_section":4,"must":[["24"]]},
+ {"id":"q04","q":"How often should the Bramble B4 blades be replaced?","gold_section":10,"must":[["8 weeks","eight weeks"]]},
+ {"id":"q05","q":"What is the default Child Lock PIN on the Bramble B4?","gold_section":8,"must":[["0000"]]},
+ {"id":"q06","q":"How far from a wall should I lay the Bramble B4 boundary wire?","gold_section":3,"must":[["35"]]},
+ {"id":"q07","q":"What cutting height range does the Bramble B4 support?","gold_section":5,"must":[["22"],["62"]]},
+ {"id":"q08","q":"How much does Bramble Connect cost after the free first year?","gold_section":13,"must":[["2 euro","€2","2 eur","two euro"]]},
+ {"id":"q09","q":"What screw torque should I use when fitting new Bramble B4 blades?","gold_section":10,"must":[["1.2"]]},
+ {"id":"q10","q":"How can I get an extra year of warranty on my Bramble B4?","gold_section":14,"must":[["register"],["30 days","30-day","thirty days"]]},
+ {"id":"q11","q":"Does the Bramble B4 have a built-in camera for obstacle detection, and what resolution is it?","gold_section":null,"must":[]},
+ {"id":"q12","q":"What is the Bramble B4's top speed in kilometres per hour?","gold_section":null,"must":[]}
+]
