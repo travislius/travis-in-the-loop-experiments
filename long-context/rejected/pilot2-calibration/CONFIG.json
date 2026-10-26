@@ -1,0 +1,12 @@
+{
+ "run": "pilot2",
+ "models": "gpt-5.4-nano,gpt-4o-mini",
+ "lengths": "120000",
+ "depths": "0,0.5,1",
+ "trials": 1,
+ "variants": "plain,distractor",
+ "workers": 6,
+ "system": "You answer questions about the document the user provides. Answer with only the 4-digit number, nothing else. If it is not in the document, answer NONE.",
+ "temperature": 0,
+ "max_tokens": 16
+}
