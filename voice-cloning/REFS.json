@@ -1,0 +1,200 @@
+{
+ "speaker": "Travis Li (channel owner, own recordings, authorized)",
+ "conditions": {
+  "3s": {
+   "audio": "3s.wav",
+   "text": "For normal single camera 4K YouTube projects, M6",
+   "seconds": 3.28,
+   "sources": [
+    "M6_034"
+   ],
+   "sha256": "4b9c227cf3a6fe9243db73296473050433fd6c15b0f0c745a4fb569d1a1c9f2e",
+   "text_correction": "ASR \"U2\" -> \"YouTube\" (verified against source caption text)"
+  },
+  "3s_alt": {
+   "audio": "3s_alt.wav",
+   "text": "They're generally in my past experience",
+   "seconds": 3.2,
+   "sources": [
+    "Surface_030"
+   ],
+   "sha256": "1e5ef004806b3c43e0963659fb0b107a76907f5e727b3f99bccec77a5bee20ba"
+  },
+  "10s": {
+   "audio": "10s.wav",
+   "text": "I also posted some videos about upgrading Mac mini's storage in my previous video. If you're interested in that, you can check it out. But be aware that by doing this, you're losing the warranty from Apple.",
+   "seconds": 11.408,
+   "sources": [
+    "M6_v2_2151_2190"
+   ],
+   "sha256": "b123bea8465774a230163aef929dff706dd07c784d0eb25f102d93d16fbe9afd"
+  },
+  "10s_alt": {
+   "audio": "10s_alt.wav",
+   "text": "So the current Surface Laptop 8 generation is very good. In fact, I think these are some of the most mature Surface laptops Microsoft has ever made. But the lineup at this stage is also very confusing.",
+   "seconds": 11.505,
+   "sources": [
+    "Surface_v2_0154_0192"
+   ],
+   "sha256": "22b25f1cd03f769b117f998adace1b93ac2480b409f706cb35bd9f32c2b4f972"
+  },
+  "30s": {
+   "audio": "30s.wav",
+   "text": "For normal single camera 4K YouTube projects, M6 or M5 Pro is already very capable. And because this is like unified memory, the CPU and GPU share the same memory pool. You also can not upgrade it later. There's also a major difference in memory bandwidth. So M6, even it's newer, it tops out at around 170 gigabytes per second. The first one is, how much memory do you need? The second one is, is your workflow primarily CPU-heavy or GPU-heavy? So the important thing is memory determines whether You can fit a model in your machine.",
+   "seconds": 36.173,
+   "sources": [
+    "M6_034",
+    "M6_v2_0899_0921",
+    "M6_v2_1043_1067",
+    "M6_v2_0270_0292",
+    "M6_045"
+   ],
+   "sha256": "496e3f28fc5b911a435797aac17743481538956166de906825aa94c6bc4567f0"
+  },
+  "30s_alt": {
+   "audio": "30s_alt.wav",
+   "text": "So apparently my financial strategy is to buy the wrong Surface laptops first, discover everything that bothers me, and then buy another one so that you don't have to buy the wrong one and repeat my mistake. So personally, I still like the 13.8 inch Surface Laptop a little bit more because it's like a more harmonious size for me. Everything feels like properly proportioned. And for documents, websites, spreadsheets, and code, all the productivity stuff, the additional height is very helpful. They're generally in my past experience, more efficient, they have longer battery life.",
+   "seconds": 34.588,
+   "sources": [
+    "Surface_v2_0078_0115",
+    "Surface_v2_1524_1557",
+    "Surface_033",
+    "Surface_030"
+   ],
+   "sha256": "b768df52e224dca7cc1225b60857cd8916879d7fa6a8945278951e0bc75a865e"
+  }
+ },
+ "heldout": [
+  {
+   "id": "FormFactor_v2_0029_0063",
+   "text": "Which form factor of the phone do you actually want to live with? I've been comparing the iPhone 17 Pro, the OPPO Find N6, and the Samsung Galaxy Z Fold 8.",
+   "sha256": "7c5f49bb888e01c5836a61779b5242dec57c62973c969ed23668c946cca137e3"
+  },
+  {
+   "id": "FormFactor_v2_0133_0159",
+   "text": "My starting point is very simple. Give me a bigger screen when I need it, with no extra cost or inconvenience. Of course! I want one.",
+   "sha256": "317f938d3eb3a1083a0c6ac047af5ab4cfbffdad64ce2db56e0334850d7dffba"
+  },
+  {
+   "id": "FormFactor_003",
+   "text": "The good news is that some of these compromises are becoming much smaller over the time.",
+   "sha256": "4faa1da9cb9ede4bf7c76c4b8164e5a54fe3bf32ffc2894ac9bb43f79ef94c34"
+  },
+  {
+   "id": "FormFactor_007",
+   "text": "So for me, the compromises are increasingly manageable. But that doesn't mean everyone should pay for them.",
+   "sha256": "88b57525f32df3f1924defae80e5e86600707d946391c9d5320e902569bd9f36"
+  },
+  {
+   "id": "FormFactor_v2_0318_0336",
+   "text": "But when your phone is the screen you always have with you, the actual space becomes much more valuable.",
+   "sha256": "c958ed35ef47fea268752f374f7b25415032a18727509d8d19c985fb631ea41e"
+  },
+  {
+   "id": "FormFactor_v2_0378_0412_wide",
+   "text": "You don't only use a foldable open. You also have to live with when it's closed. So let's score these two folding designs across six categories. A win gets one point.",
+   "sha256": "0496a49478193d188bddbebfe1038c1eff73d5eea0c2b584baf37e4de7d39a31"
+  },
+  {
+   "id": "FormFactor_v2_0454_0486",
+   "text": "On the OPPO, I can reply messages, I can browse, I can keep working without feeling like I'm actually using a secondary screen. The apps I use feel at home.",
+   "sha256": "6895285a98435946fcd3a9a18102530c41622c567f9fbd201e06a86a9217c513"
+  },
+  {
+   "id": "FormFactor_v2_0508_0519_wide",
+   "text": "The passport screen isn't bad, but some apps feel less polished.",
+   "sha256": "d9acb8da3236c4e2a3bb2d84100a2d005accdd22acf6ba71d5a1798752e4b10a"
+  },
+  {
+   "id": "FormFactor_019",
+   "text": "I'm optimistic that Apple's entry will encourage developers to improve this layout quickly.",
+   "sha256": "78ff5ce5c313f72852e41aa97625090dbc0e54edd8736893dcc4b009f6741d91"
+  },
+  {
+   "id": "FormFactor_v2_0639_0658",
+   "text": "You might expect the wider 4:3 screen to give you a much bigger movie, but look at my comparisons.",
+   "sha256": "e80c1a15f2fe62d5630f79ffd977850b29f6068e4374b62742f96ca8b111177d"
+  },
+  {
+   "id": "FormFactor_v2_0659_0676",
+   "text": "The actual video pictures are almost the same size. The OPPO has a larger panel overall.",
+   "sha256": "b6f80be9bee5f651717fee9e4475a755b570c1ffeadb27a2d193a26df7fc13c2"
+  },
+  {
+   "id": "FormFactor_v2_0696_0724_wide",
+   "text": "Based on their screen size and resolutions, the largest uncropped 16:9 picture works out to roughly 7 inches diagonal on both OPPO and Samsung.",
+   "sha256": "102f04496c0d1803240b7dc6ab84302a19c7dcaea3e6784883cd00a3b8d034d4"
+  },
+  {
+   "id": "FormFactor_025",
+   "text": "Actually, it's almost identical. But for me, it's how comfortable I can hold it.",
+   "sha256": "e6c87fc9da85032f2b88967759d985871cfab5e536bf07d272d297240ffa1d0f"
+  },
+  {
+   "id": "FormFactor_v2_0864_0874",
+   "text": "And the 4:3 screen rotated into portrait feels really natural.",
+   "sha256": "a867f51abd1661924e136beb778e17502fc5c6554a64cca43e8e82d1f06d1e8b"
+  },
+  {
+   "id": "FormFactor_v2_0996_1009",
+   "text": "It feels lighter and just better balanced. And in landscape, the difference gets smaller.",
+   "sha256": "faa23296f3bdc5b7f349f29b7802a1ded74cf25341e2b0d4b5280048d28857af"
+  },
+  {
+   "id": "FormFactor_v2_1010_1036",
+   "text": "This is where the camera bump makes a surprising difference. So on the OPPO, I can rest my fingers against it. Against the camera module.",
+   "sha256": "262b65ae3e7381d404b53b92345e679c5dd6209fc8220f0f32874b49ba9f6864"
+  },
+  {
+   "id": "FormFactor_037",
+   "text": "And that gives me a very useful supporting point. The Samsung vertical camera module here doesn't really support my grip as well.",
+   "sha256": "7efa2aae35d0ad2151383381000eb294a71052f19958393e39b82a505d20e853"
+  },
+  {
+   "id": "FormFactor_v2_1060_1071",
+   "text": "Even though it's lighter, landscape comfort ends up about the same.",
+   "sha256": "de7a5c1eb9fab3660c3feb4e3ce450aab9ba9034a4ca6f2a519b2bf20cf3f731"
+  },
+  {
+   "id": "FormFactor_040",
+   "text": "The weight distribution, the rounded edges and the camera placement all matter.",
+   "sha256": "f522d62eb13295d599fc9c54cdac05e5ce6d2ec3f12788950bdd2b0906ebaf42"
+  },
+  {
+   "id": "FormFactor_043",
+   "text": "And for me, the lower weight matters more than the actual width. There's a limit though, obviously.",
+   "sha256": "706064b6d59686f01e3e1e9ed54aa2f65dfafb2b3afe01986ae2ec1e9693fd7f"
+  },
+  {
+   "id": "FormFactor_v2_1187_1201",
+   "text": "But at this size, for the current size, I prefer carrying the Passport design.",
+   "sha256": "1adb6898fa43c7c83898113fb47cb5977ec40f4fd80c08aed315949b35fcdf30"
+  },
+  {
+   "id": "FormFactor_v2_1308_1324",
+   "text": "If you use the cover screen all day, the one point may matter more than everything else.",
+   "sha256": "91a8d6962f9ababea037986f6a8158d1c95763e0508447ca0d2dabfc1b40a81e"
+  },
+  {
+   "id": "FormFactor_v2_1476_1487",
+   "text": "So would I replace my iPhone Pro with the anticipated iPhone Ultra?",
+   "sha256": "56dfce3240447fb244ec4714f65ccd8692542a7563b87b4ef004ada4089188b5"
+  },
+  {
+   "id": "FormFactor_057",
+   "text": "The shape itself wouldn't stop me. But I have two questions. First is the cameras.",
+   "sha256": "c9c4ca9e1ba058bfd1057d471e4cb385fdaaa8967a01b29b25f40bc82feb571e"
+  },
+  {
+   "id": "FormFactor_v2_1522_1532_wide",
+   "text": "Second, the speakers. The Fold8's speakers sounded pretty average.",
+   "sha256": "f6ae930e83af176679509760587859570dcb4226db6f0b1b13f78a9a4a5b98e6"
+  },
+  {
+   "id": "FormFactor_060",
+   "text": "That doesn't tell us how Apple will sound, but it's something I need to hear before deciding.",
+   "sha256": "eebebc94dcb677bfd67aed9a616998accce9fd607102a281f2539c910a9de5c2"
+  }
+ ],
+ "note": "Audio not published: these are Travis's private source clips. IDs refer to his own review videos (M6 Mac, Surface Laptop, foldable phones)."
+}

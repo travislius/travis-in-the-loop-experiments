@@ -1,0 +1,29 @@
+{
+ "condition": "10s_alt",
+ "sentence": "s1",
+ "text": "Before you send money, call them back on a number you already know.",
+ "seed": 22,
+ "ref_seconds": 11.505,
+ "ref_sha256": "22b25f1cd03f769b117f998adace1b93ac2480b409f706cb35bd9f32c2b4f972",
+ "model": "Qwen3-TTS-12Hz-1.7B-Base-bf16",
+ "snapshot": "a6eb4f68e4b056f1215157bb696209bc82a6db48",
+ "mlx_audio": "0.5.8",
+ "mlx": "0.32.3",
+ "params": {
+  "ref_text": "So the current Surface Laptop 8 generation is very good. In fact, I think these are some of the most mature Surface laptops Microsoft has ever made. But the lineup at this stage is also very confusing.",
+  "temperature": 0.9,
+  "speed": 1.0,
+  "lang_code": "english",
+  "max_tokens": 600,
+  "top_k": 50,
+  "top_p": 1.0,
+  "repetition_penalty": 1.5,
+  "stream": false,
+  "verbose": false
+ },
+ "seconds": 3.28,
+ "sample_rate": 24000,
+ "sha256": "38da282a9d5e15f55cc126160f157582117bde86097e2ca136340429dce840bd",
+ "synthesis_seconds": 1.0759449005126953,
+ "native_unedited": true
+}

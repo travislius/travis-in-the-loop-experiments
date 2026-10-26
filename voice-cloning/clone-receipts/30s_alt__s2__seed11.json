@@ -1,0 +1,29 @@
+{
+ "condition": "30s_alt",
+ "sentence": "s2",
+ "text": "This sentence was never spoken by me. A computer generated it from a short recording.",
+ "seed": 11,
+ "ref_seconds": 34.588,
+ "ref_sha256": "b768df52e224dca7cc1225b60857cd8916879d7fa6a8945278951e0bc75a865e",
+ "model": "Qwen3-TTS-12Hz-1.7B-Base-bf16",
+ "snapshot": "a6eb4f68e4b056f1215157bb696209bc82a6db48",
+ "mlx_audio": "0.5.8",
+ "mlx": "0.32.3",
+ "params": {
+  "ref_text": "So apparently my financial strategy is to buy the wrong Surface laptops first, discover everything that bothers me, and then buy another one so that you don't have to buy the wrong one and repeat my mistake. So personally, I still like the 13.8 inch Surface Laptop a little bit more because it's like a more harmonious size for me. Everything feels like properly proportioned. And for documents, websites, spreadsheets, and code, all the productivity stuff, the additional height is very helpful. They're generally in my past experience, more efficient, they have longer battery life.",
+  "temperature": 0.9,
+  "speed": 1.0,
+  "lang_code": "english",
+  "max_tokens": 600,
+  "top_k": 50,
+  "top_p": 1.0,
+  "repetition_penalty": 1.5,
+  "stream": false,
+  "verbose": false
+ },
+ "seconds": 4.8,
+ "sample_rate": 24000,
+ "sha256": "dbd2fec37a76ed0219bcf1389921580a875fb45ae67f4e1979d799b51fcd64f7",
+ "synthesis_seconds": 1.9144277572631836,
+ "native_unedited": true
+}

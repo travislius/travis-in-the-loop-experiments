@@ -1,0 +1,29 @@
+{
+ "condition": "10s",
+ "sentence": "s2",
+ "text": "This sentence was never spoken by me. A computer generated it from a short recording.",
+ "seed": 22,
+ "ref_seconds": 11.408,
+ "ref_sha256": "b123bea8465774a230163aef929dff706dd07c784d0eb25f102d93d16fbe9afd",
+ "model": "Qwen3-TTS-12Hz-1.7B-Base-bf16",
+ "snapshot": "a6eb4f68e4b056f1215157bb696209bc82a6db48",
+ "mlx_audio": "0.5.8",
+ "mlx": "0.32.3",
+ "params": {
+  "ref_text": "I also posted some videos about upgrading Mac mini's storage in my previous video. If you're interested in that, you can check it out. But be aware that by doing this, you're losing the warranty from Apple.",
+  "temperature": 0.9,
+  "speed": 1.0,
+  "lang_code": "english",
+  "max_tokens": 600,
+  "top_k": 50,
+  "top_p": 1.0,
+  "repetition_penalty": 1.5,
+  "stream": false,
+  "verbose": false
+ },
+ "seconds": 4.72,
+ "sample_rate": 24000,
+ "sha256": "b5bc9ddc6edf8a635434f5ee0c72e3c4387dc286b092782606b92dc1eb4996ed",
+ "synthesis_seconds": 1.421306848526001,
+ "native_unedited": true
+}

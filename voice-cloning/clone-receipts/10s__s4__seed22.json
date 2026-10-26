@@ -1,0 +1,29 @@
+{
+ "condition": "10s",
+ "sentence": "s4",
+ "text": "Voice cloning can help people who lost their voice, but it needs consent.",
+ "seed": 22,
+ "ref_seconds": 11.408,
+ "ref_sha256": "b123bea8465774a230163aef929dff706dd07c784d0eb25f102d93d16fbe9afd",
+ "model": "Qwen3-TTS-12Hz-1.7B-Base-bf16",
+ "snapshot": "a6eb4f68e4b056f1215157bb696209bc82a6db48",
+ "mlx_audio": "0.5.8",
+ "mlx": "0.32.3",
+ "params": {
+  "ref_text": "I also posted some videos about upgrading Mac mini's storage in my previous video. If you're interested in that, you can check it out. But be aware that by doing this, you're losing the warranty from Apple.",
+  "temperature": 0.9,
+  "speed": 1.0,
+  "lang_code": "english",
+  "max_tokens": 600,
+  "top_k": 50,
+  "top_p": 1.0,
+  "repetition_penalty": 1.5,
+  "stream": false,
+  "verbose": false
+ },
+ "seconds": 4.0,
+ "sample_rate": 24000,
+ "sha256": "607f3e2af9fed66992651c53a1084b5cf12da6a53ab067266e4d9b856fdfd302",
+ "synthesis_seconds": 1.345348834991455,
+ "native_unedited": true
+}

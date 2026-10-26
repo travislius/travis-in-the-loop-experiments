@@ -1,0 +1,29 @@
+{
+ "condition": "3s_alt",
+ "sentence": "s3",
+ "text": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+ "seed": 33,
+ "ref_seconds": 3.2,
+ "ref_sha256": "1e5ef004806b3c43e0963659fb0b107a76907f5e727b3f99bccec77a5bee20ba",
+ "model": "Qwen3-TTS-12Hz-1.7B-Base-bf16",
+ "snapshot": "a6eb4f68e4b056f1215157bb696209bc82a6db48",
+ "mlx_audio": "0.5.8",
+ "mlx": "0.32.3",
+ "params": {
+  "ref_text": "They're generally in my past experience",
+  "temperature": 0.9,
+  "speed": 1.0,
+  "lang_code": "english",
+  "max_tokens": 600,
+  "top_k": 50,
+  "top_p": 1.0,
+  "repetition_penalty": 1.5,
+  "stream": false,
+  "verbose": false
+ },
+ "seconds": 4.0,
+ "sample_rate": 24000,
+ "sha256": "43cc77e7de5e9c5385014726ee0ea00b3c50c598223088e2c6746e2cb38fdaf5",
+ "synthesis_seconds": 1.1095240116119385,
+ "native_unedited": true
+}

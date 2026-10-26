@@ -9,5 +9,6 @@ Each folder contains the exact script, its raw outputs and a short description. 
 | Knowledge Distillation Explained | [`knowledge-distillation/`](knowledge-distillation/) |
 | RAG Explained | [`rag/`](rag/) |
 | Model Quantization Explained | [`quantization/`](quantization/) |
+| Voice Cloning Explained | [`voice-cloning/`](voice-cloning/) |
 
 These are small, illustrative experiments, not benchmarks.

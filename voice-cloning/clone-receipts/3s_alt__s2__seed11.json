@@ -1,0 +1,29 @@
+{
+ "condition": "3s_alt",
+ "sentence": "s2",
+ "text": "This sentence was never spoken by me. A computer generated it from a short recording.",
+ "seed": 11,
+ "ref_seconds": 3.2,
+ "ref_sha256": "1e5ef004806b3c43e0963659fb0b107a76907f5e727b3f99bccec77a5bee20ba",
+ "model": "Qwen3-TTS-12Hz-1.7B-Base-bf16",
+ "snapshot": "a6eb4f68e4b056f1215157bb696209bc82a6db48",
+ "mlx_audio": "0.5.8",
+ "mlx": "0.32.3",
+ "params": {
+  "ref_text": "They're generally in my past experience",
+  "temperature": 0.9,
+  "speed": 1.0,
+  "lang_code": "english",
+  "max_tokens": 600,
+  "top_k": 50,
+  "top_p": 1.0,
+  "repetition_penalty": 1.5,
+  "stream": false,
+  "verbose": false
+ },
+ "seconds": 4.32,
+ "sample_rate": 24000,
+ "sha256": "2904808e3191ac852dbe766d0df4a863c1a1b1b11483d9610412d36dbdc47199",
+ "synthesis_seconds": 1.144317865371704,
+ "native_unedited": true
+}

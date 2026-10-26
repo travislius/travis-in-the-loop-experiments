@@ -1,0 +1,933 @@
+{
+ "metric": "cosine similarity of ECAPA-TDNN speaker embeddings to the centroid of held-out real Travis clips (higher = more alike)",
+ "encoder": "speechbrain/spkrec-ecapa-voxceleb",
+ "speechbrain": "1.0.3",
+ "torch": "2.8.0",
+ "jiwer": "4.0.0",
+ "heldout_clips": 26,
+ "heldout_source": "FormFactor video (not used in any prompt)",
+ "baseline_real_vs_real_loo": {
+  "mean": 0.9042736108486469,
+  "min": 0.8401455879211426,
+  "max": 0.9436661005020142,
+  "n": 26
+ },
+ "baseline_other_speaker_tim": {
+  "mean": 0.35057616730531055,
+  "min": 0.30971759557724,
+  "max": 0.41261833906173706,
+  "n": 12
+ },
+ "reference_prompt_similarity": {
+  "3s": 0.8237915635108948,
+  "3s_alt": 0.7767981290817261,
+  "10s": 0.8569815754890442,
+  "10s_alt": 0.8914774656295776,
+  "30s": 0.9177131652832031,
+  "30s_alt": 0.926632821559906
+ },
+ "summary": {
+  "3s": {
+   "ref_seconds": 3.28,
+   "n": 12,
+   "sim_mean": 0.7934326628843943,
+   "sim_sd": 0.026455073890804516,
+   "sim_min": 0.7257890701293945,
+   "sim_max": 0.8318332433700562,
+   "wer_mean": 0.028632478632478635,
+   "perfect_transcripts": 8,
+   "per_seed_sim": {
+    "11": 0.7873342335224152,
+    "22": 0.7881429046392441,
+    "33": 0.8048208504915237
+   }
+  },
+  "3s_alt": {
+   "ref_seconds": 3.2,
+   "n": 12,
+   "sim_mean": 0.7203473548094431,
+   "sim_sd": 0.032071875941487756,
+   "sim_min": 0.664284884929657,
+   "sim_max": 0.7667183876037598,
+   "wer_mean": 0.0,
+   "perfect_transcripts": 12,
+   "per_seed_sim": {
+    "11": 0.7380175590515137,
+    "22": 0.6995100528001785,
+    "33": 0.7235144525766373
+   }
+  },
+  "10s": {
+   "ref_seconds": 11.408,
+   "n": 12,
+   "sim_mean": 0.7811126460631689,
+   "sim_sd": 0.025088130886669214,
+   "sim_min": 0.7258785963058472,
+   "sim_max": 0.8144865036010742,
+   "wer_mean": 0.008333333333333333,
+   "perfect_transcripts": 11,
+   "per_seed_sim": {
+    "11": 0.7905808985233307,
+    "22": 0.7886881232261658,
+    "33": 0.7640689164400101
+   }
+  },
+  "10s_alt": {
+   "ref_seconds": 11.505,
+   "n": 12,
+   "sim_mean": 0.7766645352045695,
+   "sim_sd": 0.03916445805941757,
+   "sim_min": 0.7009854912757874,
+   "sim_max": 0.8291396498680115,
+   "wer_mean": 0.0,
+   "perfect_transcripts": 12,
+   "per_seed_sim": {
+    "11": 0.7712832987308502,
+    "22": 0.7723895013332367,
+    "33": 0.7863208055496216
+   }
+  },
+  "30s": {
+   "ref_seconds": 36.173,
+   "n": 12,
+   "sim_mean": 0.8044108251730601,
+   "sim_sd": 0.022016996557563753,
+   "sim_min": 0.7673249840736389,
+   "sim_max": 0.8402732610702515,
+   "wer_mean": 0.0,
+   "perfect_transcripts": 12,
+   "per_seed_sim": {
+    "11": 0.818290963768959,
+    "22": 0.8133159279823303,
+    "33": 0.7816255837678909
+   }
+  },
+  "30s_alt": {
+   "ref_seconds": 34.588,
+   "n": 12,
+   "sim_mean": 0.8123697737852732,
+   "sim_sd": 0.0309988214485348,
+   "sim_min": 0.7598867416381836,
+   "sim_max": 0.854880690574646,
+   "wer_mean": 0.0,
+   "perfect_transcripts": 12,
+   "per_seed_sim": {
+    "11": 0.8279187977313995,
+    "22": 0.8115191459655762,
+    "33": 0.797671377658844
+   }
+  },
+  "3s_pooled": {
+   "n": 24,
+   "sim_mean": 0.7568900088469187,
+   "wer_mean": 0.014316239316239317,
+   "perfect_transcripts": 20
+  },
+  "10s_pooled": {
+   "n": 24,
+   "sim_mean": 0.7788885906338692,
+   "wer_mean": 0.004166666666666667,
+   "perfect_transcripts": 23
+  },
+  "30s_pooled": {
+   "n": 24,
+   "sim_mean": 0.8083902994791666,
+   "wer_mean": 0.0,
+   "perfect_transcripts": 24
+  }
+ },
+ "rows": [
+  {
+   "condition": "10s",
+   "sentence": "s1",
+   "seed": 11,
+   "ref_seconds": 11.408,
+   "seconds": 3.36,
+   "file": "10s__s1__seed11.wav",
+   "similarity": 0.7553611397743225,
+   "asr": "Before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s",
+   "sentence": "s1",
+   "seed": 22,
+   "ref_seconds": 11.408,
+   "seconds": 3.04,
+   "file": "10s__s1__seed22.wav",
+   "similarity": 0.8073863983154297,
+   "asr": "Before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s",
+   "sentence": "s1",
+   "seed": 33,
+   "ref_seconds": 11.408,
+   "seconds": 3.52,
+   "file": "10s__s1__seed33.wav",
+   "similarity": 0.806740403175354,
+   "asr": "Before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s",
+   "sentence": "s2",
+   "seed": 11,
+   "ref_seconds": 11.408,
+   "seconds": 4.8,
+   "file": "10s__s2__seed11.wav",
+   "similarity": 0.7960730791091919,
+   "asr": "This sentence was never spoken by me, a computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s",
+   "sentence": "s2",
+   "seed": 22,
+   "ref_seconds": 11.408,
+   "seconds": 4.72,
+   "file": "10s__s2__seed22.wav",
+   "similarity": 0.7885393500328064,
+   "asr": "This sentence was never spoken by me, a computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s",
+   "sentence": "s2",
+   "seed": 33,
+   "ref_seconds": 11.408,
+   "seconds": 5.04,
+   "file": "10s__s2__seed33.wav",
+   "similarity": 0.7687318325042725,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s",
+   "sentence": "s3",
+   "seed": 11,
+   "ref_seconds": 11.408,
+   "seconds": 3.84,
+   "file": "10s__s3__seed11.wav",
+   "similarity": 0.8144865036010742,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon and",
+   "wer": 0.1
+  },
+  {
+   "condition": "10s",
+   "sentence": "s3",
+   "seed": 22,
+   "ref_seconds": 11.408,
+   "seconds": 3.84,
+   "file": "10s__s3__seed22.wav",
+   "similarity": 0.7826151251792908,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s",
+   "sentence": "s3",
+   "seed": 33,
+   "ref_seconds": 11.408,
+   "seconds": 3.36,
+   "file": "10s__s3__seed33.wav",
+   "similarity": 0.7258785963058472,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s",
+   "sentence": "s4",
+   "seed": 11,
+   "ref_seconds": 11.408,
+   "seconds": 4.4,
+   "file": "10s__s4__seed11.wav",
+   "similarity": 0.7964028716087341,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s",
+   "sentence": "s4",
+   "seed": 22,
+   "ref_seconds": 11.408,
+   "seconds": 4.0,
+   "file": "10s__s4__seed22.wav",
+   "similarity": 0.7762116193771362,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s",
+   "sentence": "s4",
+   "seed": 33,
+   "ref_seconds": 11.408,
+   "seconds": 3.68,
+   "file": "10s__s4__seed33.wav",
+   "similarity": 0.7549248337745667,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s_alt",
+   "sentence": "s1",
+   "seed": 11,
+   "ref_seconds": 11.505,
+   "seconds": 3.2,
+   "file": "10s_alt__s1__seed11.wav",
+   "similarity": 0.7052107453346252,
+   "asr": "Before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s_alt",
+   "sentence": "s1",
+   "seed": 22,
+   "ref_seconds": 11.505,
+   "seconds": 3.28,
+   "file": "10s_alt__s1__seed22.wav",
+   "similarity": 0.7009854912757874,
+   "asr": "Before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s_alt",
+   "sentence": "s1",
+   "seed": 33,
+   "ref_seconds": 11.505,
+   "seconds": 3.36,
+   "file": "10s_alt__s1__seed33.wav",
+   "similarity": 0.7467561364173889,
+   "asr": "Before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s_alt",
+   "sentence": "s2",
+   "seed": 11,
+   "ref_seconds": 11.505,
+   "seconds": 4.16,
+   "file": "10s_alt__s2__seed11.wav",
+   "similarity": 0.8219510912895203,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s_alt",
+   "sentence": "s2",
+   "seed": 22,
+   "ref_seconds": 11.505,
+   "seconds": 3.92,
+   "file": "10s_alt__s2__seed22.wav",
+   "similarity": 0.8291396498680115,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s_alt",
+   "sentence": "s2",
+   "seed": 33,
+   "ref_seconds": 11.505,
+   "seconds": 4.16,
+   "file": "10s_alt__s2__seed33.wav",
+   "similarity": 0.8012248277664185,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s_alt",
+   "sentence": "s3",
+   "seed": 11,
+   "ref_seconds": 11.505,
+   "seconds": 4.08,
+   "file": "10s_alt__s3__seed11.wav",
+   "similarity": 0.7886279821395874,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s_alt",
+   "sentence": "s3",
+   "seed": 22,
+   "ref_seconds": 11.505,
+   "seconds": 4.16,
+   "file": "10s_alt__s3__seed22.wav",
+   "similarity": 0.7808101177215576,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s_alt",
+   "sentence": "s3",
+   "seed": 33,
+   "ref_seconds": 11.505,
+   "seconds": 3.84,
+   "file": "10s_alt__s3__seed33.wav",
+   "similarity": 0.8052276372909546,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s_alt",
+   "sentence": "s4",
+   "seed": 11,
+   "ref_seconds": 11.505,
+   "seconds": 3.68,
+   "file": "10s_alt__s4__seed11.wav",
+   "similarity": 0.769343376159668,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s_alt",
+   "sentence": "s4",
+   "seed": 22,
+   "ref_seconds": 11.505,
+   "seconds": 4.24,
+   "file": "10s_alt__s4__seed22.wav",
+   "similarity": 0.7786227464675903,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "10s_alt",
+   "sentence": "s4",
+   "seed": 33,
+   "ref_seconds": 11.505,
+   "seconds": 4.0,
+   "file": "10s_alt__s4__seed33.wav",
+   "similarity": 0.7920746207237244,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s",
+   "sentence": "s1",
+   "seed": 11,
+   "ref_seconds": 36.173,
+   "seconds": 3.36,
+   "file": "30s__s1__seed11.wav",
+   "similarity": 0.8100858926773071,
+   "asr": "Before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s",
+   "sentence": "s1",
+   "seed": 22,
+   "ref_seconds": 36.173,
+   "seconds": 3.52,
+   "file": "30s__s1__seed22.wav",
+   "similarity": 0.8402732610702515,
+   "asr": "Before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s",
+   "sentence": "s1",
+   "seed": 33,
+   "ref_seconds": 36.173,
+   "seconds": 3.2,
+   "file": "30s__s1__seed33.wav",
+   "similarity": 0.779463529586792,
+   "asr": "Before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s",
+   "sentence": "s2",
+   "seed": 11,
+   "ref_seconds": 36.173,
+   "seconds": 5.04,
+   "file": "30s__s2__seed11.wav",
+   "similarity": 0.8264656066894531,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s",
+   "sentence": "s2",
+   "seed": 22,
+   "ref_seconds": 36.173,
+   "seconds": 5.12,
+   "file": "30s__s2__seed22.wav",
+   "similarity": 0.7771766185760498,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s",
+   "sentence": "s2",
+   "seed": 33,
+   "ref_seconds": 36.173,
+   "seconds": 4.64,
+   "file": "30s__s2__seed33.wav",
+   "similarity": 0.7954301238059998,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s",
+   "sentence": "s3",
+   "seed": 11,
+   "ref_seconds": 36.173,
+   "seconds": 4.08,
+   "file": "30s__s3__seed11.wav",
+   "similarity": 0.8205664753913879,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s",
+   "sentence": "s3",
+   "seed": 22,
+   "ref_seconds": 36.173,
+   "seconds": 3.36,
+   "file": "30s__s3__seed22.wav",
+   "similarity": 0.8142743110656738,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s",
+   "sentence": "s3",
+   "seed": 33,
+   "ref_seconds": 36.173,
+   "seconds": 4.0,
+   "file": "30s__s3__seed33.wav",
+   "similarity": 0.7673249840736389,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s",
+   "sentence": "s4",
+   "seed": 11,
+   "ref_seconds": 36.173,
+   "seconds": 4.88,
+   "file": "30s__s4__seed11.wav",
+   "similarity": 0.816045880317688,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s",
+   "sentence": "s4",
+   "seed": 22,
+   "ref_seconds": 36.173,
+   "seconds": 3.68,
+   "file": "30s__s4__seed22.wav",
+   "similarity": 0.8215395212173462,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s",
+   "sentence": "s4",
+   "seed": 33,
+   "ref_seconds": 36.173,
+   "seconds": 3.6,
+   "file": "30s__s4__seed33.wav",
+   "similarity": 0.7842836976051331,
+   "asr": "Voice cloning can help people who lost their voice but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s_alt",
+   "sentence": "s1",
+   "seed": 11,
+   "ref_seconds": 34.588,
+   "seconds": 2.96,
+   "file": "30s_alt__s1__seed11.wav",
+   "similarity": 0.7921575903892517,
+   "asr": "before you send money, call them back on a number, you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s_alt",
+   "sentence": "s1",
+   "seed": 22,
+   "ref_seconds": 34.588,
+   "seconds": 2.96,
+   "file": "30s_alt__s1__seed22.wav",
+   "similarity": 0.7649648189544678,
+   "asr": "Before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s_alt",
+   "sentence": "s1",
+   "seed": 33,
+   "ref_seconds": 34.588,
+   "seconds": 3.04,
+   "file": "30s_alt__s1__seed33.wav",
+   "similarity": 0.7598867416381836,
+   "asr": "Before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s_alt",
+   "sentence": "s2",
+   "seed": 11,
+   "ref_seconds": 34.588,
+   "seconds": 4.8,
+   "file": "30s_alt__s2__seed11.wav",
+   "similarity": 0.854880690574646,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s_alt",
+   "sentence": "s2",
+   "seed": 22,
+   "ref_seconds": 34.588,
+   "seconds": 5.76,
+   "file": "30s_alt__s2__seed22.wav",
+   "similarity": 0.8412483930587769,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s_alt",
+   "sentence": "s2",
+   "seed": 33,
+   "ref_seconds": 34.588,
+   "seconds": 4.96,
+   "file": "30s_alt__s2__seed33.wav",
+   "similarity": 0.8152749538421631,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s_alt",
+   "sentence": "s3",
+   "seed": 11,
+   "ref_seconds": 34.588,
+   "seconds": 3.2,
+   "file": "30s_alt__s3__seed11.wav",
+   "similarity": 0.8376377820968628,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s_alt",
+   "sentence": "s3",
+   "seed": 22,
+   "ref_seconds": 34.588,
+   "seconds": 3.76,
+   "file": "30s_alt__s3__seed22.wav",
+   "similarity": 0.8384561538696289,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s_alt",
+   "sentence": "s3",
+   "seed": 33,
+   "ref_seconds": 34.588,
+   "seconds": 3.12,
+   "file": "30s_alt__s3__seed33.wav",
+   "similarity": 0.7779653668403625,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s_alt",
+   "sentence": "s4",
+   "seed": 11,
+   "ref_seconds": 34.588,
+   "seconds": 3.84,
+   "file": "30s_alt__s4__seed11.wav",
+   "similarity": 0.8269991278648376,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s_alt",
+   "sentence": "s4",
+   "seed": 22,
+   "ref_seconds": 34.588,
+   "seconds": 3.84,
+   "file": "30s_alt__s4__seed22.wav",
+   "similarity": 0.8014072179794312,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "30s_alt",
+   "sentence": "s4",
+   "seed": 33,
+   "ref_seconds": 34.588,
+   "seconds": 3.68,
+   "file": "30s_alt__s4__seed33.wav",
+   "similarity": 0.8375584483146667,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s",
+   "sentence": "s1",
+   "seed": 11,
+   "ref_seconds": 3.28,
+   "seconds": 3.44,
+   "file": "3s__s1__seed11.wav",
+   "similarity": 0.7257890701293945,
+   "asr": "Before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s",
+   "sentence": "s1",
+   "seed": 22,
+   "ref_seconds": 3.28,
+   "seconds": 4.08,
+   "file": "3s__s1__seed22.wav",
+   "similarity": 0.7671607732772827,
+   "asr": "politics before you send money, call them back on a number you already know.",
+   "wer": 0.07692307692307693
+  },
+  {
+   "condition": "3s",
+   "sentence": "s1",
+   "seed": 33,
+   "ref_seconds": 3.28,
+   "seconds": 3.44,
+   "file": "3s__s1__seed33.wav",
+   "similarity": 0.7857745885848999,
+   "asr": "Before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s",
+   "sentence": "s2",
+   "seed": 11,
+   "ref_seconds": 3.28,
+   "seconds": 4.4,
+   "file": "3s__s2__seed11.wav",
+   "similarity": 0.8318332433700562,
+   "asr": "six this sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.06666666666666667
+  },
+  {
+   "condition": "3s",
+   "sentence": "s2",
+   "seed": 22,
+   "ref_seconds": 3.28,
+   "seconds": 4.96,
+   "file": "3s__s2__seed22.wav",
+   "similarity": 0.7946895956993103,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s",
+   "sentence": "s2",
+   "seed": 33,
+   "ref_seconds": 3.28,
+   "seconds": 5.04,
+   "file": "3s__s2__seed33.wav",
+   "similarity": 0.802553653717041,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s",
+   "sentence": "s3",
+   "seed": 11,
+   "ref_seconds": 3.28,
+   "seconds": 2.96,
+   "file": "3s__s3__seed11.wav",
+   "similarity": 0.7939395308494568,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s",
+   "sentence": "s3",
+   "seed": 22,
+   "ref_seconds": 3.28,
+   "seconds": 3.28,
+   "file": "3s__s3__seed22.wav",
+   "similarity": 0.7869263887405396,
+   "asr": "six. The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.1
+  },
+  {
+   "condition": "3s",
+   "sentence": "s3",
+   "seed": 33,
+   "ref_seconds": 3.28,
+   "seconds": 3.68,
+   "file": "3s__s3__seed33.wav",
+   "similarity": 0.8291484117507935,
+   "asr": "six, the weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.1
+  },
+  {
+   "condition": "3s",
+   "sentence": "s4",
+   "seed": 11,
+   "ref_seconds": 3.28,
+   "seconds": 4.08,
+   "file": "3s__s4__seed11.wav",
+   "similarity": 0.7977750897407532,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s",
+   "sentence": "s4",
+   "seed": 22,
+   "ref_seconds": 3.28,
+   "seconds": 4.0,
+   "file": "3s__s4__seed22.wav",
+   "similarity": 0.8037948608398438,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s",
+   "sentence": "s4",
+   "seed": 33,
+   "ref_seconds": 3.28,
+   "seconds": 4.16,
+   "file": "3s__s4__seed33.wav",
+   "similarity": 0.8018067479133606,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s_alt",
+   "sentence": "s1",
+   "seed": 11,
+   "ref_seconds": 3.2,
+   "seconds": 3.44,
+   "file": "3s_alt__s1__seed11.wav",
+   "similarity": 0.7142462134361267,
+   "asr": "before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s_alt",
+   "sentence": "s1",
+   "seed": 22,
+   "ref_seconds": 3.2,
+   "seconds": 3.2,
+   "file": "3s_alt__s1__seed22.wav",
+   "similarity": 0.7002663016319275,
+   "asr": "before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s_alt",
+   "sentence": "s1",
+   "seed": 33,
+   "ref_seconds": 3.2,
+   "seconds": 3.12,
+   "file": "3s_alt__s1__seed33.wav",
+   "similarity": 0.672705888748169,
+   "asr": "before you send money, call them back on a number you already know.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s_alt",
+   "sentence": "s2",
+   "seed": 11,
+   "ref_seconds": 3.2,
+   "seconds": 4.32,
+   "file": "3s_alt__s2__seed11.wav",
+   "similarity": 0.7667183876037598,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s_alt",
+   "sentence": "s2",
+   "seed": 22,
+   "ref_seconds": 3.2,
+   "seconds": 4.48,
+   "file": "3s_alt__s2__seed22.wav",
+   "similarity": 0.664284884929657,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s_alt",
+   "sentence": "s2",
+   "seed": 33,
+   "ref_seconds": 3.2,
+   "seconds": 6.16,
+   "file": "3s_alt__s2__seed33.wav",
+   "similarity": 0.7500960230827332,
+   "asr": "This sentence was never spoken by me. A computer generated it from a short recording.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s_alt",
+   "sentence": "s3",
+   "seed": 11,
+   "ref_seconds": 3.2,
+   "seconds": 3.68,
+   "file": "3s_alt__s3__seed11.wav",
+   "similarity": 0.7283875346183777,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s_alt",
+   "sentence": "s3",
+   "seed": 22,
+   "ref_seconds": 3.2,
+   "seconds": 3.36,
+   "file": "3s_alt__s3__seed22.wav",
+   "similarity": 0.686671257019043,
+   "asr": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s_alt",
+   "sentence": "s3",
+   "seed": 33,
+   "ref_seconds": 3.2,
+   "seconds": 4.0,
+   "file": "3s_alt__s3__seed33.wav",
+   "similarity": 0.7184818983078003,
+   "asr": "the weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s_alt",
+   "sentence": "s4",
+   "seed": 11,
+   "ref_seconds": 3.2,
+   "seconds": 4.08,
+   "file": "3s_alt__s4__seed11.wav",
+   "similarity": 0.7427181005477905,
+   "asr": "voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s_alt",
+   "sentence": "s4",
+   "seed": 22,
+   "ref_seconds": 3.2,
+   "seconds": 3.84,
+   "file": "3s_alt__s4__seed22.wav",
+   "similarity": 0.7468177676200867,
+   "asr": "Voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  },
+  {
+   "condition": "3s_alt",
+   "sentence": "s4",
+   "seed": 33,
+   "ref_seconds": 3.2,
+   "seconds": 3.6,
+   "file": "3s_alt__s4__seed33.wav",
+   "similarity": 0.7527740001678467,
+   "asr": "voice cloning can help people who lost their voice, but it needs consent.",
+   "wer": 0.0
+  }
+ ]
+}

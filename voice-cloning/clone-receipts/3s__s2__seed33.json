@@ -1,0 +1,29 @@
+{
+ "condition": "3s",
+ "sentence": "s2",
+ "text": "This sentence was never spoken by me. A computer generated it from a short recording.",
+ "seed": 33,
+ "ref_seconds": 3.28,
+ "ref_sha256": "4b9c227cf3a6fe9243db73296473050433fd6c15b0f0c745a4fb569d1a1c9f2e",
+ "model": "Qwen3-TTS-12Hz-1.7B-Base-bf16",
+ "snapshot": "a6eb4f68e4b056f1215157bb696209bc82a6db48",
+ "mlx_audio": "0.5.8",
+ "mlx": "0.32.3",
+ "params": {
+  "ref_text": "For normal single camera 4K YouTube projects, M6",
+  "temperature": 0.9,
+  "speed": 1.0,
+  "lang_code": "english",
+  "max_tokens": 600,
+  "top_k": 50,
+  "top_p": 1.0,
+  "repetition_penalty": 1.5,
+  "stream": false,
+  "verbose": false
+ },
+ "seconds": 5.04,
+ "sample_rate": 24000,
+ "sha256": "d88f020cb553f8eea5125b0f5a023dadde69e349e0cf0853501635388f3a5b21",
+ "synthesis_seconds": 1.4061758518218994,
+ "native_unedited": true
+}

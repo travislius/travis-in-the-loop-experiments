@@ -1,0 +1,29 @@
+{
+ "condition": "30s",
+ "sentence": "s3",
+ "text": "The weather in Seattle was surprisingly sunny on Tuesday afternoon.",
+ "seed": 33,
+ "ref_seconds": 36.173,
+ "ref_sha256": "496e3f28fc5b911a435797aac17743481538956166de906825aa94c6bc4567f0",
+ "model": "Qwen3-TTS-12Hz-1.7B-Base-bf16",
+ "snapshot": "a6eb4f68e4b056f1215157bb696209bc82a6db48",
+ "mlx_audio": "0.5.8",
+ "mlx": "0.32.3",
+ "params": {
+  "ref_text": "For normal single camera 4K YouTube projects, M6 or M5 Pro is already very capable. And because this is like unified memory, the CPU and GPU share the same memory pool. You also can not upgrade it later. There's also a major difference in memory bandwidth. So M6, even it's newer, it tops out at around 170 gigabytes per second. The first one is, how much memory do you need? The second one is, is your workflow primarily CPU-heavy or GPU-heavy? So the important thing is memory determines whether You can fit a model in your machine.",
+  "temperature": 0.9,
+  "speed": 1.0,
+  "lang_code": "english",
+  "max_tokens": 600,
+  "top_k": 50,
+  "top_p": 1.0,
+  "repetition_penalty": 1.5,
+  "stream": false,
+  "verbose": false
+ },
+ "seconds": 4.0,
+ "sample_rate": 24000,
+ "sha256": "dc4303d04fd1c95902f23485b599de091c155587ada80f0fbbc9f9f521abadd4",
+ "synthesis_seconds": 1.8301889896392822,
+ "native_unedited": true
+}

@@ -1,0 +1,29 @@
+{
+ "condition": "3s_alt",
+ "sentence": "s4",
+ "text": "Voice cloning can help people who lost their voice, but it needs consent.",
+ "seed": 22,
+ "ref_seconds": 3.2,
+ "ref_sha256": "1e5ef004806b3c43e0963659fb0b107a76907f5e727b3f99bccec77a5bee20ba",
+ "model": "Qwen3-TTS-12Hz-1.7B-Base-bf16",
+ "snapshot": "a6eb4f68e4b056f1215157bb696209bc82a6db48",
+ "mlx_audio": "0.5.8",
+ "mlx": "0.32.3",
+ "params": {
+  "ref_text": "They're generally in my past experience",
+  "temperature": 0.9,
+  "speed": 1.0,
+  "lang_code": "english",
+  "max_tokens": 600,
+  "top_k": 50,
+  "top_p": 1.0,
+  "repetition_penalty": 1.5,
+  "stream": false,
+  "verbose": false
+ },
+ "seconds": 3.84,
+ "sample_rate": 24000,
+ "sha256": "15b660d1e509903cfe3a699c600407ba45f746088817302bb264aa4de2c3dcec",
+ "synthesis_seconds": 1.0538010597229004,
+ "native_unedited": true
+}
