@@ -1,0 +1,86 @@
+{
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "speed_runs": 3,
+ "variants": {
+  "bf16": {
+   "disk_bytes": 3087467005,
+   "disk_gb": 3.087467005,
+   "size_vs_bf16": 1.0,
+   "gen_tps_median": 156.5302050522974,
+   "gen_tps_min": 154.81816921752883,
+   "gen_tps_max": 157.51520613862746,
+   "n_timings": 9,
+   "gen_tokens": [
+    248
+   ],
+   "peak_mem_gb_max": 3.129503072,
+   "perplexity": 11.963668518935368,
+   "qa": "20/20",
+   "speedup_vs_bf16": 1.0
+  },
+  "q8": {
+   "disk_bytes": 1640414361,
+   "disk_gb": 1.640414361,
+   "size_vs_bf16": 0.5313139730217133,
+   "gen_tps_median": 258.43772448551834,
+   "gen_tps_min": 255.26683099222578,
+   "gen_tps_max": 262.10222028478563,
+   "n_timings": 9,
+   "gen_tokens": [
+    256
+   ],
+   "peak_mem_gb_max": 1.785916814,
+   "perplexity": 11.956028356151926,
+   "qa": "20/20",
+   "speedup_vs_bf16": 1.6510406052248716
+  },
+  "q4": {
+   "disk_bytes": 868629082,
+   "disk_gb": 0.868629082,
+   "size_vs_bf16": 0.2813403610769923,
+   "gen_tps_median": 368.5610248390368,
+   "gen_tps_min": 365.6980252197512,
+   "gen_tps_max": 370.7887505243857,
+   "n_timings": 9,
+   "gen_tokens": [
+    256
+   ],
+   "peak_mem_gb_max": 1.008086408,
+   "perplexity": 13.67468027575013,
+   "qa": "19/20",
+   "speedup_vs_bf16": 2.354568082983722
+  },
+  "q3": {
+   "disk_bytes": 675682806,
+   "disk_gb": 0.675682806,
+   "size_vs_bf16": 0.21884697226100397,
+   "gen_tps_median": 393.9072343634998,
+   "gen_tps_min": 386.63440638394025,
+   "gen_tps_max": 395.8243107948487,
+   "n_timings": 9,
+   "gen_tokens": [
+    256
+   ],
+   "peak_mem_gb_max": 0.811232632,
+   "perplexity": 29.088784990295803,
+   "qa": "16/20",
+   "speedup_vs_bf16": 2.516493441198098
+  },
+  "q2": {
+   "disk_bytes": 482736361,
+   "disk_gb": 0.482736361,
+   "size_vs_bf16": 0.15635352870758856,
+   "gen_tps_median": 475.26693530391856,
+   "gen_tps_min": 471.1597182277509,
+   "gen_tps_max": 479.1666241330707,
+   "n_timings": 9,
+   "gen_tokens": [
+    256
+   ],
+   "peak_mem_gb_max": 0.618278264,
+   "perplexity": 31850.818808098444,
+   "qa": "0/20",
+   "speedup_vs_bf16": 3.036263417307413
+  }
+ }
+}

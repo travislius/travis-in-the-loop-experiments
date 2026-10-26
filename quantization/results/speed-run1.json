@@ -1,0 +1,117 @@
+{
+ "run": "run1",
+ "prompt": "Explain in a few paragraphs how a refrigerator keeps food cold.",
+ "max_tokens": 256,
+ "sampler": "greedy",
+ "variants": {
+  "bf16": [
+   {
+    "gen_tps": 156.6817747750132,
+    "prompt_tps": 2229.092309665652,
+    "gen_tokens": 248,
+    "peak_memory_gb": 3.129503072
+   },
+   {
+    "gen_tps": 155.46624082483524,
+    "prompt_tps": 2216.251559330792,
+    "gen_tokens": 248,
+    "peak_memory_gb": 3.129503072
+   },
+   {
+    "gen_tps": 156.03020973763174,
+    "prompt_tps": 2154.3663869563857,
+    "gen_tokens": 248,
+    "peak_memory_gb": 3.129503072
+   }
+  ],
+  "q8": [
+   {
+    "gen_tps": 260.08835040316325,
+    "prompt_tps": 2212.8751085192944,
+    "gen_tokens": 256,
+    "peak_memory_gb": 1.775267214
+   },
+   {
+    "gen_tps": 257.9963650036435,
+    "prompt_tps": 2221.8744923885283,
+    "gen_tokens": 256,
+    "peak_memory_gb": 1.785916814
+   },
+   {
+    "gen_tps": 258.3723315731139,
+    "prompt_tps": 2164.3208792169694,
+    "gen_tokens": 256,
+    "peak_memory_gb": 1.779969422
+   }
+  ],
+  "q4": [
+   {
+    "gen_tps": 367.6572889014458,
+    "prompt_tps": 2535.8746465683025,
+    "gen_tokens": 256,
+    "peak_memory_gb": 1.004170616
+   },
+   {
+    "gen_tps": 370.02835381216187,
+    "prompt_tps": 2361.4188638366636,
+    "gen_tokens": 256,
+    "peak_memory_gb": 1.008086408
+   },
+   {
+    "gen_tps": 370.31362522339333,
+    "prompt_tps": 2574.068297362789,
+    "gen_tokens": 256,
+    "peak_memory_gb": 1.004170616
+   }
+  ],
+  "q3": [
+   {
+    "gen_tps": 395.5621584738231,
+    "prompt_tps": 2601.7872294443036,
+    "gen_tokens": 256,
+    "peak_memory_gb": 0.811232632
+   },
+   {
+    "gen_tps": 395.5097792339703,
+    "prompt_tps": 2570.621834323294,
+    "gen_tokens": 256,
+    "peak_memory_gb": 0.811232632
+   },
+   {
+    "gen_tps": 395.8243107948487,
+    "prompt_tps": 2452.107303586327,
+    "gen_tokens": 256,
+    "peak_memory_gb": 0.811232632
+   }
+  ],
+  "q2": [
+   {
+    "gen_tps": 474.4508890674629,
+    "prompt_tps": 2484.0006834462038,
+    "gen_tokens": 256,
+    "peak_memory_gb": 0.618278264
+   },
+   {
+    "gen_tps": 471.1597182277509,
+    "prompt_tps": 2355.024684042553,
+    "gen_tokens": 256,
+    "peak_memory_gb": 0.618278264
+   },
+   {
+    "gen_tps": 475.0414212408797,
+    "prompt_tps": 2367.8423898339124,
+    "gen_tokens": 256,
+    "peak_memory_gb": 0.618278264
+   }
+  ]
+ },
+ "_env": {
+  "mlx": "0.32.4",
+  "mlx_lm": "0.32.2",
+  "python": "3.12.12",
+  "machine": "Apple M5 Max",
+  "ram_bytes": 68719476736,
+  "macos": "27.0.1",
+  "time": "2026-10-25T18:12:27-0700"
+ }
+}

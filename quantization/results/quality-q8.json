@@ -1,0 +1,125 @@
+{
+ "variant": "q8",
+ "perplexity": 11.956028356151926,
+ "ppl_tokens_scored": 20440,
+ "ppl_windows": 40,
+ "ppl_window_len": 512,
+ "wikitext": {
+  "file": "~/.cache/huggingface/hub/datasets--Salesforce--wikitext/snapshots/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-2-raw-v1/test-00000-of-00001.parquet",
+  "sha256": "5f1bea067869d04849c0f975a2b29c4ff47d867f484f5010ea5e861eab246d91",
+  "tokens": 298939
+ },
+ "qa_correct": 20,
+ "qa_total": 20,
+ "qa": [
+  {
+   "q": "What is the capital of France?",
+   "answer": "Paris",
+   "correct": true
+  },
+  {
+   "q": "What is the capital of Japan?",
+   "answer": "Tokyo",
+   "correct": true
+  },
+  {
+   "q": "What is the chemical symbol for gold?",
+   "answer": "Au",
+   "correct": true
+  },
+  {
+   "q": "How many continents are there on Earth?",
+   "answer": "There are seven continents on Earth.",
+   "correct": true
+  },
+  {
+   "q": "Who wrote \"Romeo and Juliet\"?",
+   "answer": "William Shakespeare wrote \"Romeo and Juliet.\"",
+   "correct": true
+  },
+  {
+   "q": "What planet is known as the Red Planet?",
+   "answer": "Mars",
+   "correct": true
+  },
+  {
+   "q": "What is the largest ocean on Earth?",
+   "answer": "The largest ocean on Earth is the Pacific Ocean.",
+   "correct": true
+  },
+  {
+   "q": "What gas do plants absorb from the air for photosynthesis?",
+   "answer": "Carbon dioxide",
+   "correct": true
+  },
+  {
+   "q": "What is 12 multiplied by 12?",
+   "answer": "144",
+   "correct": true
+  },
+  {
+   "q": "What is the boiling point of water at sea level in degrees Celsius?",
+   "answer": "100°C",
+   "correct": true
+  },
+  {
+   "q": "Who painted the Mona Lisa?",
+   "answer": "Leonardo da Vinci painted the Mona Lisa.",
+   "correct": true
+  },
+  {
+   "q": "What is the smallest prime number?",
+   "answer": "The smallest prime number is 2.",
+   "correct": true
+  },
+  {
+   "q": "In which country are the pyramids of Giza?",
+   "answer": "Egypt",
+   "correct": true
+  },
+  {
+   "q": "What is the hardest natural substance?",
+   "answer": "Diamond.",
+   "correct": true
+  },
+  {
+   "q": "How many legs does a spider have?",
+   "answer": "Eight legs.",
+   "correct": true
+  },
+  {
+   "q": "What is the square root of 81?",
+   "answer": "The square root of 81 is 9.",
+   "correct": true
+  },
+  {
+   "q": "Which element has the atomic number 1?",
+   "answer": "Hydrogen",
+   "correct": true
+  },
+  {
+   "q": "What language is primarily spoken in Brazil?",
+   "answer": "Portuguese",
+   "correct": true
+  },
+  {
+   "q": "Who developed the theory of relativity?",
+   "answer": "Albert Einstein developed the theory of relativity.",
+   "correct": true
+  },
+  {
+   "q": "What is the freezing point of water in degrees Fahrenheit?",
+   "answer": "32°F",
+   "correct": true
+  }
+ ],
+ "_env": {
+  "mlx": "0.32.4",
+  "mlx_lm": "0.32.2",
+  "python": "3.12.12",
+  "machine": "Apple M5 Max",
+  "ram_bytes": 68719476736,
+  "macos": "27.0.1",
+  "time": "2026-10-25T18:11:59-0700"
+ }
+}

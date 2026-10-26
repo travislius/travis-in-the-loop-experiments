@@ -1,0 +1,125 @@
+{
+ "variant": "q2",
+ "perplexity": 31850.818808098444,
+ "ppl_tokens_scored": 20440,
+ "ppl_windows": 40,
+ "ppl_window_len": 512,
+ "wikitext": {
+  "file": "~/.cache/huggingface/hub/datasets--Salesforce--wikitext/snapshots/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-2-raw-v1/test-00000-of-00001.parquet",
+  "sha256": "5f1bea067869d04849c0f975a2b29c4ff47d867f484f5010ea5e861eab246d91",
+  "tokens": 298939
+ },
+ "qa_correct": 0,
+ "qa_total": 20,
+ "qa": [
+  {
+   "q": "What is the capital of France?",
+   "answer": "rationes Informed\n\nxaf-극温ffen指头之一 оказыва的地中-两流e间的ith余子",
+   "correct": false
+  },
+  {
+   "q": "What is the capital of Japan?",
+   "answer": "аrbuereco form        dewriter �SORrernaContinue\\klmatically\\Rub[subnte open sound",
+   "correct": false
+  },
+  {
+   "q": "What is the chemical symbol for gold?",
+   "answer": "firsten loadsie baconrntheou血液 -boa天区enetuershik bertrent neckmtime识",
+   "correct": false
+  },
+  {
+   "q": "How many continents are there on Earth?",
+   "answer": "ffraczitherP到 Catches Condabile qual\n于是Poodleu普操作与直穿一.bal",
+   "correct": false
+  },
+  {
+   "q": "Who wrote \"Romeo and Juliet\"?",
+   "answer": "LESS\n\nBriterleauInsensitive Mboards andHanprojectId：No mallywoultipartFile的专配�erta",
+   "correct": false
+  },
+  {
+   "q": "What planet is known as the Red Planet?",
+   "answer": "icheratively solernousem参uanewiyouthoughtElfContact SustrPnbrcompM飽UPsc",
+   "correct": false
+  },
+  {
+   "q": "What is the largest ocean on Earth?",
+   "answer": "ightbr亏 everit常用 in Pacit wag top inuffreealand pair value耶AVED inounq一经s",
+   "correct": false
+  },
+  {
+   "q": "What gas do plants absorb from the air for photosynthesis?",
+   "answer": "redi8\n disappointinglok一门x Supporting\n .\r\nJ nues of- concettiarpongjes inude6n",
+   "correct": false
+  },
+  {
+   "q": "What is 12 multiplied by 12?",
+   "answer": "struaspaper and Heat range m Lif outputs тр má lakh NYPD driversickhtu bopt咸leyer",
+   "correct": false
+  },
+  {
+   "q": "What is the boiling point of water at sea level in degrees Celsius?",
+   "answer": "coln (hyperableonats home in research��cloak nderyFold formated late in either coRAFTcdcQs",
+   "correct": false
+  },
+  {
+   "q": "Who painted the Mona Lisa?",
+   "answer": "ellityquaDaptedC董事会轻椅公�lyincoming m给她inputs特:\n 教育部凡níár",
+   "correct": false
+  },
+  {
+   "q": "What is the smallest prime number?",
+   "answer": "er入睡 testjovr e di knofe\",\"\", -b answerD -diar + seen\nWayarp",
+   "correct": false
+  },
+  {
+   "q": "In which country are the pyramids of Giza?",
+   "answer": "OF aresha WhЂat癯ey Steses (0  nntAQ\n\t\nIMALA{} Go@m@app",
+   "correct": false
+  },
+  {
+   "q": "What is the hardest natural substance?",
+   "answer": "What目の-aded-Hmrac Section-X,float\\%kowileder-us一но Ket up ends",
+   "correct": false
+  },
+  {
+   "q": "How many legs does a spider have?",
+   "answer": "walking relateditively baditalt taughtandongenerlconsip m指(收 sounding related-effectil",
+   "correct": false
+  },
+  {
+   "q": "What is the square root of 81?",
+   "answer": "➥ánhaclesitian on误physical or open----------------灭亡D/Qpecific+ hav�{媒呼深入而iselect.Trace",
+   "correct": false
+  },
+  {
+   "q": "Which element has the atomic number 1?",
+   "answer": "(^%pselfful level inalspiestoplevelldatahagmauideau commanded family suffers groundura level grou",
+   "correct": false
+  },
+  {
+   "q": "What language is primarily spoken in Brazil?",
+   "answer": "-  into C me Wh�数ity<span-\ningLC youricity fix (<?,  Occupalator-sNx",
+   "correct": false
+  },
+  {
+   "q": "Who developed the theory of relativity?",
+   "answer": "cabin her en Sitetestvert blurred\nMao Hauantcgeb-\":\"\",\"[]\nsitow少量\n\n\n\n谓",
+   "correct": false
+  },
+  {
+   "q": "What is the freezing point of water in degrees Fahrenheit?",
+   "answer": "??loren ve standout ai\n + artumbyonncwidзолglobalservice它们Untaie                            sheppers€",
+   "correct": false
+  }
+ ],
+ "_env": {
+  "mlx": "0.32.4",
+  "mlx_lm": "0.32.2",
+  "python": "3.12.12",
+  "machine": "Apple M5 Max",
+  "ram_bytes": 68719476736,
+  "macos": "27.0.1",
+  "time": "2026-10-25T18:12:09-0700"
+ }
+}

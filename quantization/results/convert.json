@@ -1,0 +1,41 @@
+{
+ "bf16": {
+  "bytes": 3087467005,
+  "files": {
+   "model.safetensors": "9bc470357e6512522aa1357f3550acae3e0bf7727255a98023ac916521b6cb60"
+  }
+ },
+ "q8": {
+  "bytes": 1640414361,
+  "files": {
+   "model.safetensors": "c11eaab761e7d8958adac7be1fe235a745ba77d1000a25be57bee52fe9db3f32"
+  }
+ },
+ "q4": {
+  "bytes": 868629082,
+  "files": {
+   "model.safetensors": "5b6abb3e8bbb783216a1a034fe742de5f25a836f3c642910ce327199c51217e7"
+  }
+ },
+ "q3": {
+  "bytes": 675682806,
+  "files": {
+   "model.safetensors": "7b609646d0614dbfd770fd403d6989b2dc3f75a150801028dad9abd7bc323ee4"
+  }
+ },
+ "q2": {
+  "bytes": 482736361,
+  "files": {
+   "model.safetensors": "8563b37477b281213e8e004cd4db7bbb95562f6a38cf0ea46d93464e82d1ace0"
+  }
+ },
+ "_env": {
+  "mlx": "0.32.4",
+  "mlx_lm": "0.32.2",
+  "python": "3.12.12",
+  "machine": "Apple M5 Max",
+  "ram_bytes": 68719476736,
+  "macos": "27.0.1",
+  "time": "2026-10-25T18:11:38-0700"
+ }
+}

@@ -7,5 +7,6 @@ Each folder contains the exact script, its raw outputs and a short description. 
 |---|---|
 | AI Hallucination Explained | [`ai-hallucination/`](ai-hallucination/) |
 | Knowledge Distillation Explained | [`knowledge-distillation/`](knowledge-distillation/) |
+| Model Quantization Explained | [`quantization/`](quantization/) |
 
 These are small, illustrative experiments, not benchmarks.
