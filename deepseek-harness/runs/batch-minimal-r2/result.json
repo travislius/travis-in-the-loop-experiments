@@ -1,0 +1,31 @@
+{
+ "run": "batch-minimal-r2",
+ "task": "batch",
+ "mode": "minimal",
+ "rep": 2,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk-minimal",
+ "finish_reason": "completed",
+ "wall_seconds": 8.1,
+ "steps": 4,
+ "tool_calls": 3,
+ "tool_names": {
+  "bash": 3
+ },
+ "usage": {
+  "input": 1289,
+  "output": 680,
+  "cache_hit": 5120
+ },
+ "check": {
+  "ok": true,
+  "totals_match": true,
+  "malformed_match": true,
+  "refund_excluded": true
+ },
+ "session_logs": [
+  "dsh-home/sessions/<runs>-batch-minimal-r2-workspace--/batch-minimal-r2/session.v4.jsonl"
+ ],
+ "notifications": 30,
+ "final_response": "Created `summary.json` with:\n\n- **totals** (excluding `refund`): books 191804, games 130121, garden 163830, kitchen 183092, toys 209309\n- **malformed**: `order-013.json`, `order-037.json`, `order-058.json`, `order-071.json`\n\nOrder files were not modified."
+}

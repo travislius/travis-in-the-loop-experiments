@@ -11,5 +11,6 @@ Each folder contains the exact script, its raw outputs and a short description. 
 | Model Quantization Explained | [`quantization/`](quantization/) |
 | Long Context Explained | [`long-context/`](long-context/) |
 | Voice Cloning Explained | [`voice-cloning/`](voice-cloning/) |
+| DeepSeek Harness Explained | [`deepseek-harness/`](deepseek-harness/) |
 
 These are small, illustrative experiments, not benchmarks.

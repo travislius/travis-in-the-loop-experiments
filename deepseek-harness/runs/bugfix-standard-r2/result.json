@@ -1,0 +1,27 @@
+{
+ "run": "bugfix-standard-r2",
+ "task": "bugfix",
+ "mode": "standard",
+ "rep": 2,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 36.8,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "visible_tests_pass": true,
+  "hidden_pass": 5,
+  "hidden_total": 5,
+  "tests_unchanged": true
+ },
+ "session_logs": [],
+ "notifications": 79,
+ "final_response": "All tests pass now (`Ran 8 tests ... OK`).\n\nFixed bugs in `invoice/` only:\n\n- **`money.py`**\n  - `to_cents`: quantizes to integer cents with `ROUND_HALF_UP` instead of truncating.\n  - `apply_discount`: computes the discount with `Decimal` and rounds it half-up before subtracting.\n- **`dates.py`**\n  - `parse_due`: correctly interprets `MM/DD/YYYY` as month/day/year instead of swapping them.\n- **`total.py`**\n  - Tax is now computed from the already-cents discounted amount (`discounted * tax_rate`), using `Decimal` with half-up rounding instead of treating cents as dollars.\n\nI also verified additional edge cases (negative amounts, zero/full discounts, empty invoice lines, rounding boundaries). No files under `tests/` were modified."
+}

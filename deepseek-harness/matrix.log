@@ -1,0 +1,37 @@
+== bugfix minimal r1
+{"run": "bugfix-minimal-r1", "finish_reason": "completed", "wall_seconds": 12.0, "steps": 5, "tool_calls": 4, "usage": {"input": 2356, "output": 1341, "cache_hit": 9728}, "check": {"visible_tests_pass": true, "hidden_pass": 5, "hidden_total": 5, "tests_unchanged": true}}
+== bugfix standard r1
+{"run": "bugfix-standard-r1", "finish_reason": "completed", "wall_seconds": 20.7, "steps": 0, "tool_calls": 0, "usage": {"input": 0, "output": 0, "cache_hit": 0}, "check": {"visible_tests_pass": true, "hidden_pass": 5, "hidden_total": 5, "tests_unchanged": true}}
+== bugfix ptc r1
+{"run": "bugfix-ptc-r1", "finish_reason": "completed", "wall_seconds": 38.3, "steps": 0, "tool_calls": 0, "usage": {"input": 0, "output": 0, "cache_hit": 0}, "check": {"visible_tests_pass": true, "hidden_pass": 5, "hidden_total": 5, "tests_unchanged": true}}
+== batch minimal r1
+{"run": "batch-minimal-r1", "finish_reason": "completed", "wall_seconds": 9.9, "steps": 5, "tool_calls": 4, "usage": {"input": 1671, "output": 806, "cache_hit": 6528}, "check": {"ok": true, "totals_match": true, "malformed_match": true, "refund_excluded": true}}
+== batch standard r1
+{"run": "batch-standard-r1", "finish_reason": "completed", "wall_seconds": 10.2, "steps": 0, "tool_calls": 0, "usage": {"input": 0, "output": 0, "cache_hit": 0}, "check": {"ok": true, "totals_match": true, "malformed_match": true, "refund_excluded": true}}
+== batch ptc r1
+{"run": "batch-ptc-r1", "finish_reason": "completed", "wall_seconds": 13.0, "steps": 0, "tool_calls": 0, "usage": {"input": 0, "output": 0, "cache_hit": 0}, "check": {"ok": true, "totals_match": true, "malformed_match": true, "refund_excluded": true}}
+== bugfix minimal r2
+{"run": "bugfix-minimal-r2", "finish_reason": "completed", "wall_seconds": 14.6, "steps": 5, "tool_calls": 4, "usage": {"input": 2163, "output": 1632, "cache_hit": 9088}, "check": {"visible_tests_pass": true, "hidden_pass": 5, "hidden_total": 5, "tests_unchanged": true}}
+== bugfix standard r2
+{"run": "bugfix-standard-r2", "finish_reason": "completed", "wall_seconds": 36.8, "steps": 0, "tool_calls": 0, "usage": {"input": 0, "output": 0, "cache_hit": 0}, "check": {"visible_tests_pass": true, "hidden_pass": 5, "hidden_total": 5, "tests_unchanged": true}}
+== bugfix ptc r2
+{"run": "bugfix-ptc-r2", "finish_reason": "completed", "wall_seconds": 36.8, "steps": 0, "tool_calls": 0, "usage": {"input": 0, "output": 0, "cache_hit": 0}, "check": {"visible_tests_pass": true, "hidden_pass": 5, "hidden_total": 5, "tests_unchanged": true}}
+== batch minimal r2
+{"run": "batch-minimal-r2", "finish_reason": "completed", "wall_seconds": 8.1, "steps": 4, "tool_calls": 3, "usage": {"input": 1289, "output": 680, "cache_hit": 5120}, "check": {"ok": true, "totals_match": true, "malformed_match": true, "refund_excluded": true}}
+== batch standard r2
+{"run": "batch-standard-r2", "finish_reason": "completed", "wall_seconds": 8.7, "steps": 0, "tool_calls": 0, "usage": {"input": 0, "output": 0, "cache_hit": 0}, "check": {"ok": true, "totals_match": true, "malformed_match": true, "refund_excluded": true}}
+== batch ptc r2
+{"run": "batch-ptc-r2", "finish_reason": "completed", "wall_seconds": 10.7, "steps": 0, "tool_calls": 0, "usage": {"input": 0, "output": 0, "cache_hit": 0}, "check": {"ok": true, "totals_match": true, "malformed_match": true, "refund_excluded": true}}
+== bugfix minimal r3
+{"run": "bugfix-minimal-r3", "finish_reason": "completed", "wall_seconds": 13.5, "steps": 4, "tool_calls": 4, "usage": {"input": 2174, "output": 1822, "cache_hit": 7040}, "check": {"visible_tests_pass": true, "hidden_pass": 5, "hidden_total": 5, "tests_unchanged": true}}
+== bugfix standard r3
+{"run": "bugfix-standard-r3", "finish_reason": "completed", "wall_seconds": 22.5, "steps": 0, "tool_calls": 0, "usage": {"input": 0, "output": 0, "cache_hit": 0}, "check": {"visible_tests_pass": true, "hidden_pass": 5, "hidden_total": 5, "tests_unchanged": true}}
+== bugfix ptc r3
+{"run": "bugfix-ptc-r3", "finish_reason": "completed", "wall_seconds": 19.4, "steps": 0, "tool_calls": 0, "usage": {"input": 0, "output": 0, "cache_hit": 0}, "check": {"visible_tests_pass": true, "hidden_pass": 5, "hidden_total": 5, "tests_unchanged": true}}
+== batch minimal r3
+{"run": "batch-minimal-r3", "finish_reason": "completed", "wall_seconds": 8.6, "steps": 5, "tool_calls": 4, "usage": {"input": 942, "output": 853, "cache_hit": 6272}, "check": {"ok": true, "totals_match": true, "malformed_match": true, "refund_excluded": true}}
+== batch standard r3
+{"run": "batch-standard-r3", "finish_reason": "completed", "wall_seconds": 14.4, "steps": 0, "tool_calls": 0, "usage": {"input": 0, "output": 0, "cache_hit": 0}, "check": {"ok": true, "totals_match": true, "malformed_match": true, "refund_excluded": true}}
+== batch ptc r3
+{"run": "batch-ptc-r3", "finish_reason": "completed", "wall_seconds": 10.8, "steps": 0, "tool_calls": 0, "usage": {"input": 0, "output": 0, "cache_hit": 0}, "check": {"ok": true, "totals_match": true, "malformed_match": true, "refund_excluded": true}}
+MATRIX_DONE

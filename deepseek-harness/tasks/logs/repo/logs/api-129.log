@@ -1,0 +1,60 @@
+2026-10-30T10:45:00Z ERROR [api] db timeout after 5000ms
+2026-10-30T10:45:04Z INFO  [api] request done path=/v1/items latency_ms=710
+2026-10-30T10:45:08Z INFO  [api] request done path=/v1/items latency_ms=2792
+2026-10-30T10:45:12Z INFO  [api] request done path=/v1/items latency_ms=643
+2026-10-30T10:45:16Z INFO  [api] request done path=/v1/items latency_ms=2360
+2026-10-30T10:45:20Z INFO  [api] request done path=/v1/items latency_ms=815
+2026-10-30T10:45:24Z INFO  [api] request done path=/v1/items latency_ms=1301
+2026-10-30T10:45:28Z INFO  [api] request done path=/v1/items latency_ms=539
+2026-10-30T10:45:32Z INFO  [api] request done path=/v1/items latency_ms=1998
+2026-10-30T10:45:36Z INFO  [api] request done path=/v1/items latency_ms=2513
+2026-10-30T10:45:40Z INFO  [api] request done path=/v1/items latency_ms=2577
+2026-10-30T10:45:44Z INFO  [api] request done path=/v1/items latency_ms=2774
+2026-10-30T10:45:48Z INFO  [api] login failed user=decoy (synthetic probe, ignore: level INFO)
+2026-10-30T10:45:52Z INFO  [api] login failed user=decoy (synthetic probe, ignore: level INFO)
+2026-10-30T10:45:56Z ERROR [api] upstream returned 502
+2026-10-30T10:46:00Z INFO  [api] request done path=/v1/items latency_ms=1362
+2026-10-30T10:46:04Z INFO  [api] request done path=/v1/items latency_ms=1288
+2026-10-30T10:46:08Z INFO  [api] request done path=/v1/items latency_ms=1466
+2026-10-30T10:46:12Z INFO  [api] request done path=/v1/items latency_ms=621
+2026-10-30T10:46:16Z INFO  [api] request done path=/v1/items latency_ms=1264
+2026-10-30T10:46:20Z INFO  [api] request done path=/v1/items latency_ms=1491
+2026-10-30T10:46:24Z INFO  [api] request done path=/v1/items latency_ms=1297
+2026-10-30T10:46:28Z INFO  [api] request done path=/v1/items latency_ms=1834
+2026-10-30T10:46:32Z INFO  [api] request done path=/v1/items latency_ms=2886
+2026-10-30T10:46:36Z INFO  [api] request done path=/v1/items latency_ms=1247
+2026-10-30T10:46:40Z INFO  [api] request done path=/v1/items latency_ms=2306
+2026-10-30T10:46:44Z INFO  [api] request done path=/v1/items latency_ms=627
+2026-10-30T10:46:48Z INFO  [api] request done path=/v1/items latency_ms=490
+2026-10-30T10:46:52Z INFO  [api] request done path=/v1/items latency_ms=2537
+2026-10-30T10:46:56Z INFO  [api] request done path=/v1/items latency_ms=2305
+2026-10-30T10:47:00Z INFO  [api] request done path=/v1/items latency_ms=1928
+2026-10-30T10:47:04Z INFO  [api] request done path=/v1/items latency_ms=1156
+2026-10-30T10:47:08Z INFO  [api] request done path=/v1/items latency_ms=1026
+2026-10-30T10:47:12Z INFO  [api] request done path=/v1/items latency_ms=2724
+2026-10-30T10:47:16Z INFO  [api] request done path=/v1/items latency_ms=1827
+2026-10-30T10:47:20Z INFO  [api] login failed user=decoy (synthetic probe, ignore: level INFO)
+2026-10-30T10:47:24Z ERROR [api] upstream returned 502
+2026-10-30T10:47:28Z INFO  [api] request done path=/v1/items latency_ms=1958
+2026-10-30T10:47:32Z INFO  [api] request done path=/v1/items latency_ms=86
+2026-10-30T10:47:36Z INFO  [api] request done path=/v1/items latency_ms=1489
+2026-10-30T10:47:40Z INFO  [api] request done path=/v1/items latency_ms=2400
+2026-10-30T10:47:44Z INFO  [api] request done path=/v1/items latency_ms=1837
+2026-10-30T10:47:48Z INFO  [api] request done path=/v1/items latency_ms=2019
+2026-10-30T10:47:52Z INFO  [api] request done path=/v1/items latency_ms=2326
+2026-10-30T10:47:56Z INFO  [api] request done path=/v1/items latency_ms=1396
+2026-10-30T10:48:00Z INFO  [api] request done path=/v1/items latency_ms=1520
+2026-10-30T10:48:04Z INFO  [api] login failed user=decoy (synthetic probe, ignore: level INFO)
+2026-10-30T10:48:08Z INFO  [api] request done path=/v1/items latency_ms=1234
+2026-10-30T10:48:12Z INFO  [api] request done path=/v1/items latency_ms=617
+2026-10-30T10:48:16Z INFO  [api] request done path=/v1/items latency_ms=2744
+2026-10-30T10:48:20Z INFO  [api] request done path=/v1/items latency_ms=2602
+2026-10-30T10:48:24Z INFO  [api] request done path=/v1/items latency_ms=2918
+2026-10-30T10:48:28Z INFO  [api] request done path=/v1/items latency_ms=345
+2026-10-30T10:48:32Z INFO  [api] request done path=/v1/items latency_ms=2031
+2026-10-30T10:48:36Z ERROR [api] upstream returned 502
+2026-10-30T10:48:40Z INFO  [api] request done path=/v1/items latency_ms=697
+2026-10-30T10:48:44Z INFO  [api] request done path=/v1/items latency_ms=1040
+2026-10-30T10:48:48Z INFO  [api] request done path=/v1/items latency_ms=1152
+2026-10-30T10:48:52Z INFO  [api] request done path=/v1/items latency_ms=101
+2026-10-30T10:48:56Z INFO  [api] request done path=/v1/items latency_ms=688

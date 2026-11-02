@@ -1,0 +1,39 @@
+{
+ "model_visible_tools": [
+  "bash",
+  "read_image",
+  "working_directory"
+ ],
+ "run": "logs-minimal-r3",
+ "task": "logs",
+ "mode": "minimal",
+ "rep": 3,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk-minimal",
+ "finish_reason": "completed",
+ "wall_seconds": 648.2,
+ "steps": 13,
+ "tool_calls": 12,
+ "tool_names": {
+  "bash": 12
+ },
+ "usage": {
+  "input": 13602,
+  "output": 5915,
+  "cache_hit": 146816
+ },
+ "check": {
+  "ok": true,
+  "fields": 4,
+  "fields_total": 4,
+  "match_error_counts": true,
+  "match_top_user_by_failed_logins": true,
+  "match_first_db_timeout": true,
+  "match_requests_over_2000ms": true
+ },
+ "session_logs": [
+  "dsh-home/sessions/<runs>-logs-minimal-r3-workspace--/logs-minimal-r3/session.v4.jsonl"
+ ],
+ "notifications": 75,
+ "final_response": "Created `incident.json` with the requested keys and values."
+}

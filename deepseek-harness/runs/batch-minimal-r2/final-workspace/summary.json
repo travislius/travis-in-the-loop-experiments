@@ -1,0 +1,15 @@
+{
+  "totals": {
+    "books": 191804,
+    "games": 130121,
+    "garden": 163830,
+    "kitchen": 183092,
+    "toys": 209309
+  },
+  "malformed": [
+    "order-013.json",
+    "order-037.json",
+    "order-058.json",
+    "order-071.json"
+  ]
+}

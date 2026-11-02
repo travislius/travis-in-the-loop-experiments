@@ -1,0 +1,39 @@
+{
+ "model_visible_tools": [
+  "bash",
+  "read_image",
+  "working_directory"
+ ],
+ "run": "logs-minimal-r5",
+ "task": "logs",
+ "mode": "minimal",
+ "rep": 5,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk-minimal",
+ "finish_reason": "completed",
+ "wall_seconds": 25.8,
+ "steps": 7,
+ "tool_calls": 6,
+ "tool_names": {
+  "bash": 6
+ },
+ "usage": {
+  "input": 3686,
+  "output": 2564,
+  "cache_hit": 21504
+ },
+ "check": {
+  "ok": true,
+  "fields": 4,
+  "fields_total": 4,
+  "match_error_counts": true,
+  "match_top_user_by_failed_logins": true,
+  "match_first_db_timeout": true,
+  "match_requests_over_2000ms": true
+ },
+ "session_logs": [
+  "dsh-home/sessions/<runs>-logs-minimal-r5-workspace--/logs-minimal-r5/session.v4.jsonl"
+ ],
+ "notifications": 45,
+ "final_response": "Created `incident.json` with the requested results:\n\n- `error_counts`: api 146, auth 138, billing 150, cache 138, search 144, worker 136\n- `top_user_by_failed_logins`: `ana`\n- `first_db_timeout`: `2026-10-30T00:17:00Z`\n- `requests_over_2000ms`: `4300`"
+}

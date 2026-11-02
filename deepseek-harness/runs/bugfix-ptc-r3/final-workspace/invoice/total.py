@@ -1,0 +1,10 @@
+
+from decimal import Decimal
+from .money import to_cents, apply_discount, round_half_up
+
+def invoice_total(lines, discount_percent=0, tax_rate=0.0):
+    """lines: list of (unit_price, qty). Discount applies before tax. Returns cents."""
+    subtotal = sum(to_cents(p) * q for p, q in lines)
+    discounted = apply_discount(subtotal, discount_percent)
+    tax = round_half_up(Decimal(discounted) * Decimal(str(tax_rate)))
+    return discounted + tax

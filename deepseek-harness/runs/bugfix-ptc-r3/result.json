@@ -1,0 +1,30 @@
+{
+ "model_visible_tools": [
+  "run_code"
+ ],
+ "run": "bugfix-ptc-r3",
+ "task": "bugfix",
+ "mode": "ptc",
+ "rep": 3,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 16.6,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "visible_tests_pass": true,
+  "hidden_pass": 5,
+  "hidden_total": 5,
+  "tests_unchanged": true
+ },
+ "session_logs": [],
+ "notifications": 59,
+ "final_response": "All 8 tests pass now. Here's what I fixed:\n\n1. **`invoice/dates.py`** \u2014 `parse_due` built US dates with month/day swapped; now returns `date(y, m, d)`.\n\n2. **`invoice/money.py`**\n   - `to_cents` was truncating via `int(...)`; now rounds half up using `Decimal.quantize(..., ROUND_HALF_UP)`.\n   - `apply_discount` used floor division (`cents * percent // 100`); now computes the discount exactly and rounds it half up before subtracting.\n   - Added a shared `round_half_up` helper.\n\n3. **`invoice/total.py`** \u2014 tax was passed to `to_cents` even though `discounted` is already in cents, multiplying by 100 again. Tax is now computed as `discounted * tax_rate` and rounded half up directly.\n\nNo files under `tests/` were modified."
+}

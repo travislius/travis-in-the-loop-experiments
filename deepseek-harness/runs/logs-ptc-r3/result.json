@@ -1,0 +1,33 @@
+{
+ "model_visible_tools": [
+  "run_code"
+ ],
+ "run": "logs-ptc-r3",
+ "task": "logs",
+ "mode": "ptc",
+ "rep": 3,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 21.6,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "ok": true,
+  "fields": 4,
+  "fields_total": 4,
+  "match_error_counts": true,
+  "match_top_user_by_failed_logins": true,
+  "match_first_db_timeout": true,
+  "match_requests_over_2000ms": true
+ },
+ "session_logs": [],
+ "notifications": 74,
+ "final_response": "Created `incident.json` with these results:\n\n```json\n{\n  \"error_counts\": {\n    \"api\": 146,\n    \"auth\": 138,\n    \"billing\": 150,\n    \"cache\": 138,\n    \"search\": 144,\n    \"worker\": 136\n  },\n  \"top_user_by_failed_logins\": \"ana\",\n  \"first_db_timeout\": \"2026-10-30T00:17:00Z\",\n  \"requests_over_2000ms\": 4300\n}\n```\n\nNotes:\n- All 240 files were parsed (14,400 total lines), including both `.log` and `.jsonl` formats.\n- Only `auth` has WARN-level `login failed` events; `ana` leads with 23. The `login failed` lines in other services are INFO decoys and were excluded.\n- `db timeout` messages occur only in `api`; the earliest is `2026-10-30T00:17:00Z`.\n- `requests_over_2000ms` uses strict `> 2000`; 4 lines at exactly 2000 ms were excluded.\n- The `logs/` directory was not modified."
+}

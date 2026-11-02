@@ -1,0 +1,31 @@
+{
+ "run": "bugfix-minimal-r3",
+ "task": "bugfix",
+ "mode": "minimal",
+ "rep": 3,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk-minimal",
+ "finish_reason": "completed",
+ "wall_seconds": 13.5,
+ "steps": 4,
+ "tool_calls": 4,
+ "tool_names": {
+  "bash": 4
+ },
+ "usage": {
+  "input": 2174,
+  "output": 1822,
+  "cache_hit": 7040
+ },
+ "check": {
+  "visible_tests_pass": true,
+  "hidden_pass": 5,
+  "hidden_total": 5,
+  "tests_unchanged": true
+ },
+ "session_logs": [
+  "dsh-home/sessions/<runs>-bugfix-minimal-r3-workspace--/bugfix-minimal-r3/session.v4.jsonl"
+ ],
+ "notifications": 32,
+ "final_response": "Fixed the bugs in:\n\n- `invoice/money.py`: implemented proper half-up rounding for cents and discounts.\n- `invoice/dates.py`: corrected month/day parsing for `MM/DD/YYYY`.\n- `invoice/total.py`: fixed tax calculation to operate on cents and round half-up.\n\nAll tests now pass:\n\n```text\nRan 8 tests in 0.000s\nOK\n```"
+}

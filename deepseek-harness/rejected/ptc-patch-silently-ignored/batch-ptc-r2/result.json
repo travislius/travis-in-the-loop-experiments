@@ -1,0 +1,27 @@
+{
+ "run": "batch-ptc-r2",
+ "task": "batch",
+ "mode": "ptc",
+ "rep": 2,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 10.7,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "ok": true,
+  "totals_match": true,
+  "malformed_match": true,
+  "refund_excluded": true
+ },
+ "session_logs": [],
+ "notifications": 51,
+ "final_response": "Created `summary.json` with exactly two keys:\n\n```json\n{\n  \"totals\": {\n    \"books\": 191804,\n    \"games\": 130121,\n    \"garden\": 163830,\n    \"kitchen\": 183092,\n    \"toys\": 209309\n  },\n  \"malformed\": [\n    \"order-013.json\",\n    \"order-037.json\",\n    \"order-058.json\",\n    \"order-071.json\"\n  ]\n}\n```\n\nThe four malformed files failed JSON parsing, refunds were excluded from the totals, and no order files were modified."
+}

@@ -1,0 +1,30 @@
+{
+ "model_visible_tools": [
+  "run_code"
+ ],
+ "run": "batch-ptc-r1",
+ "task": "batch",
+ "mode": "ptc",
+ "rep": 1,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 12.7,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "ok": true,
+  "totals_match": true,
+  "malformed_match": true,
+  "refund_excluded": true
+ },
+ "session_logs": [],
+ "notifications": 61,
+ "final_response": "Created `summary.json` in the workspace.\n\n```json\n{\n  \"totals\": {\n    \"garden\": 163830,\n    \"kitchen\": 183092,\n    \"books\": 191804,\n    \"toys\": 209309,\n    \"games\": 130121\n  },\n  \"malformed\": [\n    \"order-013.json\",\n    \"order-037.json\",\n    \"order-058.json\",\n    \"order-071.json\"\n  ]\n}\n```\n\nAll 80 files were processed; the two `refund` orders were excluded from the totals, and the order files were left untouched."
+}

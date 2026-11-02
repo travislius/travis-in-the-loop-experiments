@@ -1,0 +1,30 @@
+{
+ "model_visible_tools": [
+  "run_code"
+ ],
+ "run": "calc-ptc-r2",
+ "task": "calc",
+ "mode": "ptc",
+ "rep": 2,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 84.6,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "hidden_pass": 30,
+  "hidden_total": 30,
+  "no_eval": true,
+  "ok": true
+ },
+ "session_logs": [],
+ "notifications": 110,
+ "final_response": "Implemented `calc/core.py` \u2014 a hand-written tokenizer + recursive-descent parser/evaluator, no `eval`/`exec`/`compile`/`ast`.\n\n## Design\n\n**Tokenizer** (manual scan):\n- Integers and decimals (`42`, `3.5`, `.5`), whitespace skipped\n- ASCII identifiers `[A-Za-z_][A-Za-z0-9_]*`\n- Multi-char operators `**`, `//` matched before single-char ones\n- Unknown characters raise `CalcError`\n\n**Grammar** (precedence low \u2192 high):\n```\nexpr    := additive\nadditive:= multiplicative (('+'|'-') multiplicative)*\nmult    := unary (('*'|'/'|'//'|'%') unary)*\nunary   := ('+'|'-') unary | power\npower   := atom ('**' unary)?        # right-assoc, unary allowed on right\natom    := NUMBER | NAME | NAME '(' args ')' | '(' expr ')'\n```\nThis yields exactly the specified semantics: `-2**2 == -4`, `2**-1 == 0.5`, `2**3**2 == 512`, `/` always float, while `+ - * // % **` on ints stay `int` via Python's own operators.\n\n**Functions:** `abs` (exactly 1 arg), `min`/`max` (1+ args), nested calls allowed; any arity violation or unknown function raises `CalcError`.\n\n**Errors** (`CalcError(ValueError)`): empty/blank input, missing/unbalanced parentheses, unexpected token/character/trailing input, unknown variable/function, wrong arg count, division/modulo by zero (also `0**-1`), numeric overflow, and non-real results.\n\n## Verification\n\n- `python3 -m unittest -q` \u2192 **4 tests OK**\n- A separate parity sweep of ~45 expressions against Python's own semantics (values *and* exact types) passed, plus ~40 malformed/error inputs all raised `CalcError`, including the spec's anchor cases `-2**2`, `2**-1`, `2**3**2`, `7//2`, `-7%3`, and nested `min(abs(-3), max(2,3))`."
+}

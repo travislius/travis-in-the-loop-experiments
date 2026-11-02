@@ -1,0 +1,30 @@
+{
+ "model_visible_tools": [
+  "run_code"
+ ],
+ "run": "calc-ptc-r3",
+ "task": "calc",
+ "mode": "ptc",
+ "rep": 3,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 181.4,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "hidden_pass": 30,
+  "hidden_total": 30,
+  "no_eval": true,
+  "ok": true
+ },
+ "session_logs": [],
+ "notifications": 131,
+ "final_response": "Implemented the evaluator in `calc/core.py` (with re-exports in `calc/__init__.py`).\n\n## What it does\n\n- **Tokenizer** \u2014 skips whitespace, recognizes ASCII integers/decimals (`42`, `3.5`, `.5`, `5.`), identifiers `[A-Za-z_][A-Za-z0-9_]*`, multi-char operators (`**`, `//`) before single-char ones, and chars (`+ - * / % ( ) ,`). Any unknown character raises `CalcError`.\n- **Recursive-descent parser** with the exact precedence ladder:\n  1. `+ -` (left-assoc)\n  2. `* / // %` (left-assoc)\n  3. unary `+ -`\n  4. `**` (right-assoc, tighter than unary)\n  - `-2**2 == -4`, `2**-1 == 0.5`, `2**3**2 == 512`, `-2**2**2 == -16`.\n- **Semantics** \u2014 delegates arithmetic to Python operators, so integer-only `+ - * // % **` stays `int`, `/` is always float, and `//`/`%` match Python (including negatives and floats).\n- **Variables & functions** \u2014 `env` lookup (unknown \u2192 `CalcError`); `min`/`max` (1+ args), `abs` (exactly 1), nested calls supported. Unknown functions raise before argument parsing.\n- **Errors** \u2014 all invalid input raises `CalcError(ValueError)`: empty/whitespace-only input, unknown variable/function, wrong `abs` arity, `/ // %` by zero, `0**negative`, unbalanced/extra parentheses, stray or misplaced tokens. No `eval`, `exec`, `compile`, or `ast`.\n\n## Verification\n\n- `python3 -m unittest -q` \u2192 4/4 pass.\n- ~40 hand-written spec checks (precedence, associativity, types, nesting, whitespace, all error classes) \u2192 all pass.\n- 3,404 randomly generated expressions compared against Python for both **value and exact type** \u2192 0 mismatches."
+}

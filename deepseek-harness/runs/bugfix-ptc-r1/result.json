@@ -1,0 +1,30 @@
+{
+ "model_visible_tools": [
+  "run_code"
+ ],
+ "run": "bugfix-ptc-r1",
+ "task": "bugfix",
+ "mode": "ptc",
+ "rep": 1,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 32.6,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "visible_tests_pass": true,
+  "hidden_pass": 5,
+  "hidden_total": 5,
+  "tests_unchanged": true
+ },
+ "session_logs": [],
+ "notifications": 92,
+ "final_response": "All 8 tests now pass.\n\nFixed three bugs in `invoice/`:\n\n- **`dates.py`** \u2014 corrected `MM/DD/YYYY` parsing so the month and day aren\u2019t swapped.\n- **`money.py`** \u2014 `to_cents` now rounds half up instead of truncating; `apply_discount` rounds the discounted result half up using `Decimal`.\n- **`total.py`** \u2014 tax is now calculated from the already-cent-valued discounted amount, with half-up rounding, instead of treating cents as dollars.\n\nAlso verified additional edge cases for rounding, date parsing, and totals. No test files were modified."
+}

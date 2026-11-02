@@ -1,0 +1,27 @@
+{
+ "run": "bugfix-standard-r3",
+ "task": "bugfix",
+ "mode": "standard",
+ "rep": 3,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 22.5,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "visible_tests_pass": true,
+  "hidden_pass": 5,
+  "hidden_total": 5,
+  "tests_unchanged": true
+ },
+ "session_logs": [],
+ "notifications": 58,
+ "final_response": "All 8 tests now pass.\n\n## Fixes made\n\n**`invoice/dates.py`** \u2014 `MM/DD/YYYY` parsing had the month and day swapped. Corrected to `date(year, month, day)`.\n\n**`invoice/money.py`**\n- `to_cents()` truncates; now quantizes to whole cents with `ROUND_HALF_UP` (e.g. `19.995 \u2192 2000`, `\"0.125\" \u2192 13`).\n- `apply_discount()` used floor division on the discount; now rounds the discount half-up before subtracting (e.g. `999, 15% \u2192 849`).\n\n**`invoice/total.py`** \u2014 tax was passed through `to_cents()` even though `discounted` is already in cents, multiplying by 100. Tax is now computed directly in cents with half-up rounding (e.g. `2295 \u00d7 0.10 = 229.5 \u2192 230`).\n\nVerification: `python3 -m unittest -q` \u2192 **Ran 8 tests \u2026 OK**."
+}

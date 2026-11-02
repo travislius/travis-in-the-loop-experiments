@@ -1,0 +1,4 @@
+# DeepSeek Harness v0.2.1-rc.2 (installed SDK runtime): PTC = tools row mode: ptc
+- id: tools
+  config:
+    mode: ptc

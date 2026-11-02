@@ -1,0 +1,30 @@
+{
+ "model_visible_tools": [
+  "run_code"
+ ],
+ "run": "batch-ptc-r3",
+ "task": "batch",
+ "mode": "ptc",
+ "rep": 3,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 9.1,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "ok": true,
+  "totals_match": true,
+  "malformed_match": true,
+  "refund_excluded": true
+ },
+ "session_logs": [],
+ "notifications": 45,
+ "final_response": "Created `summary.json` with exactly two keys:\n\n```json\n{\n  \"totals\": {\n    \"garden\": 163830,\n    \"kitchen\": 183092,\n    \"books\": 191804,\n    \"toys\": 209309,\n    \"games\": 130121\n  },\n  \"malformed\": [\n    \"order-013.json\",\n    \"order-037.json\",\n    \"order-058.json\",\n    \"order-071.json\"\n  ]\n}\n```\n\n- Scanned all 80 files in `orders/`; 76 parsed as JSON.\n- Summed `amount_cents` per category, skipping the 2 refund orders entirely.\n- No order files were modified."
+}

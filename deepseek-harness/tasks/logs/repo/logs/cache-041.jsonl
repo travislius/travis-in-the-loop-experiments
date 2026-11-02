@@ -1,0 +1,60 @@
+{"ts": "2026-10-30T03:25:00Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=168"}
+{"ts": "2026-10-30T03:25:04Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1332"}
+{"ts": "2026-10-30T03:25:08Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2140"}
+{"ts": "2026-10-30T03:25:12Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1125"}
+{"ts": "2026-10-30T03:25:16Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1083"}
+{"ts": "2026-10-30T03:25:20Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2340"}
+{"ts": "2026-10-30T03:25:24Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2682"}
+{"ts": "2026-10-30T03:25:28Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2412"}
+{"ts": "2026-10-30T03:25:32Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=323"}
+{"ts": "2026-10-30T03:25:36Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1546"}
+{"ts": "2026-10-30T03:25:40Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=917"}
+{"ts": "2026-10-30T03:25:44Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1450"}
+{"ts": "2026-10-30T03:25:48Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1418"}
+{"ts": "2026-10-30T03:25:52Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1979"}
+{"ts": "2026-10-30T03:25:56Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=32"}
+{"ts": "2026-10-30T03:26:00Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=574"}
+{"ts": "2026-10-30T03:26:04Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=947"}
+{"ts": "2026-10-30T03:26:08Z", "level": "INFO", "service": "cache", "msg": "login failed user=decoy (synthetic probe, ignore: level INFO)"}
+{"ts": "2026-10-30T03:26:12Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=871"}
+{"ts": "2026-10-30T03:26:16Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=649"}
+{"ts": "2026-10-30T03:26:20Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2943"}
+{"ts": "2026-10-30T03:26:24Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2712"}
+{"ts": "2026-10-30T03:26:28Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1357"}
+{"ts": "2026-10-30T03:26:32Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1977"}
+{"ts": "2026-10-30T03:26:36Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1967"}
+{"ts": "2026-10-30T03:26:40Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=665"}
+{"ts": "2026-10-30T03:26:44Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1688"}
+{"ts": "2026-10-30T03:26:48Z", "level": "ERROR", "service": "cache", "msg": "upstream returned 502"}
+{"ts": "2026-10-30T03:26:52Z", "level": "ERROR", "service": "cache", "msg": "upstream returned 502"}
+{"ts": "2026-10-30T03:26:56Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=664"}
+{"ts": "2026-10-30T03:27:00Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2104"}
+{"ts": "2026-10-30T03:27:04Z", "level": "ERROR", "service": "cache", "msg": "upstream returned 502"}
+{"ts": "2026-10-30T03:27:08Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=234"}
+{"ts": "2026-10-30T03:27:12Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=742"}
+{"ts": "2026-10-30T03:27:16Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1665"}
+{"ts": "2026-10-30T03:27:20Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2313"}
+{"ts": "2026-10-30T03:27:24Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2952"}
+{"ts": "2026-10-30T03:27:28Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1166"}
+{"ts": "2026-10-30T03:27:32Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=892"}
+{"ts": "2026-10-30T03:27:36Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1935"}
+{"ts": "2026-10-30T03:27:40Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=703"}
+{"ts": "2026-10-30T03:27:44Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1687"}
+{"ts": "2026-10-30T03:27:48Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2391"}
+{"ts": "2026-10-30T03:27:52Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=749"}
+{"ts": "2026-10-30T03:27:56Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2097"}
+{"ts": "2026-10-30T03:28:00Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2971"}
+{"ts": "2026-10-30T03:28:04Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1862"}
+{"ts": "2026-10-30T03:28:08Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=286"}
+{"ts": "2026-10-30T03:28:12Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=1583"}
+{"ts": "2026-10-30T03:28:16Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=72"}
+{"ts": "2026-10-30T03:28:20Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2070"}
+{"ts": "2026-10-30T03:28:24Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=617"}
+{"ts": "2026-10-30T03:28:28Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=731"}
+{"ts": "2026-10-30T03:28:32Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2523"}
+{"ts": "2026-10-30T03:28:36Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2181"}
+{"ts": "2026-10-30T03:28:40Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=486"}
+{"ts": "2026-10-30T03:28:44Z", "level": "INFO", "service": "cache", "msg": "login failed user=decoy (synthetic probe, ignore: level INFO)"}
+{"ts": "2026-10-30T03:28:48Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2476"}
+{"ts": "2026-10-30T03:28:52Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=9"}
+{"ts": "2026-10-30T03:28:56Z", "level": "INFO", "service": "cache", "msg": "request done path=/v1/items latency_ms=2784"}

@@ -1,0 +1,31 @@
+{
+ "run": "bugfix-minimal-r1",
+ "task": "bugfix",
+ "mode": "minimal",
+ "rep": 1,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk-minimal",
+ "finish_reason": "completed",
+ "wall_seconds": 12.0,
+ "steps": 5,
+ "tool_calls": 4,
+ "tool_names": {
+  "bash": 4
+ },
+ "usage": {
+  "input": 2356,
+  "output": 1341,
+  "cache_hit": 9728
+ },
+ "check": {
+  "visible_tests_pass": true,
+  "hidden_pass": 5,
+  "hidden_total": 5,
+  "tests_unchanged": true
+ },
+ "session_logs": [
+  "dsh-home/sessions/<runs>-bugfix-minimal-r1-workspace--/bugfix-minimal-r1/session.v4.jsonl"
+ ],
+ "notifications": 35,
+ "final_response": "All 8 unit tests now pass.\n\nFixed:\n- `invoice/money.py`\n  - `to_cents()` now rounds half up instead of truncating.\n  - `apply_discount()` now rounds the discount amount half up.\n- `invoice/dates.py`\n  - Fixed month/day ordering for `MM/DD/YYYY` dates.\n- `invoice/total.py`\n  - Tax now applies directly to the discounted cent amount and rounds half up."
+}

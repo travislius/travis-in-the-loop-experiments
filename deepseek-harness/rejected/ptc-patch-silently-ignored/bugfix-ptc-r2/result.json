@@ -1,0 +1,27 @@
+{
+ "run": "bugfix-ptc-r2",
+ "task": "bugfix",
+ "mode": "ptc",
+ "rep": 2,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 36.8,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "visible_tests_pass": true,
+  "hidden_pass": 5,
+  "hidden_total": 5,
+  "tests_unchanged": true
+ },
+ "session_logs": [],
+ "notifications": 48,
+ "final_response": "All 8 tests now pass.\n\nFixed in `invoice/`:\n\n- **`dates.py`** \u2014 corrected `MM/DD/YYYY` parsing so month/day are no longer swapped.\n- **`money.py`**\n  - `to_cents` now rounds half up using `Decimal` instead of truncating.\n  - `apply_discount` now computes the remaining amount with `Decimal` and rounds the result half up.\n- **`total.py`** \u2014 fixed tax calculation: `discounted` is already in cents, so tax is now rounded directly to integer cents rather than being passed through `to_cents` again.\n\nVerified with `python3 -m unittest -q`:\n\n```\nRan 8 tests in 0.000s\n\nOK\n```"
+}

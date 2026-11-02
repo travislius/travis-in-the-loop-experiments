@@ -1,0 +1,31 @@
+{
+ "run": "batch-minimal-r1",
+ "task": "batch",
+ "mode": "minimal",
+ "rep": 1,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk-minimal",
+ "finish_reason": "completed",
+ "wall_seconds": 9.9,
+ "steps": 5,
+ "tool_calls": 4,
+ "tool_names": {
+  "bash": 4
+ },
+ "usage": {
+  "input": 1671,
+  "output": 806,
+  "cache_hit": 6528
+ },
+ "check": {
+  "ok": true,
+  "totals_match": true,
+  "malformed_match": true,
+  "refund_excluded": true
+ },
+ "session_logs": [
+  "dsh-home/sessions/<runs>-batch-minimal-r1-workspace--/batch-minimal-r1/session.v4.jsonl"
+ ],
+ "notifications": 35,
+ "final_response": "Created `summary.json` with the required `totals` and `malformed` keys. Malformed files found:\n\n- `order-013.json`\n- `order-037.json`\n- `order-058.json`\n- `order-071.json`"
+}

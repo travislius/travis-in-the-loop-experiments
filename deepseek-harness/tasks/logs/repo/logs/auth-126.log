@@ -1,0 +1,60 @@
+2026-10-30T10:30:00Z INFO  [auth] request done path=/v1/items latency_ms=497
+2026-10-30T10:30:04Z INFO  [auth] request done path=/v1/items latency_ms=1281
+2026-10-30T10:30:08Z INFO  [auth] request done path=/v1/items latency_ms=446
+2026-10-30T10:30:12Z INFO  [auth] request done path=/v1/items latency_ms=743
+2026-10-30T10:30:16Z INFO  [auth] request done path=/v1/items latency_ms=690
+2026-10-30T10:30:20Z INFO  [auth] request done path=/v1/items latency_ms=2043
+2026-10-30T10:30:24Z INFO  [auth] request done path=/v1/items latency_ms=640
+2026-10-30T10:30:28Z INFO  [auth] request done path=/v1/items latency_ms=1386
+2026-10-30T10:30:32Z INFO  [auth] request done path=/v1/items latency_ms=2702
+2026-10-30T10:30:36Z INFO  [auth] request done path=/v1/items latency_ms=1597
+2026-10-30T10:30:40Z INFO  [auth] request done path=/v1/items latency_ms=481
+2026-10-30T10:30:44Z INFO  [auth] request done path=/v1/items latency_ms=273
+2026-10-30T10:30:48Z INFO  [auth] request done path=/v1/items latency_ms=1502
+2026-10-30T10:30:52Z INFO  [auth] request done path=/v1/items latency_ms=2015
+2026-10-30T10:30:56Z INFO  [auth] request done path=/v1/items latency_ms=1660
+2026-10-30T10:31:00Z ERROR [auth] upstream returned 502
+2026-10-30T10:31:04Z ERROR [auth] upstream returned 502
+2026-10-30T10:31:08Z INFO  [auth] request done path=/v1/items latency_ms=1972
+2026-10-30T10:31:12Z INFO  [auth] request done path=/v1/items latency_ms=2706
+2026-10-30T10:31:16Z INFO  [auth] request done path=/v1/items latency_ms=2426
+2026-10-30T10:31:20Z WARN  [auth] login failed user=eli
+2026-10-30T10:31:24Z WARN  [auth] login failed user=fay
+2026-10-30T10:31:28Z INFO  [auth] request done path=/v1/items latency_ms=2164
+2026-10-30T10:31:32Z INFO  [auth] request done path=/v1/items latency_ms=2881
+2026-10-30T10:31:36Z INFO  [auth] request done path=/v1/items latency_ms=1619
+2026-10-30T10:31:40Z INFO  [auth] request done path=/v1/items latency_ms=2639
+2026-10-30T10:31:44Z INFO  [auth] request done path=/v1/items latency_ms=1317
+2026-10-30T10:31:48Z INFO  [auth] request done path=/v1/items latency_ms=816
+2026-10-30T10:31:52Z INFO  [auth] request done path=/v1/items latency_ms=2570
+2026-10-30T10:31:56Z INFO  [auth] request done path=/v1/items latency_ms=1787
+2026-10-30T10:32:00Z INFO  [auth] request done path=/v1/items latency_ms=2013
+2026-10-30T10:32:04Z ERROR [auth] upstream returned 502
+2026-10-30T10:32:08Z INFO  [auth] request done path=/v1/items latency_ms=2303
+2026-10-30T10:32:12Z INFO  [auth] request done path=/v1/items latency_ms=1597
+2026-10-30T10:32:16Z INFO  [auth] request done path=/v1/items latency_ms=1181
+2026-10-30T10:32:20Z INFO  [auth] request done path=/v1/items latency_ms=2867
+2026-10-30T10:32:24Z ERROR [auth] upstream returned 502
+2026-10-30T10:32:28Z INFO  [auth] request done path=/v1/items latency_ms=775
+2026-10-30T10:32:32Z INFO  [auth] request done path=/v1/items latency_ms=1262
+2026-10-30T10:32:36Z INFO  [auth] request done path=/v1/items latency_ms=2344
+2026-10-30T10:32:40Z INFO  [auth] request done path=/v1/items latency_ms=2630
+2026-10-30T10:32:44Z INFO  [auth] request done path=/v1/items latency_ms=201
+2026-10-30T10:32:48Z INFO  [auth] request done path=/v1/items latency_ms=198
+2026-10-30T10:32:52Z INFO  [auth] request done path=/v1/items latency_ms=1581
+2026-10-30T10:32:56Z INFO  [auth] request done path=/v1/items latency_ms=2207
+2026-10-30T10:33:00Z ERROR [auth] upstream returned 502
+2026-10-30T10:33:04Z INFO  [auth] request done path=/v1/items latency_ms=1781
+2026-10-30T10:33:08Z INFO  [auth] request done path=/v1/items latency_ms=2151
+2026-10-30T10:33:12Z INFO  [auth] request done path=/v1/items latency_ms=2088
+2026-10-30T10:33:16Z INFO  [auth] request done path=/v1/items latency_ms=2868
+2026-10-30T10:33:20Z ERROR [auth] upstream returned 502
+2026-10-30T10:33:24Z INFO  [auth] request done path=/v1/items latency_ms=1877
+2026-10-30T10:33:28Z INFO  [auth] request done path=/v1/items latency_ms=912
+2026-10-30T10:33:32Z INFO  [auth] request done path=/v1/items latency_ms=303
+2026-10-30T10:33:36Z INFO  [auth] request done path=/v1/items latency_ms=2033
+2026-10-30T10:33:40Z INFO  [auth] request done path=/v1/items latency_ms=2628
+2026-10-30T10:33:44Z INFO  [auth] request done path=/v1/items latency_ms=190
+2026-10-30T10:33:48Z INFO  [auth] request done path=/v1/items latency_ms=848
+2026-10-30T10:33:52Z INFO  [auth] request done path=/v1/items latency_ms=481
+2026-10-30T10:33:56Z INFO  [auth] request done path=/v1/items latency_ms=24

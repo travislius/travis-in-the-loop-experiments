@@ -1,0 +1,60 @@
+2026-10-30T16:20:00Z INFO  [worker] request done path=/v1/items latency_ms=1114
+2026-10-30T16:20:04Z INFO  [worker] request done path=/v1/items latency_ms=148
+2026-10-30T16:20:08Z INFO  [worker] request done path=/v1/items latency_ms=858
+2026-10-30T16:20:12Z INFO  [worker] request done path=/v1/items latency_ms=2146
+2026-10-30T16:20:16Z INFO  [worker] request done path=/v1/items latency_ms=2082
+2026-10-30T16:20:20Z INFO  [worker] request done path=/v1/items latency_ms=2251
+2026-10-30T16:20:24Z INFO  [worker] request done path=/v1/items latency_ms=2675
+2026-10-30T16:20:28Z INFO  [worker] request done path=/v1/items latency_ms=2102
+2026-10-30T16:20:32Z INFO  [worker] request done path=/v1/items latency_ms=963
+2026-10-30T16:20:36Z INFO  [worker] request done path=/v1/items latency_ms=1168
+2026-10-30T16:20:40Z INFO  [worker] request done path=/v1/items latency_ms=1846
+2026-10-30T16:20:44Z ERROR [worker] upstream returned 502
+2026-10-30T16:20:48Z INFO  [worker] request done path=/v1/items latency_ms=957
+2026-10-30T16:20:52Z INFO  [worker] request done path=/v1/items latency_ms=2483
+2026-10-30T16:20:56Z ERROR [worker] upstream returned 502
+2026-10-30T16:21:00Z INFO  [worker] request done path=/v1/items latency_ms=1434
+2026-10-30T16:21:04Z INFO  [worker] request done path=/v1/items latency_ms=2613
+2026-10-30T16:21:08Z INFO  [worker] request done path=/v1/items latency_ms=99
+2026-10-30T16:21:12Z INFO  [worker] request done path=/v1/items latency_ms=528
+2026-10-30T16:21:16Z INFO  [worker] request done path=/v1/items latency_ms=1433
+2026-10-30T16:21:20Z INFO  [worker] request done path=/v1/items latency_ms=688
+2026-10-30T16:21:24Z INFO  [worker] request done path=/v1/items latency_ms=1078
+2026-10-30T16:21:28Z INFO  [worker] login failed user=decoy (synthetic probe, ignore: level INFO)
+2026-10-30T16:21:32Z INFO  [worker] request done path=/v1/items latency_ms=957
+2026-10-30T16:21:36Z INFO  [worker] request done path=/v1/items latency_ms=2508
+2026-10-30T16:21:40Z ERROR [worker] upstream returned 502
+2026-10-30T16:21:44Z INFO  [worker] request done path=/v1/items latency_ms=1849
+2026-10-30T16:21:48Z INFO  [worker] request done path=/v1/items latency_ms=34
+2026-10-30T16:21:52Z INFO  [worker] request done path=/v1/items latency_ms=1149
+2026-10-30T16:21:56Z INFO  [worker] login failed user=decoy (synthetic probe, ignore: level INFO)
+2026-10-30T16:22:00Z ERROR [worker] upstream returned 502
+2026-10-30T16:22:04Z INFO  [worker] request done path=/v1/items latency_ms=2829
+2026-10-30T16:22:08Z INFO  [worker] request done path=/v1/items latency_ms=2889
+2026-10-30T16:22:12Z INFO  [worker] request done path=/v1/items latency_ms=2319
+2026-10-30T16:22:16Z INFO  [worker] request done path=/v1/items latency_ms=1113
+2026-10-30T16:22:20Z INFO  [worker] request done path=/v1/items latency_ms=988
+2026-10-30T16:22:24Z INFO  [worker] request done path=/v1/items latency_ms=2639
+2026-10-30T16:22:28Z INFO  [worker] login failed user=decoy (synthetic probe, ignore: level INFO)
+2026-10-30T16:22:32Z INFO  [worker] request done path=/v1/items latency_ms=2931
+2026-10-30T16:22:36Z INFO  [worker] request done path=/v1/items latency_ms=409
+2026-10-30T16:22:40Z INFO  [worker] request done path=/v1/items latency_ms=596
+2026-10-30T16:22:44Z INFO  [worker] request done path=/v1/items latency_ms=1139
+2026-10-30T16:22:48Z INFO  [worker] request done path=/v1/items latency_ms=1912
+2026-10-30T16:22:52Z ERROR [worker] upstream returned 502
+2026-10-30T16:22:56Z INFO  [worker] request done path=/v1/items latency_ms=2290
+2026-10-30T16:23:00Z INFO  [worker] request done path=/v1/items latency_ms=1601
+2026-10-30T16:23:04Z INFO  [worker] request done path=/v1/items latency_ms=2357
+2026-10-30T16:23:08Z INFO  [worker] request done path=/v1/items latency_ms=755
+2026-10-30T16:23:12Z INFO  [worker] request done path=/v1/items latency_ms=325
+2026-10-30T16:23:16Z INFO  [worker] request done path=/v1/items latency_ms=1227
+2026-10-30T16:23:20Z INFO  [worker] request done path=/v1/items latency_ms=764
+2026-10-30T16:23:24Z INFO  [worker] request done path=/v1/items latency_ms=1090
+2026-10-30T16:23:28Z INFO  [worker] request done path=/v1/items latency_ms=2847
+2026-10-30T16:23:32Z INFO  [worker] request done path=/v1/items latency_ms=881
+2026-10-30T16:23:36Z INFO  [worker] request done path=/v1/items latency_ms=413
+2026-10-30T16:23:40Z INFO  [worker] request done path=/v1/items latency_ms=2552
+2026-10-30T16:23:44Z ERROR [worker] upstream returned 502
+2026-10-30T16:23:48Z INFO  [worker] request done path=/v1/items latency_ms=1572
+2026-10-30T16:23:52Z INFO  [worker] request done path=/v1/items latency_ms=411
+2026-10-30T16:23:56Z INFO  [worker] request done path=/v1/items latency_ms=886

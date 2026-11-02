@@ -1,0 +1,31 @@
+{
+ "run": "bugfix-minimal-r2",
+ "task": "bugfix",
+ "mode": "minimal",
+ "rep": 2,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk-minimal",
+ "finish_reason": "completed",
+ "wall_seconds": 14.6,
+ "steps": 5,
+ "tool_calls": 4,
+ "tool_names": {
+  "bash": 4
+ },
+ "usage": {
+  "input": 2163,
+  "output": 1632,
+  "cache_hit": 9088
+ },
+ "check": {
+  "visible_tests_pass": true,
+  "hidden_pass": 5,
+  "hidden_total": 5,
+  "tests_unchanged": true
+ },
+ "session_logs": [
+  "dsh-home/sessions/<runs>-bugfix-minimal-r2-workspace--/bugfix-minimal-r2/session.v4.jsonl"
+ ],
+ "notifications": 35,
+ "final_response": "Fixed all failing tests in the `invoice/` package:\n\n- `invoice/dates.py`: corrected `MM/DD/YYYY` parsing.\n- `invoice/money.py`: implemented proper half-up rounding for currency conversion and discounts.\n- `invoice/total.py`: corrected tax calculation so it treats discounted values as cents and rounds half up.\n\nVerified with:\n\n```bash\npython3 -m unittest -q\n```\n\nResult: **8 tests passed**."
+}

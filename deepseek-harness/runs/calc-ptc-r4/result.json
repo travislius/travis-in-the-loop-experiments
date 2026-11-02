@@ -1,0 +1,30 @@
+{
+ "model_visible_tools": [
+  "run_code"
+ ],
+ "run": "calc-ptc-r4",
+ "task": "calc",
+ "mode": "ptc",
+ "rep": 4,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 70.9,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "hidden_pass": 30,
+  "hidden_total": 30,
+  "no_eval": true,
+  "ok": true
+ },
+ "session_logs": [],
+ "notifications": 83,
+ "final_response": "Implemented `evaluate` in `calc/core.py` as a hand-written recursive-descent parser (no `eval`/`exec`/`compile`/`ast`).\n\n**What it handles**\n- Integers and decimals (`42`, `3.5`, `.5`, `2.`), preserving `int` for integer-only arithmetic.\n- Precedence exactly as specified: `+ -` \u2192 `* / // %` \u2192 unary `+ -` \u2192 `**`.\n- Right-associative `**` binding tighter than unary minus (`-2**2 == -4`, `2**-1 == 0.5`, `2**3**2 == 512`).\n- True division (`/` always float), Python semantics for `//` and `%`.\n- Parentheses, insignificant whitespace, regex-exact identifiers, and nested `min`/`max`/`abs` calls.\n- `CalcError` for unknown variables/functions, `abs` arg count, zero division/modulo (including `0**-1`), unbalanced parentheses, empty input, and unexpected tokens.\n\n**Verification**\n- `python3 -m unittest -q` \u2014 4 tests pass.\n- Additional edge-case suite covering types, precedence, functions, and all error categories \u2014 passes.\n- Differential fuzz check against Python `eval` on 3,514 generated expressions (values and `int`/`float` types) \u2014 all match."
+}

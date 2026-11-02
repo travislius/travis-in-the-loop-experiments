@@ -1,0 +1,13 @@
+
+from decimal import Decimal, ROUND_HALF_UP
+
+def to_cents(amount):
+    """Convert a dollar amount (str/float/Decimal) to integer cents, rounding half up."""
+    return int((Decimal(str(amount)) * 100).quantize(Decimal("1"), rounding=ROUND_HALF_UP))
+
+def apply_discount(cents, percent):
+    """Apply a percentage discount (0-100). Result rounded half up to the cent."""
+    if percent < 0 or percent > 100:
+        raise ValueError("percent must be between 0 and 100")
+    factor = (Decimal(100) - Decimal(str(percent))) / Decimal(100)
+    return int((Decimal(cents) * factor).quantize(Decimal("1"), rounding=ROUND_HALF_UP))

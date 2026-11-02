@@ -1,0 +1,60 @@
+2026-10-30T08:35:00Z INFO  [billing] request done path=/v1/items latency_ms=1073
+2026-10-30T08:35:04Z INFO  [billing] request done path=/v1/items latency_ms=248
+2026-10-30T08:35:08Z INFO  [billing] request done path=/v1/items latency_ms=2245
+2026-10-30T08:35:12Z INFO  [billing] request done path=/v1/items latency_ms=1355
+2026-10-30T08:35:16Z INFO  [billing] request done path=/v1/items latency_ms=2722
+2026-10-30T08:35:20Z INFO  [billing] request done path=/v1/items latency_ms=260
+2026-10-30T08:35:24Z INFO  [billing] request done path=/v1/items latency_ms=303
+2026-10-30T08:35:28Z INFO  [billing] request done path=/v1/items latency_ms=2314
+2026-10-30T08:35:32Z INFO  [billing] request done path=/v1/items latency_ms=2884
+2026-10-30T08:35:36Z INFO  [billing] request done path=/v1/items latency_ms=149
+2026-10-30T08:35:40Z INFO  [billing] request done path=/v1/items latency_ms=294
+2026-10-30T08:35:44Z INFO  [billing] request done path=/v1/items latency_ms=2455
+2026-10-30T08:35:48Z INFO  [billing] request done path=/v1/items latency_ms=335
+2026-10-30T08:35:52Z INFO  [billing] request done path=/v1/items latency_ms=1966
+2026-10-30T08:35:56Z INFO  [billing] request done path=/v1/items latency_ms=1113
+2026-10-30T08:36:00Z INFO  [billing] request done path=/v1/items latency_ms=431
+2026-10-30T08:36:04Z ERROR [billing] upstream returned 502
+2026-10-30T08:36:08Z INFO  [billing] request done path=/v1/items latency_ms=2668
+2026-10-30T08:36:12Z INFO  [billing] request done path=/v1/items latency_ms=1961
+2026-10-30T08:36:16Z INFO  [billing] request done path=/v1/items latency_ms=937
+2026-10-30T08:36:20Z ERROR [billing] upstream returned 502
+2026-10-30T08:36:24Z ERROR [billing] upstream returned 502
+2026-10-30T08:36:28Z INFO  [billing] request done path=/v1/items latency_ms=808
+2026-10-30T08:36:32Z INFO  [billing] request done path=/v1/items latency_ms=1558
+2026-10-30T08:36:36Z INFO  [billing] request done path=/v1/items latency_ms=79
+2026-10-30T08:36:40Z INFO  [billing] request done path=/v1/items latency_ms=218
+2026-10-30T08:36:44Z INFO  [billing] request done path=/v1/items latency_ms=1550
+2026-10-30T08:36:48Z INFO  [billing] request done path=/v1/items latency_ms=1765
+2026-10-30T08:36:52Z INFO  [billing] request done path=/v1/items latency_ms=2255
+2026-10-30T08:36:56Z INFO  [billing] request done path=/v1/items latency_ms=1798
+2026-10-30T08:37:00Z INFO  [billing] request done path=/v1/items latency_ms=2526
+2026-10-30T08:37:04Z INFO  [billing] request done path=/v1/items latency_ms=1511
+2026-10-30T08:37:08Z INFO  [billing] request done path=/v1/items latency_ms=1410
+2026-10-30T08:37:12Z INFO  [billing] request done path=/v1/items latency_ms=242
+2026-10-30T08:37:16Z INFO  [billing] request done path=/v1/items latency_ms=381
+2026-10-30T08:37:20Z INFO  [billing] request done path=/v1/items latency_ms=935
+2026-10-30T08:37:24Z INFO  [billing] request done path=/v1/items latency_ms=2201
+2026-10-30T08:37:28Z INFO  [billing] request done path=/v1/items latency_ms=66
+2026-10-30T08:37:32Z INFO  [billing] request done path=/v1/items latency_ms=1028
+2026-10-30T08:37:36Z INFO  [billing] request done path=/v1/items latency_ms=318
+2026-10-30T08:37:40Z ERROR [billing] upstream returned 502
+2026-10-30T08:37:44Z INFO  [billing] request done path=/v1/items latency_ms=1162
+2026-10-30T08:37:48Z ERROR [billing] upstream returned 502
+2026-10-30T08:37:52Z INFO  [billing] request done path=/v1/items latency_ms=2688
+2026-10-30T08:37:56Z INFO  [billing] request done path=/v1/items latency_ms=1202
+2026-10-30T08:38:00Z INFO  [billing] request done path=/v1/items latency_ms=1634
+2026-10-30T08:38:04Z INFO  [billing] request done path=/v1/items latency_ms=506
+2026-10-30T08:38:08Z INFO  [billing] request done path=/v1/items latency_ms=317
+2026-10-30T08:38:12Z INFO  [billing] request done path=/v1/items latency_ms=2231
+2026-10-30T08:38:16Z INFO  [billing] request done path=/v1/items latency_ms=2893
+2026-10-30T08:38:20Z INFO  [billing] request done path=/v1/items latency_ms=1467
+2026-10-30T08:38:24Z INFO  [billing] request done path=/v1/items latency_ms=907
+2026-10-30T08:38:28Z INFO  [billing] request done path=/v1/items latency_ms=1244
+2026-10-30T08:38:32Z INFO  [billing] request done path=/v1/items latency_ms=2263
+2026-10-30T08:38:36Z INFO  [billing] request done path=/v1/items latency_ms=2682
+2026-10-30T08:38:40Z INFO  [billing] request done path=/v1/items latency_ms=1100
+2026-10-30T08:38:44Z INFO  [billing] request done path=/v1/items latency_ms=2222
+2026-10-30T08:38:48Z INFO  [billing] request done path=/v1/items latency_ms=226
+2026-10-30T08:38:52Z INFO  [billing] request done path=/v1/items latency_ms=1687
+2026-10-30T08:38:56Z INFO  [billing] request done path=/v1/items latency_ms=2552

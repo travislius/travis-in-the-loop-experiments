@@ -1,0 +1,39 @@
+{
+ "model_visible_tools": [
+  "bash",
+  "read_image",
+  "working_directory"
+ ],
+ "run": "logs-minimal-r4",
+ "task": "logs",
+ "mode": "minimal",
+ "rep": 4,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk-minimal",
+ "finish_reason": "completed",
+ "wall_seconds": 15.9,
+ "steps": 6,
+ "tool_calls": 5,
+ "tool_names": {
+  "bash": 5
+ },
+ "usage": {
+  "input": 2722,
+  "output": 1913,
+  "cache_hit": 13952
+ },
+ "check": {
+  "ok": true,
+  "fields": 4,
+  "fields_total": 4,
+  "match_error_counts": true,
+  "match_top_user_by_failed_logins": true,
+  "match_first_db_timeout": true,
+  "match_requests_over_2000ms": true
+ },
+ "session_logs": [
+  "dsh-home/sessions/<runs>-logs-minimal-r4-workspace--/logs-minimal-r4/session.v4.jsonl"
+ ],
+ "notifications": 40,
+ "final_response": "Created `incident.json` with the requested keys. The logs were not modified."
+}

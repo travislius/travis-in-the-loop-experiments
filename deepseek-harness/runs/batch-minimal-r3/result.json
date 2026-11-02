@@ -1,0 +1,31 @@
+{
+ "run": "batch-minimal-r3",
+ "task": "batch",
+ "mode": "minimal",
+ "rep": 3,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk-minimal",
+ "finish_reason": "completed",
+ "wall_seconds": 8.6,
+ "steps": 5,
+ "tool_calls": 4,
+ "tool_names": {
+  "bash": 4
+ },
+ "usage": {
+  "input": 942,
+  "output": 853,
+  "cache_hit": 6272
+ },
+ "check": {
+  "ok": true,
+  "totals_match": true,
+  "malformed_match": true,
+  "refund_excluded": true
+ },
+ "session_logs": [
+  "dsh-home/sessions/<runs>-batch-minimal-r3-workspace--/batch-minimal-r3/session.v4.jsonl"
+ ],
+ "notifications": 35,
+ "final_response": "Created `summary.json` with:\n\n- `totals`: sums by category, excluding `refund`\n- `malformed`: `order-013.json`, `order-037.json`, `order-058.json`, `order-071.json`\n\nOrder files were not modified."
+}

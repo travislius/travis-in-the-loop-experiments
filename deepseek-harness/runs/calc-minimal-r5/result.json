@@ -1,0 +1,31 @@
+{
+ "model_visible_tools": [
+  "bash",
+  "read_image",
+  "working_directory"
+ ],
+ "run": "calc-minimal-r5",
+ "task": "calc",
+ "mode": "minimal",
+ "rep": 5,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk-minimal",
+ "finish_reason": "timeout",
+ "wall_seconds": 901.4,
+ "steps": 12,
+ "tool_calls": 12,
+ "tool_names": {
+  "bash": 12
+ },
+ "usage": {
+  "input": 3752,
+  "output": 6830,
+  "cache_hit": 73344
+ },
+ "check": {},
+ "session_logs": [
+  "dsh-home/sessions/<runs>-calc-minimal-r5-workspace--/calc-minimal-r5/session.v4.jsonl"
+ ],
+ "notifications": 68,
+ "final_response": "run exceeded 900s cap"
+}

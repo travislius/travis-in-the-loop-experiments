@@ -1,0 +1,27 @@
+{
+ "run": "bugfix-standard-r1",
+ "task": "bugfix",
+ "mode": "standard",
+ "rep": 1,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 20.7,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "visible_tests_pass": true,
+  "hidden_pass": 5,
+  "hidden_total": 5,
+  "tests_unchanged": true
+ },
+ "session_logs": [],
+ "notifications": 48,
+ "final_response": "All tests pass. Here's a summary of the bugs fixed:\n\n**`invoice/money.py`**\n- `to_cents`: was truncating via `int(...)`. Now multiplies then quantizes with `ROUND_HALF_UP`, so `\"0.125\"` \u2192 `13` and `19.995` \u2192 `2000`.\n- `apply_discount`: used floor division (`//`), which rounded the discount *down*. Now computes the discount with `Decimal` and quantizes half-up, so `apply_discount(999, 15)` \u2192 `849`.\n\n**`invoice/dates.py`**\n- `parse_due`: month and day were swapped when building the US-format date. Now `MM/DD/YYYY` is parsed correctly.\n\n**`invoice/total.py`**\n- Tax was computed by passing an already-in-cents value into `to_cents`, multiplying it by 100 again. Now tax is computed directly in cents with `Decimal` and half-up rounding, so the total for the test case is `2525`.\n\nNo files under `tests/` were modified."
+}

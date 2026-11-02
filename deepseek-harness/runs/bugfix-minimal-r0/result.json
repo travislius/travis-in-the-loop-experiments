@@ -1,0 +1,32 @@
+{
+ "run": "bugfix-minimal-r0",
+ "task": "bugfix",
+ "mode": "minimal",
+ "rep": 0,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk-minimal",
+ "finish_reason": "completed",
+ "wall_seconds": 16.1,
+ "steps": 5,
+ "tool_calls": 5,
+ "tool_names": {
+  "bash": 5
+ },
+ "usage": {
+  "input": 3321,
+  "output": 1865,
+  "cache_hit": 10624
+ },
+ "check": {
+  "visible_tests_pass": true,
+  "hidden_pass": 5,
+  "hidden_total": 5,
+  "tests_unchanged": true
+ },
+ "session_logs": [
+  "dsh-home/sessions/<runs>-bugfix-minimal-r0-workspace--/bugfix-minimal-r0/session.v4.jsonl"
+ ],
+ "notifications": 37,
+ "final_response": "Fixed the bugs in `invoice/`:\n\n- Corrected US date parsing to interpret `MM/DD/YYYY`.\n- Updated `to_cents` to round half up using `Decimal`.\n- Updated `apply_discount` to round the discount amount half up.\n- Corrected tax calculation so the discounted cents amount is converted to dollars before applying the tax rate.\n\nAll 8 unit tests now pass with `python3 -m unittest -q`.",
+ "rescored_note": "hidden case apply_discount(1001,50) replaced by unambiguous (999,33) before main runs"
+}

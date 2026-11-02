@@ -1,0 +1,27 @@
+{
+ "run": "bugfix-minimal-r0",
+ "task": "bugfix",
+ "mode": "minimal",
+ "rep": 0,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk-minimal",
+ "finish_reason": "completed",
+ "wall_seconds": 149.9,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "visible_tests_pass": false,
+  "hidden_pass": 2,
+  "hidden_total": 5,
+  "tests_unchanged": true
+ },
+ "session_logs": [],
+ "notifications": 270,
+ "final_response": "I\u2019m blocked by the execution environment, not by the invoice tests themselves.\n\nEvery `bash` invocation fails before the command starts:\n\n```text\nFailed to load native module: pty.node\nchecked: build/Release, build/Debug, prebuilds/darwin-arm64\nCannot find module './prebuilds/darwin-arm64/pty.node'\n```\n\nThis prevents running `python3 -m unittest -q` and also prevents inspecting or editing the source files. I have not modified anything under `tests/`.\n\nPlease restart/re-provision the environment with a working `node-pty` native module (or provide a non-PTY shell execution path). Once shell commands work, I can run the tests and make the minimal source fixes."
+}

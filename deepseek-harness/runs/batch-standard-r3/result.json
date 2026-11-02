@@ -1,0 +1,27 @@
+{
+ "run": "batch-standard-r3",
+ "task": "batch",
+ "mode": "standard",
+ "rep": 3,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 14.4,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "ok": true,
+  "totals_match": true,
+  "malformed_match": true,
+  "refund_excluded": true
+ },
+ "session_logs": [],
+ "notifications": 61,
+ "final_response": "Done. Created `summary.json` with exactly two keys.\n\n**Totals** (sum of `amount_cents` across valid orders, `refund` excluded):\n| Category | Total |\n|---|---|\n| books | 191,804 |\n| games | 130,121 |\n| garden | 163,830 |\n| kitchen | 183,092 |\n| toys | 209,309 |\n\n**Malformed files (4):** `order-013.json`, `order-037.json`, `order-058.json`, `order-071.json` \u2014 all truncated mid-`amount_cents` value, confirmed invalid by both Python's `json` parser and `jq`.\n\nThe order files were only read, not modified; the totals were derived from the 76 valid orders."
+}

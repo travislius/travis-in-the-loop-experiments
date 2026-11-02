@@ -1,0 +1,13 @@
+{
+ "error_counts": {
+  "auth": 138,
+  "billing": 150,
+  "search": 144,
+  "api": 146,
+  "worker": 136,
+  "cache": 138
+ },
+ "top_user_by_failed_logins": "ana",
+ "first_db_timeout": "2026-10-30T00:17:00Z",
+ "requests_over_2000ms": 4300
+}

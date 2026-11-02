@@ -1,0 +1,27 @@
+{
+ "run": "bugfix-ptc-r3",
+ "task": "bugfix",
+ "mode": "ptc",
+ "rep": 3,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 19.4,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "visible_tests_pass": true,
+  "hidden_pass": 5,
+  "hidden_total": 5,
+  "tests_unchanged": true
+ },
+ "session_logs": [],
+ "notifications": 56,
+ "final_response": "All 8 tests pass now.\n\nFixed in `invoice/`:\n\n- **`money.py`**\n  - `to_cents`: now uses `Decimal(...).quantize(Decimal(\"1\"), rounding=ROUND_HALF_UP)` instead of truncating with `int()`.\n  - `apply_discount`: now rounds the discount amount half up via `Decimal` instead of floor-dividing with `//`.\n- **`dates.py`**\n  - `parse_due`: corrected the `MM/DD/YYYY` branch to build `date(year, month, day)` instead of swapping month/day.\n- **`total.py`**\n  - `invoice_total`: tax is now computed from `discounted` cents converted back to dollars, rather than passing cents directly to `to_cents` (which was multiplying by 100 twice).\n\nTest result:\n\n```\nRan 8 tests in 0.000s\nOK\n```"
+}

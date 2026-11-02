@@ -1,0 +1,27 @@
+{
+ "run": "bugfix-ptc-r1",
+ "task": "bugfix",
+ "mode": "ptc",
+ "rep": 1,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 38.3,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "visible_tests_pass": true,
+  "hidden_pass": 5,
+  "hidden_total": 5,
+  "tests_unchanged": true
+ },
+ "session_logs": [],
+ "notifications": 84,
+ "final_response": "All 8 unit tests pass now.\n\nFixed in `invoice/`:\n\n- **`money.py`**\n  - `to_cents` now quantizes with `ROUND_HALF_UP` instead of truncating.\n  - `apply_discount` now rounds the discount amount half-up using `Decimal` instead of floor division.\n- **`dates.py`**\n  - `MM/DD/YYYY` parsing now uses the correct month/day order.\n- **`total.py`**\n  - Tax is now calculated directly from the discounted cents value with half-up rounding, rather than incorrectly passing cents into `to_cents` again.\n\nNo files under `tests/` were modified."
+}

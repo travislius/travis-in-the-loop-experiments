@@ -1,0 +1,140 @@
+{
+ "batch/minimal": [
+  {
+   "tools_visible": 3,
+   "tool_schema_chars": 1611,
+   "system_chars": 46,
+   "first_prompt_tokens": 796,
+   "inner_tool_calls_in_programs": 0
+  },
+  {
+   "tools_visible": 3,
+   "tool_schema_chars": 1611,
+   "system_chars": 46,
+   "first_prompt_tokens": 796,
+   "inner_tool_calls_in_programs": 0
+  },
+  {
+   "tools_visible": 3,
+   "tool_schema_chars": 1611,
+   "system_chars": 46,
+   "first_prompt_tokens": 796,
+   "inner_tool_calls_in_programs": 0
+  }
+ ],
+ "batch/ptc": [
+  {
+   "tools_visible": 1,
+   "tool_schema_chars": 2544,
+   "system_chars": 27394,
+   "first_prompt_tokens": 7909,
+   "inner_tool_calls_in_programs": 8
+  },
+  {
+   "tools_visible": 1,
+   "tool_schema_chars": 2544,
+   "system_chars": 27394,
+   "first_prompt_tokens": 7909,
+   "inner_tool_calls_in_programs": 8
+  },
+  {
+   "tools_visible": 1,
+   "tool_schema_chars": 2544,
+   "system_chars": 27394,
+   "first_prompt_tokens": 7909,
+   "inner_tool_calls_in_programs": 5
+  }
+ ],
+ "batch/standard": [
+  {
+   "tools_visible": 25,
+   "tool_schema_chars": 20332,
+   "system_chars": 2565,
+   "first_prompt_tokens": 6272,
+   "inner_tool_calls_in_programs": 0
+  },
+  {
+   "tools_visible": 25,
+   "tool_schema_chars": 20332,
+   "system_chars": 2565,
+   "first_prompt_tokens": 6272,
+   "inner_tool_calls_in_programs": 0
+  },
+  {
+   "tools_visible": 25,
+   "tool_schema_chars": 20332,
+   "system_chars": 2565,
+   "first_prompt_tokens": 6272,
+   "inner_tool_calls_in_programs": 0
+  }
+ ],
+ "bugfix/minimal": [
+  {
+   "tools_visible": 3,
+   "tool_schema_chars": 1611,
+   "system_chars": 46,
+   "first_prompt_tokens": 763,
+   "inner_tool_calls_in_programs": 0
+  },
+  {
+   "tools_visible": 3,
+   "tool_schema_chars": 1611,
+   "system_chars": 46,
+   "first_prompt_tokens": 763,
+   "inner_tool_calls_in_programs": 0
+  },
+  {
+   "tools_visible": 3,
+   "tool_schema_chars": 1611,
+   "system_chars": 46,
+   "first_prompt_tokens": 763,
+   "inner_tool_calls_in_programs": 0
+  }
+ ],
+ "bugfix/ptc": [
+  {
+   "tools_visible": 1,
+   "tool_schema_chars": 2544,
+   "system_chars": 27394,
+   "first_prompt_tokens": 7877,
+   "inner_tool_calls_in_programs": 9
+  },
+  {
+   "tools_visible": 1,
+   "tool_schema_chars": 2544,
+   "system_chars": 27394,
+   "first_prompt_tokens": 7877,
+   "inner_tool_calls_in_programs": 9
+  },
+  {
+   "tools_visible": 1,
+   "tool_schema_chars": 2544,
+   "system_chars": 27394,
+   "first_prompt_tokens": 7877,
+   "inner_tool_calls_in_programs": 7
+  }
+ ],
+ "bugfix/standard": [
+  {
+   "tools_visible": 25,
+   "tool_schema_chars": 20332,
+   "system_chars": 2565,
+   "first_prompt_tokens": 6240,
+   "inner_tool_calls_in_programs": 0
+  },
+  {
+   "tools_visible": 25,
+   "tool_schema_chars": 20332,
+   "system_chars": 2565,
+   "first_prompt_tokens": 6240,
+   "inner_tool_calls_in_programs": 0
+  },
+  {
+   "tools_visible": 25,
+   "tool_schema_chars": 20332,
+   "system_chars": 2565,
+   "first_prompt_tokens": 6240,
+   "inner_tool_calls_in_programs": 0
+  }
+ ]
+}

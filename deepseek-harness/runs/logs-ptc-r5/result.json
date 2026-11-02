@@ -1,0 +1,33 @@
+{
+ "model_visible_tools": [
+  "run_code"
+ ],
+ "run": "logs-ptc-r5",
+ "task": "logs",
+ "mode": "ptc",
+ "rep": 5,
+ "model": "deepseek-v4-flash",
+ "profile": "sdk",
+ "finish_reason": "completed",
+ "wall_seconds": 60.4,
+ "steps": 0,
+ "tool_calls": 0,
+ "tool_names": {},
+ "usage": {
+  "input": 0,
+  "output": 0,
+  "cache_hit": 0
+ },
+ "check": {
+  "ok": true,
+  "fields": 4,
+  "fields_total": 4,
+  "match_error_counts": true,
+  "match_top_user_by_failed_logins": true,
+  "match_first_db_timeout": true,
+  "match_requests_over_2000ms": true
+ },
+ "session_logs": [],
+ "notifications": 115,
+ "final_response": "Created `incident.json` in the workspace root with the requested keys:\n\n```json\n{\n  \"error_counts\": {\n    \"api\": 146,\n    \"auth\": 138,\n    \"billing\": 150,\n    \"cache\": 138,\n    \"search\": 144,\n    \"worker\": 136\n  },\n  \"top_user_by_failed_logins\": \"ana\",\n  \"first_db_timeout\": \"2026-10-30T00:17:00Z\",\n  \"requests_over_2000ms\": 4300\n}\n```\n\nAll 240 files across both formats were parsed and independently re-verified; the logs were not modified. `ana` led with 23 WARN-level auth login failures, correctly excluding the 310 INFO-level synthetic decoy lines."
+}
