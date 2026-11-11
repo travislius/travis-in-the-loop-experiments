@@ -1,0 +1,67 @@
+{
+ "summary": [
+  {
+   "cond": "A",
+   "name": "No skill",
+   "n": 8,
+   "pass": 0,
+   "numbers_correct": 0,
+   "house_format_exact": 0,
+   "total_correct": 8,
+   "categories_all_correct": 0,
+   "flags_correct": 0,
+   "skill_loaded": 0,
+   "script_used": 0,
+   "median_wall_s": 37.75,
+   "median_output_tokens": 6445.5,
+   "median_prompt_tokens": 113962.0,
+   "median_model_steps": 9.5,
+   "catalog_message_chars": 3963.0
+  },
+  {
+   "cond": "B",
+   "name": "Skill: instructions only",
+   "n": 8,
+   "pass": 8,
+   "numbers_correct": 8,
+   "house_format_exact": 8,
+   "total_correct": 8,
+   "categories_all_correct": 8,
+   "flags_correct": 8,
+   "skill_loaded": 8,
+   "script_used": 0,
+   "median_wall_s": 23.45,
+   "median_output_tokens": 3806.5,
+   "median_prompt_tokens": 67300.0,
+   "median_model_steps": 7.0,
+   "catalog_message_chars": 4430.0
+  },
+  {
+   "cond": "C",
+   "name": "Skill + script",
+   "n": 8,
+   "pass": 8,
+   "numbers_correct": 8,
+   "house_format_exact": 8,
+   "total_correct": 8,
+   "categories_all_correct": 8,
+   "flags_correct": 8,
+   "skill_loaded": 8,
+   "script_used": 8,
+   "median_wall_s": 17.25,
+   "median_output_tokens": 2072.5,
+   "median_prompt_tokens": 69765.5,
+   "median_model_steps": 7.5,
+   "catalog_message_chars": 4430.0
+  }
+ ],
+ "context_cost": {
+  "catalog_entry_chars_added_by_expense_skill": 467.0,
+  "frontmatter_chars": 235,
+  "skill_md_B_chars": 1609,
+  "skill_md_C_chars": 1251,
+  "script_chars": 2347,
+  "note": "tokens ~ chars/4 (rough)"
+ },
+ "runs": 24
+}

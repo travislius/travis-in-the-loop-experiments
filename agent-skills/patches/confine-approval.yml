@@ -1,0 +1,4 @@
+# Base-profile modes (standard/ptc) have an approval row; never prompt (no human in the loop), sandbox still enforced.
+- id: approval
+  config:
+    policy: never
