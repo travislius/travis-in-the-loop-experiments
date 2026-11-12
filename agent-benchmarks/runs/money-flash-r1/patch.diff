@@ -1,0 +1,77 @@
+Only in <EXPERIMENT>/runs/money-flash-r1/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/money/repo/money.py <EXPERIMENT>/runs/money-flash-r1/workspace/money.py
+--- <EXPERIMENT>/tasks/money/repo/money.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/money-flash-r1/workspace/money.py	2026-11-12 07:53:30
+@@ -1,3 +1,70 @@
++import re
++
++
++def _is_decimal_separator(text, sep, position):
++    """Decide whether the only ``sep`` in ``text`` is a decimal point.
++
++    A single separator followed by exactly three digits is normally a
++    thousands separator (``1,234`` / ``1.234``), except for values such as
++    ``0.123`` where the leading zero makes the decimal interpretation clear.
++    """
++    if text.count(sep) != 1:
++        return False
++
++    before = text[:position].lstrip("+-")
++    after = text[position + 1:]
++    if not before or not after:
++        return True
++
++    if len(after) == 3 and 1 <= len(before) <= 3 and not before.startswith("0"):
++        return False
++    return True
++
++
+ def parse_amount(s):
+-    s = s.replace("$", "").replace(",", "")
+-    return float(s)
++    """Parse a monetary amount from common bank-export formats.
++
++    Supports US and European grouping/decimal separators, currency symbols
++    and codes, leading minus signs, and accounting negatives in parentheses.
++    """
++    text = str(s).strip()
++
++    negative = False
++    if text.startswith("(") and text.endswith(")"):
++        negative = True
++        text = text[1:-1].strip()
++
++    if "-" in text or "\u2212" in text:
++        negative = True
++
++    # Keep only digits and decimal/grouping separators; currency symbols,
++    # codes (EUR, USD, ...), spaces, and signs are discarded.
++    number = re.sub(r"[^0-9.,]", "", text)
++    if not any(ch.isdigit() for ch in number):
++        raise ValueError("could not parse amount: {!r}".format(s))
++
++    has_dot = "." in number
++    has_comma = "," in number
++
++    if has_dot and has_comma:
++        # The rightmost separator is the decimal separator.
++        decimal_sep = "." if number.rfind(".") > number.rfind(",") else ","
++    elif has_dot:
++        decimal_sep = "." if _is_decimal_separator(number, ".", number.rfind(".")) else None
++    elif has_comma:
++        decimal_sep = "," if _is_decimal_separator(number, ",", number.rfind(",")) else None
++    else:
++        decimal_sep = None
++
++    if decimal_sep is None:
++        number = re.sub(r"[.,]", "", number)
++    else:
++        other_sep = "," if decimal_sep == "." else "."
++        number = number.replace(other_sep, "").replace(decimal_sep, ".")
++
++    try:
++        amount = float(number)
++    except ValueError:
++        raise ValueError("could not parse amount: {!r}".format(s))
++
++    return -amount if negative else amount

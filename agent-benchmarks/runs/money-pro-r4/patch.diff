@@ -1,0 +1,54 @@
+Only in <EXPERIMENT>/runs/money-pro-r4/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/money/repo/money.py <EXPERIMENT>/runs/money-pro-r4/workspace/money.py
+--- <EXPERIMENT>/tasks/money/repo/money.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/money-pro-r4/workspace/money.py	2026-11-12 07:59:57
+@@ -1,3 +1,47 @@
+ def parse_amount(s):
+-    s = s.replace("$", "").replace(",", "")
+-    return float(s)
++    s = s.strip()
++
++    # Accounting negatives are wrapped in parentheses: "(1,234.50)".
++    negative = False
++    if s.startswith("(") and s.endswith(")"):
++        negative = True
++        s = s[1:-1].strip()
++
++    # Explicit sign.
++    if s.startswith("-"):
++        negative = True
++        s = s[1:].strip()
++    elif s.startswith("+"):
++        s = s[1:].strip()
++
++    # Drop currency symbols, letters and spaces; keep digits and separators.
++    cleaned = "".join(ch for ch in s if ch.isdigit() or ch in ".,")
++
++    has_dot = "." in cleaned
++    has_comma = "," in cleaned
++
++    if has_dot and has_comma:
++        # Whichever separator appears last is the decimal separator.
++        if cleaned.rfind(",") > cleaned.rfind("."):
++            decimal, thousands = ",", "."
++        else:
++            decimal, thousands = ".", ","
++    elif has_comma:
++        # A lone comma groups thousands only when exactly 3 digits follow it;
++        # otherwise it is a European decimal comma ("EUR 3,5").
++        if len(cleaned) - cleaned.rfind(",") - 1 == 3:
++            decimal, thousands = None, ","
++        else:
++            decimal, thousands = ",", None
++    elif has_dot:
++        decimal, thousands = ".", None
++    else:
++        decimal = thousands = None
++
++    if thousands:
++        cleaned = cleaned.replace(thousands, "")
++    if decimal:
++        cleaned = cleaned.replace(decimal, ".")
++
++    value = float(cleaned)
++    return -value if negative else value

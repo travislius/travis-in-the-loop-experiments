@@ -1,0 +1,29 @@
+Only in <EXPERIMENT>/runs/bucket-pro-r2/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/bucket/repo/ratelimit.py <EXPERIMENT>/runs/bucket-pro-r2/workspace/ratelimit.py
+--- <EXPERIMENT>/tasks/bucket/repo/ratelimit.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/bucket-pro-r2/workspace/ratelimit.py	2026-11-12 07:56:17
+@@ -2,12 +2,19 @@
+     def __init__(self, capacity, rate):
+         self.capacity = capacity
+         self.rate = rate
+-        self.tokens = 0
+-        self.last = 0
++        self.tokens = float(capacity)
++        self.last = None
++
+     def allow(self, now):
+-        self.tokens += int((now - self.last) * self.rate)
+-        self.last = now
+-        if self.tokens > 0:
++        if self.last is None:
++            self.last = now
++        else:
++            elapsed = now - self.last
++            if elapsed > 0:
++                self.tokens = min(self.capacity, self.tokens + elapsed * self.rate)
++                self.last = now
++
++        if self.tokens >= 1:
+             self.tokens -= 1
+             return True
+         return False

@@ -1,0 +1,142 @@
+Only in <EXPERIMENT>/runs/expr-flash-r2/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/expr/repo/calc.py <EXPERIMENT>/runs/expr-flash-r2/workspace/calc.py
+--- <EXPERIMENT>/tasks/expr/repo/calc.py	2026-11-12 08:02:19
++++ <EXPERIMENT>/runs/expr-flash-r2/workspace/calc.py	2026-11-12 08:10:38
+@@ -1,6 +1,132 @@
++"""A small recursive-descent evaluator for arithmetic expressions."""
++
++
++class _Parser:
++    def __init__(self, tokens):
++        self._tokens = tokens
++        self._pos = 0
++
++    def _peek(self):
++        return self._tokens[self._pos][0]
++
++    def _peek_value(self):
++        return self._tokens[self._pos][1]
++
++    def _advance(self):
++        token = self._tokens[self._pos]
++        self._pos += 1
++        return token
++
++    def parse(self):
++        if self._peek() == "eof":
++            raise ValueError("empty expression")
++        value = self._expression()
++        if self._peek() != "eof":
++            raise ValueError("unexpected token")
++        return value
++
++    def _expression(self):
++        value = self._term()
++        while self._peek() in ("+", "-"):
++            op = self._advance()[0]
++            rhs = self._term()
++            if op == "+":
++                value = value + rhs
++            else:
++                value = value - rhs
++        return value
++
++    def _term(self):
++        value = self._unary()
++        while self._peek() in ("*", "/"):
++            op = self._advance()[0]
++            rhs = self._unary()
++            if op == "*":
++                value = value * rhs
++            else:
++                value = value / rhs
++        return value
++
++    def _unary(self):
++        # Unary signs bind less tightly than exponentiation, so -2^2 == -4.
++        if self._peek() == "-":
++            self._advance()
++            return -self._unary()
++        if self._peek() == "+":
++            self._advance()
++            return self._unary()
++        return self._power()
++
++    def _power(self):
++        base = self._primary()
++        if self._peek() == "^":
++            self._advance()
++            # Recursing through _unary makes ^ right-associative and lets the
++            # exponent carry a sign (e.g. 2^-3).
++            exponent = self._unary()
++            return base ** exponent
++        return base
++
++    def _primary(self):
++        token = self._peek()
++        if token == "num":
++            return self._advance()[1]
++        if token == "(":
++            self._advance()
++            value = self._expression()
++            if self._peek() != ")":
++                raise ValueError("missing closing parenthesis")
++            self._advance()
++            return value
++        raise ValueError("expected a number or '('")
++
++
++def _tokenize(s):
++    tokens = []
++    i = 0
++    length = len(s)
++
++    while i < length:
++        char = s[i]
++
++        if char.isspace():
++            i += 1
++            continue
++
++        if char in "0123456789.":
++            start = i
++            seen_digit = False
++
++            while i < length and s[i] in "0123456789":
++                seen_digit = True
++                i += 1
++
++            if i < length and s[i] == ".":
++                i += 1
++                while i < length and s[i] in "0123456789":
++                    seen_digit = True
++                    i += 1
++
++            if not seen_digit:
++                raise ValueError("invalid number")
++
++            text = s[start:i]
++            tokens.append(("num", float(text) if "." in text else int(text)))
++            continue
++
++        if char in "+-*/^()":
++            tokens.append((char, char))
++            i += 1
++            continue
++
++        raise ValueError("invalid character: %r" % (char,))
++
++    tokens.append(("eof", None))
++    return tokens
++
++
+ def evaluate(s):
+-    s = s.replace(" ", "")
+-    total = 0.0
+-    for part in s.split("+"):
+-        total += float(part)
+-    return total
++    """Evaluate an arithmetic expression string and return its numeric value."""
++    if not isinstance(s, str):
++        raise ValueError("expression must be a string")
++    return _Parser(_tokenize(s)).parse()

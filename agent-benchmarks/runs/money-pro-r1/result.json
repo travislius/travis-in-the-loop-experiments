@@ -1,0 +1,26 @@
+{
+ "run": "money-pro-r1",
+ "task": "money",
+ "model": "deepseek-v4-pro",
+ "rep": 1,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 56.4,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 7350,
+  "output": 3767,
+  "cache_hit": 39680
+ },
+ "hidden_tests_passed": 7,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "7 passed in 0.19s",
+ "final_response": "All five cases from the bug report now pass.\n\nThe fix rewrites `parse_amount()` in `money.py` to properly handle:\n\n- **`'$1,234.50'` \u2192 1234.5** \u2014 strips `$` and treats `,` as a thousands separator.\n- **`'(1,234.50)'` \u2192 -1234.5** \u2014 detects accounting parentheses as a negative sign.\n- **`'-12'` \u2192 -12.0** \u2014 preserves the leading minus.\n- **`'1.234,50 \u20ac'` \u2192 1234.5** \u2014 detects European format (`.` thousands, `,` decimal) by whichever separator appears last.\n- **`'EUR 3,5'` \u2192 3.5** \u2014 treats a single comma with non-3 digits after it as a decimal separator.\n\nIt returns a `float` in all cases.",
+ "started_utc": "2026-11-12T15:53:38Z"
+}

@@ -1,0 +1,27 @@
+{
+ "run": "bucket-pro-r3",
+ "task": "bucket",
+ "model": "deepseek-v4-pro",
+ "rep": 3,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 59.8,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "glob": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1544,
+  "output": 4038,
+  "cache_hit": 48896
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.06s",
+ "final_response": "Fixed `ratelimit.py`. The bugs and their fixes:\n\n1. **Burst-through / starts empty** \u2014 `tokens` was initialized to `0` with `last = 0`, so the first call with a large `now` accumulated tokens for all elapsed time since epoch and let a huge burst through. Now a bucket starts full (`tokens = capacity`) and `last` is initialized on the first call (`last = None`).\n\n2. **Never refills** \u2014 `int((now - last) * rate)` truncated every fractional refill and then reset `last`, so fractional progress was permanently discarded (e.g. `rate = 0.5` never produced a token). Now refill is accumulated as a float: `tokens += (now - last) * rate`.\n\n3. **Exceeding capacity** \u2014 tokens were never clamped. Now refill is capped at `capacity` (`min`-style clamp).\n\n4. **Consuming partial tokens** \u2014 the old `tokens > 0` check would consume a token even when only a fraction of one existed. Now it requires `tokens >= 1.0`, so one full token must be available.\n\nI also guarded against non-increasing `now` (staying the same or going backwards), which the spec mentions, and verified all the scenarios pass.",
+ "started_utc": "2026-11-12T15:57:23Z"
+}

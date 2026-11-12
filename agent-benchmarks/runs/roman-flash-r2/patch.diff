@@ -1,0 +1,31 @@
+Only in <EXPERIMENT>/runs/roman-flash-r2/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/roman/repo/roman.py <EXPERIMENT>/runs/roman-flash-r2/workspace/roman.py
+--- <EXPERIMENT>/tasks/roman/repo/roman.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/roman-flash-r2/workspace/roman.py	2026-11-12 07:55:08
+@@ -1,9 +1,24 @@
++import re
++
+ V = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
++
++# Strict standard subtractive Roman numerals covering 1-3999.
++_ROMAN_RE = re.compile(
++    r"(?=.)M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})"
++)
++
++
+ def from_roman(s):
++    if not isinstance(s, str):
++        raise ValueError("Roman numeral must be a string")
++    t = s.upper()
++    if not _ROMAN_RE.fullmatch(t):
++        raise ValueError(f"invalid Roman numeral: {s!r}")
++
+     total = 0
+-    for i, ch in enumerate(s):
++    for i, ch in enumerate(t):
+         v = V[ch]
+-        if i + 1 < len(s) and V[s[i + 1]] > v:
++        if i + 1 < len(t) and V[t[i + 1]] > v:
+             total -= v
+         else:
+             total += v

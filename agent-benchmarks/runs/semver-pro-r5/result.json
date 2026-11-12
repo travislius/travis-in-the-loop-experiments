@@ -1,0 +1,26 @@
+{
+ "run": "semver-pro-r5",
+ "task": "semver",
+ "model": "deepseek-v4-pro",
+ "rep": 5,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 96.5,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1846,
+  "output": 3928,
+  "cache_hit": 45952
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.26s",
+ "final_response": "Fixed `semver.py`. The old `compare` split on `.` and compared string lists lexicographically, which broke numeric ordering (`1.10.0` vs `1.9.0`), pre-release ordering (`beta.2` vs `beta.11`), the rule that a pre-release sorts below its release (`1.0.0-rc.1` < `1.0.0`), and build metadata handling.\n\nThe new implementation follows SemVer 2.0.0 precedence:\n\n- Strips build metadata before comparing (`1.0.0+build.5 == 1.0.0`).\n- Compares major/minor/patch as integers, so `1.10.0 > 1.9.0`.\n- Compares pre-release identifiers pairwise: numeric identifiers compare numerically (`2 < 11`), numeric < alphanumeric (`1 < beta`), alphanumeric compares in ASCII order, and a longer list wins ties (`alpha < alpha.1`).\n- Treats a version without a pre-release as higher precedence than one with it (`1.0.0-rc.1 < 1.0.0`).\n\nAll examples from the issue pass, including reversed comparisons.",
+ "started_utc": "2026-11-12T16:01:19Z"
+}

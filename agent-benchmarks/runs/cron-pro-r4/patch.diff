@@ -1,0 +1,120 @@
+Only in <EXPERIMENT>/runs/cron-pro-r4/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/cron/repo/cron.py <EXPERIMENT>/runs/cron-pro-r4/workspace/cron.py
+--- <EXPERIMENT>/tasks/cron/repo/cron.py	2026-11-12 08:02:07
++++ <EXPERIMENT>/runs/cron-pro-r4/workspace/cron.py	2026-11-12 08:26:32
+@@ -1,5 +1,112 @@
+ import datetime as dt
++
++
++def _parse_field(field, lo, hi):
++    """Parse a single cron field into a set of allowed integer values.
++
++    Supports '*', single numbers, lists, ranges, and steps such as
++    '*/15' or '10-40/10'.
++    """
++    values = set()
++    for part in field.split(','):
++        part = part.strip()
++        if not part:
++            raise ValueError("empty item in cron field")
++
++        step = 1
++        if '/' in part:
++            base, step_text = part.split('/', 1)
++            step = int(step_text)
++            if step <= 0:
++                raise ValueError("step must be positive")
++        else:
++            base = part
++
++        if base == '*':
++            start, end = lo, hi
++        elif '-' in base:
++            start_text, end_text = base.split('-', 1)
++            start, end = int(start_text), int(end_text)
++        else:
++            start = end = int(base)
++
++        if start < lo or end > hi or start > end:
++            raise ValueError("value out of range in cron field")
++
++        values.update(range(start, end + 1, step))
++
++    return values
++
++
++def _parse_dow(field):
++    """Parse the day-of-week field; 7 is an alias for Sunday (0)."""
++    values = _parse_field(field, 0, 7)
++    if 7 in values:
++        values.remove(7)
++        values.add(0)
++    return values
++
++
++def _add_years(day, years):
++    try:
++        return day.replace(year=day.year + years)
++    except ValueError:
++        # day was Feb 29; fall back to Feb 28 of the target year.
++        return day.replace(year=day.year + years, day=28)
++
++
+ def next_run(expr, after):
+-    minute, hour, dom, month, dow = expr.split()
+-    t = after.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
+-    return t.replace(minute=int(minute) if minute != "*" else t.minute)
++    """Return the first datetime strictly after ``after`` that matches ``expr``.
++
++    ``after`` is a naive datetime at minute precision (seconds already
++    dropped). ``expr`` is a standard 5-field cron expression:
++    minute hour day-of-month month day-of-week.
++    """
++    fields = expr.split()
++    if len(fields) != 5:
++        raise ValueError("cron expression must have 5 fields")
++
++    minutes = _parse_field(fields[0], 0, 59)
++    hours = _parse_field(fields[1], 0, 23)
++    dom = _parse_field(fields[2], 1, 31)
++    months = _parse_field(fields[3], 1, 12)
++    dow = _parse_dow(fields[4])
++
++    dom_restricted = fields[2] != '*'
++    dow_restricted = fields[4] != '*'
++
++    after = after.replace(second=0, microsecond=0)
++    start = after + dt.timedelta(minutes=1)
++
++    sorted_hours = sorted(hours)
++    sorted_minutes = sorted(minutes)
++
++    day = start.date()
++    end_day = _add_years(day, 5)
++
++    while day <= end_day:
++        if day.month in months:
++            dom_ok = day.day in dom
++            # Python's weekday(): Monday=0 ... Sunday=6.
++            # Cron day-of-week: Sunday=0 ... Saturday=6.
++            dow_ok = (day.weekday() + 1) % 7 in dow
++
++            if dom_restricted and dow_restricted:
++                day_ok = dom_ok or dow_ok
++            elif dom_restricted:
++                day_ok = dom_ok
++            elif dow_restricted:
++                day_ok = dow_ok
++            else:
++                day_ok = True
++
++            if day_ok:
++                for h in sorted_hours:
++                    for m in sorted_minutes:
++                        candidate = dt.datetime(day.year, day.month, day.day, h, m)
++                        if candidate >= start:
++                            return candidate
++
++        day += dt.timedelta(days=1)
++
++    raise ValueError("no matching datetime within 5 years")

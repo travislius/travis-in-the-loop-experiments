@@ -1,0 +1,32 @@
+Only in <EXPERIMENT>/runs/slugify-flash-r5/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/slugify/repo/textutil.py <EXPERIMENT>/runs/slugify-flash-r5/workspace/textutil.py
+--- <EXPERIMENT>/tasks/slugify/repo/textutil.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/slugify-flash-r5/workspace/textutil.py	2026-11-12 08:01:05
+@@ -1,5 +1,26 @@
+ import re
++import unicodedata
++
++# Characters that do not decompose into an ASCII base letter under NFKD.
++_TRANSLITERATIONS = str.maketrans({
++    "ß": "ss",
++    "æ": "ae",
++    "œ": "oe",
++    "ø": "o",
++    "ł": "l",
++    "đ": "d",
++    "ð": "d",
++    "þ": "th",
++    "ħ": "h",
++    "ı": "i",
++})
++
++
+ def slugify(text):
++    """Turn arbitrary text into a lowercase, hyphen-separated ASCII slug."""
+     text = text.lower()
++    text = text.translate(_TRANSLITERATIONS)
++    text = unicodedata.normalize("NFKD", text)
++    text = text.encode("ascii", "ignore").decode("ascii")
+     text = re.sub(r"[^a-z0-9]+", "-", text)
+-    return text
++    return text.strip("-")

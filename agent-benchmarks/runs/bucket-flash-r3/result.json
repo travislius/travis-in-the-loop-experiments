@@ -1,0 +1,26 @@
+{
+ "run": "bucket-flash-r3",
+ "task": "bucket",
+ "model": "deepseek-flash",
+ "rep": 3,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 24.8,
+ "steps": 5,
+ "tool_calls": {
+  "bash": 2,
+  "read": 2,
+  "edit": 1
+ },
+ "usage": {
+  "input": 1777,
+  "output": 1787,
+  "cache_hit": 34176
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.02s",
+ "final_response": "Fixed `ratelimit.py` so that:\n\n- New buckets start full at `capacity`.\n- Tokens refill continuously and fractionally without losing fractional remainders.\n- Refill is capped at `capacity`, preventing burst overshoot.\n- Repeated calls with the same `now` do not add tokens.\n- Tokens are only consumed when at least one is available.\n\nAll tested scenarios pass.",
+ "started_utc": "2026-11-12T15:56:44Z"
+}

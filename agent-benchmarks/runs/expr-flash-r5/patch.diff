@@ -1,0 +1,125 @@
+Only in <EXPERIMENT>/runs/expr-flash-r5/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/expr/repo/calc.py <EXPERIMENT>/runs/expr-flash-r5/workspace/calc.py
+--- <EXPERIMENT>/tasks/expr/repo/calc.py	2026-11-12 08:02:19
++++ <EXPERIMENT>/runs/expr-flash-r5/workspace/calc.py	2026-11-12 08:28:20
+@@ -1,6 +1,115 @@
++"""Evaluate arithmetic expressions with a hand-written recursive parser."""
++
++import re
++
++
++_NUMBER_RE = re.compile(r"(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)")
++
++
++class _Parser:
++    """Recursive-descent parser for a simple arithmetic grammar.
++
++    expr    := term (('+' | '-') term)*
++    term    := factor (('*' | '/') factor)*
++    factor  := '-' factor | power
++    power   := atom ('^' factor)?
++    atom    := NUMBER | '(' expr ')'
++    """
++
++    def __init__(self, text):
++        self.text = text
++        self.pos = 0
++        self.length = len(text)
++
++    def _skip_whitespace(self):
++        while self.pos < self.length and self.text[self.pos].isspace():
++            self.pos += 1
++
++    def _peek(self):
++        self._skip_whitespace()
++        if self.pos >= self.length:
++            return ""
++        return self.text[self.pos]
++
++    def parse(self):
++        value = self._expr()
++        self._skip_whitespace()
++        if self.pos != self.length:
++            raise ValueError(
++                "unexpected character {!r} at position {}".format(
++                    self.text[self.pos], self.pos
++                )
++            )
++        return value
++
++    def _expr(self):
++        value = self._term()
++        while True:
++            char = self._peek()
++            if char == "+":
++                self.pos += 1
++                value = value + self._term()
++            elif char == "-":
++                self.pos += 1
++                value = value - self._term()
++            else:
++                return value
++
++    def _term(self):
++        value = self._factor()
++        while True:
++            char = self._peek()
++            if char == "*":
++                self.pos += 1
++                value = value * self._factor()
++            elif char == "/":
++                self.pos += 1
++                divisor = self._factor()
++                value = value / divisor
++            else:
++                return value
++
++    def _factor(self):
++        char = self._peek()
++        if char == "-":
++            self.pos += 1
++            return -self._factor()
++        return self._power()
++
++    def _power(self):
++        base = self._atom()
++        if self._peek() == "^":
++            self.pos += 1
++            # The exponent is parsed as a factor so that '^' is
++            # right-associative and unary minus may appear in it.
++            exponent = self._factor()
++            return base ** exponent
++        return base
++
++    def _atom(self):
++        char = self._peek()
++        if char == "(":
++            self.pos += 1
++            value = self._expr()
++            if self._peek() != ")":
++                raise ValueError("expected ')' at position {}".format(self.pos))
++            self.pos += 1
++            return value
++        if not char or not (char.isdigit() or char == "."):
++            raise ValueError("expected a number at position {}".format(self.pos))
++
++        match = _NUMBER_RE.match(self.text, self.pos)
++        if match is None:
++            raise ValueError("invalid number at position {}".format(self.pos))
++        token = match.group(0)
++        self.pos = match.end()
++        if "." in token:
++            return float(token)
++        return int(token)
++
++
+ def evaluate(s):
+-    s = s.replace(" ", "")
+-    total = 0.0
+-    for part in s.split("+"):
+-        total += float(part)
+-    return total
++    """Evaluate an arithmetic expression string and return its value."""
++    if not isinstance(s, str):
++        raise TypeError("expression must be a string")
++    return _Parser(s).parse()

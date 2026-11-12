@@ -1,0 +1,25 @@
+Only in <EXPERIMENT>/runs/lru-flash-r3/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/lru/repo/cache.py <EXPERIMENT>/runs/lru-flash-r3/workspace/cache.py
+--- <EXPERIMENT>/tasks/lru/repo/cache.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/lru-flash-r3/workspace/cache.py	2026-11-12 07:57:01
+@@ -4,10 +4,18 @@
+         self.data = {}
+         self.order = []
+     def get(self, key, default=None):
+-        return self.data.get(key, default)
++        if key not in self.data:
++            return default
++        # Mark as most recently used.
++        self.order.remove(key)
++        self.order.append(key)
++        return self.data[key]
+     def put(self, key, value):
++        if key in self.data:
++            # Updating an existing key must not consume extra capacity.
++            self.order.remove(key)
+         self.data[key] = value
+         self.order.append(key)
+         if len(self.order) > self.capacity:
+             old = self.order.pop(0)
+-            self.data.pop(old, None)
++            del self.data[old]

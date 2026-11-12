@@ -1,0 +1,174 @@
+Only in <EXPERIMENT>/runs/expr-pro-r2/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/expr/repo/calc.py <EXPERIMENT>/runs/expr-pro-r2/workspace/calc.py
+--- <EXPERIMENT>/tasks/expr/repo/calc.py	2026-11-12 08:02:19
++++ <EXPERIMENT>/runs/expr-pro-r2/workspace/calc.py	2026-11-12 08:11:37
+@@ -1,6 +1,164 @@
++"""A small arithmetic expression parser/evaluator.
++
++Supports integers and decimals (including leading-dot forms like ``.5``),
++the binary operators ``+ - * / ^``, parentheses, and unary plus/minus.
++
++Grammar (highest to lowest precedence):
++
++    expression := term (("+" | "-") term)*          left-associative
++    term       := unary (("*" | "/") unary)*        left-associative
++    unary      := ("+" | "-") unary | power
++    power      := primary ("^" unary)?              right-associative
++    primary    := number | "(" expression ")"
++
++This makes ``^`` bind tighter than unary minus (so ``-2^2 == -4``) and keeps
++``^`` right-associative (so ``2^3^2 == 512``).
++"""
++
++
++def _tokenize(s):
++    """Convert ``s`` into a list of tokens.
++
++    Tokens are tuples: ``("num", float)``, ``("op", char)``, ``("lp",)``,
++    and ``("rp",)``.
++    """
++    tokens = []
++    i = 0
++    n = len(s)
++
++    while i < n:
++        c = s[i]
++
++        if c.isspace():
++            i += 1
++            continue
++
++        if c.isdigit():
++            start = i
++            while i < n and s[i].isdigit():
++                i += 1
++            if i < n and s[i] == ".":
++                i += 1
++                while i < n and s[i].isdigit():
++                    i += 1
++            tokens.append(("num", float(s[start:i])))
++            continue
++
++        if c == ".":
++            i += 1
++            start = i
++            while i < n and s[i].isdigit():
++                i += 1
++            if i == start:
++                raise ValueError("unexpected character: '.'")
++            tokens.append(("num", float(s[start - 1:i])))
++            continue
++
++        if c in "+-*/^":
++            tokens.append(("op", c))
++            i += 1
++            continue
++
++        if c == "(":
++            tokens.append(("lp",))
++            i += 1
++            continue
++
++        if c == ")":
++            tokens.append(("rp",))
++            i += 1
++            continue
++
++        raise ValueError("invalid character: %r" % c)
++
++    return tokens
++
++
++class _Parser:
++    def __init__(self, tokens):
++        self.tokens = tokens
++        self.pos = 0
++
++    def _peek(self):
++        if self.pos < len(self.tokens):
++            return self.tokens[self.pos]
++        return None
++
++    def _advance(self):
++        token = self._peek()
++        if token is not None:
++            self.pos += 1
++        return token
++
++    def parse(self):
++        if not self.tokens:
++            raise ValueError("empty expression")
++        value = self._expression()
++        if self._peek() is not None:
++            raise ValueError("unexpected token: %r" % (self._peek(),))
++        return value
++
++    def _expression(self):
++        value = self._term()
++        while True:
++            token = self._peek()
++            if token is not None and token[0] == "op" and token[1] in "+-":
++                self._advance()
++                rhs = self._term()
++                value = value + rhs if token[1] == "+" else value - rhs
++            else:
++                break
++        return value
++
++    def _term(self):
++        value = self._unary()
++        while True:
++            token = self._peek()
++            if token is not None and token[0] == "op" and token[1] in "*/":
++                self._advance()
++                rhs = self._unary()
++                if token[1] == "*":
++                    value = value * rhs
++                else:
++                    value = value / rhs
++            else:
++                break
++        return value
++
++    def _unary(self):
++        token = self._peek()
++        if token is not None and token[0] == "op" and token[1] in "+-":
++            self._advance()
++            operand = self._unary()
++            return -operand if token[1] == "-" else operand
++        return self._power()
++
++    def _power(self):
++        base = self._primary()
++        token = self._peek()
++        if token is not None and token[0] == "op" and token[1] == "^":
++            self._advance()
++            exponent = self._unary()
++            return base ** exponent
++        return base
++
++    def _primary(self):
++        token = self._peek()
++        if token is None:
++            raise ValueError("unexpected end of expression")
++        if token[0] == "num":
++            self._advance()
++            return token[1]
++        if token[0] == "lp":
++            self._advance()
++            value = self._expression()
++            if self._peek() is None or self._peek()[0] != "rp":
++                raise ValueError("missing closing parenthesis")
++            self._advance()
++            return value
++        raise ValueError("unexpected token: %r" % (token,))
++
++
+ def evaluate(s):
+-    s = s.replace(" ", "")
+-    total = 0.0
+-    for part in s.split("+"):
+-        total += float(part)
+-    return total
++    tokens = _tokenize(s)
++    return _Parser(tokens).parse()

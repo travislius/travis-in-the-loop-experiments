@@ -1,0 +1,23 @@
+Only in <EXPERIMENT>/runs/merge-flash-r4/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/merge/repo/intervals.py <EXPERIMENT>/runs/merge-flash-r4/workspace/intervals.py
+--- <EXPERIMENT>/tasks/merge/repo/intervals.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/merge-flash-r4/workspace/intervals.py	2026-11-12 07:58:41
+@@ -1,8 +1,15 @@
+ def merge_intervals(intervals):
++    """Merge overlapping or touching intervals without mutating the input.
++
++    The result is a new list of ``[start, end]`` lists sorted by start.
++    """
+     out = []
+-    for s, e in intervals:
+-        if out and s < out[-1][1]:
+-            out[-1][1] = e
++    for s, e in sorted(intervals, key=lambda interval: (interval[0], interval[1])):
++        if out and s <= out[-1][1]:
++            # Overlapping or touching; keep the larger end so nested
++            # intervals like [1, 10], [2, 3] are handled correctly.
++            if e > out[-1][1]:
++                out[-1][1] = e
+         else:
+             out.append([s, e])
+     return out

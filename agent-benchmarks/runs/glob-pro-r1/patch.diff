@@ -1,0 +1,151 @@
+Only in <EXPERIMENT>/runs/glob-pro-r1/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/glob/repo/pathglob.py <EXPERIMENT>/runs/glob-pro-r1/workspace/pathglob.py
+--- <EXPERIMENT>/tasks/glob/repo/pathglob.py	2026-11-12 08:02:33
++++ <EXPERIMENT>/runs/glob-pro-r1/workspace/pathglob.py	2026-11-12 08:06:03
+@@ -1,3 +1,144 @@
+-import fnmatch
+ def match(pattern, path):
+-    return fnmatch.fnmatch(path, pattern)
++    """Return True if ``path`` (a slash-separated relative path) matches
++    ``pattern`` according to .gitignore-style glob semantics."""
++
++    pattern_segments = pattern.split("/")
++    path_segments = path.split("/")
++    return _match_segments(pattern_segments, path_segments)
++
++
++def _match_segments(patterns, segments):
++    """Match a list of pattern segments against a list of path segments."""
++    if not patterns:
++        return not segments
++
++    head = patterns[0]
++
++    if head == "**":
++        if len(patterns) == 1:
++            # A trailing '**' matches everything beneath it, i.e. one or
++            # more remaining segments (so 'a/**' does not match 'a' itself).
++            return bool(segments)
++        # A '**' in the middle matches zero or more whole segments.
++        if _match_segments(patterns[1:], segments):
++            return True
++        return bool(segments) and _match_segments(patterns, segments[1:])
++
++    if not segments:
++        return False
++
++    if not _match_segment(head, segments[0]):
++        return False
++
++    return _match_segments(patterns[1:], segments[1:])
++
++
++def _match_segment(pattern, segment):
++    """Match a single pattern segment against a single path segment."""
++    return _match_chars(pattern, 0, segment, 0)
++
++
++def _match_chars(pattern, pi, text, ti):
++    """Recursively match pattern[pi:] against text[ti:].
++
++    Handles '*', '?', '[...]' character classes and backslash escapes.
++    A segment never contains '/', so wildcards cannot cross it.
++    """
++    while pi < len(pattern):
++        c = pattern[pi]
++
++        if c == "*":
++            # Match zero characters...
++            if _match_chars(pattern, pi + 1, text, ti):
++                return True
++            # ...or one more character and try again.
++            if ti < len(text) and _match_chars(pattern, pi, text, ti + 1):
++                return True
++            return False
++
++        if c == "?":
++            if ti >= len(text):
++                return False
++            pi += 1
++            ti += 1
++            continue
++
++        if c == "[":
++            parsed = _parse_class(pattern, pi)
++            if parsed is None:
++                # Not a valid class: treat '[' as a literal character.
++                if ti < len(text) and text[ti] == "[":
++                    pi += 1
++                    ti += 1
++                    continue
++                return False
++            negate, items, next_index = parsed
++            if ti >= len(text):
++                return False
++            inside = any(lo <= text[ti] <= hi for lo, hi in items)
++            if inside == negate:
++                return False
++            pi = next_index
++            ti += 1
++            continue
++
++        if c == "\\":
++            if pi + 1 < len(pattern):
++                literal = pattern[pi + 1]
++                if ti < len(text) and text[ti] == literal:
++                    pi += 2
++                    ti += 1
++                    continue
++                return False
++            # A trailing backslash matches a literal backslash.
++            if ti < len(text) and text[ti] == "\\":
++                pi += 1
++                ti += 1
++                continue
++            return False
++
++        # Ordinary literal character.
++        if ti < len(text) and text[ti] == c:
++            pi += 1
++            ti += 1
++            continue
++        return False
++
++    return ti == len(text)
++
++
++def _parse_class(pattern, start):
++    """Parse a '[...]' character class beginning at ``start``.
++
++    Returns (negate, items, next_index) where ``items`` is a list of
++    (low, high) inclusive ranges, or None if there is no closing ']'.
++    """
++    i = start + 1
++    negate = False
++
++    if i < len(pattern) and pattern[i] == "!":
++        negate = True
++        i += 1
++
++    items = []
++
++    # A leading ']' is a literal member of the class.
++    if i < len(pattern) and pattern[i] == "]":
++        items.append(("]", "]"))
++        i += 1
++
++    while i < len(pattern) and pattern[i] != "]":
++        c = pattern[i]
++        # A '-' forms a range only when it has a character on both sides
++        # and the character after it is not the closing ']'.
++        if i + 2 < len(pattern) and pattern[i + 1] == "-" and pattern[i + 2] != "]":
++            items.append((c, pattern[i + 2]))
++            i += 3
++        else:
++            items.append((c, c))
++            i += 1
++
++    if i >= len(pattern):
++        return None
++
++    return negate, items, i + 1

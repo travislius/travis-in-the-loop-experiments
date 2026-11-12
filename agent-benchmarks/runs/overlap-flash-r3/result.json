@@ -1,0 +1,26 @@
+{
+ "run": "overlap-flash-r3",
+ "task": "overlap",
+ "model": "deepseek-flash",
+ "rep": 3,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 20.7,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1720,
+  "output": 994,
+  "cache_hit": 32896
+ },
+ "hidden_tests_passed": 5,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "5 passed in 0.01s",
+ "final_response": "Fixed `booking.py`.\n\n**The bug:** the comparison used strict `<`, which treats ranges as half-open and excludes touching endpoints. Since booking end dates are inclusive, `[1,5]` and `[5,9]` share day 5 and must count as overlapping.\n\n**The fix:**\n- Changed the check to `a_start <= b_end and b_start <= a_end` so shared inclusive endpoints register as overlaps.\n- Normalized each range (`start > end` \u2192 swap) so reversed endpoints like `(5, 1)` behave correctly instead of producing wrong results.\n- The condition is symmetric, so the two ranges may be passed in either order.\n\nVerified against shared-endpoint, containment, disjoint, identical, and reversed-endpoint/argument cases \u2014 all pass.",
+ "started_utc": "2026-11-12T15:56:44Z"
+}

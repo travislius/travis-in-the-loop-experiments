@@ -1,0 +1,71 @@
+Only in <EXPERIMENT>/runs/semver-flash-r2/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/semver/repo/semver.py <EXPERIMENT>/runs/semver-flash-r2/workspace/semver.py
+--- <EXPERIMENT>/tasks/semver/repo/semver.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/semver-flash-r2/workspace/semver.py	2026-11-12 07:55:02
+@@ -1,6 +1,61 @@
+ def compare(a, b):
+-    pa = a.split(".")
+-    pb = b.split(".")
+-    if pa < pb: return -1
+-    if pa > pb: return 1
+-    return 0
++    """Compare two semantic versions according to SemVer 2.0.0 precedence.
++
++    Returns -1 if a < b, 0 if a == b, and 1 if a > b. Build metadata is
++    ignored for precedence, and pre-release versions sort before the
++    corresponding normal version.
++    """
++
++    def parse(version):
++        # Build metadata never affects precedence, so drop it first.
++        core = version.split("+", 1)[0]
++
++        # A pre-release starts at the first hyphen in the remaining version.
++        if "-" in core:
++            core, prerelease = core.split("-", 1)
++            pre = prerelease.split(".")
++        else:
++            pre = None
++
++        numbers = [int(part) for part in core.split(".")]
++        return numbers, pre
++
++    def compare_prerelease(pa, pb):
++        # A version without a pre-release has higher precedence.
++        if pa is None and pb is None:
++            return 0
++        if pa is None:
++            return 1
++        if pb is None:
++            return -1
++
++        for left, right in zip(pa, pb):
++            left_is_numeric = left.isdigit()
++            right_is_numeric = right.isdigit()
++
++            if left_is_numeric and right_is_numeric:
++                left_value = int(left)
++                right_value = int(right)
++                if left_value != right_value:
++                    return -1 if left_value < right_value else 1
++            elif left_is_numeric:
++                # Numeric identifiers have lower precedence than alphanumeric.
++                return -1
++            elif right_is_numeric:
++                return 1
++            elif left != right:
++                # Alphanumeric identifiers are compared in ASCII sort order.
++                return -1 if left < right else 1
++
++        if len(pa) != len(pb):
++            return -1 if len(pa) < len(pb) else 1
++        return 0
++
++    numbers_a, prerelease_a = parse(a)
++    numbers_b, prerelease_b = parse(b)
++
++    for left, right in zip(numbers_a, numbers_b):
++        if left != right:
++            return -1 if left < right else 1
++
++    return compare_prerelease(prerelease_a, prerelease_b)

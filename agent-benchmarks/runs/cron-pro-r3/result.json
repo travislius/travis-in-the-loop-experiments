@@ -1,0 +1,26 @@
+{
+ "run": "cron-pro-r3",
+ "task": "cron",
+ "model": "deepseek-v4-pro",
+ "rep": 3,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 88.0,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 3,
+  "write": 1
+ },
+ "usage": {
+  "input": 2139,
+  "output": 8919,
+  "cache_hit": 63488
+ },
+ "hidden_tests_passed": 11,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "11 passed in 0.06s",
+ "final_response": "The bug is fixed. I rewrote `cron.py` to fully implement the cron parser and matching logic described in `ISSUE.md`.\n\nKey changes:\n\n- **Field parsing** (`_parse_field`): supports `*`, single numbers, lists (`1,15,30`), ranges (`1-5`), and steps (`*/15`, `10-40/10`), returning a set of allowed values or `None` for `*`.\n- **Day-of-week mapping**: parses 0\u20137 and normalizes `7` \u2192 `0` (Sunday), and converts Python's Monday-based `weekday()` via `(weekday + 1) % 7`.\n- **Vixie-cron rule** (`_day_matches`): if both day-of-month and day-of-week are restricted, a day matches on **either**; if only one is restricted, only that one applies.\n- **Search**: iterates day-by-day (up to ~5 years ahead), then hour/minute, returning the first candidate strictly greater than `after` with second/microsecond zeroed \u2014 correctly handling month/year rollovers and leap-day Feb 29 (via real calendar dates, so invalid days like Feb 30 are skipped naturally).\n- **Errors**: raises `ValueError` when no match is found within 5 years, plus `TypeError`/`ValueError` for non-datetime or timezone-aware input and malformed expressions.\n\nVerified against representative cases including `*/15`, lists, ranges with steps, Feb 29 rollover, the either/or day rule, `7`\u2192Sunday, strict \"after\" semantics, and the impossible `Feb 30` \u2192 `ValueError`.",
+ "started_utc": "2026-11-12T16:19:48Z"
+}

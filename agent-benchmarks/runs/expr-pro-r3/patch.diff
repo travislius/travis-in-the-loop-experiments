@@ -1,0 +1,119 @@
+Only in <EXPERIMENT>/runs/expr-pro-r3/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/expr/repo/calc.py <EXPERIMENT>/runs/expr-pro-r3/workspace/calc.py
+--- <EXPERIMENT>/tasks/expr/repo/calc.py	2026-11-12 08:02:19
++++ <EXPERIMENT>/runs/expr-pro-r3/workspace/calc.py	2026-11-12 08:21:05
+@@ -1,6 +1,109 @@
+ def evaluate(s):
+-    s = s.replace(" ", "")
+-    total = 0.0
+-    for part in s.split("+"):
+-        total += float(part)
+-    return total
++    """Evaluate an arithmetic expression given as a string.
++
++    Supports integers and decimals (`3`, `0.5`, `.5`), the operators
++    `+ - * / ^`, parentheses, unary minus, and whitespace anywhere.
++    Precedence (highest first): `^`, unary minus, `* /`, then `+ -`.
++    `^` is right-associative; the others are left-associative.
++    """
++    tokens = _tokenize(s)
++    pos = 0
++
++    def peek(kind=None):
++        tok = tokens[pos][0]
++        if kind is None:
++            return tok
++        return tok == kind
++
++    def advance():
++        nonlocal pos
++        tok = tokens[pos]
++        pos += 1
++        return tok
++
++    def expect(kind):
++        tok = advance()
++        if tok[0] != kind:
++            raise ValueError("malformed expression")
++        return tok
++
++    def parse_expression():
++        value = parse_term()
++        while peek('+') or peek('-'):
++            op = advance()[0]
++            rhs = parse_term()
++            if op == '+':
++                value = value + rhs
++            else:
++                value = value - rhs
++        return value
++
++    def parse_term():
++        value = parse_factor()
++        while peek('*') or peek('/'):
++            op = advance()[0]
++            rhs = parse_factor()
++            if op == '*':
++                value = value * rhs
++            else:
++                value = value / rhs
++        return value
++
++    def parse_factor():
++        if peek('-'):
++            advance()
++            return -parse_factor()
++        return parse_power()
++
++    def parse_power():
++        base = parse_primary()
++        if peek('^'):
++            advance()
++            return base ** parse_factor()
++        return base
++
++    def parse_primary():
++        tok = tokens[pos]
++        if tok[0] == 'num':
++            advance()
++            return tok[1]
++        if peek('('):
++            advance()
++            value = parse_expression()
++            expect(')')
++            return value
++        raise ValueError("malformed expression")
++
++    result = parse_expression()
++    if not peek('EOF'):
++        raise ValueError("malformed expression")
++    return result
++
++
++def _tokenize(s):
++    tokens = []
++    i = 0
++    n = len(s)
++    while i < n:
++        c = s[i]
++        if c.isspace():
++            i += 1
++        elif c.isdigit() or c == '.':
++            start = i
++            while i < n and s[i].isdigit():
++                i += 1
++            if i < n and s[i] == '.':
++                i += 1
++                while i < n and s[i].isdigit():
++                    i += 1
++            text = s[start:i]
++            if not any(ch.isdigit() for ch in text):
++                raise ValueError("malformed expression")
++            tokens.append(('num', float(text)))
++        elif c in '+-*/^()':
++            tokens.append((c, c))
++            i += 1
++        else:
++            raise ValueError("malformed expression")
++    tokens.append(('EOF', None))
++    return tokens

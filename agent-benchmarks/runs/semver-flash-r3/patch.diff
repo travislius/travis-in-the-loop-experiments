@@ -1,0 +1,99 @@
+Only in <EXPERIMENT>/runs/semver-flash-r3/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/semver/repo/semver.py <EXPERIMENT>/runs/semver-flash-r3/workspace/semver.py
+--- <EXPERIMENT>/tasks/semver/repo/semver.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/semver-flash-r3/workspace/semver.py	2026-11-12 07:57:12
+@@ -1,6 +1,89 @@
++"""Semantic Versioning 2.0.0 precedence comparison."""
++
++import re
++
++# Official SemVer 2.0.0 grammar. Build metadata is captured but never used
++# for precedence.
++_SEMVER_RE = re.compile(
++    r"^(0|[1-9][0-9]*)\."
++    r"(0|[1-9][0-9]*)\."
++    r"(0|[1-9][0-9]*)"
++    r"(?:-("
++    r"(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)"
++    r"(?:\.(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*))*"
++    r"))?"
++    r"(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$"
++)
++
++
++def _parse(version):
++    """Return ``((major, minor, patch), prerelease_identifiers)``.
++
++    ``prerelease_identifiers`` is ``None`` when the version has no
++    pre-release part.
++    """
++    if not isinstance(version, str):
++        raise TypeError("version must be a string")
++
++    match = _SEMVER_RE.match(version.strip())
++    if match is None:
++        raise ValueError("invalid semantic version: {!r}".format(version))
++
++    core = (int(match.group(1)), int(match.group(2)), int(match.group(3)))
++    prerelease = match.group(4)
++    identifiers = prerelease.split(".") if prerelease is not None else None
++    return core, identifiers
++
++
++def _compare_identifiers(a, b):
++    """Compare two pre-release identifier lists."""
++    for left, right in zip(a, b):
++        if left == right:
++            continue
++
++        left_numeric = left.isdigit()
++        right_numeric = right.isdigit()
++
++        if left_numeric and right_numeric:
++            left_value = int(left)
++            right_value = int(right)
++            if left_value != right_value:
++                return -1 if left_value < right_value else 1
++        elif left_numeric:
++            # Numeric identifiers always have lower precedence than
++            # non-numeric identifiers.
++            return -1
++        elif right_numeric:
++            return 1
++        else:
++            # Non-numeric identifiers are compared in ASCII sort order.
++            return -1 if left < right else 1
++
++    # All shared identifiers are equal; the longer list wins.
++    if len(a) == len(b):
++        return 0
++    return -1 if len(a) < len(b) else 1
++
++
+ def compare(a, b):
+-    pa = a.split(".")
+-    pb = b.split(".")
+-    if pa < pb: return -1
+-    if pa > pb: return 1
+-    return 0
++    """Compare two semantic versions, returning -1, 0 or 1.
++
++    The ordering follows SemVer 2.0.0 precedence rules. Build metadata is
++    ignored.
++    """
++    core_a, prerelease_a = _parse(a)
++    core_b, prerelease_b = _parse(b)
++
++    if core_a != core_b:
++        return -1 if core_a < core_b else 1
++
++    # A version without a pre-release has higher precedence than one with a
++    # pre-release.
++    if prerelease_a is None and prerelease_b is None:
++        return 0
++    if prerelease_a is None:
++        return 1
++    if prerelease_b is None:
++        return -1
++
++    return _compare_identifiers(prerelease_a, prerelease_b)

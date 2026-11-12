@@ -1,0 +1,26 @@
+{
+ "run": "lru-flash-r4",
+ "task": "lru",
+ "model": "deepseek-flash",
+ "rep": 4,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 24.4,
+ "steps": 5,
+ "tool_calls": {
+  "bash": 2,
+  "read": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1689,
+  "output": 1661,
+  "cache_hit": 33536
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.12s",
+ "final_response": "Fixed `cache.py`:\n\n- `get()` now marks the accessed key as most recently used.\n- `put()` on an existing key updates the value and refreshes recency without consuming extra capacity or evicting another entry.\n- Eviction removes the least recently used key.\n- Duplicate keys no longer accumulate in the recency order.\n\nVerified all reported scenarios plus capacity-1 and capacity-0 cases.",
+ "started_utc": "2026-11-12T15:58:27Z"
+}

@@ -1,0 +1,2267 @@
+{
+ "generated": "2026-11-12T08:33:13.361858-08:00",
+ "n_runs": 110,
+ "easy": [
+  {
+   "model": "deepseek-flash",
+   "tasks": 8,
+   "attempts": 40,
+   "k": 5,
+   "pass_at_1": 1.0,
+   "pass_at_k": 1.0,
+   "pass_hat_k": 1.0,
+   "per_task_successes": {
+    "slugify": 5,
+    "overlap": 5,
+    "lru": 5,
+    "money": 5,
+    "merge": 5,
+    "bucket": 5,
+    "roman": 5,
+    "semver": 5
+   },
+   "median_wall_s": 25.9,
+   "median_output_tokens": 1880.5,
+   "median_steps": 5.0,
+   "mean_cost_per_attempt_usd": 0.00177564645,
+   "total_cost_usd": 0.07102585800000001,
+   "cost_per_success_usd": 0.0017756464500000002,
+   "tariffs": [
+    "off-peak"
+   ]
+  },
+  {
+   "model": "deepseek-v4-pro",
+   "tasks": 8,
+   "attempts": 40,
+   "k": 5,
+   "pass_at_1": 1.0,
+   "pass_at_k": 1.0,
+   "pass_hat_k": 1.0,
+   "per_task_successes": {
+    "slugify": 5,
+    "overlap": 5,
+    "lru": 5,
+    "money": 5,
+    "merge": 5,
+    "bucket": 5,
+    "roman": 5,
+    "semver": 5
+   },
+   "median_wall_s": 48.05,
+   "median_output_tokens": 2196.5,
+   "median_steps": 6.0,
+   "mean_cost_per_attempt_usd": 0.0079343209,
+   "total_cost_usd": 0.3173728360000001,
+   "cost_per_success_usd": 0.007934320900000003,
+   "tariffs": [
+    "off-peak"
+   ]
+  }
+ ],
+ "hard": [
+  {
+   "model": "deepseek-flash",
+   "tasks": 3,
+   "attempts": 15,
+   "k": 5,
+   "pass_at_1": 1.0,
+   "pass_at_k": 1.0,
+   "pass_hat_k": 1.0,
+   "per_task_successes": {
+    "cron": 5,
+    "expr": 5,
+    "glob": 5
+   },
+   "median_wall_s": 76.9,
+   "median_output_tokens": 9214,
+   "median_steps": 8,
+   "mean_cost_per_attempt_usd": 0.009364946399999999,
+   "total_cost_usd": 0.140474196,
+   "cost_per_success_usd": 0.009364946399999999,
+   "tariffs": [
+    "off-peak"
+   ]
+  },
+  {
+   "model": "deepseek-v4-pro",
+   "tasks": 3,
+   "attempts": 15,
+   "k": 5,
+   "pass_at_1": 1.0,
+   "pass_at_k": 1.0,
+   "pass_hat_k": 1.0,
+   "per_task_successes": {
+    "cron": 5,
+    "expr": 5,
+    "glob": 5
+   },
+   "median_wall_s": 158.5,
+   "median_output_tokens": 12167,
+   "median_steps": 6,
+   "mean_cost_per_attempt_usd": 0.038648972266666665,
+   "total_cost_usd": 0.5797345839999999,
+   "cost_per_success_usd": 0.03864897226666666,
+   "tariffs": [
+    "off-peak"
+   ]
+  }
+ ],
+ "all": [
+  {
+   "model": "deepseek-flash",
+   "tasks": 11,
+   "attempts": 55,
+   "k": 5,
+   "pass_at_1": 1.0,
+   "pass_at_k": 1.0,
+   "pass_hat_k": 1.0,
+   "per_task_successes": {
+    "slugify": 5,
+    "overlap": 5,
+    "lru": 5,
+    "money": 5,
+    "merge": 5,
+    "bucket": 5,
+    "roman": 5,
+    "semver": 5,
+    "cron": 5,
+    "expr": 5,
+    "glob": 5
+   },
+   "median_wall_s": 32.9,
+   "median_output_tokens": 3030,
+   "median_steps": 5,
+   "mean_cost_per_attempt_usd": 0.003845455527272727,
+   "total_cost_usd": 0.21150005400000002,
+   "cost_per_success_usd": 0.0038454555272727274,
+   "tariffs": [
+    "off-peak"
+   ]
+  },
+  {
+   "model": "deepseek-v4-pro",
+   "tasks": 11,
+   "attempts": 55,
+   "k": 5,
+   "pass_at_1": 1.0,
+   "pass_at_k": 1.0,
+   "pass_hat_k": 1.0,
+   "per_task_successes": {
+    "slugify": 5,
+    "overlap": 5,
+    "lru": 5,
+    "money": 5,
+    "merge": 5,
+    "bucket": 5,
+    "roman": 5,
+    "semver": 5,
+    "cron": 5,
+    "expr": 5,
+    "glob": 5
+   },
+   "median_wall_s": 59.8,
+   "median_output_tokens": 3325,
+   "median_steps": 6,
+   "mean_cost_per_attempt_usd": 0.016311044,
+   "total_cost_usd": 0.8971074200000003,
+   "cost_per_success_usd": 0.016311044000000007,
+   "tariffs": [
+    "off-peak"
+   ]
+  }
+ ],
+ "total_cost_usd": 1.1086074739999994,
+ "runs": [
+  {
+   "run": "bucket-flash-r1",
+   "task": "bucket",
+   "model": "deepseek-flash",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 43.1,
+   "steps": 7,
+   "usage": {
+    "input": 2180,
+    "output": 3825,
+    "cache_hit": 56448
+   },
+   "cost_usd": 0.002791344,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "bucket-flash-r2",
+   "task": "bucket",
+   "model": "deepseek-flash",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 37.0,
+   "steps": 6,
+   "usage": {
+    "input": 1839,
+    "output": 3437,
+    "cache_hit": 44288
+   },
+   "cost_usd": 0.002470914,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "bucket-flash-r3",
+   "task": "bucket",
+   "model": "deepseek-flash",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 24.8,
+   "steps": 5,
+   "usage": {
+    "input": 1777,
+    "output": 1787,
+    "cache_hit": 34176
+   },
+   "cost_usd": 0.001441278,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "bucket-flash-r4",
+   "task": "bucket",
+   "model": "deepseek-flash",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 33.1,
+   "steps": 5,
+   "usage": {
+    "input": 1744,
+    "output": 3595,
+    "cache_hit": 36352
+   },
+   "cost_usd": 0.002527656,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "bucket-flash-r5",
+   "task": "bucket",
+   "model": "deepseek-flash",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 34.5,
+   "steps": 7,
+   "usage": {
+    "input": 2352,
+    "output": 3055,
+    "cache_hit": 54272
+   },
+   "cost_usd": 0.002348616,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "bucket-pro-r1",
+   "task": "bucket",
+   "model": "deepseek-v4-pro",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 49.4,
+   "steps": 6,
+   "usage": {
+    "input": 7368,
+    "output": 2991,
+    "cache_hit": 38144
+   },
+   "cost_usd": 0.011624227999999999,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "bucket-pro-r2",
+   "task": "bucket",
+   "model": "deepseek-v4-pro",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 49.9,
+   "steps": 5,
+   "usage": {
+    "input": 7160,
+    "output": 2797,
+    "cache_hit": 31232
+   },
+   "cost_usd": 0.010950764000000002,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "bucket-pro-r3",
+   "task": "bucket",
+   "model": "deepseek-v4-pro",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 59.8,
+   "steps": 6,
+   "usage": {
+    "input": 1544,
+    "output": 4038,
+    "cache_hit": 48896
+   },
+   "cost_usd": 0.010089992,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "bucket-pro-r4",
+   "task": "bucket",
+   "model": "deepseek-v4-pro",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 86.3,
+   "steps": 5,
+   "usage": {
+    "input": 1555,
+    "output": 5719,
+    "cache_hit": 42240
+   },
+   "cost_usd": 0.013279200000000001,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "bucket-pro-r5",
+   "task": "bucket",
+   "model": "deepseek-v4-pro",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 90.9,
+   "steps": 5,
+   "usage": {
+    "input": 1485,
+    "output": 3405,
+    "cache_hit": 38272
+   },
+   "cost_usd": 0.008563984,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "cron-flash-r1",
+   "task": "cron",
+   "model": "deepseek-flash",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 11,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 273.0,
+   "steps": 11,
+   "usage": {
+    "input": 5831,
+    "output": 15645,
+    "cache_hit": 176640
+   },
+   "cost_usd": 0.01079157,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "cron-flash-r2",
+   "task": "cron",
+   "model": "deepseek-flash",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 11,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 91.0,
+   "steps": 8,
+   "usage": {
+    "input": 2616,
+    "output": 7078,
+    "cache_hit": 79872
+   },
+   "cost_usd": 0.004878816,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "cron-flash-r3",
+   "task": "cron",
+   "model": "deepseek-flash",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 11,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 76.9,
+   "steps": 10,
+   "usage": {
+    "input": 5745,
+    "output": 12320,
+    "cache_hit": 141184
+   },
+   "cost_usd": 0.008677302,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "cron-flash-r4",
+   "task": "cron",
+   "model": "deepseek-flash",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 11,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 59.6,
+   "steps": 12,
+   "usage": {
+    "input": 23127,
+    "output": 8702,
+    "cache_hit": 253952
+   },
+   "cost_usd": 0.009452106,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "cron-flash-r5",
+   "task": "cron",
+   "model": "deepseek-flash",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 11,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 58.9,
+   "steps": 8,
+   "usage": {
+    "input": 2907,
+    "output": 9214,
+    "cache_hit": 90880
+   },
+   "cost_usd": 0.00623709,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "cron-pro-r1",
+   "task": "cron",
+   "model": "deepseek-v4-pro",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 11,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 391.7,
+   "steps": 14,
+   "usage": {
+    "input": 2550,
+    "output": 23394,
+    "cache_hit": 295424
+   },
+   "cost_usd": 0.054502448,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "cron-pro-r2",
+   "task": "cron",
+   "model": "deepseek-v4-pro",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 11,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 158.5,
+   "steps": 6,
+   "usage": {
+    "input": 2524,
+    "output": 12167,
+    "cache_hit": 72704
+   },
+   "cost_usd": 0.027355988,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "cron-pro-r3",
+   "task": "cron",
+   "model": "deepseek-v4-pro",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 11,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 88.0,
+   "steps": 6,
+   "usage": {
+    "input": 2139,
+    "output": 8919,
+    "cache_hit": 63488
+   },
+   "cost_usd": 0.020468095999999998,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "cron-pro-r4",
+   "task": "cron",
+   "model": "deepseek-v4-pro",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 11,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 114.9,
+   "steps": 7,
+   "usage": {
+    "input": 2628,
+    "output": 11126,
+    "cache_hit": 75008
+   },
+   "cost_usd": 0.025414135999999997,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "cron-pro-r5",
+   "task": "cron",
+   "model": "deepseek-v4-pro",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 11,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 161.2,
+   "steps": 8,
+   "usage": {
+    "input": 4222,
+    "output": 16779,
+    "cache_hit": 130432
+   },
+   "cost_usd": 0.038878444,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "expr-flash-r1",
+   "task": "expr",
+   "model": "deepseek-flash",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 17,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 76.4,
+   "steps": 7,
+   "usage": {
+    "input": 4107,
+    "output": 8465,
+    "cache_hit": 69504
+   },
+   "cost_usd": 0.005903562,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "expr-flash-r2",
+   "task": "expr",
+   "model": "deepseek-flash",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 17,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 41.3,
+   "steps": 5,
+   "usage": {
+    "input": 2147,
+    "output": 5785,
+    "cache_hit": 41984
+   },
+   "cost_usd": 0.0039190019999999996,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "expr-flash-r3",
+   "task": "expr",
+   "model": "deepseek-flash",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 17,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 51.2,
+   "steps": 10,
+   "usage": {
+    "input": 5143,
+    "output": 8641,
+    "cache_hit": 118400
+   },
+   "cost_usd": 0.006311249999999999,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "expr-flash-r4",
+   "task": "expr",
+   "model": "deepseek-flash",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 17,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 33.9,
+   "steps": 6,
+   "usage": {
+    "input": 2718,
+    "output": 5100,
+    "cache_hit": 52608
+   },
+   "cost_usd": 0.0036255239999999998,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "expr-flash-r5",
+   "task": "expr",
+   "model": "deepseek-flash",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 17,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 27.2,
+   "steps": 8,
+   "usage": {
+    "input": 2740,
+    "output": 4234,
+    "cache_hit": 70912
+   },
+   "cost_usd": 0.003164136,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "expr-pro-r1",
+   "task": "expr",
+   "model": "deepseek-v4-pro",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 17,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 125.4,
+   "steps": 5,
+   "usage": {
+    "input": 1882,
+    "output": 9702,
+    "cache_hit": 50688
+   },
+   "cost_usd": 0.021567216,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "expr-pro-r2",
+   "task": "expr",
+   "model": "deepseek-v4-pro",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 17,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 103.3,
+   "steps": 6,
+   "usage": {
+    "input": 2105,
+    "output": 9129,
+    "cache_hit": 56064
+   },
+   "cost_usd": 0.020698127999999996,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "expr-pro-r3",
+   "task": "expr",
+   "model": "deepseek-v4-pro",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 17,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 82.9,
+   "steps": 7,
+   "usage": {
+    "input": 2163,
+    "output": 8394,
+    "cache_hit": 69376
+   },
+   "cost_usd": 0.019573972,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "expr-pro-r4",
+   "task": "expr",
+   "model": "deepseek-v4-pro",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 17,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 95.6,
+   "steps": 5,
+   "usage": {
+    "input": 1847,
+    "output": 9330,
+    "cache_hit": 50560
+   },
+   "cost_usd": 0.020804740000000002,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "expr-pro-r5",
+   "task": "expr",
+   "model": "deepseek-v4-pro",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 17,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 70.2,
+   "steps": 5,
+   "usage": {
+    "input": 1932,
+    "output": 7800,
+    "cache_hit": 46976
+   },
+   "cost_usd": 0.017752592,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "glob-flash-r1",
+   "task": "glob",
+   "model": "deepseek-flash",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 24,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 213.3,
+   "steps": 14,
+   "usage": {
+    "input": 5525,
+    "output": 31818,
+    "cache_hit": 374400
+   },
+   "cost_usd": 0.02104275,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "glob-flash-r2",
+   "task": "glob",
+   "model": "deepseek-flash",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 24,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 119.3,
+   "steps": 8,
+   "usage": {
+    "input": 2378,
+    "output": 18103,
+    "cache_hit": 126208
+   },
+   "cost_usd": 0.011597124,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "glob-flash-r3",
+   "task": "glob",
+   "model": "deepseek-flash",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 24,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 152.6,
+   "steps": 8,
+   "usage": {
+    "input": 2391,
+    "output": 25483,
+    "cache_hit": 153728
+   },
+   "cost_usd": 0.016109634,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "glob-flash-r4",
+   "task": "glob",
+   "model": "deepseek-flash",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 24,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 145.3,
+   "steps": 10,
+   "usage": {
+    "input": 4211,
+    "output": 25998,
+    "cache_hit": 222336
+   },
+   "cost_usd": 0.016897457999999997,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "glob-flash-r5",
+   "task": "glob",
+   "model": "deepseek-flash",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 24,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 97.2,
+   "steps": 9,
+   "usage": {
+    "input": 3916,
+    "output": 18138,
+    "cache_hit": 132224
+   },
+   "cost_usd": 0.011866871999999999,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "glob-pro-r1",
+   "task": "glob",
+   "model": "deepseek-v4-pro",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 24,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 163.8,
+   "steps": 5,
+   "usage": {
+    "input": 2123,
+    "output": 12933,
+    "cache_hit": 57216
+   },
+   "cost_usd": 0.028267272,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "glob-pro-r2",
+   "task": "glob",
+   "model": "deepseek-v4-pro",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 24,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 583.6,
+   "steps": 28,
+   "usage": {
+    "input": 10701,
+    "output": 40730,
+    "cache_hit": 912128
+   },
+   "cost_usd": 0.10777487599999999,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "glob-pro-r3",
+   "task": "glob",
+   "model": "deepseek-v4-pro",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 24,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 313.8,
+   "steps": 11,
+   "usage": {
+    "input": 4861,
+    "output": 30671,
+    "cache_hit": 268160
+   },
+   "cost_usd": 0.06983636,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "glob-pro-r4",
+   "task": "glob",
+   "model": "deepseek-v4-pro",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 24,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 174.1,
+   "steps": 5,
+   "usage": {
+    "input": 2281,
+    "output": 18371,
+    "cache_hit": 67840
+   },
+   "cost_usd": 0.03937252,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "glob-pro-r5",
+   "task": "glob",
+   "model": "deepseek-v4-pro",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 24,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 310.1,
+   "steps": 7,
+   "usage": {
+    "input": 1792,
+    "output": 31627,
+    "cache_hit": 166528
+   },
+   "cost_usd": 0.067467796,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "lru-flash-r1",
+   "task": "lru",
+   "model": "deepseek-flash",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 35.1,
+   "steps": 7,
+   "usage": {
+    "input": 2049,
+    "output": 3030,
+    "cache_hit": 52480
+   },
+   "cost_usd": 0.00228279,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "lru-flash-r2",
+   "task": "lru",
+   "model": "deepseek-flash",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 31.0,
+   "steps": 7,
+   "usage": {
+    "input": 2196,
+    "output": 2967,
+    "cache_hit": 52096
+   },
+   "cost_usd": 0.0022658879999999998,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "lru-flash-r3",
+   "task": "lru",
+   "model": "deepseek-flash",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 22.3,
+   "steps": 5,
+   "usage": {
+    "input": 1614,
+    "output": 1554,
+    "cache_hit": 33920
+   },
+   "cost_usd": 0.00127626,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "lru-flash-r4",
+   "task": "lru",
+   "model": "deepseek-flash",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 24.4,
+   "steps": 5,
+   "usage": {
+    "input": 1689,
+    "output": 1661,
+    "cache_hit": 33536
+   },
+   "cost_usd": 0.001350558,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "lru-flash-r5",
+   "task": "lru",
+   "model": "deepseek-flash",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 26.6,
+   "steps": 5,
+   "usage": {
+    "input": 1696,
+    "output": 1835,
+    "cache_hit": 34816
+   },
+   "cost_usd": 0.001459848,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "lru-pro-r1",
+   "task": "lru",
+   "model": "deepseek-v4-pro",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 44.9,
+   "steps": 7,
+   "usage": {
+    "input": 7618,
+    "output": 2454,
+    "cache_hit": 45952
+   },
+   "cost_usd": 0.010897744000000001,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "lru-pro-r2",
+   "task": "lru",
+   "model": "deepseek-v4-pro",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 34.4,
+   "steps": 5,
+   "usage": {
+    "input": 7179,
+    "output": 1816,
+    "cache_hit": 29184
+   },
+   "cost_usd": 0.008975868,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "lru-pro-r3",
+   "task": "lru",
+   "model": "deepseek-v4-pro",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 28.7,
+   "steps": 5,
+   "usage": {
+    "input": 1440,
+    "output": 1419,
+    "cache_hit": 34304
+   },
+   "cost_usd": 0.004514708000000001,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "lru-pro-r4",
+   "task": "lru",
+   "model": "deepseek-v4-pro",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 51.0,
+   "steps": 9,
+   "usage": {
+    "input": 2149,
+    "output": 3343,
+    "cache_hit": 71168
+   },
+   "cost_usd": 0.009603176,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "lru-pro-r5",
+   "task": "lru",
+   "model": "deepseek-v4-pro",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 75.1,
+   "steps": 5,
+   "usage": {
+    "input": 1454,
+    "output": 1883,
+    "cache_hit": 35328
+   },
+   "cost_usd": 0.005465196,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "merge-flash-r1",
+   "task": "merge",
+   "model": "deepseek-flash",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 25.1,
+   "steps": 5,
+   "usage": {
+    "input": 1617,
+    "output": 736,
+    "cache_hit": 32256
+   },
+   "cost_usd": 0.0007809179999999999,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "merge-flash-r2",
+   "task": "merge",
+   "model": "deepseek-flash",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 21.4,
+   "steps": 5,
+   "usage": {
+    "input": 1581,
+    "output": 830,
+    "cache_hit": 32128
+   },
+   "cost_usd": 0.000831534,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "merge-flash-r3",
+   "task": "merge",
+   "model": "deepseek-flash",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 21.5,
+   "steps": 5,
+   "usage": {
+    "input": 1710,
+    "output": 1102,
+    "cache_hit": 33280
+   },
+   "cost_usd": 0.00101754,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "merge-flash-r4",
+   "task": "merge",
+   "model": "deepseek-flash",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 19.5,
+   "steps": 5,
+   "usage": {
+    "input": 1472,
+    "output": 928,
+    "cache_hit": 32384
+   },
+   "cost_usd": 0.0008747519999999999,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "merge-flash-r5",
+   "task": "merge",
+   "model": "deepseek-flash",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 22.1,
+   "steps": 5,
+   "usage": {
+    "input": 1625,
+    "output": 1013,
+    "cache_hit": 33024
+   },
+   "cost_usd": 0.0009506219999999999,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "merge-pro-r1",
+   "task": "merge",
+   "model": "deepseek-v4-pro",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 31.2,
+   "steps": 6,
+   "usage": {
+    "input": 7216,
+    "output": 1384,
+    "cache_hit": 34944
+   },
+   "cost_usd": 0.008271648000000001,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "merge-pro-r2",
+   "task": "merge",
+   "model": "deepseek-v4-pro",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 32.8,
+   "steps": 6,
+   "usage": {
+    "input": 1867,
+    "output": 1463,
+    "cache_hit": 40704
+   },
+   "cost_usd": 0.005024448,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "merge-pro-r3",
+   "task": "merge",
+   "model": "deepseek-v4-pro",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 29.0,
+   "steps": 6,
+   "usage": {
+    "input": 1562,
+    "output": 1572,
+    "cache_hit": 40704
+   },
+   "cost_usd": 0.005038968,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "merge-pro-r4",
+   "task": "merge",
+   "model": "deepseek-v4-pro",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 33.0,
+   "steps": 6,
+   "usage": {
+    "input": 1575,
+    "output": 1510,
+    "cache_hit": 41088
+   },
+   "cost_usd": 0.004933236,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "merge-pro-r5",
+   "task": "merge",
+   "model": "deepseek-v4-pro",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 69.2,
+   "steps": 5,
+   "usage": {
+    "input": 1520,
+    "output": 1232,
+    "cache_hit": 33664
+   },
+   "cost_usd": 0.004183167999999999,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "money-flash-r1",
+   "task": "money",
+   "model": "deepseek-flash",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 7,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 46.8,
+   "steps": 7,
+   "usage": {
+    "input": 2023,
+    "output": 4408,
+    "cache_hit": 58112
+   },
+   "cost_usd": 0.0031225859999999997,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "money-flash-r2",
+   "task": "money",
+   "model": "deepseek-flash",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 7,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 52.6,
+   "steps": 9,
+   "usage": {
+    "input": 2630,
+    "output": 6057,
+    "cache_hit": 85760
+   },
+   "cost_usd": 0.004285979999999999,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "money-flash-r3",
+   "task": "money",
+   "model": "deepseek-flash",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 7,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 35.9,
+   "steps": 8,
+   "usage": {
+    "input": 3021,
+    "output": 3309,
+    "cache_hit": 65408
+   },
+   "cost_usd": 0.002634774,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "money-flash-r4",
+   "task": "money",
+   "model": "deepseek-flash",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 7,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 41.8,
+   "steps": 5,
+   "usage": {
+    "input": 1875,
+    "output": 5055,
+    "cache_hit": 39552
+   },
+   "cost_usd": 0.003432906,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "money-flash-r5",
+   "task": "money",
+   "model": "deepseek-flash",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 7,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 32.9,
+   "steps": 5,
+   "usage": {
+    "input": 1785,
+    "output": 2873,
+    "cache_hit": 36352
+   },
+   "cost_usd": 0.0021006059999999997,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "money-pro-r1",
+   "task": "money",
+   "model": "deepseek-v4-pro",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 7,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 56.4,
+   "steps": 6,
+   "usage": {
+    "input": 7350,
+    "output": 3767,
+    "cache_hit": 39680
+   },
+   "cost_usd": 0.013182619999999999,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "money-pro-r2",
+   "task": "money",
+   "model": "deepseek-v4-pro",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 7,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 63.4,
+   "steps": 5,
+   "usage": {
+    "input": 1473,
+    "output": 4535,
+    "cache_hit": 40576
+   },
+   "cost_usd": 0.010844151999999998,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "money-pro-r3",
+   "task": "money",
+   "model": "deepseek-v4-pro",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 7,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 46.8,
+   "steps": 7,
+   "usage": {
+    "input": 2234,
+    "output": 3062,
+    "cache_hit": 54272
+   },
+   "cost_usd": 0.008731184000000001,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "money-pro-r4",
+   "task": "money",
+   "model": "deepseek-v4-pro",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 7,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 51.3,
+   "steps": 6,
+   "usage": {
+    "input": 1561,
+    "output": 3550,
+    "cache_hit": 45184
+   },
+   "cost_usd": 0.009053308000000001,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "money-pro-r5",
+   "task": "money",
+   "model": "deepseek-v4-pro",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 7,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 117.9,
+   "steps": 6,
+   "usage": {
+    "input": 1652,
+    "output": 5860,
+    "cache_hit": 49536
+   },
+   "cost_usd": 0.013782912,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "overlap-flash-r1",
+   "task": "overlap",
+   "model": "deepseek-flash",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 26.0,
+   "steps": 5,
+   "usage": {
+    "input": 1715,
+    "output": 1226,
+    "cache_hit": 33280
+   },
+   "cost_usd": 0.0010926900000000001,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "overlap-flash-r2",
+   "task": "overlap",
+   "model": "deepseek-flash",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 25.5,
+   "steps": 5,
+   "usage": {
+    "input": 1613,
+    "output": 1473,
+    "cache_hit": 33664
+   },
+   "cost_usd": 0.001226742,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "overlap-flash-r3",
+   "task": "overlap",
+   "model": "deepseek-flash",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 20.7,
+   "steps": 5,
+   "usage": {
+    "input": 1720,
+    "output": 994,
+    "cache_hit": 32896
+   },
+   "cost_usd": 0.0009530879999999999,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "overlap-flash-r4",
+   "task": "overlap",
+   "model": "deepseek-flash",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 24.7,
+   "steps": 7,
+   "usage": {
+    "input": 2084,
+    "output": 1740,
+    "cache_hit": 49152
+   },
+   "cost_usd": 0.0015040560000000001,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "overlap-flash-r5",
+   "task": "overlap",
+   "model": "deepseek-flash",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 25.8,
+   "steps": 5,
+   "usage": {
+    "input": 1684,
+    "output": 1574,
+    "cache_hit": 33920
+   },
+   "cost_usd": 0.00129876,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "overlap-pro-r1",
+   "task": "overlap",
+   "model": "deepseek-v4-pro",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 29.7,
+   "steps": 6,
+   "usage": {
+    "input": 7210,
+    "output": 1188,
+    "cache_hit": 34816
+   },
+   "cost_usd": 0.007876792,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "overlap-pro-r2",
+   "task": "overlap",
+   "model": "deepseek-v4-pro",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 38.0,
+   "steps": 6,
+   "usage": {
+    "input": 1599,
+    "output": 1747,
+    "cache_hit": 41600
+   },
+   "cost_usd": 0.005429600000000001,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "overlap-pro-r3",
+   "task": "overlap",
+   "model": "deepseek-v4-pro",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 25.9,
+   "steps": 5,
+   "usage": {
+    "input": 1355,
+    "output": 1305,
+    "cache_hit": 34048
+   },
+   "cost_usd": 0.004227256,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "overlap-pro-r4",
+   "task": "overlap",
+   "model": "deepseek-v4-pro",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 25.2,
+   "steps": 5,
+   "usage": {
+    "input": 1401,
+    "output": 984,
+    "cache_hit": 33664
+   },
+   "cost_usd": 0.0036135879999999996,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "overlap-pro-r5",
+   "task": "overlap",
+   "model": "deepseek-v4-pro",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 90.3,
+   "steps": 7,
+   "usage": {
+    "input": 1750,
+    "output": 2928,
+    "cache_hit": 52608
+   },
+   "cost_usd": 0.008109816,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "roman-flash-r1",
+   "task": "roman",
+   "model": "deepseek-flash",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 13,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 31.0,
+   "steps": 6,
+   "usage": {
+    "input": 1920,
+    "output": 1929,
+    "cache_hit": 42368
+   },
+   "cost_usd": 0.001572504,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "roman-flash-r2",
+   "task": "roman",
+   "model": "deepseek-flash",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 13,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 36.3,
+   "steps": 9,
+   "usage": {
+    "input": 2519,
+    "output": 3105,
+    "cache_hit": 69248
+   },
+   "cost_usd": 0.002448594,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "roman-flash-r3",
+   "task": "roman",
+   "model": "deepseek-flash",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 13,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 24.8,
+   "steps": 5,
+   "usage": {
+    "input": 1706,
+    "output": 1841,
+    "cache_hit": 34176
+   },
+   "cost_usd": 0.001463028,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "roman-flash-r4",
+   "task": "roman",
+   "model": "deepseek-flash",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 13,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 25.0,
+   "steps": 5,
+   "usage": {
+    "input": 1779,
+    "output": 2096,
+    "cache_hit": 34816
+   },
+   "cost_usd": 0.001628898,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "roman-flash-r5",
+   "task": "roman",
+   "model": "deepseek-flash",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 13,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 24.5,
+   "steps": 5,
+   "usage": {
+    "input": 1582,
+    "output": 1383,
+    "cache_hit": 33536
+   },
+   "cost_usd": 0.0011677080000000002,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "roman-pro-r1",
+   "task": "roman",
+   "model": "deepseek-v4-pro",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 13,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 60.1,
+   "steps": 6,
+   "usage": {
+    "input": 7555,
+    "output": 3829,
+    "cache_hit": 39424
+   },
+   "cost_usd": 0.013435048000000002,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "roman-pro-r2",
+   "task": "roman",
+   "model": "deepseek-v4-pro",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 13,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 52.0,
+   "steps": 6,
+   "usage": {
+    "input": 1676,
+    "output": 3373,
+    "cache_hit": 44544
+   },
+   "cost_usd": 0.008764668,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "roman-pro-r3",
+   "task": "roman",
+   "model": "deepseek-v4-pro",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 13,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 49.3,
+   "steps": 6,
+   "usage": {
+    "input": 1714,
+    "output": 3325,
+    "cache_hit": 44288
+   },
+   "cost_usd": 0.008689076,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "roman-pro-r4",
+   "task": "roman",
+   "model": "deepseek-v4-pro",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 13,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 64.9,
+   "steps": 8,
+   "usage": {
+    "input": 1769,
+    "output": 4029,
+    "cache_hit": 64896
+   },
+   "cost_usd": 0.010572672,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "roman-pro-r5",
+   "task": "roman",
+   "model": "deepseek-v4-pro",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 13,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 91.6,
+   "steps": 6,
+   "usage": {
+    "input": 1804,
+    "output": 3292,
+    "cache_hit": 44416
+   },
+   "cost_usd": 0.008685951999999999,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "semver-flash-r1",
+   "task": "semver",
+   "model": "deepseek-flash",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 41.4,
+   "steps": 6,
+   "usage": {
+    "input": 1960,
+    "output": 3871,
+    "cache_hit": 45056
+   },
+   "cost_usd": 0.002751768,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "semver-flash-r2",
+   "task": "semver",
+   "model": "deepseek-flash",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 27.9,
+   "steps": 5,
+   "usage": {
+    "input": 1757,
+    "output": 2604,
+    "cache_hit": 35712
+   },
+   "cost_usd": 0.0019330859999999999,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "semver-flash-r3",
+   "task": "semver",
+   "model": "deepseek-flash",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 35.6,
+   "steps": 5,
+   "usage": {
+    "input": 1738,
+    "output": 4265,
+    "cache_hit": 38912
+   },
+   "cost_usd": 0.002936436,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "semver-flash-r4",
+   "task": "semver",
+   "model": "deepseek-flash",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 23.2,
+   "steps": 5,
+   "usage": {
+    "input": 1567,
+    "output": 1920,
+    "cache_hit": 34304
+   },
+   "cost_usd": 0.001489962,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "semver-flash-r5",
+   "task": "semver",
+   "model": "deepseek-flash",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 35.0,
+   "steps": 5,
+   "usage": {
+    "input": 1782,
+    "output": 3098,
+    "cache_hit": 36480
+   },
+   "cost_usd": 0.00223554,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "semver-pro-r1",
+   "task": "semver",
+   "model": "deepseek-v4-pro",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 34.3,
+   "steps": 5,
+   "usage": {
+    "input": 7409,
+    "output": 1939,
+    "cache_hit": 29568
+   },
+   "cost_usd": 0.009379656,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "semver-pro-r2",
+   "task": "semver",
+   "model": "deepseek-v4-pro",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 43.8,
+   "steps": 6,
+   "usage": {
+    "input": 1623,
+    "output": 2714,
+    "cache_hit": 43392
+   },
+   "cost_usd": 0.007399524,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "semver-pro-r3",
+   "task": "semver",
+   "model": "deepseek-v4-pro",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 30.7,
+   "steps": 5,
+   "usage": {
+    "input": 1912,
+    "output": 1758,
+    "cache_hit": 34816
+   },
+   "cost_usd": 0.005508712000000001,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "semver-pro-r4",
+   "task": "semver",
+   "model": "deepseek-v4-pro",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 30.5,
+   "steps": 5,
+   "usage": {
+    "input": 1699,
+    "output": 1619,
+    "cache_hit": 34560
+   },
+   "cost_usd": 0.00508728,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "semver-pro-r5",
+   "task": "semver",
+   "model": "deepseek-v4-pro",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 4,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 96.5,
+   "steps": 6,
+   "usage": {
+    "input": 1846,
+    "output": 3928,
+    "cache_hit": 45952
+   },
+   "cost_usd": 0.010006743999999998,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "slugify-flash-r1",
+   "task": "slugify",
+   "model": "deepseek-flash",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 25.8,
+   "steps": 5,
+   "usage": {
+    "input": 1630,
+    "output": 960,
+    "cache_hit": 32896
+   },
+   "cost_usd": 0.000919188,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "slugify-flash-r2",
+   "task": "slugify",
+   "model": "deepseek-flash",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 20.7,
+   "steps": 5,
+   "usage": {
+    "input": 1646,
+    "output": 764,
+    "cache_hit": 32896
+   },
+   "cost_usd": 0.000803988,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "slugify-flash-r3",
+   "task": "slugify",
+   "model": "deepseek-flash",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 18.5,
+   "steps": 5,
+   "usage": {
+    "input": 1665,
+    "output": 682,
+    "cache_hit": 32256
+   },
+   "cost_usd": 0.0007557180000000001,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "slugify-flash-r4",
+   "task": "slugify",
+   "model": "deepseek-flash",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 17.3,
+   "steps": 5,
+   "usage": {
+    "input": 1727,
+    "output": 770,
+    "cache_hit": 32384
+   },
+   "cost_usd": 0.000818202,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "slugify-flash-r5",
+   "task": "slugify",
+   "model": "deepseek-flash",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 30.6,
+   "steps": 7,
+   "usage": {
+    "input": 2306,
+    "output": 2133,
+    "cache_hit": 50944
+   },
+   "cost_usd": 0.001778532,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "slugify-pro-r1",
+   "task": "slugify",
+   "model": "deepseek-v4-pro",
+   "rep": 1,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 28.1,
+   "steps": 5,
+   "usage": {
+    "input": 7013,
+    "output": 1257,
+    "cache_hit": 28544
+   },
+   "cost_usd": 0.007745408,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "slugify-pro-r2",
+   "task": "slugify",
+   "model": "deepseek-v4-pro",
+   "rep": 2,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 29.4,
+   "steps": 5,
+   "usage": {
+    "input": 1347,
+    "output": 1296,
+    "cache_hit": 34304
+   },
+   "cost_usd": 0.004209788000000001,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "slugify-pro-r3",
+   "task": "slugify",
+   "model": "deepseek-v4-pro",
+   "rep": 3,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 27.0,
+   "steps": 5,
+   "usage": {
+    "input": 1320,
+    "output": 1326,
+    "cache_hit": 34304
+   },
+   "cost_usd": 0.004251368,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "slugify-pro-r4",
+   "task": "slugify",
+   "model": "deepseek-v4-pro",
+   "rep": 4,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 28.0,
+   "steps": 5,
+   "usage": {
+    "input": 1290,
+    "output": 1224,
+    "cache_hit": 34048
+   },
+   "cost_usd": 0.004023976,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  },
+  {
+   "run": "slugify-pro-r5",
+   "task": "slugify",
+   "model": "deepseek-v4-pro",
+   "rep": 5,
+   "resolved": true,
+   "hidden_tests_passed": 5,
+   "hidden_tests_failed": 0,
+   "wall_seconds": 64.9,
+   "steps": 5,
+   "usage": {
+    "input": 1391,
+    "output": 859,
+    "cache_hit": 33024
+   },
+   "cost_usd": 0.003345408,
+   "tariff": "off-peak",
+   "finish_reason": "completed"
+  }
+ ]
+}

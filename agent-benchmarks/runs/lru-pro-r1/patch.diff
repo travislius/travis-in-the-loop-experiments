@@ -1,0 +1,27 @@
+Only in <EXPERIMENT>/runs/lru-pro-r1/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/lru/repo/cache.py <EXPERIMENT>/runs/lru-pro-r1/workspace/cache.py
+--- <EXPERIMENT>/tasks/lru/repo/cache.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/lru-pro-r1/workspace/cache.py	2026-11-12 07:54:14
+@@ -4,10 +4,20 @@
+         self.data = {}
+         self.order = []
+     def get(self, key, default=None):
+-        return self.data.get(key, default)
++        if key not in self.data:
++            return default
++        # Accessing a key makes it the most recently used.
++        self.order.remove(key)
++        self.order.append(key)
++        return self.data[key]
++
+     def put(self, key, value):
++        if key in self.data:
++            # Updating an existing key refreshes its position
++            # and must not count as a new insertion.
++            self.order.remove(key)
+         self.data[key] = value
+         self.order.append(key)
+-        if len(self.order) > self.capacity:
++        while len(self.order) > self.capacity:
+             old = self.order.pop(0)
+             self.data.pop(old, None)

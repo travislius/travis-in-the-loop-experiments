@@ -1,0 +1,26 @@
+{
+ "run": "bucket-flash-r4",
+ "task": "bucket",
+ "model": "deepseek-flash",
+ "rep": 4,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 33.1,
+ "steps": 5,
+ "tool_calls": {
+  "bash": 2,
+  "read": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1744,
+  "output": 3595,
+  "cache_hit": 36352
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.02s",
+ "final_response": "All tests pass. Here's a summary of the fix in `ratelimit.py`:\n\n**Bugs fixed**\n\n1. **Broken burst behavior** \u2014 `tokens` started at `0` and `last` at `0`. On the first call with a real timestamp (e.g. `now=1000.0`), it refilled as if the bucket had been idle since epoch 0, and it also started empty when it should start full. Now the bucket starts at `capacity`, and the first `allow()` just records the timestamp without refilling.\n\n2. **Fractional refill truncated** \u2014 `int((now - self.last) * self.rate)` discarded fractional tokens, so slow rates could never refill. Refill is now continuous and fractional.\n\n3. **Tokens exceeded capacity** \u2014 there was no cap. Refill is now clamped with `min(capacity, ...)`.\n\n4. **Accumulated time handling** \u2014 `last` is now only advanced when time moves forward, so equal timestamps don't refill and backwards timestamps don't drain tokens.\n\n5. **Boundary precision** \u2014 consumption checks `tokens >= 1 - 1e-9`, so floating-point drift doesn't permanently lock out a bucket that has effectively refilled, while never permitting a real shortfall.",
+ "started_utc": "2026-11-12T15:58:27Z"
+}

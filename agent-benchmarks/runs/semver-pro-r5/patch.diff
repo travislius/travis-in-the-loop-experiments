@@ -1,0 +1,79 @@
+Only in <EXPERIMENT>/runs/semver-pro-r5/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/semver/repo/semver.py <EXPERIMENT>/runs/semver-pro-r5/workspace/semver.py
+--- <EXPERIMENT>/tasks/semver/repo/semver.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/semver-pro-r5/workspace/semver.py	2026-11-12 08:02:42
+@@ -1,6 +1,69 @@
+-def compare(a, b):
+-    pa = a.split(".")
+-    pb = b.split(".")
+-    if pa < pb: return -1
+-    if pa > pb: return 1
++def _sign(n):
++    if n < 0:
++        return -1
++    if n > 0:
++        return 1
+     return 0
++
++
++def _cmp_identifier(x, y):
++    """Compare two pre-release identifiers per SemVer 2.0.0 precedence."""
++    x_numeric = x.isdigit()
++    y_numeric = y.isdigit()
++
++    # Numeric identifiers always have lower precedence than alphanumeric ones.
++    if x_numeric and y_numeric:
++        return _sign(int(x) - int(y))
++    if x_numeric:
++        return -1
++    if y_numeric:
++        return 1
++
++    # Both are alphanumeric: compare in ASCII sort order.
++    if x < y:
++        return -1
++    if x > y:
++        return 1
++    return 0
++
++
++def compare(a, b):
++    # Build metadata is ignored when determining precedence.
++    a = a.split("+", 1)[0]
++    b = b.split("+", 1)[0]
++
++    # Split off the pre-release suffix (the first hyphen separates core from
++    # pre-release, since core contains no hyphens).
++    if "-" in a:
++        core_a, pre_a = a.split("-", 1)
++    else:
++        core_a, pre_a = a, ""
++
++    if "-" in b:
++        core_b, pre_b = b.split("-", 1)
++    else:
++        core_b, pre_b = b, ""
++
++    # Compare major, minor, and patch numerically.
++    for part_a, part_b in zip(core_a.split("."), core_b.split(".")):
++        result = _sign(int(part_a) - int(part_b))
++        if result:
++            return result
++
++    # A version without a pre-release has higher precedence than one with.
++    if not pre_a and not pre_b:
++        return 0
++    if not pre_a:
++        return 1
++    if not pre_b:
++        return -1
++
++    # Compare pre-release identifiers pairwise; a longer list wins ties.
++    pre_parts_a = pre_a.split(".")
++    pre_parts_b = pre_b.split(".")
++    for part_a, part_b in zip(pre_parts_a, pre_parts_b):
++        result = _cmp_identifier(part_a, part_b)
++        if result:
++            return result
++
++    return _sign(len(pre_parts_a) - len(pre_parts_b))

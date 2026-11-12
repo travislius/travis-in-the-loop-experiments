@@ -1,0 +1,26 @@
+{
+ "run": "overlap-pro-r1",
+ "task": "overlap",
+ "model": "deepseek-v4-pro",
+ "rep": 1,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 29.7,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "edit": 1
+ },
+ "usage": {
+  "input": 7210,
+  "output": 1188,
+  "cache_hit": 34816
+ },
+ "hidden_tests_passed": 5,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "5 passed in 0.24s",
+ "final_response": "Fixed the bug in `booking.py`.\n\nThe original code used strict `<` comparisons, which treated ranges sharing a boundary day (like `[1,5]` and `[5,9]`) as non-overlapping even though end dates are inclusive. It also broke when a range was passed with its endpoints reversed.\n\nThe fix:\n1. Normalizes each range with `sorted()` so it works regardless of argument order.\n2. Uses `<=` so an inclusive end date that matches another range's start date counts as an overlap.\n\nVerified with tests covering shared boundary days, reversed arguments, single-day bookings, and non-overlapping cases.",
+ "started_utc": "2026-11-12T15:53:38Z"
+}

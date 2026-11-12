@@ -1,0 +1,18 @@
+Only in <EXPERIMENT>/runs/slugify-flash-r4/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/slugify/repo/textutil.py <EXPERIMENT>/runs/slugify-flash-r4/workspace/textutil.py
+--- <EXPERIMENT>/tasks/slugify/repo/textutil.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/slugify-flash-r4/workspace/textutil.py	2026-11-12 07:58:39
+@@ -1,5 +1,12 @@
+ import re
++import unicodedata
++
++
+ def slugify(text):
++    # Decompose accented characters (e.g. "è" -> "e" + combining accent)
++    # and drop the non-ASCII marks so accents are transliterated, not lost.
++    text = unicodedata.normalize("NFKD", text)
++    text = text.encode("ascii", "ignore").decode("ascii")
+     text = text.lower()
+     text = re.sub(r"[^a-z0-9]+", "-", text)
+-    return text
++    return text.strip("-")

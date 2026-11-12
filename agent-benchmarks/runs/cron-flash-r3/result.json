@@ -1,0 +1,27 @@
+{
+ "run": "cron-flash-r3",
+ "task": "cron",
+ "model": "deepseek-flash",
+ "rep": 3,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 76.9,
+ "steps": 10,
+ "tool_calls": {
+  "read": 3,
+  "bash": 5,
+  "write": 1,
+  "edit": 1
+ },
+ "usage": {
+  "input": 5745,
+  "output": 12320,
+  "cache_hit": 141184
+ },
+ "hidden_tests_passed": 11,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "11 passed in 0.02s",
+ "final_response": "Implemented the fix in `cron.py`.\n\nWhat changed:\n- Added a full 5-field cron parser supporting `*`, numbers, lists, ranges, `*/step`, and `range/step`.\n- Day-of-week accepts `0-7`, with both `0` and `7` treated as Sunday.\n- Implemented the Vixie DOM/DOW rule: when both fields are restricted, a day matches if either matches; otherwise only the restricted field applies.\n- `next_run` now searches day-by-day with sorted hour/minute candidates, correctly handling month/year rollovers, leap years, and February 29.\n- Raises `ValueError` for malformed expressions, out-of-range values, and searches with no match within 5 years.\n- Seconds and microseconds are dropped, and the returned datetime is strictly after `after`.\n\nValidated with extensive manual cases (rollovers, leap days, DOW ranges, Vixie OR behavior, invalid syntax) and a fuzz comparison against a brute-force minute-by-minute reference.",
+ "started_utc": "2026-11-12T16:19:48Z"
+}

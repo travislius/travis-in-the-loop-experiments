@@ -1,0 +1,26 @@
+{
+ "run": "semver-flash-r5",
+ "task": "semver",
+ "model": "deepseek-flash",
+ "rep": 5,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 35.0,
+ "steps": 5,
+ "tool_calls": {
+  "bash": 2,
+  "read": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1782,
+  "output": 3098,
+  "cache_hit": 36480
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.05s",
+ "final_response": "Fixed `semver.py` to implement SemVer 2.0.0 precedence.\n\nWhat changed:\n- Compares major, minor, and patch numerically (`1.10.0 > 1.9.0`).\n- Splits and compares pre-release identifiers correctly:\n  - Numeric identifiers compare numerically.\n  - Alphanumeric identifiers compare in ASCII order.\n  - Numeric identifiers rank lower than alphanumeric ones.\n  - More pre-release fields win when preceding fields match.\n  - Releases rank higher than pre-releases.\n- Ignores build metadata after `+`, so `1.0.0+build.5 == 1.0.0`.\n- Returns `-1`, `0`, or `1` and validates the core version shape.\n\nVerified against the full precedence chain from the issue plus build-metadata and numeric edge cases.",
+ "started_utc": "2026-11-12T16:00:40Z"
+}

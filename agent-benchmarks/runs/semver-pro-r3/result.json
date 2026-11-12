@@ -1,0 +1,26 @@
+{
+ "run": "semver-pro-r3",
+ "task": "semver",
+ "model": "deepseek-v4-pro",
+ "rep": 3,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 30.7,
+ "steps": 5,
+ "tool_calls": {
+  "bash": 2,
+  "read": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1912,
+  "output": 1758,
+  "cache_hit": 34816
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.01s",
+ "final_response": "I fixed the bug in `semver.py`. The original implementation compared the `.`-split strings lexicographically, which fails for pre-releases, build metadata, and numeric ordering (e.g. `1.10.0` vs `1.9.0`).\n\nThe new implementation follows SemVer 2.0.0 precedence:\n\n- Parses and validates `MAJOR.MINOR.PATCH[-PRERELEASE][+BUILD]`.\n- Compares the numeric core (`major`, `minor`, `patch`) numerically.\n- Compares pre-release identifiers by the spec: numeric identifiers are compared numerically and always rank below non-numeric identifiers (which compare lexically); a missing pre-release outranks a present one; and a longer pre-release wins when all shared identifiers are equal.\n- Ignores build metadata entirely.\n\nAll issue examples now pass, including `1.0.0-alpha < 1.0.0-alpha.1 < ... < 1.0.0-rc.1 < 1.0.0`, `1.0.0+build.5 == 1.0.0`, and `1.10.0 > 1.9.0`.",
+ "started_utc": "2026-11-12T15:57:23Z"
+}

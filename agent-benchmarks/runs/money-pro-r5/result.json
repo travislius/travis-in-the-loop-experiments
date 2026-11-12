@@ -1,0 +1,26 @@
+{
+ "run": "money-pro-r5",
+ "task": "money",
+ "model": "deepseek-v4-pro",
+ "rep": 5,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 117.9,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1652,
+  "output": 5860,
+  "cache_hit": 49536
+ },
+ "hidden_tests_passed": 7,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "7 passed in 0.16s",
+ "final_response": "All five cases from the bug report now pass.\n\nThe fix in `money.py` replaces the naive `s.replace(\"$\", \"\").replace(\",\", \"\")` with a `parse_amount()` that:\n\n- **Accounting negatives** \u2014 detects `(...)` and `-` and returns a negative float.\n- **Currency/code stripping** \u2014 keeps only digits, `.`, and `,`, so `$`, `\u20ac`, `EUR`, and spaces are ignored.\n- **Separator disambiguation** \u2014 when both `.` and `,` appear, the *last* one is treated as the decimal separator (so `1,234.50` \u2192 1234.5 and `1.234,50` \u2192 1234.5). When only one separator appears, a trailing 3-digit group is read as a thousands separator while anything else is a decimal separator (`EUR 3,5` \u2192 3.5).\n\nVerified results:\n\n| Input | Output |\n|---|---|\n| `'$1,234.50'` | `1234.5` |\n| `'(1,234.50)'` | `-1234.5` |\n| `'-12'` | `-12.0` |\n| `'1.234,50 \u20ac'` | `1234.5` |\n| `'EUR 3,5'` | `3.5` |",
+ "started_utc": "2026-11-12T16:01:20Z"
+}

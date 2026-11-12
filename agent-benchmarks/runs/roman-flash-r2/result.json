@@ -1,0 +1,27 @@
+{
+ "run": "roman-flash-r2",
+ "task": "roman",
+ "model": "deepseek-flash",
+ "rep": 2,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 36.3,
+ "steps": 9,
+ "tool_calls": {
+  "bash": 4,
+  "read": 2,
+  "write": 1,
+  "edit": 2
+ },
+ "usage": {
+  "input": 2519,
+  "output": 3105,
+  "cache_hit": 69248
+ },
+ "hidden_tests_passed": 13,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "13 passed in 0.04s",
+ "final_response": "Fixed `from_roman()` in `roman.py`.\n\n**Changes:**\n- Added strict validation using a standard Roman numeral pattern covering 1\u20133999 with correct subtractive forms.\n- Accepts lowercase by normalizing with `.upper()`, then validates the entire string.\n- Rejects empty strings, non-string inputs, trailing/leading characters, and non-standard forms (`IIII`, `VX`, `IC`, `XM`, `VV`, `MMMM`, etc.) with `ValueError`.\n\n**Verification:** Exhaustively tested all 3,999 valid numerals in both cases, all issue examples, the listed invalid inputs, and 5,000 randomized strings \u2014 all passed.",
+ "started_utc": "2026-11-12T15:54:42Z"
+}

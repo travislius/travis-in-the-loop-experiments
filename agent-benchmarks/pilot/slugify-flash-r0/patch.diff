@@ -1,0 +1,34 @@
+Only in <EXPERIMENT>/runs/slugify-flash-r0/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/slugify/repo/textutil.py <EXPERIMENT>/runs/slugify-flash-r0/workspace/textutil.py
+--- <EXPERIMENT>/tasks/slugify/repo/textutil.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/slugify-flash-r0/workspace/textutil.py	2026-11-11 19:22:29
+@@ -1,5 +1,28 @@
+ import re
++import unicodedata
++
++# Letters that do not decompose into ASCII under NFKD normalization.
++_TRANSLITERATIONS = {
++    "ß": "ss",
++    "æ": "ae",
++    "œ": "oe",
++    "ø": "o",
++    "đ": "d",
++    "ð": "d",
++    "ł": "l",
++    "þ": "th",
++    "ħ": "h",
++    "ı": "i",
++    "ŧ": "t",
++    "ŋ": "n",
++    "ĸ": "k",
++}
++
++
+ def slugify(text):
+     text = text.lower()
++    text = text.translate(str.maketrans(_TRANSLITERATIONS))
++    text = unicodedata.normalize("NFKD", text)
++    text = text.encode("ascii", "ignore").decode("ascii")
+     text = re.sub(r"[^a-z0-9]+", "-", text)
+-    return text
++    return text.strip("-")

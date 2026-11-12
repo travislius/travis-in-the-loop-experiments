@@ -1,0 +1,146 @@
+Only in <EXPERIMENT>/runs/glob-pro-r3/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/glob/repo/pathglob.py <EXPERIMENT>/runs/glob-pro-r3/workspace/pathglob.py
+--- <EXPERIMENT>/tasks/glob/repo/pathglob.py	2026-11-12 08:02:33
++++ <EXPERIMENT>/runs/glob-pro-r3/workspace/pathglob.py	2026-11-12 08:24:52
+@@ -1,3 +1,139 @@
+-import fnmatch
++import re
++
++
+ def match(pattern, path):
+-    return fnmatch.fnmatch(path, pattern)
++    """Return True if `path` matches the glob `pattern`.
++
++    Both are slash-separated relative paths. The pattern follows
++    .gitignore-style semantics:
++
++    - ``?`` matches exactly one character except ``/``.
++    - ``*`` matches any run of characters (including empty) except ``/``.
++    - ``**`` as a whole path segment matches zero or more whole segments.
++    - ``[abc]``, ``[a-z]`` and ``[!a-z]`` match one character (never ``/``).
++    - A backslash escapes the next character, e.g. ``\\*`` matches ``*``.
++
++    Matching is case-sensitive and must match the whole path.
++    """
++    return _compile(pattern).fullmatch(path) is not None
++
++
++def _compile(pattern):
++    out = ['^']
++    i = 0
++    n = len(pattern)
++    while i < n:
++        c = pattern[i]
++        if c == '/':
++            out.append('/')
++            i += 1
++        elif c == '*' and _is_doublestar(pattern, i):
++            if i + 2 == n:
++                # Trailing '**': everything underneath, i.e. one or more
++                # whole segments (so it never matches the directory itself).
++                out.append('[^/]+(?:/[^/]+)*')
++                i += 2
++            else:
++                # '**' followed by '/': zero or more whole segments.
++                out.append('(?:[^/]+/)*')
++                i += 3  # skip '**' and the following '/'
++        elif c == '\\' and i + 1 < n:
++            # A backslash escapes the next character.
++            out.append(re.escape(pattern[i + 1]))
++            i += 2
++        elif c == '\\':
++            # A trailing backslash is a literal backslash.
++            out.append(re.escape('\\'))
++            i += 1
++        elif c == '[':
++            frag, i = _translate_class(pattern, i)
++            out.append(frag)
++        elif c == '*':
++            out.append('[^/]*')
++            i += 1
++        elif c == '?':
++            out.append('[^/]')
++            i += 1
++        else:
++            out.append(re.escape(c))
++            i += 1
++    out.append('$')
++    return re.compile(''.join(out))
++
++
++def _is_doublestar(pattern, i):
++    """Return True if ``pattern[i]`` starts a whole-segment ``**``."""
++    n = len(pattern)
++    if i + 1 >= n or pattern[i] != '*' or pattern[i + 1] != '*':
++        return False
++    # A whole segment must be preceded by the start of the pattern or a '/'.
++    if i != 0 and pattern[i - 1] != '/':
++        return False
++    # ...and followed by the end of the pattern or a '/'.
++    j = i + 2
++    if j < n and pattern[j] != '/':
++        return False
++    return True
++
++
++def _translate_class(pattern, i):
++    """Translate a glob character class starting at ``pattern[i] == '['``.
++
++    Returns ``(regex_fragment, new_index)``.
++    """
++    n = len(pattern)
++    j = i + 1
++    negate = False
++    if j < n and pattern[j] == '!':
++        negate = True
++        j += 1
++
++    inner = []
++    first = True
++    closed = False
++    while j < n:
++        ch = pattern[j]
++        if ch == ']' and not first:
++            closed = True
++            break
++        if ch == ']' and first:
++            # A ']' immediately after '[' (or '[!') is a literal ']'.
++            inner.append(re.escape(ch))
++            j += 1
++            first = False
++            continue
++        if ch == '\\' and j + 1 < n:
++            inner.append(re.escape(pattern[j + 1]))
++            j += 2
++            first = False
++            continue
++        if ch == '\\':
++            inner.append(re.escape('\\'))
++            j += 1
++            first = False
++            continue
++        # Keep ranges intact ('-') and pass other characters through.
++        # '^' is only special when the class is negated, which we handle by
++        # mapping '!' to a leading '^'; so escape any literal '^'.
++        if ch == '^':
++            inner.append(re.escape(ch))
++        else:
++            inner.append(ch)
++        j += 1
++        first = False
++
++    if not closed:
++        # Unterminated class: treat '[' as a literal character.
++        return re.escape('['), i + 1
++
++    j += 1  # consume the closing ']'
++    body = ''.join(inner).replace('/', '')
++
++    if not body:
++        # An empty class matches nothing.
++        return '(?!)', j
++
++    if negate:
++        # Match any character except those in the class, and never '/'.
++        return '[^' + body + '/]', j
++    return '[' + body + ']', j

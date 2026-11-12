@@ -1,0 +1,137 @@
+diff -ru <EXPERIMENT>/tasks/cron/repo/cron.py <EXPERIMENT>/runs/cron-flash-r1/workspace/cron.py
+--- <EXPERIMENT>/tasks/cron/repo/cron.py	2026-11-12 08:02:07
++++ <EXPERIMENT>/runs/cron-flash-r1/workspace/cron.py	2026-11-12 08:04:54
+@@ -1,5 +1,130 @@
++"""Standard 5-field cron expression evaluation (standard library only)."""
++
++import bisect
+ import datetime as dt
++
++
++def _parse_field(field, lo, hi, wrap=None):
++    """Expand one cron field into a set of integer values.
++
++    ``wrap`` maps a raw value into its canonical value (used to fold the
++    day-of-week value 7 onto 0).  The accepted syntax is ``*``, a single
++    number, comma separated lists, ranges ``a-b``, and steps ``*/n`` or
++    ``a-b/n``.
++    """
++    if not field:
++        raise ValueError("empty cron field")
++
++    values = set()
++    for piece in field.split(","):
++        if not piece:
++            raise ValueError("invalid cron field: %r" % field)
++
++        step = 1
++        if "/" in piece:
++            base, step_text = piece.split("/", 1)
++            try:
++                step = int(step_text)
++            except ValueError:
++                raise ValueError("invalid cron step: %r" % piece)
++            if step <= 0:
++                raise ValueError("cron step must be positive: %r" % piece)
++        else:
++            base = piece
++
++        if base == "*":
++            start, end = lo, hi
++        elif "-" in base:
++            start_text, end_text = base.split("-", 1)
++            try:
++                start, end = int(start_text), int(end_text)
++            except ValueError:
++                raise ValueError("invalid cron range: %r" % piece)
++            if start > end:
++                raise ValueError("descending cron range: %r" % piece)
++        else:
++            try:
++                start = int(base)
++            except ValueError:
++                raise ValueError("invalid cron value: %r" % piece)
++            # ``n/step`` means "from n through the end of the field".
++            end = hi if "/" in piece else start
++
++        if start < lo or end > hi:
++            raise ValueError(
++                "cron value out of range %d-%d: %r" % (lo, hi, piece)
++            )
++
++        for value in range(start, end + 1, step):
++            values.add(wrap(value) if wrap is not None else value)
++
++    if not values:
++        raise ValueError("cron field matches no values: %r" % field)
++    return values
++
++
++def _sunday_zero_weekday(d):
++    """Day of week with Sunday == 0 (Python uses Monday == 0)."""
++    return (d.weekday() + 1) % 7
++
++
+ def next_run(expr, after):
+-    minute, hour, dom, month, dow = expr.split()
+-    t = after.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
+-    return t.replace(minute=int(minute) if minute != "*" else t.minute)
++    """Return the first minute strictly after ``after`` matching ``expr``.
++
++    ``expr`` is a standard five field cron expression
++    (``minute hour day-of-month month day-of-week``).  The result is a naive
++    ``datetime`` with seconds and microseconds set to zero.  ``ValueError``
++    is raised when no match exists within roughly five years.
++    """
++    fields = expr.split()
++    if len(fields) != 5:
++        raise ValueError("cron expression must have five fields: %r" % expr)
++
++    minute_f, hour_f, dom_f, month_f, dow_f = fields
++
++    minutes = _parse_field(minute_f, 0, 59)
++    hours = _parse_field(hour_f, 0, 23)
++    dom = _parse_field(dom_f, 1, 31)
++    months = _parse_field(month_f, 1, 12)
++    # 0-6 with 0 == Sunday; 7 is an alias for Sunday.
++    dow = _parse_field(dow_f, 0, 7, wrap=lambda v: 0 if v == 7 else v)
++
++    # In Vixie cron a field is "restricted" only when it is not the plain
++    # wildcard.  When both day fields are restricted either may match;
++    # otherwise the unrestricted field matches every day and the restricted
++    # one is effectively the only filter.
++    dom_restricted = dom_f != "*"
++    dow_restricted = dow_f != "*"
++
++    # All allowed times of day, sorted, as minutes since midnight.
++    times = sorted(h * 60 + m for h in hours for m in minutes)
++
++    # Seconds are dropped: begin at the next whole minute, which is strictly
++    # after ``after`` even when ``after`` is already minute aligned.
++    start = after.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
++    first_minute = start.hour * 60 + start.minute
++
++    day = start.date()
++    # Five years (with a small allowance for leap days).
++    for offset in range(366 * 5 + 1):
++        if day.month in months:
++            if dom_restricted and dow_restricted:
++                day_ok = day.day in dom or _sunday_zero_weekday(day) in dow
++            else:
++                day_ok = day.day in dom and _sunday_zero_weekday(day) in dow
++
++            if day_ok:
++                threshold = first_minute if offset == 0 else 0
++                index = bisect.bisect_left(times, threshold)
++                if index < len(times):
++                    minute_of_day = times[index]
++                    return dt.datetime(
++                        day.year,
++                        day.month,
++                        day.day,
++                        minute_of_day // 60,
++                        minute_of_day % 60,
++                    )
++        day += dt.timedelta(days=1)
++
++    raise ValueError("no matching run found within five years: %r" % expr)

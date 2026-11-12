@@ -1,0 +1,26 @@
+{
+ "run": "roman-flash-r4",
+ "task": "roman",
+ "model": "deepseek-flash",
+ "rep": 4,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 25.0,
+ "steps": 5,
+ "tool_calls": {
+  "bash": 2,
+  "read": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1779,
+  "output": 2096,
+  "cache_hit": 34816
+ },
+ "hidden_tests_passed": 13,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "13 passed in 0.11s",
+ "final_response": "Implemented strict Roman numeral validation in `roman.py`.\n\n`from_roman()` now:\n- Accepts valid standard subtractive numerals from 1\u20133999 (`'XIV'`, `'MCMXCIV'`, etc.)\n- Accepts lowercase input (`'xiv'` \u2192 14)\n- Raises `ValueError` for invalid forms such as `'IIII'`, `'VX'`, `'IC'`, `'XM'`, `'VV'`, `'MMMM'`, and `''`\n- Rejects non-string input and unknown characters\n\nVerified by round-tripping every value from 1 to 3999 plus all reported invalid cases.",
+ "started_utc": "2026-11-12T15:58:26Z"
+}

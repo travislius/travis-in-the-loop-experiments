@@ -1,0 +1,106 @@
+Only in <EXPERIMENT>/runs/cron-pro-r1/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/cron/repo/cron.py <EXPERIMENT>/runs/cron-pro-r1/workspace/cron.py
+--- <EXPERIMENT>/tasks/cron/repo/cron.py	2026-11-12 08:02:07
++++ <EXPERIMENT>/runs/cron-pro-r1/workspace/cron.py	2026-11-12 08:06:07
+@@ -1,5 +1,98 @@
+ import datetime as dt
++
++
++def _parse_item(item, lo, hi):
++    """Parse one field item (number, range, or step) into a set of integers."""
++    step = 1
++    if "/" in item:
++        item, step_s = item.split("/", 1)
++        step = int(step_s)
++        if step <= 0:
++            raise ValueError("step must be positive")
++    if item == "*":
++        start, end = lo, hi
++    elif "-" in item:
++        start_s, end_s = item.split("-", 1)
++        start, end = int(start_s), int(end_s)
++    else:
++        start = end = int(item)
++    if start < lo or end > hi or start > end:
++        raise ValueError("field value out of range")
++    return set(range(start, end + 1, step))
++
++
++def _parse_field(field, lo, hi):
++    """Return ``(allowed, restricted)`` for a numeric cron field.
++
++    ``restricted`` is False only when the field is a bare ``*``.
++    """
++    if field == "*":
++        return set(range(lo, hi + 1)), False
++    values = set()
++    for item in field.split(","):
++        values |= _parse_item(item, lo, hi)
++    return values, True
++
++
++def _parse_dow(field):
++    """Parse day-of-week: 0-6 with 0 = Sunday, and 7 is an alias for 0."""
++    if field == "*":
++        return set(range(7)), False
++    values = set()
++    for item in field.split(","):
++        for v in _parse_item(item, 0, 7):
++            values.add(0 if v == 7 else v)
++    return values, True
++
++
++def _day_matches(date, dom, dom_restricted, dow, dow_restricted):
++    """Apply the standard Vixie-cron day-of-month / day-of-week rule."""
++    dom_ok = date.day in dom
++    dow_ok = ((date.weekday() + 1) % 7) in dow
++    if dom_restricted and dow_restricted:
++        return dom_ok or dow_ok
++    if dom_restricted:
++        return dom_ok
++    if dow_restricted:
++        return dow_ok
++    return True
++
++
++def _next_time(minutes, hours, threshold):
++    """Smallest minute-of-day >= threshold with an allowed hour and minute."""
++    for h in sorted(hours):
++        if h < threshold // 60:
++            continue
++        minute_from = threshold % 60 if h == threshold // 60 else 0
++        for m in sorted(minutes):
++            if m >= minute_from:
++                return h * 60 + m
++    return None
++
++
+ def next_run(expr, after):
+-    minute, hour, dom, month, dow = expr.split()
+-    t = after.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
+-    return t.replace(minute=int(minute) if minute != "*" else t.minute)
++    parts = expr.split()
++    if len(parts) != 5:
++        raise ValueError("cron expression must have exactly 5 fields")
++
++    minute_s, hour_s, dom_s, month_s, dow_s = parts
++    minutes = _parse_field(minute_s, 0, 59)[0]
++    hours = _parse_field(hour_s, 0, 23)[0]
++    dom, dom_restricted = _parse_field(dom_s, 1, 31)
++    months = _parse_field(month_s, 1, 12)[0]
++    dow, dow_restricted = _parse_dow(dow_s)
++
++    start = after.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
++    first_day = start.date()
++    limit_day = first_day + dt.timedelta(days=365 * 5 + 2)
++
++    day = first_day
++    while day <= limit_day:
++        if day.month in months and _day_matches(day, dom, dom_restricted, dow, dow_restricted):
++            threshold = start.hour * 60 + start.minute if day == first_day else 0
++            tod = _next_time(minutes, hours, threshold)
++            if tod is not None:
++                return dt.datetime(day.year, day.month, day.day, tod // 60, tod % 60)
++        day += dt.timedelta(days=1)
++
++    raise ValueError("no matching datetime within 5 years")

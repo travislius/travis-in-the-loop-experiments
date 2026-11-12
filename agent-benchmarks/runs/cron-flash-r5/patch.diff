@@ -1,0 +1,171 @@
+diff -ru <EXPERIMENT>/tasks/cron/repo/cron.py <EXPERIMENT>/runs/cron-flash-r5/workspace/cron.py
+--- <EXPERIMENT>/tasks/cron/repo/cron.py	2026-11-12 08:02:07
++++ <EXPERIMENT>/runs/cron-flash-r5/workspace/cron.py	2026-11-12 08:28:26
+@@ -1,5 +1,164 @@
++"""Evaluate standard 5-field cron expressions.
++
++Only the Python standard library is used.
++"""
++
+ import datetime as dt
++
++__all__ = ["next_run"]
++
++# Field name -> (minimum, maximum) allowed value.
++_BOUNDS = {
++    "minute": (0, 59),
++    "hour": (0, 23),
++    "day-of-month": (1, 31),
++    "month": (1, 12),
++    "day-of-week": (0, 7),
++}
++
++
++def _parse_int(text, name):
++    """Parse a single decimal integer, raising ValueError on bad input."""
++    try:
++        return int(text, 10)
++    except (TypeError, ValueError):
++        raise ValueError("invalid %s value: %r" % (name, text)) from None
++
++
++def _parse_field(field, name):
++    """Expand one cron field into the set of values it matches.
++
++    Supports ``*``, single numbers, comma-separated lists, ranges
++    (``a-b``) and steps (``*/n`` and ``a-b/n``).
++    """
++    lo, hi = _BOUNDS[name]
++    values = set()
++
++    for part in field.split(","):
++        if not part:
++            raise ValueError("invalid %s field: %r" % (name, field))
++
++        base, sep, step_text = part.partition("/")
++        if sep:
++            step = _parse_int(step_text, name)
++            if step <= 0:
++                raise ValueError("step must be positive in %s field: %r"
++                                 % (name, field))
++        else:
++            step = 1
++
++        if base == "*":
++            start, end = lo, hi
++        elif "-" in base:
++            start_text, _, end_text = base.partition("-")
++            start = _parse_int(start_text, name)
++            end = _parse_int(end_text, name)
++        else:
++            start = _parse_int(base, name)
++            # "n/step" means "from n through the maximum value".
++            end = hi if sep else start
++
++        if start < lo or end > hi or start > end:
++            raise ValueError("value out of range in %s field: %r"
++                             % (name, field))
++
++        values.update(range(start, end + 1, step))
++
++    return values
++
++
++def _parse(expr):
++    """Parse a full cron expression.
++
++    Returns ``(minutes, hours, days, months, weekdays, dom_restricted,
++    dow_restricted)``.
++    """
++    if not isinstance(expr, str):
++        raise TypeError("cron expression must be a string")
++
++    fields = expr.split()
++    if len(fields) != 5:
++        raise ValueError(
++            "cron expression must have 5 fields, got %d: %r"
++            % (len(fields), expr)
++        )
++
++    minute_f, hour_f, dom_f, month_f, dow_f = fields
++
++    minutes = _parse_field(minute_f, "minute")
++    hours = _parse_field(hour_f, "hour")
++    days = _parse_field(dom_f, "day-of-month")
++    months = _parse_field(month_f, "month")
++
++    # In cron, both 0 and 7 mean Sunday.  Normalise to 0.
++    weekdays = {0 if value == 7 else value
++                for value in _parse_field(dow_f, "day-of-week")}
++
++    # Vixie-cron: a field counts as restricted unless it is exactly "*".
++    return (minutes, hours, days, months, weekdays,
++            dom_f != "*", dow_f != "*")
++
++
++def _day_matches(day, days, weekdays, dom_restricted, dow_restricted):
++    """Apply the Vixie day-of-month / day-of-week rule for one date."""
++    dom_ok = day.day in days
++    # datetime.weekday(): Monday == 0 ... Sunday == 6.
++    dow_ok = (day.weekday() + 1) % 7 in weekdays
++
++    if dom_restricted and dow_restricted:
++        # Both restricted: either field may select the day.
++        return dom_ok or dow_ok
++    if dom_restricted:
++        return dom_ok
++    if dow_restricted:
++        return dow_ok
++    return True
++
++
+ def next_run(expr, after):
+-    minute, hour, dom, month, dow = expr.split()
+-    t = after.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
+-    return t.replace(minute=int(minute) if minute != "*" else t.minute)
++    """Return the first minute strictly after ``after`` matching ``expr``.
++
++    ``after`` must be a naive :class:`datetime.datetime`; seconds and
++    microseconds are dropped.  Raises :class:`ValueError` if no matching
++    time exists within five years.
++    """
++    if not isinstance(after, dt.datetime):
++        raise TypeError("after must be a datetime.datetime")
++
++    (minutes, hours, days, months, weekdays,
++     dom_restricted, dow_restricted) = _parse(expr)
++
++    # Drop seconds/microseconds, then advance one whole minute so the
++    # result is strictly after ``after``.
++    start = after.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
++    start_date = start.date()
++
++    # Search up to five years ahead.  Guard against Feb 29 in the target
++    # year by falling back to Feb 28.
++    try:
++        end_date = start_date.replace(year=start_date.year + 5)
++    except ValueError:
++        end_date = start_date.replace(year=start_date.year + 5,
++                                      month=2, day=28)
++
++    sorted_hours = sorted(hours)
++    sorted_minutes = sorted(minutes)
++    day = start_date
++
++    while day <= end_date:
++        if day.month in months and _day_matches(
++                day, days, weekdays, dom_restricted, dow_restricted):
++            if day == start_date:
++                earliest = start.hour * 60 + start.minute
++            else:
++                earliest = 0
++
++            for hour in sorted_hours:
++                for minute in sorted_minutes:
++                    if hour * 60 + minute >= earliest:
++                        return dt.datetime.combine(day,
++                                                   dt.time(hour, minute))
++
++        day += dt.timedelta(days=1)
++
++    raise ValueError("no run time found within five years for %r" % expr)

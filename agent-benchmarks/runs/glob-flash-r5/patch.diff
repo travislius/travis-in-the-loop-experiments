@@ -1,0 +1,183 @@
+diff -ru <EXPERIMENT>/tasks/glob/repo/pathglob.py <EXPERIMENT>/runs/glob-flash-r5/workspace/pathglob.py
+--- <EXPERIMENT>/tasks/glob/repo/pathglob.py	2026-11-12 08:02:33
++++ <EXPERIMENT>/runs/glob-flash-r5/workspace/pathglob.py	2026-11-12 08:28:56
+@@ -1,3 +1,177 @@
+-import fnmatch
++"""Match slash-separated relative paths against glob patterns."""
++
++import re
++
++
++def _split_segments(pattern):
++    """Split *pattern* on unescaped slashes, preserving escapes."""
++    segments = []
++    current = []
++    i = 0
++    while i < len(pattern):
++        char = pattern[i]
++        if char == "\\":
++            current.append(char)
++            if i + 1 < len(pattern):
++                current.append(pattern[i + 1])
++                i += 2
++            else:
++                i += 1
++        elif char == "/":
++            segments.append("".join(current))
++            current = []
++            i += 1
++        else:
++            current.append(char)
++            i += 1
++    segments.append("".join(current))
++    return segments
++
++
++def _translate_class(segment, start):
++    """Translate a ``[...]`` class at *start*; return (regex, next index)."""
++    length = len(segment)
++    i = start + 1
++    if i >= length:
++        return None, start + 1
++
++    negated = False
++    if segment[i] == "!":
++        negated = True
++        i += 1
++
++    characters = []
++    first = True
++    closed = False
++    while i < length:
++        char = segment[i]
++        if char == "\\":
++            if i + 1 < length:
++                characters.append((segment[i + 1], True))
++                i += 2
++            else:
++                characters.append(("\\", True))
++                i += 1
++            first = False
++            continue
++        if char == "]" and not first:
++            closed = True
++            i += 1
++            break
++        characters.append((char, False))
++        first = False
++        i += 1
++
++    if not closed:
++        return None, start + 1
++
++    pieces = []
++    for index, (char, escaped) in enumerate(characters):
++        if char == "-" and not escaped:
++            pieces.append("-")
++        elif char == "^" and index == 0:
++            pieces.append("\\^")
++        else:
++            pieces.append(re.escape(char))
++
++    class_body = "".join(pieces)
++    if not class_body:
++        # An empty class cannot match any character.
++        return "(?!)", i
++
++    # A class never matches a path separator, even when it contains one or
++    # when it is negated.
++    prefix = "(?!/)"
++    if negated:
++        return prefix + "[^" + class_body + "]", i
++    return prefix + "[" + class_body + "]", i
++
++
++def _translate_segment(segment):
++    """Translate one non-globstar path segment to a regular expression."""
++    parts = []
++    i = 0
++    length = len(segment)
++    while i < length:
++        char = segment[i]
++        if char == "\\":
++            if i + 1 < length:
++                parts.append(re.escape(segment[i + 1]))
++                i += 2
++            else:
++                parts.append(re.escape("\\"))
++                i += 1
++        elif char == "*":
++            while i < length and segment[i] == "*":
++                i += 1
++            parts.append("[^/]*")
++        elif char == "?":
++            parts.append("[^/]")
++            i += 1
++        elif char == "[":
++            translated, next_index = _translate_class(segment, i)
++            if translated is None:
++                parts.append(re.escape("["))
++                i += 1
++            else:
++                parts.append(translated)
++                i = next_index
++        else:
++            parts.append(re.escape(char))
++            i += 1
++    return "".join(parts)
++
++
++def _translate(pattern):
++    segments = _split_segments(pattern)
++
++    # Adjacent globstars are equivalent to a single one.
++    collapsed = []
++    for segment in segments:
++        if segment == "**" and collapsed and collapsed[-1] == "**":
++            continue
++        collapsed.append(segment)
++
++    count = len(collapsed)
++    if count == 1:
++        if collapsed[0] == "**":
++            return "(?:[^/]+(?:/[^/]+)*)?"
++        return _translate_segment(collapsed[0])
++
++    parts = []
++    previous_globstar = False
++    for index, segment in enumerate(collapsed):
++        if index == 0:
++            if segment == "**":
++                parts.append("(?:[^/]+/)*")
++                previous_globstar = True
++            else:
++                parts.append(_translate_segment(segment))
++                previous_globstar = False
++            continue
++
++        if segment == "**":
++            if index == count - 1:
++                # A trailing ** matches one or more whole segments below the
++                # preceding one, but never the preceding path itself.
++                if not previous_globstar:
++                    parts.append("/")
++                parts.append("[^/]+(?:/[^/]+)*")
++                previous_globstar = False
++            else:
++                if not previous_globstar:
++                    parts.append("/")
++                parts.append("(?:[^/]+/)*")
++                previous_globstar = True
++        else:
++            if not previous_globstar:
++                parts.append("/")
++            parts.append(_translate_segment(segment))
++            previous_globstar = False
++
++    return "".join(parts)
++
++
+ def match(pattern, path):
+-    return fnmatch.fnmatch(path, pattern)
++    """Return whether *path* matches the glob *pattern* in its entirety."""
++    return re.fullmatch(_translate(pattern), path) is not None

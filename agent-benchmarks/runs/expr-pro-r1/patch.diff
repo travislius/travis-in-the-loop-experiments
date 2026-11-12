@@ -1,0 +1,135 @@
+Only in <EXPERIMENT>/runs/expr-pro-r1/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/expr/repo/calc.py <EXPERIMENT>/runs/expr-pro-r1/workspace/calc.py
+--- <EXPERIMENT>/tasks/expr/repo/calc.py	2026-11-12 08:02:19
++++ <EXPERIMENT>/runs/expr-pro-r1/workspace/calc.py	2026-11-12 08:05:21
+@@ -1,6 +1,125 @@
+ def evaluate(s):
+-    s = s.replace(" ", "")
+-    total = 0.0
+-    for part in s.split("+"):
+-        total += float(part)
+-    return total
++    if not isinstance(s, str):
++        raise ValueError("expression must be a string")
++
++    tokens = _tokenize(s)
++    if not tokens:
++        raise ValueError("empty expression")
++
++    pos = 0
++
++    def peek():
++        return tokens[pos] if pos < len(tokens) else None
++
++    def advance():
++        nonlocal pos
++        token = tokens[pos]
++        pos += 1
++        return token
++
++    def parse_expression():
++        value = parse_term()
++        while True:
++            token = peek()
++            if token is not None and token[0] == "OP" and token[1] in "+-":
++                advance()
++                right = parse_term()
++                if token[1] == "+":
++                    value = value + right
++                else:
++                    value = value - right
++            else:
++                break
++        return value
++
++    def parse_term():
++        value = parse_unary()
++        while True:
++            token = peek()
++            if token is not None and token[0] == "OP" and token[1] in "*/":
++                advance()
++                right = parse_unary()
++                if token[1] == "*":
++                    value = value * right
++                else:
++                    value = value / right
++            else:
++                break
++        return value
++
++    def parse_unary():
++        token = peek()
++        if token is not None and token[0] == "OP" and token[1] in "+-":
++            advance()
++            operand = parse_unary()
++            return -operand if token[1] == "-" else operand
++        return parse_power()
++
++    def parse_power():
++        base = parse_atom()
++        token = peek()
++        if token is not None and token[0] == "OP" and token[1] == "^":
++            advance()
++            exponent = parse_unary()
++            return base ** exponent
++        return base
++
++    def parse_atom():
++        token = peek()
++        if token is None:
++            raise ValueError("unexpected end of expression")
++        if token[0] == "NUM":
++            advance()
++            return token[1]
++        if token[0] == "LPAREN":
++            advance()
++            value = parse_expression()
++            if peek() is None or peek()[0] != "RPAREN":
++                raise ValueError("missing closing parenthesis")
++            advance()
++            return value
++        raise ValueError("unexpected token: %r" % (token,))
++
++    result = parse_expression()
++    if pos != len(tokens):
++        raise ValueError("unexpected token: %r" % (tokens[pos],))
++    return result
++
++
++def _tokenize(s):
++    tokens = []
++    i = 0
++    n = len(s)
++    while i < n:
++        c = s[i]
++        if c.isspace():
++            i += 1
++            continue
++        if c in "+-*/^":
++            tokens.append(("OP", c))
++            i += 1
++            continue
++        if c == "(":
++            tokens.append(("LPAREN",))
++            i += 1
++            continue
++        if c == ")":
++            tokens.append(("RPAREN",))
++            i += 1
++            continue
++        if c == "." or "0" <= c <= "9":
++            j = i
++            while j < n and "0" <= s[j] <= "9":
++                j += 1
++            if j < n and s[j] == ".":
++                j += 1
++                while j < n and "0" <= s[j] <= "9":
++                    j += 1
++            text = s[i:j]
++            if not any("0" <= ch <= "9" for ch in text):
++                raise ValueError("invalid number: %r" % (text,))
++            tokens.append(("NUM", float(text)))
++            i = j
++            continue
++        raise ValueError("invalid character: %r" % (c,))
++    return tokens

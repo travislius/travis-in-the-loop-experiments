@@ -1,0 +1,26 @@
+{
+ "run": "semver-flash-r1",
+ "task": "semver",
+ "model": "deepseek-flash",
+ "rep": 1,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 41.4,
+ "steps": 6,
+ "tool_calls": {
+  "bash": 3,
+  "read": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1960,
+  "output": 3871,
+  "cache_hit": 45056
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.01s",
+ "final_response": "Implemented SemVer 2.0.0 precedence in `semver.py`.\n\nWhat changed:\n- Parses versions into major/minor/patch, pre-release, and build metadata.\n- Compares numeric core components numerically (`1.10.0 > 1.9.0`).\n- Applies full pre-release precedence rules:\n  - Pre-release versions sort before the release.\n  - Numeric identifiers compare numerically.\n  - Numeric identifiers sort before alphanumeric ones.\n  - Alphanumeric identifiers compare lexically.\n  - A longer identifier list wins when all preceding identifiers are equal.\n- Ignores build metadata entirely (`1.0.0+build.5 == 1.0.0`).\n- Validates malformed versions and raises `ValueError` with a clear message.\n\nVerified the full example chain from the issue, build metadata equality, and numeric core ordering; all checks passed.",
+ "started_utc": "2026-11-12T15:52:49Z"
+}

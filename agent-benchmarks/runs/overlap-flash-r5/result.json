@@ -1,0 +1,26 @@
+{
+ "run": "overlap-flash-r5",
+ "task": "overlap",
+ "model": "deepseek-flash",
+ "rep": 5,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 25.8,
+ "steps": 5,
+ "tool_calls": {
+  "bash": 2,
+  "read": 2,
+  "edit": 1
+ },
+ "usage": {
+  "input": 1684,
+  "output": 1574,
+  "cache_hit": 33920
+ },
+ "hidden_tests_passed": 5,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "5 passed in 0.13s",
+ "final_response": "Fixed `overlaps` in `booking.py`.\n\nThe bug was using strict `<` comparisons, which treated touching inclusive endpoints (e.g. `[1,5]` and `[5,9]`) as non-overlapping. It also didn't handle ranges whose start/end were given in reverse order.\n\nThe function now:\n- Normalizes each range's endpoints, accepting them in either order.\n- Uses `<=` comparisons so shared boundary dates count as overlaps.\n- Remains symmetric with respect to argument order and works with `datetime.date` objects.\n\nVerified against boundary-touching, disjoint, containment, single-day, reversed-endpoint, and date-object cases.",
+ "started_utc": "2026-11-12T16:00:40Z"
+}

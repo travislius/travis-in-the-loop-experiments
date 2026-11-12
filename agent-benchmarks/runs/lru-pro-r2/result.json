@@ -1,0 +1,26 @@
+{
+ "run": "lru-pro-r2",
+ "task": "lru",
+ "model": "deepseek-v4-pro",
+ "rep": 2,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 34.4,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "edit": 1
+ },
+ "usage": {
+  "input": 7179,
+  "output": 1816,
+  "cache_hit": 29184
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.42s",
+ "final_response": "The fix is complete.\n\n## What was wrong\n\nThe original `LRUCache`:\n- `get` never updated recency, so it didn't record that `a` was most recently used.\n- `put` always appended to `order`, even when the key already existed, so updating a key left a stale duplicate in the order and made `len(order)` grow \u2014 effectively counting updates against capacity and evicting the wrong item.\n\n## The fix\n\nIn `cache.py`:\n\n- `get` now moves a found key to the end of `order` (marking it most-recently-used) before returning it.\n- `put` now removes an existing key from `order` before re-appending it, so an update refreshes recency without adding a duplicate or counting against capacity.\n\nI verified the reported scenario and two related cases all pass:\n\n- `put(a)`, `put(b)`, `get(a)`, `put(c)` (capacity 2) \u2192 `b` is evicted, `a` survives. \u2705\n- Updating an existing key no longer causes eviction. \u2705\n- `get` of a missing key still returns the `default`. \u2705",
+ "started_utc": "2026-11-12T15:55:37Z"
+}

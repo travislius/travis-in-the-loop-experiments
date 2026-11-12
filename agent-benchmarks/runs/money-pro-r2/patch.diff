@@ -1,0 +1,62 @@
+Only in <EXPERIMENT>/runs/money-pro-r2/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/money/repo/money.py <EXPERIMENT>/runs/money-pro-r2/workspace/money.py
+--- <EXPERIMENT>/tasks/money/repo/money.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/money-pro-r2/workspace/money.py	2026-11-12 07:56:33
+@@ -1,3 +1,55 @@
+ def parse_amount(s):
+-    s = s.replace("$", "").replace(",", "")
+-    return float(s)
++    """Parse a monetary amount from a real bank export string into a float."""
++    if s is None:
++        return 0.0
++
++    s = str(s).strip()
++
++    negative = False
++    # Accounting convention: parentheses denote a negative amount.
++    if s.startswith("(") and s.endswith(")"):
++        negative = True
++        s = s[1:-1].strip()
++    elif s.startswith("-"):
++        negative = True
++        s = s[1:].strip()
++    elif s.startswith("+"):
++        s = s[1:].strip()
++
++    # Keep only digits and grouping/decimal separators, dropping currency
++    # symbols ($, €, £, ...), currency codes (EUR, USD, ...) and whitespace.
++    s = "".join(ch for ch in s if ch.isdigit() or ch in ".,")
++
++    if not s:
++        return 0.0
++
++    # Determine which separator is the decimal separator.
++    if "." in s and "," in s:
++        # With both present, the one that appears last is the decimal mark:
++        # "1,234.50" -> '.', "1.234,50" -> ','.
++        if s.rfind(",") > s.rfind("."):
++            decimal, thousands = ",", "."
++        else:
++            decimal, thousands = ".", ","
++    elif "," in s:
++        # A single comma followed by 1-2 digits is a decimal comma ("3,5"),
++        # otherwise it is a thousands separator ("1,234").
++        if len(s) - s.rfind(",") - 1 <= 2:
++            decimal, thousands = ",", None
++        else:
++            decimal, thousands = None, ","
++    else:
++        # A single period followed by 1-2 digits is a decimal point ("1234.50"),
++        # otherwise it is a thousands separator ("1.234").
++        if len(s) - s.rfind(".") - 1 <= 2:
++            decimal, thousands = ".", None
++        else:
++            decimal, thousands = None, "."
++
++    if thousands:
++        s = s.replace(thousands, "")
++    if decimal:
++        s = s.replace(decimal, ".")
++
++    value = float(s)
++    return -value if negative else value

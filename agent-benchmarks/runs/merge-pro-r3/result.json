@@ -1,0 +1,26 @@
+{
+ "run": "merge-pro-r3",
+ "task": "merge",
+ "model": "deepseek-v4-pro",
+ "rep": 3,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 29.0,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "edit": 1
+ },
+ "usage": {
+  "input": 1562,
+  "output": 1572,
+  "cache_hit": 40704
+ },
+ "hidden_tests_passed": 5,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "5 passed in 0.02s",
+ "final_response": "The fix is complete. Here's what was wrong and what I changed in `intervals.py`:\n\n**Bugs fixed:**\n1. **Unsorted input** \u2014 the function iterated intervals in their given order without sorting, so out-of-order overlapping intervals weren't merged. Now it sorts a copy first.\n2. **Touching intervals** \u2014 used `s < out[-1][1]` (strict), so `[1,3]` and `[3,5]` were kept separate. Changed to `s <= out[-1][1]` so they merge into `[1,5]`.\n3. **Nested intervals** \u2014 it blindly overwrote the end with `out[-1][1] = e`, shrinking `[1,10]` to `[1,3]` when nested. Now it takes `max(out[-1][1], e)`.\n4. **Input mutation** \u2014 `sorted()` returns a new list and merged intervals are built as new lists, so the caller's input is never modified.\n\nVerified with the edge cases: unsorted `[[3,5],[1,3]]` \u2192 `[[1,5]]`, touching `[[1,3],[3,5]]` \u2192 `[[1,5]]`, nested `[[1,10],[2,3]]` \u2192 `[[1,10]]`, and the original input list remains unchanged.",
+ "started_utc": "2026-11-12T15:57:23Z"
+}

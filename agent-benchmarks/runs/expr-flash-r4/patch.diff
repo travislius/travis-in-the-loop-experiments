@@ -1,0 +1,161 @@
+Only in <EXPERIMENT>/runs/expr-flash-r4/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/expr/repo/calc.py <EXPERIMENT>/runs/expr-flash-r4/workspace/calc.py
+--- <EXPERIMENT>/tasks/expr/repo/calc.py	2026-11-12 08:02:19
++++ <EXPERIMENT>/runs/expr-flash-r4/workspace/calc.py	2026-11-12 08:25:29
+@@ -1,6 +1,151 @@
++"""A small arithmetic expression evaluator.
++
++The grammar implemented here is::
++
++    expression := term (('+' | '-') term)*
++    term       := unary (('*' | '/') unary)*
++    unary      := ('+' | '-') unary | power
++    power      := atom ('^' unary)?
++    atom       := NUMBER | '(' expression ')'
++
++`^` is right-associative (because its right operand is a `unary`, which
++ultimately reaches another `power`), while the binary `+ - * /` operators
++are left-associative.  Unary minus binds more tightly than `*` and `/`,
++but less tightly than `^`, which gives `-2^2 == -4`.
++"""
++
++
++def _tokenize(text):
++    """Turn *text* into a list of ``(kind, value)`` tokens.
++
++    Whitespace is skipped between tokens, but it is never removed from
++    inside a number.  That distinction is what makes ``"12"`` valid while
++    ``"1 2"`` is reported as malformed instead of silently becoming 12.
++    """
++    tokens = []
++    i = 0
++    length = len(text)
++
++    while i < length:
++        char = text[i]
++
++        if char.isspace():
++            i += 1
++            continue
++
++        if "0" <= char <= "9" or (
++            char == "." and i + 1 < length and "0" <= text[i + 1] <= "9"
++        ):
++            start = i
++            while i < length and "0" <= text[i] <= "9":
++                i += 1
++            is_float = False
++            if i < length and text[i] == ".":
++                is_float = True
++                i += 1
++                while i < length and "0" <= text[i] <= "9":
++                    i += 1
++            literal = text[start:i]
++            tokens.append(("number", float(literal) if is_float else int(literal)))
++            continue
++
++        if char in "+-*/^()":
++            tokens.append((char, char))
++            i += 1
++            continue
++
++        raise ValueError("invalid character {!r} in expression".format(char))
++
++    return tokens
++
++
++class _Parser:
++    def __init__(self, tokens):
++        self._tokens = tokens
++        self._position = 0
++
++    def parse(self):
++        if not self._tokens:
++            raise ValueError("empty expression")
++        value = self._expression()
++        if self._position != len(self._tokens):
++            raise ValueError("unexpected token {!r}".format(self._tokens[self._position][0]))
++        return value
++
++    def _peek(self):
++        if self._position < len(self._tokens):
++            return self._tokens[self._position][0]
++        return None
++
++    def _advance(self):
++        token = self._tokens[self._position]
++        self._position += 1
++        return token
++
++    def _expression(self):
++        value = self._term()
++        while self._peek() in ("+", "-"):
++            operator = self._advance()[0]
++            right = self._term()
++            if operator == "+":
++                value = value + right
++            else:
++                value = value - right
++        return value
++
++    def _term(self):
++        value = self._unary()
++        while self._peek() in ("*", "/"):
++            operator = self._advance()[0]
++            right = self._unary()
++            if operator == "*":
++                value = value * right
++            else:
++                if right == 0:
++                    raise ZeroDivisionError("division by zero")
++                value = value / right
++        return value
++
++    def _unary(self):
++        token = self._peek()
++        if token == "-":
++            self._advance()
++            return -self._unary()
++        if token == "+":
++            self._advance()
++            return self._unary()
++        return self._power()
++
++    def _power(self):
++        base = self._atom()
++        if self._peek() == "^":
++            self._advance()
++            # Parsing the exponent as a unary expression makes the operator
++            # right-associative and also accepts forms like ``2^-3``.
++            exponent = self._unary()
++            return base ** exponent
++        return base
++
++    def _atom(self):
++        token = self._peek()
++        if token == "number":
++            return self._advance()[1]
++        if token == "(":
++            self._advance()
++            value = self._expression()
++            if self._peek() != ")":
++                raise ValueError("missing closing parenthesis")
++            self._advance()
++            return value
++        if token is None:
++            raise ValueError("unexpected end of expression")
++        raise ValueError("unexpected token {!r}".format(token))
++
++
+ def evaluate(s):
+-    s = s.replace(" ", "")
+-    total = 0.0
+-    for part in s.split("+"):
+-        total += float(part)
+-    return total
++    """Evaluate the arithmetic *s* and return the numeric result.
++
++    Raises ``ValueError`` for malformed input and ``ZeroDivisionError``
++    when a division by zero is attempted.
++    """
++    return _Parser(_tokenize(s)).parse()

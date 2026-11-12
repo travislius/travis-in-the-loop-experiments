@@ -1,0 +1,26 @@
+{
+ "run": "bucket-pro-r5",
+ "task": "bucket",
+ "model": "deepseek-v4-pro",
+ "rep": 5,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 90.9,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1485,
+  "output": 3405,
+  "cache_hit": 38272
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.19s",
+ "final_response": "Fixed `ratelimit.py`. The original code had four bugs, all addressed:\n\n1. **Started empty, not full** \u2014 `tokens` was `0`; a new bucket should start at capacity. Now `self.tokens = self.capacity`.\n2. **Burst on first call** \u2014 `last` was `0`, so the first `allow(now)` credited all elapsed time since epoch. Now `last` is initialized to `None` and set to the first `now` with no refill.\n3. **Never refills fractionally** \u2014 `int(...)` truncated the refill to whole tokens, so slow rates (e.g. 0.5 tokens/sec) permanently lost the fraction. Tokens are now kept as a float so refill is continuous.\n4. **Could exceed capacity** \u2014 refill is now capped with `min(self.capacity, ...)`.\n\nAlso kept the behavior correct when `now` stays the same between calls (no refill, `last` still advances), and consume only a full token (`tokens >= 1`). Sanity checks pass.",
+ "started_utc": "2026-11-12T16:01:20Z"
+}

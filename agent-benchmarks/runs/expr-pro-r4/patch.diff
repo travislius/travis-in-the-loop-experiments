@@ -1,0 +1,110 @@
+Only in <EXPERIMENT>/runs/expr-pro-r4/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/expr/repo/calc.py <EXPERIMENT>/runs/expr-pro-r4/workspace/calc.py
+--- <EXPERIMENT>/tasks/expr/repo/calc.py	2026-11-12 08:02:19
++++ <EXPERIMENT>/runs/expr-pro-r4/workspace/calc.py	2026-11-12 08:26:31
+@@ -1,6 +1,100 @@
+ def evaluate(s):
+-    s = s.replace(" ", "")
+-    total = 0.0
+-    for part in s.split("+"):
+-        total += float(part)
+-    return total
++    pos = 0
++    n = len(s)
++
++    def skip_ws():
++        nonlocal pos
++        while pos < n and s[pos].isspace():
++            pos += 1
++
++    def parse_atom():
++        nonlocal pos
++        skip_ws()
++        if pos >= n:
++            raise ValueError("unexpected end of expression")
++
++        ch = s[pos]
++        if ch == '(':
++            pos += 1
++            value = parse_expr()
++            skip_ws()
++            if pos >= n or s[pos] != ')':
++                raise ValueError("missing closing parenthesis")
++            pos += 1
++            return value
++
++        if ch.isdigit() or ch == '.':
++            start = pos
++            has_digit = False
++            while pos < n and s[pos].isdigit():
++                pos += 1
++                has_digit = True
++            if pos < n and s[pos] == '.':
++                pos += 1
++                while pos < n and s[pos].isdigit():
++                    pos += 1
++                    has_digit = True
++            if not has_digit:
++                raise ValueError("malformed number")
++            return float(s[start:pos])
++
++        raise ValueError("unexpected character %r" % ch)
++
++    def parse_power():
++        nonlocal pos
++        value = parse_atom()
++        skip_ws()
++        if pos < n and s[pos] == '^':
++            pos += 1
++            exponent = parse_unary()
++            value = value ** exponent
++        return value
++
++    def parse_unary():
++        nonlocal pos
++        skip_ws()
++        if pos < n and s[pos] == '-':
++            pos += 1
++            return -parse_unary()
++        return parse_power()
++
++    def parse_term():
++        nonlocal pos
++        value = parse_unary()
++        skip_ws()
++        while pos < n and s[pos] in '*/':
++            op = s[pos]
++            pos += 1
++            rhs = parse_unary()
++            if op == '*':
++                value = value * rhs
++            else:
++                value = value / rhs
++            skip_ws()
++        return value
++
++    def parse_expr():
++        nonlocal pos
++        value = parse_term()
++        skip_ws()
++        while pos < n and s[pos] in '+-':
++            op = s[pos]
++            pos += 1
++            rhs = parse_term()
++            if op == '+':
++                value = value + rhs
++            else:
++                value = value - rhs
++            skip_ws()
++        return value
++
++    skip_ws()
++    if pos >= n:
++        raise ValueError("empty expression")
++
++    result = parse_expr()
++    skip_ws()
++    if pos < n:
++        raise ValueError("unexpected trailing characters")
++
++    return result

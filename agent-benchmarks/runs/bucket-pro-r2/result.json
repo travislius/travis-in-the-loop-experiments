@@ -1,0 +1,26 @@
+{
+ "run": "bucket-pro-r2",
+ "task": "bucket",
+ "model": "deepseek-v4-pro",
+ "rep": 2,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 49.9,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 7160,
+  "output": 2797,
+  "cache_hit": 31232
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.18s",
+ "final_response": "The bug is fixed in `ratelimit.py`. The issues and their fixes:\n\n1. **Started empty instead of full** \u2014 `self.tokens = 0` \u2192 now starts at `float(capacity)`.\n2. **Refill used integer truncation** (`int((now - last) * rate)`) \u2014 this dropped fractional tokens and, for frequent calls or low rates, rounded every refill down to 0 so the bucket never refilled. Now it refills fractionally with `elapsed * self.rate`.\n3. **No capacity cap** \u2014 tokens could grow without bound, letting bursts through. Now clamped with `min(self.capacity, ...)`.\n4. **`last` started at 0** \u2014 the first call credited `now` seconds of refill even though the bucket was newly created. Now `last` is initialized to `None` and set to the first `now` without crediting any refill.\n5. **Same-time calls** are handled safely: `elapsed == 0` performs no refill, and non-positive elapsed (time going backwards) is ignored rather than subtracting tokens.",
+ "started_utc": "2026-11-12T15:55:37Z"
+}

@@ -1,0 +1,24 @@
+Only in <EXPERIMENT>/runs/merge-pro-r4/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/merge/repo/intervals.py <EXPERIMENT>/runs/merge-pro-r4/workspace/intervals.py
+--- <EXPERIMENT>/tasks/merge/repo/intervals.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/merge-pro-r4/workspace/intervals.py	2026-11-12 07:59:37
+@@ -1,8 +1,15 @@
+ def merge_intervals(intervals):
+-    out = []
+-    for s, e in intervals:
+-        if out and s < out[-1][1]:
+-            out[-1][1] = e
++    if not intervals:
++        return []
++
++    # Sort a copy so the input is never mutated and unsorted input is handled.
++    ordered = sorted(intervals)
++
++    out = [list(ordered[0])]
++    for s, e in ordered[1:]:
++        if s <= out[-1][1]:
++            # Touching intervals merge, and nested intervals never shrink the end.
++            out[-1][1] = max(out[-1][1], e)
+         else:
+             out.append([s, e])
+     return out

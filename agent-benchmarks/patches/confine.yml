@@ -1,0 +1,4 @@
+# Same confinement for every mode: DSH's own macOS Seatbelt sandbox, writes only inside the workspace.
+- id: sandbox-policy
+  config:
+    mode: workspace-write

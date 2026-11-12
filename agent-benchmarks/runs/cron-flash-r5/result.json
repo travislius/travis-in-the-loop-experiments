@@ -1,0 +1,26 @@
+{
+ "run": "cron-flash-r5",
+ "task": "cron",
+ "model": "deepseek-flash",
+ "rep": 5,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 58.9,
+ "steps": 8,
+ "tool_calls": {
+  "read": 2,
+  "bash": 5,
+  "write": 1
+ },
+ "usage": {
+  "input": 2907,
+  "output": 9214,
+  "cache_hit": 90880
+ },
+ "hidden_tests_passed": 11,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "11 passed in 0.01s",
+ "final_response": "Implemented the fix in `cron.py`.\n\nWhat it now does:\n- Parses all 5 fields with `*`, single values, lists (`1,15,30`), ranges (`1-5`), and steps (`*/15`, `10-40/10`, plus `5/15`).\n- Normalizes day-of-week `7` to Sunday (`0`).\n- Applies the Vixie rule: when both DOM and DOW are restricted, either matching selects the day; otherwise only the restricted field applies.\n- Searches minute-by-minute logic with full month/year rollover support, including Feb 29.\n- Raises `ValueError` when no match exists within five years, and rejects malformed expressions.\n- Drops seconds/microseconds and always returns a time strictly after `after`.\n\nValidated against an independent brute-force reference over fixed and randomized cases, including leap years, year boundaries, DOW aliases, and invalid inputs.",
+ "started_utc": "2026-11-12T16:27:57Z"
+}

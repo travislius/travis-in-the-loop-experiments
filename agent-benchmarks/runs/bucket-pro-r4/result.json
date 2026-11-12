@@ -1,0 +1,26 @@
+{
+ "run": "bucket-pro-r4",
+ "task": "bucket",
+ "model": "deepseek-v4-pro",
+ "rep": 4,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 86.3,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "edit": 1
+ },
+ "usage": {
+  "input": 1555,
+  "output": 5719,
+  "cache_hit": 42240
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.01s",
+ "final_response": "I fixed `ratelimit.py`. The original code had three defects matching the bug report:\n\n1. **Never refills / drops fractional refill** \u2014 `int((now - last) * rate)` truncated the continuously-added tokens, so any interval where `rate * dt < 1` contributed nothing and the fractional remainder was lost.\n2. **Lets bursts through / exceeds capacity** \u2014 tokens were never capped, so a large elapsed time could pile up unbounded tokens, and the bucket started empty instead of full.\n3. **Starts empty** \u2014 `self.tokens = 0` instead of `capacity`.\n\nThe corrected implementation:\n\n```python\nclass TokenBucket:\n    def __init__(self, capacity, rate):\n        self.capacity = capacity\n        self.rate = rate\n        self.tokens = float(capacity)\n        self.last = 0.0\n\n    def allow(self, now):\n        self.tokens = min(\n            self.capacity,\n            self.tokens + (now - self.last) * self.rate,\n        )\n        self.last = now\n        if self.tokens >= 1:\n            self.tokens -= 1\n            return True\n        return False\n```\n\nKey points:\n- Bucket starts full (`float(capacity)`).\n- Refill is continuous/fractional (no `int()`), accumulated as a float.\n- Tokens are capped with `min(capacity, \u2026)` so they never exceed capacity.\n- A token is consumed only when a full token is available (`>= 1`), preserving the original \"at least one token\" semantics now that tokens are fractional.\n- `now` staying constant between calls adds no tokens, as required.\n\nI verified the behavior with sanity",
+ "started_utc": "2026-11-12T15:59:11Z"
+}

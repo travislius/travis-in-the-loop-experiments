@@ -1,0 +1,26 @@
+{
+ "run": "roman-pro-r1",
+ "task": "roman",
+ "model": "deepseek-v4-pro",
+ "rep": 1,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 60.1,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 7555,
+  "output": 3829,
+  "cache_hit": 39424
+ },
+ "hidden_tests_passed": 13,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "13 passed in 0.01s",
+ "final_response": "The bug is fixed.\n\nThe original `from_roman()` naively applied the subtractive rule to whatever it was given, so it happily accepted `IIII`, `VX`, `IC`, `XM`, `VV`, `MMMM`, `''`, etc., and crashed with a `KeyError` on lowercase input.\n\nI rewrote it to validate the input against the canonical subtractive grammar for 1\u20133999 before computing the value:\n\n- **Lowercase allowed** \u2014 input is uppercased first (`'xiv'` \u2192 `14`).\n- **Strict canonical form** \u2014 a regex enforces the standard pattern `M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})`, which:\n  - caps repetition of `I`/`X`/`C`/`M` at three,\n  - forbids `V`/`L`/`D` repetition and using them as subtractive prefixes,\n  - allows only the valid subtractive pairs (`IV`, `IX`, `XL`, `XC`, `CD`, `CM`),\n  - rejects `''` and caps the value at 3999.\n- **Invalid input raises `ValueError`** \u2014 including non-string input.\n\nAll valid cases from the report (`XIV`=14, `MCMXCIV`=1994, `xiv`=14) plus boundary values (`MMMCMXCIX`=3999, `I`=1) pass, and every listed invalid input (`IIII`, `VX`, `IC`, `XM`, `VV`, `MMMM`, `''`) now raises `ValueError`.",
+ "started_utc": "2026-11-12T15:53:38Z"
+}

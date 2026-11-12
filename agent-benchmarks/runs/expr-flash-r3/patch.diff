@@ -1,0 +1,155 @@
+Only in <EXPERIMENT>/runs/expr-flash-r3/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/expr/repo/calc.py <EXPERIMENT>/runs/expr-flash-r3/workspace/calc.py
+--- <EXPERIMENT>/tasks/expr/repo/calc.py	2026-11-12 08:02:19
++++ <EXPERIMENT>/runs/expr-flash-r3/workspace/calc.py	2026-11-12 08:20:33
+@@ -1,6 +1,145 @@
++"""Evaluate arithmetic expressions from strings.
++
++Grammar (unary minus binds tighter than * and /, but looser than ^):
++
++    expression := term (('+' | '-') term)*
++    term       := unary (('*' | '/') unary)*
++    unary      := '-' unary | power
++    power      := primary ('^' unary)?      # right-associative
++    primary    := NUMBER | '(' expression ')'
++"""
++
++_DIGITS = "0123456789"
++
++
++def _tokenize(s):
++    """Turn *s* into (kind, value) tokens; raise ValueError on bad characters."""
++    tokens = []
++    i = 0
++    n = len(s)
++
++    while i < n:
++        c = s[i]
++
++        if c.isspace():
++            i += 1
++            continue
++
++        if c in _DIGITS or (c == "." and i + 1 < n and s[i + 1] in _DIGITS):
++            start = i
++            if c == ".":
++                i += 1
++                while i < n and s[i] in _DIGITS:
++                    i += 1
++            else:
++                while i < n and s[i] in _DIGITS:
++                    i += 1
++                if i < n and s[i] == ".":
++                    i += 1
++                    while i < n and s[i] in _DIGITS:
++                        i += 1
++            text = s[start:i]
++            # Keep integer literals as ints so powers stay exact; decimals
++            # are floats, and true division naturally produces floats.
++            tokens.append(
++                ("number", float(text) if "." in text else int(text))
++            )
++            continue
++
++        if c in "+-*/^()":
++            tokens.append(("operator", c))
++            i += 1
++            continue
++
++        raise ValueError("invalid character %r in expression" % c)
++
++    tokens.append(("eof", None))
++    return tokens
++
++
++class _Parser:
++    def __init__(self, tokens):
++        self._tokens = tokens
++        self._pos = 0
++
++    def _peek(self):
++        return self._tokens[self._pos]
++
++    def _peek_operator(self):
++        kind, value = self._tokens[self._pos]
++        return value if kind == "operator" else None
++
++    def _advance(self):
++        token = self._tokens[self._pos]
++        self._pos += 1
++        return token
++
++    def parse(self):
++        value = self._expression()
++        if self._peek()[0] != "eof":
++            raise ValueError("unexpected token %r" % (self._peek()[1],))
++        return value
++
++    def _expression(self):
++        value = self._term()
++        while self._peek_operator() in ("+", "-"):
++            operator = self._advance()[1]
++            rhs = self._term()
++            if operator == "+":
++                value += rhs
++            else:
++                value -= rhs
++        return value
++
++    def _term(self):
++        value = self._unary()
++        while self._peek_operator() in ("*", "/"):
++            operator = self._advance()[1]
++            rhs = self._unary()
++            if operator == "*":
++                value *= rhs
++            else:
++                # Python's float division raises ZeroDivisionError for 0.
++                value /= rhs
++        return value
++
++    def _unary(self):
++        if self._peek_operator() == "-":
++            self._advance()
++            return -self._unary()
++        return self._power()
++
++    def _power(self):
++        base = self._primary()
++        if self._peek_operator() == "^":
++            self._advance()
++            # Parse the exponent as a unary expression so that ^ is
++            # right-associative and exponents such as ^-2 are accepted.
++            exponent = self._unary()
++            return base ** exponent
++        return base
++
++    def _primary(self):
++        kind, value = self._peek()
++        if kind == "number":
++            self._advance()
++            return value
++        if kind == "operator" and value == "(":
++            self._advance()
++            result = self._expression()
++            if self._peek_operator() != ")":
++                raise ValueError("expected ')'")
++            self._advance()
++            return result
++        raise ValueError("unexpected end of expression or token")
++
++
+ def evaluate(s):
+-    s = s.replace(" ", "")
+-    total = 0.0
+-    for part in s.split("+"):
+-        total += float(part)
+-    return total
++    """Evaluate the arithmetic expression *s* and return its numeric value.
++
++    Raises ValueError for malformed input and ZeroDivisionError when a
++    division by zero occurs.
++    """
++    if not isinstance(s, str):
++        raise ValueError("expression must be a string")
++    return _Parser(_tokenize(s)).parse()

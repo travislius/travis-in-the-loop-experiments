@@ -1,0 +1,26 @@
+{
+ "run": "merge-pro-r5",
+ "task": "merge",
+ "model": "deepseek-v4-pro",
+ "rep": 5,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 69.2,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1520,
+  "output": 1232,
+  "cache_hit": 33664
+ },
+ "hidden_tests_passed": 5,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "5 passed in 0.01s",
+ "final_response": "The fix is complete and verified.\n\n**What was wrong** in `intervals.py`:\n1. **Unsorted input** \u2014 the loop assumed intervals were already sorted, so out-of-order input wasn't merged.\n2. **Touching intervals** \u2014 the check `s < out[-1][1]` used a strict comparison, so `[1,3]` and `[3,5]` were left separate instead of merging to `[1,5]`.\n3. **Nested intervals** \u2014 `out[-1][1] = e` blindly replaced the end, shrinking `[1,10]` to `[1,3]` when nested inside `[2,3]`.\n4. **Input mutation** \u2014 sorting in place would mutate the caller's list.\n\n**The fix** sorts a copy of the input (no mutation), merges when `s <= out[-1][1]` (so touching intervals merge), and keeps the larger end via `max(...)` (so nested intervals don't shrink the result).\n\nAll test cases pass: unsorted, touching, nested, empty input, and input is left unchanged.",
+ "started_utc": "2026-11-12T16:01:20Z"
+}

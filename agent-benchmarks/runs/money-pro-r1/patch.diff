@@ -1,0 +1,60 @@
+Only in <EXPERIMENT>/runs/money-pro-r1/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/money/repo/money.py <EXPERIMENT>/runs/money-pro-r1/workspace/money.py
+--- <EXPERIMENT>/tasks/money/repo/money.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/money-pro-r1/workspace/money.py	2026-11-12 07:54:28
+@@ -1,3 +1,53 @@
++import re
++
++
+ def parse_amount(s):
+-    s = s.replace("$", "").replace(",", "")
+-    return float(s)
++    """Parse a monetary amount string into a float.
++
++    Handles US and European formats, accounting negatives (parentheses),
++    currency symbols and leading signs.
++    """
++    s = s.strip()
++    negative = False
++
++    # Accounting negative: "(1,234.50)".
++    if s.startswith("(") and s.endswith(")"):
++        negative = True
++        s = s[1:-1].strip()
++
++    # Drop currency symbols/letters and whitespace, keep digits and separators.
++    s = re.sub(r"[^\d.,+-]", "", s)
++
++    # Explicit leading sign.
++    if s.startswith("-"):
++        negative = not negative
++        s = s[1:]
++    elif s.startswith("+"):
++        s = s[1:]
++
++    last_comma = s.rfind(",")
++    last_dot = s.rfind(".")
++
++    if last_comma != -1 and last_dot != -1:
++        # Both separators present: whichever comes last is the decimal one.
++        if last_comma > last_dot:
++            # European: '.' is thousands, ',' is decimal.
++            s = s.replace(".", "").replace(",", ".")
++        else:
++            # US/UK: ',' is thousands, '.' is decimal.
++            s = s.replace(",", "")
++    elif last_comma != -1:
++        # Only commas present.
++        if s.count(",") > 1:
++            s = s.replace(",", "")
++        else:
++            digits_after = len(s) - last_comma - 1
++            if digits_after == 3:
++                # Grouping separator, e.g. "1,234".
++                s = s.replace(",", "")
++            else:
++                # Decimal separator, e.g. "3,5".
++                s = s.replace(",", ".")
++
++    value = float(s)
++    return -value if negative else value

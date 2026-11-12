@@ -1,0 +1,26 @@
+{
+ "run": "lru-pro-r4",
+ "task": "lru",
+ "model": "deepseek-v4-pro",
+ "rep": 4,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 51.0,
+ "steps": 9,
+ "tool_calls": {
+  "read": 3,
+  "bash": 4,
+  "edit": 1
+ },
+ "usage": {
+  "input": 2149,
+  "output": 3343,
+  "cache_hit": 71168
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.09s",
+ "final_response": "Fixed `cache.py`. The two root causes were:\n\n1. **`get` never updated recency** \u2014 it returned the value but left `order` untouched, so a key accessed via `get` was still treated as the least-recently-used and got evicted next. `get` now moves the key to the end of `order` (the most-recently-used position).\n\n2. **`put` on an existing key appended a duplicate** \u2014 updating an existing key pushed a second copy of the key onto `order`, making it count against capacity and eventually triggering a spurious eviction. `put` now detects an existing key, updates the value in place, and just moves it to the MRU position without growing `order`.\n\nEviction still pops the front of `order` (the LRU end), which is correct.\n\nVerified with the reported sequence (`put(a)`, `put(b)`, `get(a)`, `put(c)` with capacity 2) \u2014 `a` is retained and `b` is evicted \u2014 plus a check that updating an existing key doesn't evict anything.",
+ "started_utc": "2026-11-12T15:59:11Z"
+}

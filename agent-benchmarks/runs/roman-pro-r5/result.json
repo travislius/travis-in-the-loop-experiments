@@ -1,0 +1,26 @@
+{
+ "run": "roman-pro-r5",
+ "task": "roman",
+ "model": "deepseek-v4-pro",
+ "rep": 5,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 91.6,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1804,
+  "output": 3292,
+  "cache_hit": 44416
+ },
+ "hidden_tests_passed": 13,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "13 passed in 0.12s",
+ "final_response": "The fix is complete and verified.\n\n**What was wrong:** `from_roman()` blindly applied the subtractive rule (`if next > current, subtract`) without validating the input, so it accepted garbage like `'IIII'`, `'VX'`, `'IC'`, `'XM'`, `'VV'`, and `'MMMM'`, and it also returned `0` for the empty string.\n\n**The fix** (in `roman.py`): added a validation step before conversion that enforces standard subtractive form for 1\u20133999:\n\n- Uppercases input so lowercase (`'xiv'`) works.\n- Rejects empty and non-string input with `ValueError`.\n- Matches the input against a full-match regex for canonical form:\n  - thousands: `M{0,3}`\n  - hundreds: `CM | CD | D?C{0,3}`\n  - tens: `XC | XL | L?X{0,3}`\n  - ones: `IX | IV | V?I{0,3}`\n- Any non-matching input raises `ValueError`; valid input is then converted using the original subtractive loop.\n\nAll cases from the issue pass, plus extra edge cases (`'IIV'`, `'IL'`, `'XD'`, `'IVIV'`, embedded spaces, non-strings, etc.).",
+ "started_utc": "2026-11-12T16:01:20Z"
+}

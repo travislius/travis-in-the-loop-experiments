@@ -1,0 +1,60 @@
+Only in <EXPERIMENT>/runs/roman-flash-r1/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/roman/repo/roman.py <EXPERIMENT>/runs/roman-flash-r1/workspace/roman.py
+--- <EXPERIMENT>/tasks/roman/repo/roman.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/roman-flash-r1/workspace/roman.py	2026-11-12 07:53:12
+@@ -1,5 +1,45 @@
+ V = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
++
++_NUMERALS = [
++    (1000, "M"),
++    (900, "CM"),
++    (500, "D"),
++    (400, "CD"),
++    (100, "C"),
++    (90, "XC"),
++    (50, "L"),
++    (40, "XL"),
++    (10, "X"),
++    (9, "IX"),
++    (5, "V"),
++    (4, "IV"),
++    (1, "I"),
++]
++
++
++def to_roman(n):
++    """Convert an integer in 1..3999 to its standard subtractive Roman form."""
++    if not isinstance(n, int) or isinstance(n, bool) or not (1 <= n <= 3999):
++        raise ValueError("value out of range (1..3999)")
++    out = []
++    for value, symbol in _NUMERALS:
++        while n >= value:
++            out.append(symbol)
++            n -= value
++    return "".join(out)
++
++
+ def from_roman(s):
++    """Convert a standard subtractive Roman numeral (1..3999) to an integer.
++
++    Raises ValueError for anything that is not a canonical Roman numeral.
++    """
++    if not isinstance(s, str):
++        raise ValueError("Roman numeral must be a string")
++    s = s.upper()
++    if not s or any(ch not in V for ch in s):
++        raise ValueError("invalid Roman numeral: %r" % s)
++
+     total = 0
+     for i, ch in enumerate(s):
+         v = V[ch]
+@@ -7,4 +47,9 @@
+             total -= v
+         else:
+             total += v
++
++    # Only the canonical subtractive form is valid (e.g. rejects 'IIII', 'VX',
++    # 'IC', 'VV', 'MMMM' and values outside 1..3999).
++    if not (1 <= total <= 3999) or to_roman(total) != s:
++        raise ValueError("invalid Roman numeral: %r" % s)
+     return total

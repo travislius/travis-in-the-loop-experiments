@@ -1,0 +1,26 @@
+{
+ "run": "bucket-flash-r5",
+ "task": "bucket",
+ "model": "deepseek-flash",
+ "rep": 5,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 34.5,
+ "steps": 7,
+ "tool_calls": {
+  "bash": 3,
+  "read": 3,
+  "edit": 1
+ },
+ "usage": {
+  "input": 2352,
+  "output": 3055,
+  "cache_hit": 54272
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.08s",
+ "final_response": "Fixed `ratelimit.py`:\n\n- Bucket now starts **full** (`tokens = capacity`).\n- Refill uses continuous fractional arithmetic instead of `int(...)` truncation, so tokens accumulate and partial time is never lost.\n- Tokens are clamped to `capacity`, preventing unbounded bursts after idle periods.\n- Consumption requires a full token (`tokens >= 1`), avoiding fractional-token overspend.\n- First call initializes the timestamp without phantom refill; repeated/same timestamps are handled correctly.\n\nVerified with behavioral tests covering full-start, fractional refill, same-timestamp calls, capacity clamping, and denied-call accumulation.",
+ "started_utc": "2026-11-12T16:00:40Z"
+}

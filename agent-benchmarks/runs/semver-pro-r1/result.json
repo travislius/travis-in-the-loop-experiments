@@ -1,0 +1,26 @@
+{
+ "run": "semver-pro-r1",
+ "task": "semver",
+ "model": "deepseek-v4-pro",
+ "rep": 1,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 34.3,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 7409,
+  "output": 1939,
+  "cache_hit": 29568
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.11s",
+ "final_response": "The fix is complete. \n\nThe original `compare(a, b)` split on `\".\"` and compared the resulting string lists lexicographically, which broke in three ways:\n- `\"10\" < \"9\"` as strings, so `1.10.0` incorrectly compared below `1.9.0`\n- pre-release identifiers were compared as plain strings with no SemVer precedence rules\n- build metadata (`+...`) was treated as part of the version instead of being ignored\n\nI rewrote `semver.py` to properly implement SemVer 2.0.0 precedence:\n\n1. **Parse** each version into `(major, minor, patch, prerelease)` using a regex that also strips build metadata (`+...`).\n2. **Compare** major/minor/patch numerically.\n3. **Apply pre-release rules**: a version without a pre-release ranks higher than one with it; numeric identifiers rank below alphanumeric ones; numeric identifiers compare numerically (so `beta.2 < beta.11`); alphanumeric identifiers compare lexically; a shorter pre-release ranks lower when all shared identifiers are equal.\n4. **Return** `-1`, `0`, or `1`.\n\nI verified all examples from the bug report pass (including the reverse-direction symmetry), plus the `1.0.0+build.5 == 1.0.0` case in both argument orders.",
+ "started_utc": "2026-11-12T15:53:38Z"
+}

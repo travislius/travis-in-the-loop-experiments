@@ -1,0 +1,100 @@
+Only in <EXPERIMENT>/runs/cron-pro-r5/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/cron/repo/cron.py <EXPERIMENT>/runs/cron-pro-r5/workspace/cron.py
+--- <EXPERIMENT>/tasks/cron/repo/cron.py	2026-11-12 08:02:07
++++ <EXPERIMENT>/runs/cron-pro-r5/workspace/cron.py	2026-11-12 08:29:58
+@@ -1,5 +1,92 @@
+ import datetime as dt
++
++
++def _parse_field(field, lo, hi):
++    """Parse one cron field into a set of allowed integer values.
++
++    Supports ``*``, single numbers, lists (``1,15,30``), ranges (``1-5``)
++    and steps (``*/15``, ``10-40/10``).
++    """
++    values = set()
++    for part in field.split(","):
++        if not part:
++            raise ValueError("empty element in cron field %r" % field)
++        base, sep, step_str = part.partition("/")
++        if sep:
++            step = int(step_str)
++        else:
++            step = 1
++        if step <= 0:
++            raise ValueError("step must be a positive integer in %r" % field)
++
++        if base == "*":
++            start, end = lo, hi
++        elif "-" in base:
++            start_str, _, end_str = base.partition("-")
++            start, end = int(start_str), int(end_str)
++        else:
++            start = end = int(base)
++
++        if start < lo or end > hi:
++            raise ValueError("value out of range [%d, %d] in %r" % (lo, hi, field))
++        if start > end:
++            raise ValueError("range start greater than end in %r" % field)
++
++        values.update(range(start, end + 1, step))
++    return values
++
++
++def _day_matches(day, dom_restricted, dow_restricted, doms, dows):
++    dom_ok = day.day in doms
++    # Python: Monday == 0.  Cron: Sunday == 0.
++    dow_ok = ((day.weekday() + 1) % 7) in dows
++
++    if dom_restricted and dow_restricted:
++        return dom_ok or dow_ok
++    if dom_restricted:
++        return dom_ok
++    if dow_restricted:
++        return dow_ok
++    return True
++
++
+ def next_run(expr, after):
+-    minute, hour, dom, month, dow = expr.split()
+-    t = after.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
+-    return t.replace(minute=int(minute) if minute != "*" else t.minute)
++    """Return the first matching time strictly after ``after``.
++
++    ``after`` is a naive datetime. The result is minute precision with
++    seconds/microseconds dropped.
++    """
++    fields = expr.split()
++    if len(fields) != 5:
++        raise ValueError("cron expression must have exactly 5 fields")
++
++    minute_f, hour_f, dom_f, month_f, dow_f = fields
++
++    minutes = _parse_field(minute_f, 0, 59)
++    hours = _parse_field(hour_f, 0, 23)
++    months = _parse_field(month_f, 1, 12)
++    doms = _parse_field(dom_f, 1, 31)
++    # 7 is an alias for Sunday (0).
++    dows = {0 if d == 7 else d for d in _parse_field(dow_f, 0, 7)}
++
++    dom_restricted = dom_f != "*"
++    dow_restricted = dow_f != "*"
++
++    start = after.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
++    horizon = start + dt.timedelta(days=365 * 5 + 2)
++
++    sorted_minutes = sorted(minutes)
++    sorted_hours = sorted(hours)
++
++    day = start.date()
++    last_day = horizon.date()
++    while day <= last_day:
++        if day.month in months and _day_matches(day, dom_restricted, dow_restricted, doms, dows):
++            for hour in sorted_hours:
++                for minute in sorted_minutes:
++                    candidate = dt.datetime(day.year, day.month, day.day, hour, minute)
++                    if candidate >= start:
++                        return candidate
++        day += dt.timedelta(days=1)
++
++    raise ValueError("no matching time within 5 years for %r" % expr)

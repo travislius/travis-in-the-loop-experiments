@@ -1,0 +1,123 @@
+Only in <EXPERIMENT>/runs/cron-pro-r3/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/cron/repo/cron.py <EXPERIMENT>/runs/cron-pro-r3/workspace/cron.py
+--- <EXPERIMENT>/tasks/cron/repo/cron.py	2026-11-12 08:02:07
++++ <EXPERIMENT>/runs/cron-pro-r3/workspace/cron.py	2026-11-12 08:21:00
+@@ -1,5 +1,115 @@
+ import datetime as dt
++
++
++def _parse_field(field, lo, hi):
++    """Parse one cron field into a set of allowed values, or None for ``*``.
++
++    Supports ``*``, single numbers, lists (``1,15,30``), ranges (``1-5``)
++    and steps (``*/15``, ``10-40/10``).
++    """
++    if field == "*":
++        return None
++
++    values = set()
++    for part in field.split(","):
++        step = 1
++        if "/" in part:
++            base, step_str = part.split("/", 1)
++            step = int(step_str)
++        else:
++            base = part
++
++        if base == "*":
++            start, end = lo, hi
++        elif "-" in base:
++            start_str, end_str = base.split("-", 1)
++            start, end = int(start_str), int(end_str)
++        else:
++            start = end = int(base)
++
++        if step <= 0:
++            raise ValueError("cron step must be a positive integer")
++
++        for value in range(start, end + 1, step):
++            values.add(value)
++
++    return values
++
++
++def _cron_weekday(day):
++    """Return the cron day-of-week for a date (0 = Sunday ... 6 = Saturday)."""
++    # dt.date.weekday() is Monday=0 ... Sunday=6, so shift it.
++    return (day.weekday() + 1) % 7
++
++
++def _day_matches(day, doms, dows):
++    """Apply the Vixie-cron day-of-month / day-of-week matching rule."""
++    dom_restricted = doms is not None
++    dow_restricted = dows is not None
++
++    dom_ok = day.day in doms if dom_restricted else False
++    dow_ok = _cron_weekday(day) in dows if dow_restricted else False
++
++    if dom_restricted and dow_restricted:
++        return dom_ok or dow_ok
++    if dom_restricted:
++        return dom_ok
++    if dow_restricted:
++        return dow_ok
++    return True
++
++
+ def next_run(expr, after):
+-    minute, hour, dom, month, dow = expr.split()
+-    t = after.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
+-    return t.replace(minute=int(minute) if minute != "*" else t.minute)
++    """Return the first datetime strictly after ``after`` matching ``expr``.
++
++    ``expr`` is a standard 5-field cron expression
++    ``minute hour day-of-month month day-of-week``. ``after`` must be a naive
++    ``datetime``; the returned value has minute precision (seconds/microseconds
++    are zero). Searches up to 5 years ahead and raises ``ValueError`` if no
++    matching time is found.
++    """
++    if not isinstance(after, dt.datetime):
++        raise TypeError("after must be a datetime")
++    if after.tzinfo is not None:
++        raise ValueError("after must be a naive datetime")
++
++    fields = expr.split()
++    if len(fields) != 5:
++        raise ValueError("cron expression must have exactly 5 fields")
++
++    minute, hour, dom, month, dow = fields
++
++    minutes = _parse_field(minute, 0, 59)
++    hours = _parse_field(hour, 0, 23)
++    doms = _parse_field(dom, 1, 31)
++    months = _parse_field(month, 1, 12)
++    dows = _parse_field(dow, 0, 7)
++
++    # 7 is an alias for Sunday (0).
++    if dows is not None and 7 in dows:
++        dows.discard(7)
++        dows.add(0)
++
++    hour_values = range(24) if hours is None else sorted(hours)
++    minute_values = range(60) if minutes is None else sorted(minutes)
++
++    day = after.date()
++    max_date = day + dt.timedelta(days=5 * 366)
++
++    while day <= max_date:
++        if months is not None and day.month not in months:
++            day += dt.timedelta(days=1)
++            continue
++        if not _day_matches(day, doms, dows):
++            day += dt.timedelta(days=1)
++            continue
++
++        for hour in hour_values:
++            for minute in minute_values:
++                candidate = dt.datetime(day.year, day.month, day.day, hour, minute)
++                if candidate > after:
++                    return candidate
++
++        day += dt.timedelta(days=1)
++
++    raise ValueError("no matching time found within 5 years")

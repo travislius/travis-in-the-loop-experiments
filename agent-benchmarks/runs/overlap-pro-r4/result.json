@@ -1,0 +1,26 @@
+{
+ "run": "overlap-pro-r4",
+ "task": "overlap",
+ "model": "deepseek-v4-pro",
+ "rep": 4,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 25.2,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "edit": 1
+ },
+ "usage": {
+  "input": 1401,
+  "output": 984,
+  "cache_hit": 33664
+ },
+ "hidden_tests_passed": 5,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "5 passed in 0.05s",
+ "final_response": "Fixed. The bug was in `booking.py`'s `overlaps` function, which used strict `<` comparisons:\n\n```python\nreturn a_start < b_end and b_start < a_end\n```\n\nSince the end dates are **inclusive**, two ranges sharing a single boundary day (e.g. `[1,5]` and `[5,9]` both occupy day 5) must be treated as overlapping. The strict `<` rejected that case.\n\nThe fix changes the comparisons to `<=`, making the check symmetric and order-independent:\n\n```python\nreturn a_start <= b_end and b_start <= a_end\n```\n\nVerified against the reported case plus boundary/reversed-order cases \u2014 all pass.",
+ "started_utc": "2026-11-12T15:59:11Z"
+}

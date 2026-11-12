@@ -1,0 +1,26 @@
+{
+ "run": "glob-flash-r2",
+ "task": "glob",
+ "model": "deepseek-flash",
+ "rep": 2,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 119.3,
+ "steps": 8,
+ "tool_calls": {
+  "bash": 5,
+  "read": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 2378,
+  "output": 18103,
+  "cache_hit": 126208
+ },
+ "hidden_tests_passed": 24,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "24 passed in 0.01s",
+ "final_response": "Implemented the fix in `pathglob.py`.\n\nThe new matcher:\n- Matches the entire path case-sensitively.\n- Supports `?`, `*`, and globstar `**` segment semantics.\n- Supports `[abc]`, `[a-z]`, and `[!a-z]` classes without matching `/`.\n- Supports backslash escaping.\n- Uses only the standard library, with memoized matching to avoid redundant work.\n\nVerified against 67+ semantic test cases, including nested `**`, trailing globstars, character classes, escapes, and whole-path matching.",
+ "started_utc": "2026-11-12T16:10:04Z"
+}

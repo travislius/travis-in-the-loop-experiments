@@ -1,0 +1,28 @@
+{
+ "run": "cron-flash-r1",
+ "task": "cron",
+ "model": "deepseek-flash",
+ "rep": 1,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 273.0,
+ "steps": 11,
+ "tool_calls": {
+  "read": 3,
+  "bash": 8,
+  "write": 1,
+  "edit": 1,
+  "job_output": 1
+ },
+ "usage": {
+  "input": 5831,
+  "output": 15645,
+  "cache_hit": 176640
+ },
+ "hidden_tests_passed": 11,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "11 passed in 0.25s",
+ "final_response": "Fixed `cron.py` \u2014 the stub is now a complete standard-library cron evaluator.\n\n## What changed\n\n- **Field parsing** (`_parse_field`): supports `*`, single numbers, comma lists, ranges (`1-5`), steps (`*/15`, `10-40/10`), and `n/step`; validates bounds and raises `ValueError` on malformed input.\n- **Day-of-week**: Sunday = 0, with 7 folded to 0.\n- **Vixie-cron day rule**: when both day-of-month and day-of-week are restricted, a day matches if *either* matches; otherwise the restricted field alone applies.\n- **Search**: starts at the next whole minute (so results are strictly after `after` even with nonzero seconds), scans up to ~5 years day-by-day with precomputed valid times, handles month/year rollovers and leap years, and raises `ValueError` if nothing matches (e.g. Feb 31).\n\n## Verification\n\n- 600 randomized expressions cross-checked against an independent brute-force minute scanner.\n- Explicit checks for steps, ranges, lists, Sunday `0`/`7`, DOM/DOW OR semantics, month/year rollovers, Feb 29 leaps (including the 2096\u21922104 gap raising `ValueError`), strictly-after behavior, and invalid fields.\n- File compiles cleanly and uses only `bisect` and `datetime`.",
+ "started_utc": "2026-11-12T16:03:30Z"
+}

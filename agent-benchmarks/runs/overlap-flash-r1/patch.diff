@@ -1,0 +1,17 @@
+Only in <EXPERIMENT>/runs/overlap-flash-r1/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/overlap/repo/booking.py <EXPERIMENT>/runs/overlap-flash-r1/workspace/booking.py
+--- <EXPERIMENT>/tasks/overlap/repo/booking.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/overlap-flash-r1/workspace/booking.py	2026-11-12 07:53:10
+@@ -1,3 +1,10 @@
+ def overlaps(a_start, a_end, b_start, b_end):
+-    """Return True if the inclusive date ranges overlap."""
+-    return a_start < b_end and b_start < a_end
++    """Return True if the inclusive date ranges overlap.
++
++    Both ranges are inclusive, so sharing a single endpoint (for example
++    [1, 5] and [5, 9]) counts as an overlap. Endpoints of each range may be
++    given in either order.
++    """
++    a_start, a_end = min(a_start, a_end), max(a_start, a_end)
++    b_start, b_end = min(b_start, b_end), max(b_start, b_end)
++    return a_start <= b_end and b_start <= a_end

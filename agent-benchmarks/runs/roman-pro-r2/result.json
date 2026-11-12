@@ -1,0 +1,26 @@
+{
+ "run": "roman-pro-r2",
+ "task": "roman",
+ "model": "deepseek-v4-pro",
+ "rep": 2,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 52.0,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1676,
+  "output": 3373,
+  "cache_hit": 44544
+ },
+ "hidden_tests_passed": 13,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "13 passed in 0.31s",
+ "final_response": "Fixed `from_roman()` in `roman.py`.\n\nThe original implementation blindly summed/negated character values with no validation, so it accepted garbage like `'IIII'`, `'VX'`, `'IC'`, `'XM'`, `'VV'`, and `'MMMM'`.\n\nThe fix:\n- Uppercases input so lowercase (`'xiv'`) is accepted.\n- Validates the input against a regex for standard subtractive-form Roman numerals 1\u20133999 (`M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})`), rejecting empty/non-string/invalid input with `ValueError`.\n- Then applies the original subtractive summation only to validated numerals.\n\nVerified against all the required cases plus additional edge cases (valid `'XIV'=14`, `'MCMXCIV'=1994`, `'MMMCMXCIX'=3999`, `'xiv'=14`; invalid `'IIII'`, `'VX'`, `'IC'`, `'XM'`, `'VV'`, `'MMMM'`, `''`, and others).",
+ "started_utc": "2026-11-12T15:55:37Z"
+}

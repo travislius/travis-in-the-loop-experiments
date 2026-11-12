@@ -1,0 +1,20 @@
+Only in <EXPERIMENT>/runs/slugify-flash-r1/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/slugify/repo/textutil.py <EXPERIMENT>/runs/slugify-flash-r1/workspace/textutil.py
+--- <EXPERIMENT>/tasks/slugify/repo/textutil.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/slugify-flash-r1/workspace/textutil.py	2026-11-12 07:53:11
+@@ -1,5 +1,14 @@
+ import re
++import unicodedata
++
++
+ def slugify(text):
++    # Decompose accented characters (e.g. "è" -> "e" + combining mark),
++    # then drop the non-ASCII combining marks so the base letters survive.
++    text = unicodedata.normalize("NFKD", text)
++    text = text.encode("ascii", "ignore").decode("ascii")
+     text = text.lower()
++    # Collapse any run of non-alphanumeric characters into a single hyphen.
+     text = re.sub(r"[^a-z0-9]+", "-", text)
+-    return text
++    # Remove hyphens at the start/end so the slug is not padded.
++    return text.strip("-")

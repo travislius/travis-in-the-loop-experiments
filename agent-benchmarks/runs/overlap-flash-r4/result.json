@@ -1,0 +1,26 @@
+{
+ "run": "overlap-flash-r4",
+ "task": "overlap",
+ "model": "deepseek-flash",
+ "rep": 4,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 24.7,
+ "steps": 7,
+ "tool_calls": {
+  "read": 2,
+  "bash": 4,
+  "edit": 1
+ },
+ "usage": {
+  "input": 2084,
+  "output": 1740,
+  "cache_hit": 49152
+ },
+ "hidden_tests_passed": 5,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "5 passed in 0.11s",
+ "final_response": "Fixed `booking.py`.\n\nThe bug was that the comparison used strict `<`, which treats the end date as exclusive. Since bookings occupy their end date inclusive, a range ending on the 5th and one starting on the 5th must overlap.\n\nChanges:\n- Use `<=` so shared boundary dates count as an overlap.\n- Normalize each range with `min`/`max`, so passing start/end in either order works correctly.\n\nVerified with 13 cases covering shared boundaries, adjacent non-overlapping ranges, contained ranges, reversed bounds, and single-day bookings.",
+ "started_utc": "2026-11-12T15:58:27Z"
+}

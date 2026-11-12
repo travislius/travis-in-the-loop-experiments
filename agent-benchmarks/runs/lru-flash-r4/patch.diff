@@ -1,0 +1,36 @@
+Only in <EXPERIMENT>/runs/lru-flash-r4/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/lru/repo/cache.py <EXPERIMENT>/runs/lru-flash-r4/workspace/cache.py
+--- <EXPERIMENT>/tasks/lru/repo/cache.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/lru-flash-r4/workspace/cache.py	2026-11-12 07:58:43
+@@ -3,9 +3,30 @@
+         self.capacity = capacity
+         self.data = {}
+         self.order = []
++
++    def _touch(self, key):
++        """Mark key as the most recently used."""
++        try:
++            self.order.remove(key)
++        except ValueError:
++            pass
++        self.order.append(key)
++
+     def get(self, key, default=None):
+-        return self.data.get(key, default)
++        if key not in self.data:
++            return default
++        self._touch(key)
++        return self.data[key]
++
+     def put(self, key, value):
++        if self.capacity <= 0:
++            return
++
++        if key in self.data:
++            self.data[key] = value
++            self._touch(key)
++            return
++
+         self.data[key] = value
+         self.order.append(key)
+         if len(self.order) > self.capacity:

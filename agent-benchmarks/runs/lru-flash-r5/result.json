@@ -1,0 +1,26 @@
+{
+ "run": "lru-flash-r5",
+ "task": "lru",
+ "model": "deepseek-flash",
+ "rep": 5,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 26.6,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 3,
+  "write": 1
+ },
+ "usage": {
+  "input": 1696,
+  "output": 1835,
+  "cache_hit": 34816
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.26s",
+ "final_response": "Fixed `cache.py`. The LRU cache now:\n\n- Refreshes a key's recency on `get`, so reading `a` prevents it from being evicted.\n- Refreshes existing keys on `put` without adding duplicate entries or consuming extra capacity.\n- Handles capacity `0` and repeated updates correctly.\n- Evicts only the least-recently-used entry when capacity is exceeded.\n\nVerified against the reported scenario plus update, MRU-order, missing-key, and zero-capacity cases.",
+ "started_utc": "2026-11-12T16:00:40Z"
+}

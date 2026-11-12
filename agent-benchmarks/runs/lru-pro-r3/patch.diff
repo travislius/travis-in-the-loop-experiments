@@ -1,0 +1,20 @@
+Only in <EXPERIMENT>/runs/lru-pro-r3/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/lru/repo/cache.py <EXPERIMENT>/runs/lru-pro-r3/workspace/cache.py
+--- <EXPERIMENT>/tasks/lru/repo/cache.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/lru-pro-r3/workspace/cache.py	2026-11-12 07:57:45
+@@ -4,8 +4,14 @@
+         self.data = {}
+         self.order = []
+     def get(self, key, default=None):
+-        return self.data.get(key, default)
++        if key in self.data:
++            self.order.remove(key)
++            self.order.append(key)
++            return self.data[key]
++        return default
+     def put(self, key, value):
++        if key in self.data:
++            self.order.remove(key)
+         self.data[key] = value
+         self.order.append(key)
+         if len(self.order) > self.capacity:

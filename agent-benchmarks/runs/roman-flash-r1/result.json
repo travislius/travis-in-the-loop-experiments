@@ -1,0 +1,26 @@
+{
+ "run": "roman-flash-r1",
+ "task": "roman",
+ "model": "deepseek-flash",
+ "rep": 1,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 31.0,
+ "steps": 6,
+ "tool_calls": {
+  "bash": 3,
+  "read": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1920,
+  "output": 1929,
+  "cache_hit": 42368
+ },
+ "hidden_tests_passed": 13,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "13 passed in 0.06s",
+ "final_response": "Fixed `roman.py`.\n\n**What was wrong:** `from_roman()` blindly summed/subtracted letter values, so non-canonical inputs like `IIII`, `VX`, `IC`, `VV`, `MMMM`, and `''` were accepted (or crashed with `KeyError` on bad characters instead of raising `ValueError`).\n\n**The fix:**\n- Uppercases input, so lowercase (`'xiv'`) works.\n- Rejects non-strings, empty strings, and unknown characters with `ValueError`.\n- Computes the value, then validates it by converting back with a canonical `to_roman()` (greedy standard subtractive form) and requiring an exact match \u2014 this rejects all malformed/redundant forms and out-of-range values (`<1` or `>3999`).\n\n**Verification:** All issue cases pass (`XIV`=14, `MCMXCIV`=1994, `xiv`=14; `IIII`, `VX`, `IC`, `XM`, `VV`, `MMMM`, `''` raise `ValueError`), an exhaustive round-trip over 1\u20133999 passes in both cases, and a fuzz test of all strings up to length 3 over `IVXLCDM` confirms every accepted string is canonical.",
+ "started_utc": "2026-11-12T15:52:49Z"
+}

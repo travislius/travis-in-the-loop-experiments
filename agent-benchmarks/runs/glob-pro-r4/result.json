@@ -1,0 +1,26 @@
+{
+ "run": "glob-pro-r4",
+ "task": "glob",
+ "model": "deepseek-v4-pro",
+ "rep": 4,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 174.1,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 2281,
+  "output": 18371,
+  "cache_hit": 67840
+ },
+ "hidden_tests_passed": 24,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "24 passed in 0.01s",
+ "final_response": "All tests pass. The bug is fixed.\n\nI replaced the `fnmatch`-based implementation in `pathglob.py` with a from-scratch matcher that implements the required semantics:\n\n- **Segment-aware `**`**: recognized only as a whole path segment, matching zero or more whole segments internally, zero or more when leading (`**/b` \u2192 `b` and `x/y/b`), and one-or-more when trailing (`a/**` matches `a/x`, `a/x/y` but not `a`).\n- **`*` / `?`**: match within a single segment, never crossing `/`.\n- **Character classes**: `[abc]`, ranges `[a-z]`, negation `[!a-z]`, with escaped characters and literal leading `]`.\n- **Backslash escaping**: `\\*`, `\\?`, `\\[`, `\\\\`, etc. match the literal character.\n- **Case-sensitive, whole-path matching**, using only the standard library (no `fnmatch`, no third-party deps).",
+ "started_utc": "2026-11-12T16:25:03Z"
+}

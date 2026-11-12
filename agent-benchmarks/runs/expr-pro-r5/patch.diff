@@ -1,0 +1,124 @@
+Only in <EXPERIMENT>/runs/expr-pro-r5/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/expr/repo/calc.py <EXPERIMENT>/runs/expr-pro-r5/workspace/calc.py
+--- <EXPERIMENT>/tasks/expr/repo/calc.py	2026-11-12 08:02:19
++++ <EXPERIMENT>/runs/expr-pro-r5/workspace/calc.py	2026-11-12 08:28:58
+@@ -1,6 +1,114 @@
+ def evaluate(s):
+-    s = s.replace(" ", "")
+-    total = 0.0
+-    for part in s.split("+"):
+-        total += float(part)
+-    return total
++    """Evaluate an arithmetic expression given as a string.
++
++    Grammar (precedence from low to high):
++        expression := term (('+' | '-') term)*
++        term       := unary (('*' | '/') unary)*
++        unary      := '-' unary | power
++        power      := primary ('^' unary)?    # right-associative
++        primary    := '(' expression ')' | number
++
++    Only a real parser is used here -- no eval/exec/ast.
++    """
++    pos = 0
++    n = len(s)
++
++    def is_digit(c):
++        return "0" <= c <= "9"
++
++    def skip_ws():
++        nonlocal pos
++        while pos < n and s[pos].isspace():
++            pos += 1
++
++    def parse_number():
++        nonlocal pos
++        start = pos
++        if s[pos] == ".":
++            # Leading decimal point, e.g. ".5"
++            pos += 1
++            if pos >= n or not is_digit(s[pos]):
++                raise ValueError("malformed expression")
++            while pos < n and is_digit(s[pos]):
++                pos += 1
++        else:
++            while pos < n and is_digit(s[pos]):
++                pos += 1
++            if pos < n and s[pos] == ".":
++                pos += 1
++                while pos < n and is_digit(s[pos]):
++                    pos += 1
++        return float(s[start:pos])
++
++    def parse_primary():
++        nonlocal pos
++        skip_ws()
++        if pos >= n:
++            raise ValueError("malformed expression")
++        c = s[pos]
++        if c == "(":
++            pos += 1
++            value = parse_expression()
++            skip_ws()
++            if pos >= n or s[pos] != ")":
++                raise ValueError("malformed expression")
++            pos += 1
++            return value
++        if is_digit(c) or c == ".":
++            return parse_number()
++        raise ValueError("malformed expression")
++
++    def parse_power():
++        nonlocal pos
++        value = parse_primary()
++        skip_ws()
++        if pos < n and s[pos] == "^":
++            pos += 1
++            exponent = parse_unary()
++            return value ** exponent
++        return value
++
++    def parse_unary():
++        nonlocal pos
++        skip_ws()
++        if pos < n and s[pos] == "-":
++            pos += 1
++            return -parse_unary()
++        return parse_power()
++
++    def parse_term():
++        nonlocal pos
++        value = parse_unary()
++        while True:
++            skip_ws()
++            if pos < n and s[pos] == "*":
++                pos += 1
++                value *= parse_unary()
++            elif pos < n and s[pos] == "/":
++                pos += 1
++                value /= parse_unary()
++            else:
++                return value
++
++    def parse_expression():
++        nonlocal pos
++        value = parse_term()
++        while True:
++            skip_ws()
++            if pos < n and s[pos] == "+":
++                pos += 1
++                value += parse_term()
++            elif pos < n and s[pos] == "-":
++                pos += 1
++                value -= parse_term()
++            else:
++                return value
++
++    skip_ws()
++    if pos >= n:
++        raise ValueError("empty expression")
++    result = parse_expression()
++    skip_ws()
++    if pos != n:
++        raise ValueError("malformed expression")
++    return result

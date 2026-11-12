@@ -1,0 +1,38 @@
+Only in <EXPERIMENT>/runs/bucket-flash-r4/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/bucket/repo/ratelimit.py <EXPERIMENT>/runs/bucket-flash-r4/workspace/ratelimit.py
+--- <EXPERIMENT>/tasks/bucket/repo/ratelimit.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/bucket-flash-r4/workspace/ratelimit.py	2026-11-12 07:58:49
+@@ -2,12 +2,28 @@
+     def __init__(self, capacity, rate):
+         self.capacity = capacity
+         self.rate = rate
+-        self.tokens = 0
+-        self.last = 0
++        # A new bucket starts full.
++        self.tokens = float(capacity)
++        # No previous timestamp yet; the first call must not refund tokens
++        # from an arbitrary epoch such as 0.
++        self.last = None
++
+     def allow(self, now):
+-        self.tokens += int((now - self.last) * self.rate)
+-        self.last = now
+-        if self.tokens > 0:
++        if self.last is None:
++            self.last = now
++        else:
++            elapsed = now - self.last
++            if elapsed > 0:
++                # Fractional refill is allowed, but tokens never exceed capacity.
++                self.tokens = min(
++                    float(self.capacity), self.tokens + elapsed * self.rate
++                )
++            if now > self.last:
++                self.last = now
++
++        # Tolerate tiny floating-point error so an exactly-full refill remains
++        # usable.
++        if self.tokens >= 1 - 1e-9:
+             self.tokens -= 1
+             return True
+         return False

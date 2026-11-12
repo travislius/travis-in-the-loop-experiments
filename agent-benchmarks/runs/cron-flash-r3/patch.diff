@@ -1,0 +1,147 @@
+diff -ru <EXPERIMENT>/tasks/cron/repo/cron.py <EXPERIMENT>/runs/cron-flash-r3/workspace/cron.py
+--- <EXPERIMENT>/tasks/cron/repo/cron.py	2026-11-12 08:02:07
++++ <EXPERIMENT>/runs/cron-flash-r3/workspace/cron.py	2026-11-12 08:20:37
+@@ -1,5 +1,140 @@
++"""Minimal 5-field cron expression support.
++
++The public entry point is :func:`next_run`, which returns the first naive
++datetime strictly after a given datetime that matches a standard cron
++expression of the form ``minute hour day-of-month month day-of-week``.
++"""
++
+ import datetime as dt
++
++
++_MINUTE = (0, 59)
++_HOUR = (0, 23)
++_DOM = (1, 31)
++_MONTH = (1, 12)
++_DOW = (0, 7)  # 0 and 7 both mean Sunday.
++
++# A leap-year-safe bound: five calendar years never span more than 366*5 days.
++_SEARCH_DAYS = 366 * 5
++
++
++def _to_int(text):
++    """Convert a cron field component to an int, raising ValueError on junk."""
++    try:
++        return int(text, 10)
++    except (TypeError, ValueError):
++        raise ValueError("invalid cron value: %r" % (text,)) from None
++
++
++def _parse_field(field, bounds, is_dow=False):
++    """Expand one cron field into the set of values it matches.
++
++    Supports ``*``, single values, lists, ranges and steps (``*/15``,
++    ``10-40/10``).  Day-of-week values are normalised so that 7 becomes 0.
++    """
++    lo, hi = bounds
++    if not isinstance(field, str) or not field:
++        raise ValueError("invalid cron field: %r" % (field,))
++
++    values = set()
++    for item in field.split(","):
++        item = item.strip()
++        if not item:
++            raise ValueError("invalid cron field: %r" % (field,))
++
++        has_step = "/" in item
++        step = 1
++        if has_step:
++            base, _, step_text = item.partition("/")
++            step = _to_int(step_text)
++            if step <= 0:
++                raise ValueError("cron step must be positive: %r" % (item,))
++        else:
++            base = item
++
++        if base == "*":
++            start, end = lo, hi
++        elif "-" in base:
++            start_text, _, end_text = base.partition("-")
++            start = _to_int(start_text)
++            end = _to_int(end_text)
++        else:
++            start = _to_int(base)
++            # A bare "N/step" is treated like "N-hi/step".
++            end = hi if has_step else start
++
++        if start < lo or end > hi or start > end:
++            raise ValueError(
++                "cron value out of range for %r: %r" % (bounds, item)
++            )
++
++        for value in range(start, end + 1, step):
++            values.add(value % 7 if is_dow else value)
++
++    return values
++
++
+ def next_run(expr, after):
+-    minute, hour, dom, month, dow = expr.split()
+-    t = after.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
+-    return t.replace(minute=int(minute) if minute != "*" else t.minute)
++    """Return the first datetime strictly after *after* matching *expr*.
++
++    *after* is a naive datetime; seconds and microseconds are dropped.  A
++    ``ValueError`` is raised if the expression is invalid or if no match is
++    found within five years.
++    """
++    fields = expr.split()
++    if len(fields) != 5:
++        raise ValueError(
++            "cron expression must have exactly 5 fields: %r" % (expr,)
++        )
++
++    minute_field, hour_field, dom_field, month_field, dow_field = fields
++
++    minutes = _parse_field(minute_field, _MINUTE)
++    hours = _parse_field(hour_field, _HOUR)
++    doms = _parse_field(dom_field, _DOM)
++    months = _parse_field(month_field, _MONTH)
++    dows = _parse_field(dow_field, _DOW, is_dow=True)
++
++    # Vixie cron considers a field "unrestricted" when it starts with '*'.
++    dom_star = dom_field.strip().startswith("*")
++    dow_star = dow_field.strip().startswith("*")
++
++    sorted_hours = sorted(hours)
++    sorted_minutes = sorted(minutes)
++
++    # The first candidate minute strictly after *after* (minute precision).
++    start = after.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
++    start_date = start.date()
++
++    for offset in range(_SEARCH_DAYS + 1):
++        current = start_date + dt.timedelta(days=offset)
++        if current.month not in months:
++            continue
++
++        dom_ok = current.day in doms
++        dow_ok = (current.isoweekday() % 7) in dows
++
++        # Vixie rule: if either DOM or DOW is unrestricted, both must match
++        # (the unrestricted field always matches); if both are restricted,
++        # either one matching is enough.
++        if dom_star or dow_star:
++            day_ok = dom_ok and dow_ok
++        else:
++            day_ok = dom_ok or dow_ok
++
++        if not day_ok:
++            continue
++
++        # On the starting day, only times later than the starting minute are
++        # eligible; any time is eligible on later days.
++        earliest = start.hour * 60 + start.minute if offset == 0 else -1
++        for hour in sorted_hours:
++            for minute in sorted_minutes:
++                if hour * 60 + minute >= earliest:
++                    return dt.datetime.combine(
++                        current, dt.time(hour, minute)
++                    )
++
++    raise ValueError(
++        "no run found within five years for expression: %r" % (expr,)
++    )

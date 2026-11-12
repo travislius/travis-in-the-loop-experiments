@@ -1,0 +1,17 @@
+Only in <EXPERIMENT>/runs/slugify-pro-r4/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/slugify/repo/textutil.py <EXPERIMENT>/runs/slugify-pro-r4/workspace/textutil.py
+--- <EXPERIMENT>/tasks/slugify/repo/textutil.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/slugify-pro-r4/workspace/textutil.py	2026-11-12 07:59:33
+@@ -1,5 +1,11 @@
+ import re
++import unicodedata
++
+ def slugify(text):
++    # Decompose accented characters (e.g. é -> e + combining accent)
++    text = unicodedata.normalize("NFKD", text)
++    # Drop non-ASCII characters (the combining accents), keeping base letters
++    text = text.encode("ascii", "ignore").decode("ascii")
+     text = text.lower()
+     text = re.sub(r"[^a-z0-9]+", "-", text)
+-    return text
++    return text.strip("-")

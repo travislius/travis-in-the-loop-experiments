@@ -1,0 +1,26 @@
+{
+ "run": "glob-pro-r5",
+ "task": "glob",
+ "model": "deepseek-v4-pro",
+ "rep": 5,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 310.1,
+ "steps": 7,
+ "tool_calls": {
+  "read": 2,
+  "bash": 4,
+  "write": 1
+ },
+ "usage": {
+  "input": 1792,
+  "output": 31627,
+  "cache_hit": 166528
+ },
+ "hidden_tests_passed": 24,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "24 passed in 0.18s",
+ "final_response": "The bug is fixed. Here's what was wrong and what I changed:\n\n## The problem\n`pathglob.py` used `fnmatch.fnmatch(path, pattern)`, which has the wrong semantics for this task: `*` matches `/`, `?` matches `/`, and `**` has no special meaning.\n\n## The fix\nI replaced it with a from-scratch matcher in `pathglob.py` that implements the required `.gitignore`-style semantics using only the standard library (`re`, `functools`):\n\n- **`?`** \u2192 `[^/]` \u2014 exactly one character, never `/`.\n- **`*`** \u2192 `[^/]*` \u2014 any run (including empty), never `/`.\n- **`**`** \u2014 handled as a whole path segment:\n  - `a/**/b` matches `a/b`, `a/x/b`, `a/x/y/b` (zero or more segments).\n  - trailing `a/**` matches everything under `a/` but **not** `a` itself.\n  - leading `**/b` matches `b` and `x/y/b`.\n- **`[abc]`**, **`[a-z]`**, **`[!a-z]`** \u2192 proper regex character classes; because matching is done per path segment, they can never match `/`.\n- **Backslash escapes** \u2192 `\\*` matches a literal `*`, etc.\n- **Case-sensitive** and **anchored to the whole path** (segments must be fully consumed).\n\nThe pattern is split into path segments (so `*`/`?`/classes naturally never cross `/`), each segment is compiled to a regex, and a memoized recursive matcher handles the `**` zero-or-more-segments logic.\n\nAll 43 core cases plus edge cases (escapes, ranges, negated classes, empty pattern, double-slash paths) pass.",
+ "started_utc": "2026-11-12T16:27:57Z"
+}

@@ -1,0 +1,26 @@
+{
+ "run": "overlap-pro-r3",
+ "task": "overlap",
+ "model": "deepseek-v4-pro",
+ "rep": 3,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 25.9,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "edit": 1
+ },
+ "usage": {
+  "input": 1355,
+  "output": 1305,
+  "cache_hit": 34048
+ },
+ "hidden_tests_passed": 5,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "5 passed in 0.02s",
+ "final_response": "Fixed the bug in `booking.py`.\n\nThe problem was two-fold:\n\n1. **Inclusive boundary not handled** \u2014 the old code used strict `<` comparisons (`a_start < b_end and b_start < a_end`), so `[1,5]` and `[5,9]` returned `False` even though both bookings occupy day 5.\n\n2. **Order dependence** \u2014 it assumed each range was already given start-before-end, so reversed ranges like `[5,1]` produced wrong results.\n\nThe fix normalizes each range with `sorted(...)` and uses inclusive `<=` comparisons:\n\n```python\ndef overlaps(a_start, a_end, b_start, b_end):\n    \"\"\"Return True if the inclusive date ranges overlap.\"\"\"\n    a_start, a_end = sorted((a_start, a_end))\n    b_start, b_end = sorted((b_start, b_end))\n    return a_start <= b_end and b_start <= a_end\n```\n\nVerified with tests covering the shared-boundary case, reversed range order, swapped arguments, adjacent-but-not-overlapping, disjoint, identical, and single-day ranges.",
+ "started_utc": "2026-11-12T15:57:23Z"
+}

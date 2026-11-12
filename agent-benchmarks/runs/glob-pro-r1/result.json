@@ -1,0 +1,26 @@
+{
+ "run": "glob-pro-r1",
+ "task": "glob",
+ "model": "deepseek-v4-pro",
+ "rep": 1,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 163.8,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 2123,
+  "output": 12933,
+  "cache_hit": 57216
+ },
+ "hidden_tests_passed": 24,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "24 passed in 0.02s",
+ "final_response": "All tests pass. The fix is complete.\n\nI replaced the incorrect `fnmatch.fnmatch` implementation in `pathglob.py` with a from-scratch glob matcher that implements the exact semantics from `ISSUE.md`:\n\n- **`?`** \u2014 matches exactly one character, never `/`.\n- **`*`** \u2014 matches any run of characters (including empty), never `/`.\n- **`**`** \u2014 as a whole segment matches zero or more segments (`a/**/b` \u2192 `a/b`, `a/x/b`, `a/x/y/b`), with the special trailing rule that `a/**` matches everything under `a/` but not `a` itself.\n- **`[abc]` / `[a-z]` / `[!a-z]`** \u2014 single-character classes/ranges/negation that never match `/`.\n- **`\\`** \u2014 escapes the next character (`\\*` matches a literal `*`).\n- Case-sensitive, whole-path matching, using only the standard library (no imports needed).\n\nThe implementation works by splitting the pattern and path into `/`-separated segments, matching `**` segments recursively, and matching each non-`**` segment with a character-level recursive matcher.",
+ "started_utc": "2026-11-12T16:03:30Z"
+}

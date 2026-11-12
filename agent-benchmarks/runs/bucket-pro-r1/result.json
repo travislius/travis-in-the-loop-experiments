@@ -1,0 +1,26 @@
+{
+ "run": "bucket-pro-r1",
+ "task": "bucket",
+ "model": "deepseek-v4-pro",
+ "rep": 1,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 49.4,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 7368,
+  "output": 2991,
+  "cache_hit": 38144
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.20s",
+ "final_response": "The fix is complete and verified.\n\n## What was wrong\n\nThe original `TokenBucket` had three bugs:\n\n1. **Started empty** \u2014 `self.tokens = 0` meant a new bucket had zero tokens instead of starting full at `capacity`.\n2. **Dropped fractional refill** \u2014 `int((now - self.last) * self.rate)` truncated the refill to an integer, so at any rate below 1 token/second the bucket accumulated nothing and *never refilled*.\n3. **Never capped tokens** \u2014 tokens could grow past `capacity`, letting bursts through.\n\nIt also checked `self.tokens > 0`, which would allow consuming a \"token\" when only a fraction of one existed.\n\n## The fix\n\nIn `ratelimit.py`:\n\n- Initialize `self.tokens = float(capacity)` so a new bucket starts full.\n- Use `self.last = None` and set it on the first `allow(now)` call (no phantom refill from a hardcoded zero).\n- Refill with floating-point math: `self.tokens + elapsed * self.rate`, capped with `min(self.capacity, ...)`.\n- Only consume when `self.tokens >= 1` (a whole token is available).\n\nThe quick behavioral checks confirm: a fresh bucket starts full, fractional refill accumulates correctly, tokens never exceed capacity, and repeated calls at the same `now` don't leak extra tokens.",
+ "started_utc": "2026-11-12T15:53:38Z"
+}

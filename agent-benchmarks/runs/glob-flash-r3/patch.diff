@@ -1,0 +1,195 @@
+diff -ru <EXPERIMENT>/tasks/glob/repo/pathglob.py <EXPERIMENT>/runs/glob-flash-r3/workspace/pathglob.py
+--- <EXPERIMENT>/tasks/glob/repo/pathglob.py	2026-11-12 08:02:33
++++ <EXPERIMENT>/runs/glob-flash-r3/workspace/pathglob.py	2026-11-12 08:21:29
+@@ -1,3 +1,189 @@
+-import fnmatch
++"""Glob matching for slash-separated relative paths."""
++
++
++def _parse_class_char(pattern, index):
++    """Return (character, next_index, was_escaped) for a class atom."""
++    if pattern[index] == "\\" and index + 1 < len(pattern):
++        return pattern[index + 1], index + 2, True
++    return pattern[index], index + 1, False
++
++
++def _parse_class(pattern, start):
++    """Parse a bracket expression beginning at ``start``.
++
++    Returns the token and the index just past the expression.  If the
++    expression is not terminated, '[' is treated as an ordinary character.
++    """
++    index = start + 1
++    negate = False
++    if index < len(pattern) and pattern[index] == "!":
++        negate = True
++        index += 1
++
++    items = []
++    first_item = True
++    closed = False
++    while index < len(pattern):
++        if pattern[index] == "]" and not first_item:
++            closed = True
++            index += 1
++            break
++
++        char, next_index, escaped = _parse_class_char(pattern, index)
++
++        # A '-' starts a range only if it is unescaped and has an endpoint.
++        if (
++            not escaped
++            and next_index < len(pattern)
++            and pattern[next_index] == "-"
++            and next_index + 1 < len(pattern)
++            and pattern[next_index + 1] != "]"
++        ):
++            end, after_end, _ = _parse_class_char(pattern, next_index + 1)
++            items.append(("range", char, end))
++            index = after_end
++        else:
++            items.append(("char", char))
++            index = next_index
++
++        first_item = False
++
++    if not closed:
++        return ("lit", "["), start + 1
++
++    return ("class", negate, items), index
++
++
++def _tokenize(pattern):
++    """Turn a glob pattern into a flat list of matching tokens."""
++    segments = []
++    current = []
++    index = 0
++
++    while index < len(pattern):
++        char = pattern[index]
++
++        if char == "\\":
++            if index + 1 < len(pattern):
++                escaped = pattern[index + 1]
++                if escaped == "/":
++                    segments.append(current)
++                    current = []
++                else:
++                    current.append(("lit", escaped))
++                index += 2
++            else:
++                current.append(("lit", "\\"))
++                index += 1
++        elif char == "/":
++            segments.append(current)
++            current = []
++            index += 1
++        elif char == "*":
++            end = index
++            while end < len(pattern) and pattern[end] == "*":
++                end += 1
++            current.append(("dstar",) if end - index == 2 else ("star",))
++            index = end
++        elif char == "?":
++            current.append(("qmark",))
++            index += 1
++        elif char == "[":
++            token, index = _parse_class(pattern, index)
++            current.append(token)
++        else:
++            current.append(("lit", char))
++            index += 1
++
++    segments.append(current)
++
++    # '**' is special only when it is an entire path segment.  Elsewhere
++    # consecutive stars behave like a single '*'.
++    for segment in segments:
++        if len(segment) == 1 and segment[0][0] == "dstar":
++            continue
++        for position, token in enumerate(segment):
++            if token[0] == "dstar":
++                segment[position] = ("star",)
++
++    tokens = []
++    for position, segment in enumerate(segments):
++        if position:
++            tokens.append(("slash",))
++        tokens.extend(segment)
++    return tokens
++
++
++def _class_matches(negate, items, char):
++    matched = False
++    for item in items:
++        if item[0] == "char":
++            if char == item[1]:
++                matched = True
++                break
++        else:
++            if item[1] <= char <= item[2]:
++                matched = True
++                break
++    return matched != negate
++
++
+ def match(pattern, path):
+-    return fnmatch.fnmatch(path, pattern)
++    """Return True if *path* matches the glob *pattern*.
++
++    The match is case-sensitive and covers the entire path.  '/' is never
++    matched by '?', '*', bracket expressions, or ordinary literals.  A '**'
++    that occupies an entire path segment matches zero or more segments.
++    """
++    tokens = _tokenize(pattern)
++    token_count = len(tokens)
++    path_length = len(path)
++
++    # dp[i][j] is True when tokens[i:] match path[j:].
++    dp = [[False] * (path_length + 1) for _ in range(token_count + 1)]
++    dp[token_count][path_length] = True
++
++    for token_index in range(token_count - 1, -1, -1):
++        token = tokens[token_index]
++        kind = token[0]
++        row = dp[token_index]
++        next_row = dp[token_index + 1]
++
++        for path_index in range(path_length, -1, -1):
++            if kind == "slash":
++                if path_index < path_length and path[path_index] == "/":
++                    row[path_index] = next_row[path_index + 1]
++            elif kind == "lit":
++                if path_index < path_length and path[path_index] == token[1]:
++                    row[path_index] = next_row[path_index + 1]
++            elif kind == "qmark":
++                if path_index < path_length and path[path_index] != "/":
++                    row[path_index] = next_row[path_index + 1]
++            elif kind == "class":
++                if (
++                    path_index < path_length
++                    and path[path_index] != "/"
++                    and _class_matches(token[1], token[2], path[path_index])
++                ):
++                    row[path_index] = next_row[path_index + 1]
++            elif kind == "star":
++                # Zero characters, or one non-'/' character and keep going.
++                if next_row[path_index]:
++                    row[path_index] = True
++                elif path_index < path_length and path[path_index] != "/":
++                    row[path_index] = row[path_index + 1]
++            else:  # 'dstar' as a complete path segment
++                if token_index + 1 < token_count and tokens[token_index + 1][0] == "slash":
++                    # '**/' can consume no segments at all (skip the slash),
++                    # or one whole non-empty segment plus its trailing slash.
++                    if dp[token_index + 2][path_index]:
++                        row[path_index] = True
++                    else:
++                        slash = path.find("/", path_index)
++                        if slash > path_index:
++                            row[path_index] = row[slash + 1]
++                else:
++                    # A trailing '**' matches every remaining segment.
++                    row[path_index] = True
++
++    return dp[0][0]

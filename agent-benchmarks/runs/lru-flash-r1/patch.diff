@@ -1,0 +1,41 @@
+Only in <EXPERIMENT>/runs/lru-flash-r1/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/lru/repo/cache.py <EXPERIMENT>/runs/lru-flash-r1/workspace/cache.py
+--- <EXPERIMENT>/tasks/lru/repo/cache.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/lru-flash-r1/workspace/cache.py	2026-11-12 07:53:11
+@@ -3,11 +3,32 @@
+         self.capacity = capacity
+         self.data = {}
+         self.order = []
++
++    def _touch(self, key):
++        """Mark key as the most recently used."""
++        self.order.remove(key)
++        self.order.append(key)
++
+     def get(self, key, default=None):
+-        return self.data.get(key, default)
++        if key not in self.data:
++            return default
++        self._touch(key)
++        return self.data[key]
++
+     def put(self, key, value):
+-        self.data[key] = value
+-        self.order.append(key)
+-        if len(self.order) > self.capacity:
++        if key in self.data:
++            # Updating an existing key must not consume extra capacity.
++            self.data[key] = value
++            self._touch(key)
++            return
++
++        if self.capacity <= 0:
++            return
++
++        # Evict the least recently used entries before inserting the new one.
++        while len(self.order) >= self.capacity:
+             old = self.order.pop(0)
+             self.data.pop(old, None)
++
++        self.data[key] = value
++        self.order.append(key)

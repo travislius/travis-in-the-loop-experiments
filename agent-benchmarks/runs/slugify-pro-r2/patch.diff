@@ -1,0 +1,15 @@
+Only in <EXPERIMENT>/runs/slugify-pro-r2/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/slugify/repo/textutil.py <EXPERIMENT>/runs/slugify-pro-r2/workspace/textutil.py
+--- <EXPERIMENT>/tasks/slugify/repo/textutil.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/slugify-pro-r2/workspace/textutil.py	2026-11-12 07:56:01
+@@ -1,5 +1,9 @@
+ import re
++import unicodedata
++
+ def slugify(text):
++    text = unicodedata.normalize("NFKD", text)
++    text = text.encode("ascii", "ignore").decode("ascii")
+     text = text.lower()
+     text = re.sub(r"[^a-z0-9]+", "-", text)
+-    return text
++    return text.strip("-")

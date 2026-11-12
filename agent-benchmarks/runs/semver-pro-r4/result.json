@@ -1,0 +1,26 @@
+{
+ "run": "semver-pro-r4",
+ "task": "semver",
+ "model": "deepseek-v4-pro",
+ "rep": 4,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 30.5,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1699,
+  "output": 1619,
+  "cache_hit": 34560
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.02s",
+ "final_response": "The bug is fixed. The original `compare` split on `\".\"` and compared the resulting string lists lexicographically, which broke on multi-digit numbers (`\"10\" < \"9\"`), treated pre-release/build metadata incorrectly, and didn't follow SemVer 2.0.0 precedence.\n\nThe new implementation:\n\n1. **Strips build metadata** (everything after `+`) since it's ignored for precedence.\n2. **Splits off the pre-release** (everything after the first `-`) and parses major/minor/patch as integers, so `1.10.0 > 1.9.0` correctly.\n3. **Compares pre-release identifiers** per SemVer:\n   - numeric vs numeric \u2192 compare as integers (`2 < 11`)\n   - numeric vs alphanumeric \u2192 numeric sorts lower (`alpha.1 < alpha.beta`)\n   - alphanumeric vs alphanumeric \u2192 ASCII lexical order\n   - shorter pre-release with all shared identifiers equal sorts lower (`alpha < alpha.1`)\n   - a version without pre-release sorts higher than any pre-release (`rc.1 < release`)\n\nAll examples from the issue now pass:\n- `1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0` \u2713\n- `1.0.0+build.5 == 1.0.0` \u2192 `0` \u2713\n- `1.10.0 > 1.9.0` \u2192 `1` \u2713",
+ "started_utc": "2026-11-12T15:59:11Z"
+}

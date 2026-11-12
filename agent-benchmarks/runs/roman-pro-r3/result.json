@@ -1,0 +1,26 @@
+{
+ "run": "roman-pro-r3",
+ "task": "roman",
+ "model": "deepseek-v4-pro",
+ "rep": 3,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 49.3,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1714,
+  "output": 3325,
+  "cache_hit": 44288
+ },
+ "hidden_tests_passed": 13,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "13 passed in 0.01s",
+ "final_response": "The fix is complete. The issue was that `from_roman()` summed subtractive pairs without validating that the input was actually a well-formed standard Roman numeral, so garbage like `'IIII'`, `'VX'`, `'IC'`, `'XM'`, `'VV'`, and `'MMMM'` was silently accepted.\n\nI fixed `roman.py` by adding a validation step:\n\n- A regex (`^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$`) enforces standard subtractive form for 1\u20133999:\n  - `I`, `X`, `C`, `M` may repeat up to 3 times; `V`, `L`, `D` may not repeat.\n  - Only the legal subtractive pairs (`IV`, `IX`, `XL`, `XC`, `CD`, `CM`) are allowed.\n- `re.IGNORECASE` handles lowercase input (`'xiv'` \u2192 14).\n- Empty string and non-string inputs raise `ValueError`.\n- On valid input, the existing subtractive-sum loop still computes the correct value (e.g. `'MCMXCIV'` \u2192 1994).\n\nI verified the fix against all the examples in the report plus additional edge cases (`'VIV'`, `'IL'`, `'CMC'`, `'DM'`, `'XXXX'`, `'LL'`, whitespace, and non-string inputs) \u2014 all invalid cases raise `ValueError` and all valid numerals convert correctly.",
+ "started_utc": "2026-11-12T15:57:23Z"
+}

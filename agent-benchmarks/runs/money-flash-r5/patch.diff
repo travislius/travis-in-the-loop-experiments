@@ -1,0 +1,78 @@
+Only in <EXPERIMENT>/runs/money-flash-r5/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/money/repo/money.py <EXPERIMENT>/runs/money-flash-r5/workspace/money.py
+--- <EXPERIMENT>/tasks/money/repo/money.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/money-flash-r5/workspace/money.py	2026-11-12 08:01:07
+@@ -1,3 +1,71 @@
++"""Helpers for parsing monetary amounts from bank exports."""
++
++import re
++
++
+ def parse_amount(s):
+-    s = s.replace("$", "").replace(",", "")
+-    return float(s)
++    """Parse a human-formatted amount and return it as a float.
++
++    Handles US and European grouping/decimal separators, currency symbols and
++    codes, leading minus signs, and accounting-style parentheses for negatives.
++    """
++    if isinstance(s, (int, float)):
++        return float(s)
++
++    text = str(s).strip()
++    if not text:
++        raise ValueError("amount is empty")
++
++    negative = False
++
++    # Accounting-style negatives: (1,234.50) or ($1,234.50)
++    if text.startswith("(") and text.endswith(")"):
++        negative = True
++        text = text[1:-1].strip()
++
++    # A minus sign may appear before or after a currency symbol/code.
++    if "-" in text or "\u2212" in text:  # include the Unicode minus sign
++        negative = True
++        text = text.replace("-", "").replace("\u2212", "")
++
++    # Keep only digits and separators; drop currency symbols, codes and spaces.
++    cleaned = re.sub(r"[^0-9.,]", "", text)
++    if not cleaned or not any(ch.isdigit() for ch in cleaned):
++        raise ValueError("could not parse amount: {!r}".format(s))
++
++    has_dot = "." in cleaned
++    has_comma = "," in cleaned
++
++    if has_dot and has_comma:
++        # Whichever separator comes last is the decimal separator.
++        if cleaned.rfind(".") > cleaned.rfind(","):
++            cleaned = cleaned.replace(",", "")           # 1,234.50
++        else:
++            cleaned = cleaned.replace(".", "").replace(",", ".")  # 1.234,50
++    elif has_comma:
++        if cleaned.count(",") > 1:
++            # Multiple commas must be thousands separators: 1,234,567
++            cleaned = cleaned.replace(",", "")
++        else:
++            before, after = cleaned.split(",")
++            if len(after) == 3 and len(before) <= 3 and before not in ("", "0"):
++                # Single comma followed by three digits: 1,234
++                cleaned = cleaned.replace(",", "")
++            else:
++                cleaned = cleaned.replace(",", ".")      # EUR 3,5
++    elif has_dot:
++        if cleaned.count(".") > 1:
++            # Multiple dots must be thousands separators: 1.234.567
++            cleaned = cleaned.replace(".", "")
++        else:
++            before, after = cleaned.split(".")
++            if len(after) == 3 and len(before) <= 3 and before not in ("", "0"):
++                # Single dot followed by three digits: 1.234
++                cleaned = cleaned.replace(".", "")
++
++    try:
++        value = float(cleaned)
++    except ValueError:
++        raise ValueError("could not parse amount: {!r}".format(s))
++
++    return -value if negative else value

@@ -1,0 +1,31 @@
+Only in <EXPERIMENT>/runs/lru-flash-r5/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/lru/repo/cache.py <EXPERIMENT>/runs/lru-flash-r5/workspace/cache.py
+--- <EXPERIMENT>/tasks/lru/repo/cache.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/lru-flash-r5/workspace/cache.py	2026-11-12 08:01:00
+@@ -3,11 +3,23 @@
+         self.capacity = capacity
+         self.data = {}
+         self.order = []
++
++    def _touch(self, key):
++        """Move key to the most-recently-used end of the order list."""
++        self.order = [k for k in self.order if k != key]
++        self.order.append(key)
++
+     def get(self, key, default=None):
+-        return self.data.get(key, default)
++        if key not in self.data:
++            return default
++        self._touch(key)
++        return self.data[key]
++
+     def put(self, key, value):
++        if self.capacity <= 0:
++            return
+         self.data[key] = value
+-        self.order.append(key)
+-        if len(self.order) > self.capacity:
++        self._touch(key)
++        while len(self.order) > self.capacity:
+             old = self.order.pop(0)
+             self.data.pop(old, None)

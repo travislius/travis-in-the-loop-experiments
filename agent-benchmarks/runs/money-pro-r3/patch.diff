@@ -1,0 +1,48 @@
+Only in <EXPERIMENT>/runs/money-pro-r3/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/money/repo/money.py <EXPERIMENT>/runs/money-pro-r3/workspace/money.py
+--- <EXPERIMENT>/tasks/money/repo/money.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/money-pro-r3/workspace/money.py	2026-11-12 07:58:01
+@@ -1,3 +1,41 @@
++import re
++
++
+ def parse_amount(s):
+-    s = s.replace("$", "").replace(",", "")
+-    return float(s)
++    """Parse a monetary amount from a bank export and return a float."""
++    text = s.strip()
++    negative = False
++
++    # Accounting negative: parentheses wrap the whole amount, e.g. '(1,234.50)'.
++    if text.startswith("(") and text.endswith(")"):
++        negative = True
++        text = text[1:-1].strip()
++
++    # Drop currency symbols, letters and whitespace, keeping the numeric parts.
++    text = re.sub(r"[^\d.,+-]", "", text)
++
++    # Explicit sign.
++    if text.startswith("-"):
++        negative = True
++        text = text[1:]
++    elif text.startswith("+"):
++        text = text[1:]
++
++    # Decide which separator is the decimal point.
++    if "." in text and "," in text:
++        # The rightmost separator is the decimal separator.
++        if text.rfind(",") > text.rfind("."):
++            text = text.replace(".", "").replace(",", ".")
++        else:
++            text = text.replace(",", "")
++    elif "," in text:
++        # A single comma followed by three digits is a thousands separator;
++        # otherwise it is a decimal separator (e.g. '3,5').
++        last = text.rfind(",")
++        if text.count(",") == 1 and len(text) - last - 1 == 3:
++            text = text.replace(",", "")
++        else:
++            text = text.replace(",", ".")
++
++    value = float(text)
++    return -value if negative else value

@@ -1,0 +1,26 @@
+{
+ "run": "overlap-pro-r2",
+ "task": "overlap",
+ "model": "deepseek-v4-pro",
+ "rep": 2,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 38.0,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "edit": 1
+ },
+ "usage": {
+  "input": 1599,
+  "output": 1747,
+  "cache_hit": 41600
+ },
+ "hidden_tests_passed": 5,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "5 passed in 0.02s",
+ "final_response": "Fixed the bug in `booking.py`.\n\nThe issue was that `overlaps` used strict `<` comparisons, which treated the ranges as half-open intervals. With inclusive end dates, `[1,5]` and `[5,9]` both occupy day 5, so they do overlap.\n\nThe fix changes the boundary checks to be inclusive:\n\n```python\nreturn a_start <= b_end and b_start <= a_end\n```\n\nThis:\n- Correctly reports `[1,5]` and `[5,9]` as overlapping (shared day 5).\n- Keeps truly disjoint ranges like `[1,5]` and `[6,9]` as non-overlapping.\n- Remains symmetric, so the ranges work in either order (`overlaps(5,9,1,5)` is also `True`).\n\nAll test cases pass.",
+ "started_utc": "2026-11-12T15:55:37Z"
+}

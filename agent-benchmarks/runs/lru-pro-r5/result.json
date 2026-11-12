@@ -1,0 +1,26 @@
+{
+ "run": "lru-pro-r5",
+ "task": "lru",
+ "model": "deepseek-v4-pro",
+ "rep": 5,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 75.1,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1454,
+  "output": 1883,
+  "cache_hit": 35328
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.40s",
+ "final_response": "The fix is complete. The issue was in `cache.py`:\n\n1. **`get` didn't mark a key as recently used** \u2014 so `get(a)` left `a` in its original position and `put(c)` evicted `a` instead of the actually-least-recently-used `b`. `get` now moves the accessed key to the end (most-recently-used position).\n\n2. **Updating an existing key counted against capacity** \u2014 `put` always appended to `order`, creating duplicate entries and causing premature/incorrect eviction. `put` now removes an existing key before re-inserting it, so updates don't inflate the count.\n\nI replaced the fragile `data` + `order` list approach with an insertion-ordered `dict`, where the least-recently-used key is simply the first item. Both scenarios from the report now pass.",
+ "started_utc": "2026-11-12T16:01:20Z"
+}

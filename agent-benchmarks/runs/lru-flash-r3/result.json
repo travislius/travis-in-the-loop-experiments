@@ -1,0 +1,26 @@
+{
+ "run": "lru-flash-r3",
+ "task": "lru",
+ "model": "deepseek-flash",
+ "rep": 3,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 22.3,
+ "steps": 5,
+ "tool_calls": {
+  "bash": 2,
+  "read": 2,
+  "edit": 1
+ },
+ "usage": {
+  "input": 1614,
+  "output": 1554,
+  "cache_hit": 33920
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.02s",
+ "final_response": "Fixed `cache.py`.\n\nThe bug was twofold:\n- `get()` never refreshed an item's recency, so a recently read key stayed at the front of the eviction order.\n- `put()` appended existing keys again without removing the old position, inflating `order` and evicting valid entries.\n\nNow `get()` moves hit keys to the most-recently-used position, and `put()` updates in place (removing the stale order entry) before evicting only the true least-recently-used key. Verified against the reported scenario plus update, missing-key, and small-capacity cases.",
+ "started_utc": "2026-11-12T15:56:44Z"
+}

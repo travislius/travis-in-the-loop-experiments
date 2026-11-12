@@ -1,0 +1,26 @@
+{
+ "run": "overlap-pro-r5",
+ "task": "overlap",
+ "model": "deepseek-v4-pro",
+ "rep": 5,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 90.3,
+ "steps": 7,
+ "tool_calls": {
+  "read": 2,
+  "bash": 3,
+  "edit": 1
+ },
+ "usage": {
+  "input": 1750,
+  "output": 2928,
+  "cache_hit": 52608
+ },
+ "hidden_tests_passed": 5,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "5 passed in 0.64s",
+ "final_response": "The fix is complete and verified.\n\n**Root cause:** `booking.py` used strict `<` comparisons:\n```python\nreturn a_start < b_end and b_start < a_end\n```\nWith inclusive end dates, `[1,5]` and `[5,9]` share day 5, but `b_start < a_end` became `5 < 5` \u2192 `False`, so it wrongly reported no overlap. It also assumed each range was given in ascending order.\n\n**Fix:** Use inclusive `<=` and normalize each range so its start/end can be passed in either order:\n```python\na_start, a_end = sorted((a_start, a_end))\nb_start, b_end = sorted((b_start, b_end))\nreturn a_start <= b_end and b_start <= a_end\n```\n\nThis resolves both the boundary-day double-booking and any-order ranges, confirmed by the passing assertions above.",
+ "started_utc": "2026-11-12T16:01:19Z"
+}

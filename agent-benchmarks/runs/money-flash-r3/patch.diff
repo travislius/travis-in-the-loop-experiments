@@ -1,0 +1,75 @@
+Only in <EXPERIMENT>/runs/money-flash-r3/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/money/repo/money.py <EXPERIMENT>/runs/money-flash-r3/workspace/money.py
+--- <EXPERIMENT>/tasks/money/repo/money.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/money-flash-r3/workspace/money.py	2026-11-12 07:57:13
+@@ -1,3 +1,68 @@
++import re
++
++
++def _normalize_number(text):
++    """Convert a numeric string using either US or European conventions to float."""
++    # Keep only characters that can be part of a number; this strips currency
++    # symbols, currency codes (e.g. "EUR"), whitespace and other labels.
++    cleaned = re.sub(r"[^0-9.,+\-]", "", text)
++    cleaned = cleaned.replace("+", "").replace("-", "")
++
++    if not cleaned:
++        raise ValueError("no numeric value found in {!r}".format(text))
++
++    if "," in cleaned and "." in cleaned:
++        # Whichever separator comes last is the decimal separator.
++        if cleaned.rfind(",") > cleaned.rfind("."):
++            cleaned = cleaned.replace(".", "").replace(",", ".")
++        else:
++            cleaned = cleaned.replace(",", "")
++    elif "," in cleaned:
++        parts = cleaned.split(",")
++        if len(parts) > 2:
++            # Multiple commas: the last group is decimal only if it is not a
++            # three-digit group (otherwise they are all thousands separators).
++            if len(parts[-1]) == 3:
++                cleaned = "".join(parts)
++            else:
++                cleaned = "".join(parts[:-1]) + "." + parts[-1]
++        else:
++            whole, fraction = parts
++            if (
++                len(fraction) == 3
++                and whole not in ("", "0")
++                and len(whole) <= 3
++            ):
++                # Ambiguous single comma with three trailing digits ("1,234")
++                # is treated as a thousands separator; otherwise it is decimal.
++                cleaned = whole + fraction
++            else:
++                cleaned = (whole or "0") + "." + fraction
++    else:
++        parts = cleaned.split(".")
++        if len(parts) > 2:
++            # Multiple dots: use the same rule as for multiple commas.
++            if len(parts[-1]) == 3:
++                cleaned = "".join(parts)
++            else:
++                cleaned = "".join(parts[:-1]) + "." + parts[-1]
++
++    return float(cleaned)
++
++
+ def parse_amount(s):
+-    s = s.replace("$", "").replace(",", "")
+-    return float(s)
++    """Parse a monetary amount from a bank export into a float."""
++    text = str(s).strip()
++
++    negative = False
++    if text.startswith("(") and text.endswith(")"):
++        negative = True
++        text = text[1:-1]
++
++    # Normalize common Unicode minus signs.
++    text = text.replace("\u2212", "-").replace("\u2013", "-")
++
++    negative = negative or "-" in text
++
++    value = _normalize_number(text)
++    return -value if negative else value

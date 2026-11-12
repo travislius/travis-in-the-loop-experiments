@@ -1,0 +1,26 @@
+{
+ "run": "money-pro-r2",
+ "task": "money",
+ "model": "deepseek-v4-pro",
+ "rep": 2,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 63.4,
+ "steps": 5,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1473,
+  "output": 4535,
+  "cache_hit": 40576
+ },
+ "hidden_tests_passed": 7,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "7 passed in 0.15s",
+ "final_response": "The bug is fixed. `parse_amount()` in `money.py` now handles all five required formats and returns a float in each case:\n\n- `'$1,234.50'` \u2192 `1234.5`\n- `'(1,234.50)'` \u2192 `-1234.5` (accounting negative)\n- `'-12'` \u2192 `-12.0`\n- `'1.234,50 \u20ac'` \u2192 `1234.5` (European: `.` = thousands, `,` = decimal)\n- `'EUR 3,5'` \u2192 `3.5` (European decimal comma)\n\nThe fix strips currency symbols/codes, detects the sign (parentheses or `-`), and resolves the decimal vs. thousands separator by position \u2014 using the last separator as the decimal mark when both `.` and `,` are present, and treating a trailing 1\u20132 digit group after a lone separator as the decimal fraction.",
+ "started_utc": "2026-11-12T15:55:37Z"
+}

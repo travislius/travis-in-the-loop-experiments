@@ -1,0 +1,150 @@
+Only in <EXPERIMENT>/runs/glob-pro-r4/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/glob/repo/pathglob.py <EXPERIMENT>/runs/glob-pro-r4/workspace/pathglob.py
+--- <EXPERIMENT>/tasks/glob/repo/pathglob.py	2026-11-12 08:02:33
++++ <EXPERIMENT>/runs/glob-pro-r4/workspace/pathglob.py	2026-11-12 08:27:47
+@@ -1,3 +1,143 @@
+-import fnmatch
+ def match(pattern, path):
+-    return fnmatch.fnmatch(path, pattern)
++    return _match_segments(pattern.split('/'), path.split('/'))
++
++
++def _match_segments(pat_segments, path_segments):
++    if not pat_segments:
++        return not path_segments
++
++    first = pat_segments[0]
++
++    if first == '**':
++        rest = pat_segments[1:]
++        if not rest:
++            # A trailing "**" matches one or more whole segments, so
++            # "a/**" matches everything under "a/" but not "a" itself.
++            return len(path_segments) > 0
++        # "**" matches zero whole segments...
++        if _match_segments(rest, path_segments):
++            return True
++        # ...or one or more whole segments.
++        return len(path_segments) > 0 and _match_segments(pat_segments, path_segments[1:])
++
++    if not path_segments:
++        return False
++    if not _match_segment(first, path_segments[0]):
++        return False
++    return _match_segments(pat_segments[1:], path_segments[1:])
++
++
++def _match_segment(pat, text):
++    return _match_seg(pat, text, 0, 0)
++
++
++def _match_seg(pat, text, pi, ti):
++    while pi < len(pat):
++        c = pat[pi]
++
++        if c == '\\':
++            if pi + 1 >= len(pat):
++                # A trailing backslash is a literal backslash.
++                return (
++                    ti < len(text)
++                    and text[ti] == '\\'
++                    and _match_seg(pat, text, pi + 1, ti + 1)
++                )
++            if ti < len(text) and text[ti] == pat[pi + 1]:
++                pi += 2
++                ti += 1
++                continue
++            return False
++
++        if c == '*':
++            # Try matching zero characters first.
++            if _match_seg(pat, text, pi + 1, ti):
++                return True
++            # Then try consuming one more character and retrying.
++            if ti < len(text):
++                ti += 1
++                continue
++            return False
++
++        if c == '?':
++            if ti < len(text) and text[ti] != '/':
++                pi += 1
++                ti += 1
++                continue
++            return False
++
++        if c == '[':
++            parsed = _parse_class(pat, pi)
++            if parsed is None:
++                # Unterminated class: treat '[' as a literal.
++                if ti < len(text) and text[ti] == '[':
++                    pi += 1
++                    ti += 1
++                    continue
++                return False
++            end, negate, chars = parsed
++            if ti >= len(text):
++                return False
++            ch = text[ti]
++            ok = (ch in chars) if not negate else (ch not in chars)
++            if ok and ch != '/':
++                pi = end
++                ti += 1
++                continue
++            return False
++
++        # Literal character.
++        if ti < len(text) and text[ti] == c:
++            pi += 1
++            ti += 1
++            continue
++        return False
++
++    return ti == len(text)
++
++
++def _parse_class(pat, i):
++    """Parse a [...] character class starting at pat[i] == '['.
++
++    Returns (index_after_class, negate, set_of_chars), or None when the
++    class is unterminated (so '[' should be treated as a literal).
++    """
++    j = i + 1
++    negate = False
++    if j < len(pat) and pat[j] in ('!', '^'):
++        negate = True
++        j += 1
++
++    chars = set()
++    if j < len(pat) and pat[j] == ']':
++        # A leading ']' is a literal character.
++        chars.add(']')
++        j += 1
++
++    while j < len(pat):
++        c = pat[j]
++
++        if c == ']':
++            return j + 1, negate, chars
++
++        if c == '\\' and j + 1 < len(pat):
++            chars.add(pat[j + 1])
++            j += 2
++            continue
++
++        # A range such as a-z or 0-9.
++        if (
++            j + 2 < len(pat)
++            and pat[j + 1] == '-'
++            and pat[j + 2] != ']'
++            and ord(pat[j]) <= ord(pat[j + 2])
++        ):
++            for code in range(ord(pat[j]), ord(pat[j + 2]) + 1):
++                chars.add(chr(code))
++            j += 3
++            continue
++
++        chars.add(c)
++        j += 1
++
++    return None

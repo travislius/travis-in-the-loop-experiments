@@ -1,0 +1,26 @@
+{
+ "run": "cron-flash-r2",
+ "task": "cron",
+ "model": "deepseek-flash",
+ "rep": 2,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 91.0,
+ "steps": 8,
+ "tool_calls": {
+  "read": 2,
+  "bash": 6,
+  "write": 1
+ },
+ "usage": {
+  "input": 2616,
+  "output": 7078,
+  "cache_hit": 79872
+ },
+ "hidden_tests_passed": 11,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "11 passed in 0.03s",
+ "final_response": "I implemented the fix in `cron.py`.\n\nWhat it now does:\n- Parses all 5 fields with support for `*`, numbers, lists, ranges, and steps (`*/15`, `10-40/10`, `n/step`).\n- Validates ranges and values, raising `ValueError` for malformed expressions.\n- Handles day-of-week `0-6` with Sunday `= 0`, plus `7` as Sunday.\n- Applies the Vixie-cron rule: when both day-of-month and day-of-week are restricted, either may match; otherwise the restricted field controls.\n- Starts strictly after `after` with seconds/microseconds dropped, and searches across month/year rollovers and leap days for up to 5 years before raising `ValueError`.\n\nVerified with targeted cases, 300 randomized brute-force comparisons, Vixie OR-rule semantics, invalid expressions, impossible dates, and leap-year/month-year rollovers.",
+ "started_utc": "2026-11-12T16:10:04Z"
+}

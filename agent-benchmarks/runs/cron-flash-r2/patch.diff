@@ -1,0 +1,144 @@
+diff -ru <EXPERIMENT>/tasks/cron/repo/cron.py <EXPERIMENT>/runs/cron-flash-r2/workspace/cron.py
+--- <EXPERIMENT>/tasks/cron/repo/cron.py	2026-11-12 08:02:07
++++ <EXPERIMENT>/runs/cron-flash-r2/workspace/cron.py	2026-11-12 08:10:33
+@@ -1,5 +1,137 @@
++"""Minimal standard-library cron expression evaluator."""
++
+ import datetime as dt
++
++
++# Inclusive bounds for each field: minute hour day-of-month month day-of-week
++_BOUNDS = (
++    (0, 59),
++    (0, 23),
++    (1, 31),
++    (1, 12),
++    (0, 7),
++)
++
++# How far ahead to search before giving up.
++_SEARCH_DAYS = 366 * 5
++
++
++def _parse_field(field, lo, hi):
++    """Expand one cron field into the set of values it matches.
++
++    Supports ``*``, single numbers, lists, ranges and steps, e.g.
++    ``*/15``, ``1,15,30``, ``1-5`` and ``10-40/10``.
++    """
++    values = set()
++
++    for part in field.split(","):
++        if not part:
++            raise ValueError("empty element in cron field: %r" % field)
++
++        step = 1
++        if "/" in part:
++            base, step_text = part.split("/", 1)
++            try:
++                step = int(step_text)
++            except ValueError:
++                raise ValueError("invalid step in cron field: %r" % part)
++            if step <= 0:
++                raise ValueError("step must be positive in cron field: %r" % part)
++        else:
++            base = part
++
++        if base == "*":
++            start, end = lo, hi
++        elif "-" in base:
++            start_text, end_text = base.split("-", 1)
++            try:
++                start, end = int(start_text), int(end_text)
++            except ValueError:
++                raise ValueError("invalid range in cron field: %r" % part)
++        else:
++            try:
++                start = int(base)
++            except ValueError:
++                raise ValueError("invalid value in cron field: %r" % part)
++            # ``n/step`` means "from n to the maximum, every step".
++            end = hi if "/" in part else start
++
++        if not (lo <= start <= hi and lo <= end <= hi):
++            raise ValueError(
++                "value out of range %d-%d in cron field: %r" % (lo, hi, part)
++            )
++        if start > end:
++            raise ValueError("reversed range in cron field: %r" % part)
++
++        values.update(range(start, end + 1, step))
++
++    return values
++
++
++def _parse(expr):
++    fields = expr.split()
++    if len(fields) != 5:
++        raise ValueError("expected a 5-field cron expression: %r" % expr)
++
++    parsed = []
++    for field, (lo, hi) in zip(fields, _BOUNDS):
++        values = _parse_field(field, lo, hi)
++        parsed.append(values)
++
++    minute, hour, dom, month, dow = parsed
++
++    # Day-of-week 7 is an alias for Sunday (0).
++    dow = {0 if value == 7 else value for value in dow}
++
++    return minute, hour, dom, month, dow
++
++
+ def next_run(expr, after):
+-    minute, hour, dom, month, dow = expr.split()
+-    t = after.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
+-    return t.replace(minute=int(minute) if minute != "*" else t.minute)
++    """Return the first naive datetime strictly after *after* matching *expr*.
++
++    Seconds and microseconds of *after* are dropped first, so the result has
++    minute precision.  Raises ``ValueError`` if the expression is invalid or
++    no matching time exists within roughly five years.
++    """
++    if not isinstance(after, dt.datetime):
++        raise TypeError("after must be a datetime")
++
++    minute, hour, dom, month, dow = _parse(expr)
++
++    # Vixie-cron treats a field as unrestricted only when it is exactly "*".
++    dom_restricted = expr.split()[2].strip() != "*"
++    dow_restricted = expr.split()[4].strip() != "*"
++
++    start = after.replace(second=0, microsecond=0) + dt.timedelta(minutes=1)
++    day = start.date()
++    last_day = day + dt.timedelta(days=_SEARCH_DAYS)
++
++    hours = sorted(hour)
++    minutes = sorted(minute)
++
++    while day <= last_day:
++        if day.month in month:
++            dom_match = day.day in dom
++            dow_match = (day.isoweekday() % 7) in dow
++
++            if dom_restricted and dow_restricted:
++                day_match = dom_match or dow_match
++            elif dom_restricted:
++                day_match = dom_match
++            elif dow_restricted:
++                day_match = dow_match
++            else:
++                day_match = True
++
++            if day_match:
++                for h in hours:
++                    for m in minutes:
++                        candidate = dt.datetime(
++                            day.year, day.month, day.day, h, m
++                        )
++                        if candidate >= start:
++                            return candidate
++
++        day += dt.timedelta(days=1)
++
++    raise ValueError("no matching time found for cron expression: %r" % expr)

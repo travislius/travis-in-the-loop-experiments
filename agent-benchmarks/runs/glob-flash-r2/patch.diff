@@ -1,0 +1,203 @@
+diff -ru <EXPERIMENT>/tasks/glob/repo/pathglob.py <EXPERIMENT>/runs/glob-flash-r2/workspace/pathglob.py
+--- <EXPERIMENT>/tasks/glob/repo/pathglob.py	2026-11-12 08:02:33
++++ <EXPERIMENT>/runs/glob-flash-r2/workspace/pathglob.py	2026-11-12 08:11:20
+@@ -1,3 +1,197 @@
+-import fnmatch
++"""Glob matching for slash-separated relative paths."""
++
++
++def _parse_class(pattern, start):
++    """Parse a character class beginning at *start*.
++
++    Returns ``(end, predicate)`` where *end* is the index just past the
++    closing bracket, or ``None`` when the text is not a valid class (in
++    which case the ``[`` is treated as a literal character).
++    """
++    length = len(pattern)
++    i = start + 1
++
++    negate = False
++    if i < length and pattern[i] == "!":
++        negate = True
++        i += 1
++
++    items = []  # (character, was_escaped)
++    first = True
++    while i < length:
++        char = pattern[i]
++
++        if char == "\\" and i + 1 < length:
++            items.append((pattern[i + 1], True))
++            i += 2
++            first = False
++            continue
++
++        if char == "]":
++            # A ']' immediately after '[' or '[!' is a literal member.
++            if first:
++                items.append(("]", False))
++                i += 1
++                first = False
++                continue
++            break
++
++        items.append((char, False))
++        i += 1
++        first = False
++    else:
++        return None
++
++    if i >= length or pattern[i] != "]" or not items:
++        return None
++
++    # Turn the item list into literal characters and ranges.
++    ranges = []
++    index = 0
++    while index < len(items):
++        if (
++            index + 2 < len(items)
++            and items[index + 1][0] == "-"
++            and not items[index + 1][1]
++        ):
++            ranges.append((items[index][0], items[index + 2][0]))
++            index += 3
++        else:
++            ranges.append((items[index][0], None))
++            index += 1
++
++    def predicate(char):
++        if char == "/":
++            return False
++
++        found = False
++        for low, high in ranges:
++            if high is None:
++                if char == low:
++                    found = True
++                    break
++            elif low <= char <= high:
++                found = True
++                break
++
++        return not found if negate else found
++
++    return i + 1, predicate
++
++
+ def match(pattern, path):
+-    return fnmatch.fnmatch(path, pattern)
++    """Return whether *path* matches glob *pattern*.
++
++    Matching is case-sensitive, covers the whole path, and treats ``/`` as
++    the segment separator.  ``*``, ``?`` and character classes never match
++    a slash.  A ``**`` that occupies a whole path segment matches zero or
++    more whole path segments.  A backslash escapes the following
++    character.
++    """
++    pattern_length = len(pattern)
++    path_length = len(path)
++    memo = {}
++
++    def is_whole_segment_double_star(index):
++        if index + 1 >= pattern_length:
++            return False
++        if pattern[index] != "*" or pattern[index + 1] != "*":
++            return False
++        if index > 0 and pattern[index - 1] != "/":
++            return False
++        if index + 2 < pattern_length and pattern[index + 2] != "/":
++            return False
++        return True
++
++    def matches(pattern_index, path_index):
++        key = (pattern_index, path_index)
++        if key in memo:
++            return memo[key]
++
++        if pattern_index == pattern_length:
++            result = path_index == path_length
++        else:
++            char = pattern[pattern_index]
++
++            if char == "\\":
++                if pattern_index + 1 < pattern_length:
++                    literal = pattern[pattern_index + 1]
++                    result = (
++                        path_index < path_length
++                        and path[path_index] == literal
++                        and matches(pattern_index + 2, path_index + 1)
++                    )
++                else:
++                    result = (
++                        path_index < path_length
++                        and path[path_index] == "\\"
++                        and matches(pattern_index + 1, path_index + 1)
++                    )
++
++            elif char == "*":
++                if is_whole_segment_double_star(pattern_index):
++                    if pattern_index + 2 == pattern_length:
++                        # A trailing '**' matches every whole segment that
++                        # remains (including no segments at all).
++                        result = path_index == path_length
++                        if not result and path_index < path_length:
++                            if path[path_index] != "/":
++                                slash = path.find("/", path_index)
++                                if slash == -1:
++                                    result = True
++                                else:
++                                    result = matches(
++                                        pattern_index, slash + 1
++                                    )
++                    else:
++                        # '**/' matches zero or more whole segments.
++                        result = matches(pattern_index + 3, path_index)
++                        if not result and path_index < path_length:
++                            if path[path_index] != "/":
++                                slash = path.find("/", path_index)
++                                if slash != -1:
++                                    result = matches(
++                                        pattern_index, slash + 1
++                                    )
++                else:
++                    # An ordinary '*' matches a run of non-slash
++                    # characters, possibly empty.
++                    result = matches(pattern_index + 1, path_index)
++                    if not result and path_index < path_length:
++                        if path[path_index] != "/":
++                            result = matches(pattern_index, path_index + 1)
++
++            elif char == "?":
++                result = (
++                    path_index < path_length
++                    and path[path_index] != "/"
++                    and matches(pattern_index + 1, path_index + 1)
++                )
++
++            elif char == "[":
++                parsed = _parse_class(pattern, pattern_index)
++                if parsed is None:
++                    result = (
++                        path_index < path_length
++                        and path[path_index] == "["
++                        and matches(pattern_index + 1, path_index + 1)
++                    )
++                else:
++                    end, predicate = parsed
++                    result = (
++                        path_index < path_length
++                        and predicate(path[path_index])
++                        and matches(end, path_index + 1)
++                    )
++
++            else:
++                result = (
++                    path_index < path_length
++                    and path[path_index] == char
++                    and matches(pattern_index + 1, path_index + 1)
++                )
++
++        memo[key] = result
++        return result
++
++    return matches(0, 0)

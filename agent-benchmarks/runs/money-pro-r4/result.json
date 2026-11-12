@@ -1,0 +1,26 @@
+{
+ "run": "money-pro-r4",
+ "task": "money",
+ "model": "deepseek-v4-pro",
+ "rep": 4,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 51.3,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1561,
+  "output": 3550,
+  "cache_hit": 45184
+ },
+ "hidden_tests_passed": 7,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "7 passed in 0.15s",
+ "final_response": "All five cases pass. The fix is in `money.py`.\n\n`parse_amount()` now:\n- Strips accounting negatives `(...)` and explicit `-`/`+` signs.\n- Removes currency symbols, letters, and spaces, keeping only digits and `.`/`,`.\n- Disambiguates separators: when both appear, the last one is the decimal separator; a lone comma is treated as a decimal comma unless it groups exactly 3 digits (thousands).\n- Returns a `float`, negating when appropriate.\n\nVerified results: `'$1,234.50'` \u2192 `1234.5`, `'(1,234.50)'` \u2192 `-1234.5`, `'-12'` \u2192 `-12.0`, `'1.234,50 \u20ac'` \u2192 `1234.5`, `'EUR 3,5'` \u2192 `3.5`.",
+ "started_utc": "2026-11-12T15:59:11Z"
+}

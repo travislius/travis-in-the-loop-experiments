@@ -1,0 +1,22 @@
+Only in <EXPERIMENT>/runs/merge-flash-r3/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/merge/repo/intervals.py <EXPERIMENT>/runs/merge-flash-r3/workspace/intervals.py
+--- <EXPERIMENT>/tasks/merge/repo/intervals.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/merge-flash-r3/workspace/intervals.py	2026-11-12 07:57:00
+@@ -1,8 +1,11 @@
+ def merge_intervals(intervals):
+-    out = []
+-    for s, e in intervals:
+-        if out and s < out[-1][1]:
+-            out[-1][1] = e
++    merged = []
++    for start, end in sorted(intervals, key=lambda interval: interval[0]):
++        if merged and start <= merged[-1][1]:
++            # Overlapping or touching; keep the furthest end so nested
++            # intervals don't shrink the merged range.
++            if end > merged[-1][1]:
++                merged[-1][1] = end
+         else:
+-            out.append([s, e])
+-    return out
++            merged.append([start, end])
++    return merged

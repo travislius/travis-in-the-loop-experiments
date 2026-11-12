@@ -1,0 +1,26 @@
+{
+ "run": "overlap-flash-r1",
+ "task": "overlap",
+ "model": "deepseek-flash",
+ "rep": 1,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 26.0,
+ "steps": 5,
+ "tool_calls": {
+  "bash": 2,
+  "read": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1715,
+  "output": 1226,
+  "cache_hit": 33280
+ },
+ "hidden_tests_passed": 5,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "5 passed in 0.01s",
+ "final_response": "Fixed `booking.py`.\n\nThe original condition `a_start < b_end and b_start < a_end` treated ranges as half-open, so touching inclusive ranges like `[1,5]` and `[5,9]` were reported as non-overlapping. It also assumed each range's endpoints were already ordered.\n\nThe fix:\n\n```python\ndef overlaps(a_start, a_end, b_start, b_end):\n    \"\"\"Return True if the inclusive date ranges overlap.\"\"\"\n    a_start, a_end = min(a_start, a_end), max(a_start, a_end)\n    b_start, b_end = min(b_start, b_end), max(b_start, b_end)\n    return a_start <= b_end and b_start <= a_end\n```\n\n- Uses `<=` so shared inclusive endpoints count as an overlap.\n- Normalizes each range with `min`/`max`, so endpoints in any order work.\n- Verified with integer, reversed, and `datetime.date` cases \u2014 all pass.",
+ "started_utc": "2026-11-12T15:52:49Z"
+}

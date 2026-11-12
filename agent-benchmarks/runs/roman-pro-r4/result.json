@@ -1,0 +1,27 @@
+{
+ "run": "roman-pro-r4",
+ "task": "roman",
+ "model": "deepseek-v4-pro",
+ "rep": 4,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 64.9,
+ "steps": 8,
+ "tool_calls": {
+  "read": 2,
+  "bash": 3,
+  "write": 1,
+  "edit": 1
+ },
+ "usage": {
+  "input": 1769,
+  "output": 4029,
+  "cache_hit": 64896
+ },
+ "hidden_tests_passed": 13,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "13 passed in 0.15s",
+ "final_response": "The fix is complete. Here's what I did and why:\n\n**The bug:** `from_roman()` simply summed numeral values (with subtractive logic) without validating the input, so garbage like `'IIII'`, `'VX'`, `'IC'`, `'XM'`, `'VV'`, `'MMMM'`, and `''` was silently accepted and returned a number.\n\n**The fix** (`roman.py`): added a regex that enforces the standard subtractive form before computing the value.\n\n```python\n_PATTERN = re.compile(\n    r\"M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})\",\n    re.IGNORECASE,\n)\n```\n\nThis:\n- Limits thousands to `M{0,3}` (so `MMMM` \u2192 4000+ is rejected, keeping the 1\u20133999 range).\n- Allows only the valid subtractive pairs (`CM`/`CD`, `XC`/`XL`, `IX`/`IV`), which rejects `IC`, `XM`, `VX`, `IL`, `IIV`, etc.\n- Caps repeatable symbols at 3 (`I`, `X`, `C`, `M`) and forbids repeating `V`/`L`/`D`, so `IIII` and `VV` fail.\n- Uses `re.IGNORECASE` so lowercase like `'xiv'` is accepted.\n\nI also added an empty-string guard (since every regex group is optional, the bare pattern would otherwise match `''`) and convert the input to uppercase before the existing value computation. Any invalid input now raises `ValueError`.\n\nVerified against all cases in the report (`'XIV'=14`, `'MCMXCIV'=1994`, lowercase `'xiv'=14`) plus the invalid examples \u2014 all pass.",
+ "started_utc": "2026-11-12T15:59:11Z"
+}

@@ -1,0 +1,26 @@
+{
+ "run": "semver-pro-r2",
+ "task": "semver",
+ "model": "deepseek-v4-pro",
+ "rep": 2,
+ "prompt": "There is a bug report in ISSUE.md. Fix the code in this folder so the issue is resolved. Do not ask questions; make the fix.",
+ "finish_reason": "completed",
+ "wall_seconds": 43.8,
+ "steps": 6,
+ "tool_calls": {
+  "read": 2,
+  "bash": 2,
+  "write": 1
+ },
+ "usage": {
+  "input": 1623,
+  "output": 2714,
+  "cache_hit": 43392
+ },
+ "hidden_tests_passed": 4,
+ "hidden_tests_failed": 0,
+ "resolved": true,
+ "pytest_summary": "4 passed in 0.02s",
+ "final_response": "The bug is fixed. The old `compare(a, b)` simply split each version on `\".\"` and compared the resulting lists of strings, which breaks precedence in three ways:\n\n1. **Numeric comparison** \u2014 `\"1.10.0\"` vs `\"1.9.0\"` compared `\"10\"` vs `\"9\"` as strings, so `1.9.0` wrongly won.\n2. **Pre-release handling** \u2014 `\"-alpha\"` etc. were never separated from the patch component, so pre-release ordering was wrong.\n3. **Build metadata** \u2014 `+build.5` was never stripped, so `1.0.0+build.5` and `1.0.0` were treated as different.\n\nI rewrote `semver.py` to follow SemVer 2.0.0 precedence exactly:\n\n- Strip build metadata (`+...`) before comparing.\n- Separate the pre-release (`-...`) from `MAJOR.MINOR.PATCH`.\n- Compare major/minor/patch numerically.\n- A version with no pre-release outranks one with a pre-release.\n- Compare pre-release dot-separated identifiers left to right: numeric identifiers numerically, non-numeric identifiers lexically (ASCII), numeric lower than non-numeric, and a longer pre-release list wins when all preceding identifiers are equal.\n\nAll the reported cases (and additional edge cases) pass.",
+ "started_utc": "2026-11-12T15:55:37Z"
+}

@@ -1,0 +1,173 @@
+Only in <EXPERIMENT>/runs/expr-flash-r1/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/expr/repo/calc.py <EXPERIMENT>/runs/expr-flash-r1/workspace/calc.py
+--- <EXPERIMENT>/tasks/expr/repo/calc.py	2026-11-12 08:02:19
++++ <EXPERIMENT>/runs/expr-flash-r1/workspace/calc.py	2026-11-12 08:04:27
+@@ -1,6 +1,163 @@
++"""Arithmetic expression evaluator.
++
++``evaluate`` parses and evaluates a string containing numbers, the operators
++``+ - * / ^`` and parentheses.  It deliberately does not use ``eval``,
++``exec`` or ``ast``.
++"""
++
++
++def _tokenize(text):
++    """Turn *text* into a list of ``(kind, value)`` tokens.
++
++    The final token is always ``("end", None)``.  Any character that is not
++    part of a number, an operator or a parenthesis makes the expression
++    malformed.
++    """
++    tokens = []
++    i = 0
++    length = len(text)
++
++    while i < length:
++        char = text[i]
++
++        if char.isspace():
++            i += 1
++            continue
++
++        if char.isdigit() or char == ".":
++            start = i
++            while i < length and text[i].isdigit():
++                i += 1
++
++            is_float = False
++            if i < length and text[i] == ".":
++                is_float = True
++                i += 1
++                while i < length and text[i].isdigit():
++                    i += 1
++
++            literal = text[start:i]
++            if literal == ".":
++                raise ValueError("Invalid number: {!r}".format(literal))
++
++            if is_float:
++                tokens.append(("number", float(literal)))
++            else:
++                tokens.append(("number", int(literal)))
++            continue
++
++        if char in "+-*/^()":
++            tokens.append((char, char))
++            i += 1
++            continue
++
++        raise ValueError("Unexpected character: {!r}".format(char))
++
++    tokens.append(("end", None))
++    return tokens
++
++
++class _Parser:
++    """Recursive-descent parser for the supported arithmetic grammar."""
++
++    def __init__(self, tokens):
++        self._tokens = tokens
++        self._position = 0
++
++    def _current(self):
++        return self._tokens[self._position]
++
++    def _advance(self):
++        token = self._tokens[self._position]
++        self._position += 1
++        return token
++
++    def parse(self):
++        if self._current()[0] == "end":
++            raise ValueError("Empty expression")
++
++        value = self._parse_expression()
++
++        if self._current()[0] != "end":
++            raise ValueError(
++                "Unexpected token: {!r}".format(self._current()[0])
++            )
++        return value
++
++    # expression := term (("+" | "-") term)*
++    def _parse_expression(self):
++        value = self._parse_term()
++
++        while self._current()[0] in ("+", "-"):
++            operator = self._advance()[0]
++            right = self._parse_term()
++            if operator == "+":
++                value += right
++            else:
++                value -= right
++
++        return value
++
++    # term := unary (("*" | "/") unary)*
++    def _parse_term(self):
++        value = self._parse_unary()
++
++        while self._current()[0] in ("*", "/"):
++            operator = self._advance()[0]
++            right = self._parse_unary()
++            if operator == "*":
++                value *= right
++            else:
++                value /= right
++
++        return value
++
++    # unary := "-" unary | power
++    #
++    # Unary minus has lower precedence than exponentiation, so -2^2 is -4.
++    def _parse_unary(self):
++        if self._current()[0] == "-":
++            self._advance()
++            return -self._parse_unary()
++        return self._parse_power()
++
++    # power := primary ("^" unary)?
++    #
++    # Taking a unary expression on the right makes ^ right-associative and
++    # also allows a signed exponent such as 2^-3.
++    def _parse_power(self):
++        base = self._parse_primary()
++
++        if self._current()[0] == "^":
++            self._advance()
++            exponent = self._parse_unary()
++            return base ** exponent
++
++        return base
++
++    # primary := number | "(" expression ")"
++    def _parse_primary(self):
++        kind, value = self._current()
++
++        if kind == "number":
++            self._advance()
++            return value
++
++        if kind == "(":
++            self._advance()
++            result = self._parse_expression()
++            if self._current()[0] != ")":
++                raise ValueError("Unbalanced parentheses")
++            self._advance()
++            return result
++
++        raise ValueError("Unexpected token: {!r}".format(kind))
++
++
+ def evaluate(s):
+-    s = s.replace(" ", "")
+-    total = 0.0
+-    for part in s.split("+"):
+-        total += float(part)
+-    return total
++    """Evaluate the arithmetic expression in *s* and return a number.
++
++    Raises ``ValueError`` for malformed expressions and ``ZeroDivisionError``
++    when a division by zero is attempted.
++    """
++    return _Parser(_tokenize(s)).parse()

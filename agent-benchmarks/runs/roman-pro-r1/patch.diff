@@ -1,0 +1,26 @@
+Only in <EXPERIMENT>/runs/roman-pro-r1/workspace: __pycache__
+diff -ru <EXPERIMENT>/tasks/roman/repo/roman.py <EXPERIMENT>/runs/roman-pro-r1/workspace/roman.py
+--- <EXPERIMENT>/tasks/roman/repo/roman.py	2026-11-11 19:21:23
++++ <EXPERIMENT>/runs/roman-pro-r1/workspace/roman.py	2026-11-12 07:54:27
+@@ -1,5 +1,21 @@
++import re
++
+ V = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
++
++# Standard subtractive Roman numeral for 1-3999:
++# thousands -> hundreds -> tens -> units, each using only the
++# canonical subtractive pairs (CM, CD, XC, XL, IX, IV).
++_PATTERN = re.compile(
++    r"M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})"
++)
++
++
+ def from_roman(s):
++    if not isinstance(s, str):
++        raise ValueError("Roman numeral must be a string")
++    s = s.upper()
++    if not s or not _PATTERN.fullmatch(s):
++        raise ValueError("invalid Roman numeral")
+     total = 0
+     for i, ch in enumerate(s):
+         v = V[ch]
