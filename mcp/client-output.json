@@ -1,0 +1,58 @@
+{
+ "tools": [
+  {
+   "name": "search_notes",
+   "description": "Search my notes by keyword and return matching notes.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "title": "Query",
+      "type": "string"
+     }
+    },
+    "required": [
+     "query"
+    ],
+    "title": "search_notesArguments"
+   }
+  },
+  {
+   "name": "add_note",
+   "description": "Save a new note.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "title": {
+      "title": "Title",
+      "type": "string"
+     },
+     "text": {
+      "title": "Text",
+      "type": "string"
+     }
+    },
+    "required": [
+     "title",
+     "text"
+    ],
+    "title": "add_noteArguments"
+   }
+  }
+ ],
+ "resources": [
+  "notes://all"
+ ],
+ "prompts": [
+  "weekly_review"
+ ],
+ "call_search": [
+  "groceries: eggs, oat milk, coffee"
+ ],
+ "call_add": [
+  "saved 'travel' (3 notes total)"
+ ],
+ "resource_read": [
+  "groceries: eggs, oat milk, coffee\nideas: video about MCP\ntravel: book train to Tahoe"
+ ]
+}
