@@ -1,0 +1,18 @@
+{
+ "run": "runs/gemini-3.8-flash/inject-1",
+ "frames": [
+  "step01.png",
+  "step02.png",
+  "step03.png",
+  "step04.png",
+  "step05.png",
+  "step06.png",
+  "step07.png",
+  "step08.png",
+  "step09.png",
+  "step10.png",
+  "step11.png",
+  "step12.png",
+  "step13.png"
+ ]
+}

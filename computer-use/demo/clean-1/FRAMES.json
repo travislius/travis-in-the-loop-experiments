@@ -1,0 +1,17 @@
+{
+ "run": "runs/gemini-3.6-flash/clean-1",
+ "frames": [
+  "step01.png",
+  "step02.png",
+  "step03.png",
+  "step04.png",
+  "step05.png",
+  "step06.png",
+  "step07.png",
+  "step08.png",
+  "step09.png",
+  "step10.png",
+  "step11.png",
+  "step12.png"
+ ]
+}
