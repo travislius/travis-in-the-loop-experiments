@@ -1,0 +1,612 @@
+{
+ "date": "2026-11-17T21:57:41.584991-08:00",
+ "hardware": [
+  "Model Identifier: Mac17,7",
+  "Chip: Apple M5 Max",
+  "Total Number of Cores: 18 (6 Super and 12 Performance)",
+  "Memory: 64 GB",
+  "Chipset Model: Apple M5 Max",
+  "Total Number of Cores: 40"
+ ],
+ "macos": "27.2.1",
+ "llama_cpp_commit": "52975342ff6b85127ff31930d39e36725fd08809 Wed Nov 18 00:12:20 2026 +0100",
+ "ram_gb": 64,
+ "bandwidth_gbs": 614,
+ "bandwidth_source": "Apple newsroom, Mar 3 2026 (M5 Max 40-core GPU: up to 614GB/s)",
+ "flint_bf16_file_gb": 79.63,
+ "flint_bf16_source": "ggml-org/Flint-GGUF Flint-BF16.gguf size (HF API)",
+ "reps": 3,
+ "prompt_tokens": 512,
+ "gen_tokens": 128,
+ "depths": "0,8192,32768",
+ "models": {
+  "flint-q4": {
+   "file": "Flint-Q4_K_M.gguf",
+   "name": "Flint 40B-A2.5B MoE",
+   "quant": "Q4_K_M",
+   "params_nominal": 39800000000.0,
+   "active_nominal": 2500000000.0,
+   "model_n_params": 39785287456,
+   "file_bytes": 23387911136,
+   "bits_per_weight": 4.702826121211876,
+   "tg": {
+    "0": {
+     "avg": 51.764813,
+     "sd": 7.871158,
+     "samples": [
+      53.9632,
+      58.3031,
+      43.0282
+     ]
+    },
+    "8192": {
+     "avg": 54.774696,
+     "sd": 4.83169,
+     "samples": [
+      50.4631,
+      59.9969,
+      53.8641
+     ]
+    },
+    "32768": {
+     "avg": 35.547862,
+     "sd": 3.346498,
+     "samples": [
+      31.6837,
+      37.491,
+      37.4689
+     ]
+    }
+   },
+   "pp": {
+    "0": {
+     "avg": 2029.911154,
+     "sd": 1092.346633,
+     "samples": [
+      1543.85,
+      1264.96,
+      3280.93
+     ]
+    },
+    "8192": {
+     "avg": 2270.619694,
+     "sd": 102.101536,
+     "samples": [
+      2318.21,
+      2153.41,
+      2340.24
+     ]
+    },
+    "32768": {
+     "avg": 999.303638,
+     "sd": 202.921323,
+     "samples": [
+      1159.94,
+      1066.72,
+      771.256
+     ]
+    }
+   },
+   "busy_processes": [
+    {
+     "pid": 382,
+     "cpu_pct": 22.8,
+     "rss_mb": 294,
+     "cmd": ".venv/bin/python"
+    },
+    {
+     "pid": 1973,
+     "cpu_pct": 21.5,
+     "rss_mb": 215,
+     "cmd": "/Applications/OneDrive.app/Contents/MacOS/OneDrive"
+    },
+    {
+     "pid": 24125,
+     "cpu_pct": 24.2,
+     "rss_mb": 934,
+     "cmd": "/opt/homebrew/bin/ffmpeg"
+    },
+    {
+     "pid": 26645,
+     "cpu_pct": 30.9,
+     "rss_mb": 233,
+     "cmd": "node"
+    },
+    {
+     "pid": 30131,
+     "cpu_pct": 194.8,
+     "rss_mb": 145,
+     "cmd": "ffmpeg"
+    },
+    {
+     "pid": 621,
+     "cpu_pct": 27.5,
+     "rss_mb": 99,
+     "cmd": "/System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer"
+    },
+    {
+     "pid": 1973,
+     "cpu_pct": 29.4,
+     "rss_mb": 216,
+     "cmd": "/Applications/OneDrive.app/Contents/MacOS/OneDrive"
+    },
+    {
+     "pid": 51507,
+     "cpu_pct": 55.3,
+     "rss_mb": 931,
+     "cmd": "/opt/homebrew/bin/ffmpeg"
+    },
+    {
+     "pid": 51678,
+     "cpu_pct": 43.2,
+     "rss_mb": 918,
+     "cmd": "/opt/homebrew/bin/ffmpeg"
+    },
+    {
+     "pid": 69982,
+     "cpu_pct": 121.4,
+     "rss_mb": 188,
+     "cmd": "ffmpeg"
+    },
+    {
+     "pid": 72628,
+     "cpu_pct": 29.7,
+     "rss_mb": 73,
+     "cmd": " exec hyperframes snapshot --at 75,160.5,302,388,415,462 --no-end -o ../qc/snap2"
+    }
+   ],
+   "memory": {
+    "model_buffer_mib": 22299.239999999998,
+    "kv_buffer_mib_ctx8192": 311.5,
+    "compute_buffer_mib": 712.8799999999999,
+    "peak_memory_footprint_bytes": 553518504,
+    "max_rss_bytes": 23427235840,
+    "context": 8192,
+    "prompt": "Write a Python function that checks whether a string is a palindrome, ignoring case and punctuation.",
+    "command": [
+     "<LLAMA_CPP>/build/bin/llama-completion",
+     "-m",
+     "<EXPERIMENT>/models/Flint-Q4_K_M.gguf",
+     "-ngl",
+     "99",
+     "-fa",
+     "on",
+     "-c",
+     "8192",
+     "-n",
+     "200",
+     "--temp",
+     "0",
+     "--seed",
+     "42",
+     "-no-cnv",
+     "-v",
+     "-p",
+     "Write a Python function that checks whether a string is a palindrome, ignoring case and punctuation."
+    ]
+   },
+   "est_weight_gb_read_per_token": 1.4696331628787112,
+   "effective_gbs_at_depth0": 76.07528585501503,
+   "ppl": {
+    "ppl": 21.6755,
+    "ppl_err": 0.70081,
+    "chunks": 60,
+    "ctx": 512,
+    "dataset": "WikiText-2 raw test",
+    "command": [
+     "<LLAMA_CPP>/build/bin/llama-perplexity",
+     "-m",
+     "<EXPERIMENT>/models/Flint-Q4_K_M.gguf",
+     "-ngl",
+     "99",
+     "-fa",
+     "on",
+     "-f",
+     "<EXPERIMENT>/data/wikitext-2-raw/wiki.test.raw",
+     "-c",
+     "512",
+     "--chunks",
+     "60",
+     "-b",
+     "512"
+    ]
+   }
+  },
+  "flint-q8": {
+   "file": "Flint-Q8_0.gguf",
+   "name": "Flint 40B-A2.5B MoE",
+   "quant": "Q8_0",
+   "params_nominal": 39800000000.0,
+   "active_nominal": 2500000000.0,
+   "model_n_params": 39785287456,
+   "file_bytes": 42350359520,
+   "bits_per_weight": 8.515783040016851,
+   "tg": {
+    "0": {
+     "avg": 11.09394,
+     "sd": 0.984127,
+     "samples": [
+      11.7385,
+      9.96116,
+      11.5822
+     ]
+    },
+    "8192": {
+     "avg": 11.097817,
+     "sd": 1.483211,
+     "samples": [
+      10.7759,
+      9.80203,
+      12.7156
+     ]
+    },
+    "32768": {
+     "avg": 9.227803,
+     "sd": 2.229996,
+     "samples": [
+      6.80091,
+      11.1866,
+      9.69592
+     ]
+    }
+   },
+   "pp": {
+    "0": {
+     "avg": 283.568649,
+     "sd": 119.453831,
+     "samples": [
+      154.977,
+      304.652,
+      391.077
+     ]
+    },
+    "8192": {
+     "avg": 401.777601,
+     "sd": 105.887881,
+     "samples": [
+      330.081,
+      523.399,
+      351.853
+     ]
+    },
+    "32768": {
+     "avg": 356.07125,
+     "sd": 61.107595,
+     "samples": [
+      342.124,
+      422.947,
+      303.143
+     ]
+    }
+   },
+   "busy_processes": [
+    {
+     "pid": 621,
+     "cpu_pct": 42.1,
+     "rss_mb": 125,
+     "cmd": "/System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer"
+    },
+    {
+     "pid": 1973,
+     "cpu_pct": 32.5,
+     "rss_mb": 183,
+     "cmd": "/Applications/OneDrive.app/Contents/MacOS/OneDrive"
+    },
+    {
+     "pid": 54309,
+     "cpu_pct": 60.8,
+     "rss_mb": 918,
+     "cmd": "/opt/homebrew/bin/ffmpeg"
+    },
+    {
+     "pid": 54592,
+     "cpu_pct": 36.8,
+     "rss_mb": 936,
+     "cmd": "/opt/homebrew/bin/ffmpeg"
+    },
+    {
+     "pid": 61771,
+     "cpu_pct": 24.6,
+     "rss_mb": 935,
+     "cmd": "/opt/homebrew/bin/ffmpeg"
+    },
+    {
+     "pid": 66752,
+     "cpu_pct": 22.5,
+     "rss_mb": 933,
+     "cmd": "/opt/homebrew/bin/ffmpeg"
+    },
+    {
+     "pid": 69294,
+     "cpu_pct": 124.0,
+     "rss_mb": 1495,
+     "cmd": "ffmpeg"
+    },
+    {
+     "pid": 69295,
+     "cpu_pct": 176.7,
+     "rss_mb": 1478,
+     "cmd": "ffmpeg"
+    },
+    {
+     "pid": 69655,
+     "cpu_pct": 23.6,
+     "rss_mb": 91,
+     "cmd": "node"
+    },
+    {
+     "pid": 94551,
+     "cpu_pct": 39.7,
+     "rss_mb": 773,
+     "cmd": "<HOME>/.hermes/tools/python-3.14.9+20261021-darwin-arm64/bin/python3"
+    },
+    {
+     "pid": 621,
+     "cpu_pct": 47.2,
+     "rss_mb": 58,
+     "cmd": "/System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer"
+    },
+    {
+     "pid": 1973,
+     "cpu_pct": 33.6,
+     "rss_mb": 158,
+     "cmd": "/Applications/OneDrive.app/Contents/MacOS/OneDrive"
+    },
+    {
+     "pid": 54246,
+     "cpu_pct": 62.0,
+     "rss_mb": 329,
+     "cmd": "ffmpeg"
+    },
+    {
+     "pid": 63161,
+     "cpu_pct": 55.5,
+     "rss_mb": 423,
+     "cmd": "ffmpeg"
+    },
+    {
+     "pid": 69685,
+     "cpu_pct": 71.4,
+     "rss_mb": 555,
+     "cmd": "ffmpeg"
+    },
+    {
+     "pid": 69981,
+     "cpu_pct": 72.3,
+     "rss_mb": 642,
+     "cmd": "ffmpeg"
+    },
+    {
+     "pid": 70216,
+     "cpu_pct": 34.3,
+     "rss_mb": 546,
+     "cmd": "ffmpeg"
+    },
+    {
+     "pid": 70876,
+     "cpu_pct": 90.4,
+     "rss_mb": 453,
+     "cmd": "ffmpeg"
+    },
+    {
+     "pid": 94551,
+     "cpu_pct": 24.1,
+     "rss_mb": 195,
+     "cmd": "<HOME>/.hermes/tools/python-3.14.9+20261021-darwin-arm64/bin/python3"
+    }
+   ],
+   "memory": {
+    "model_buffer_mib": 40383.24,
+    "kv_buffer_mib_ctx8192": 311.5,
+    "compute_buffer_mib": 712.8799999999999,
+    "peak_memory_footprint_bytes": 580713096,
+    "max_rss_bytes": 39467499520,
+    "context": 8192,
+    "prompt": "Write a Python function that checks whether a string is a palindrome, ignoring case and punctuation.",
+    "command": [
+     "<LLAMA_CPP>/build/bin/llama-completion",
+     "-m",
+     "<EXPERIMENT>/models/Flint-Q8_0.gguf",
+     "-ngl",
+     "99",
+     "-fa",
+     "on",
+     "-c",
+     "8192",
+     "-n",
+     "200",
+     "--temp",
+     "0",
+     "--seed",
+     "42",
+     "-no-cnv",
+     "-v",
+     "-p",
+     "Write a Python function that checks whether a string is a palindrome, ignoring case and punctuation."
+    ]
+   },
+   "est_weight_gb_read_per_token": 2.6611822000052663,
+   "effective_gbs_at_depth0": 29.522995655926422,
+   "ppl": {
+    "ppl": 20.773,
+    "ppl_err": 0.66226,
+    "chunks": 60,
+    "ctx": 512,
+    "dataset": "WikiText-2 raw test",
+    "command": [
+     "<LLAMA_CPP>/build/bin/llama-perplexity",
+     "-m",
+     "<EXPERIMENT>/models/Flint-Q8_0.gguf",
+     "-ngl",
+     "99",
+     "-fa",
+     "on",
+     "-f",
+     "<EXPERIMENT>/data/wikitext-2-raw/wiki.test.raw",
+     "-c",
+     "512",
+     "--chunks",
+     "60",
+     "-b",
+     "512"
+    ]
+   }
+  },
+  "qwen32-q4": {
+   "file": "Qwen3-32B-Q4_K_M.gguf",
+   "name": "Qwen3-32B dense",
+   "quant": "Q4_K_M",
+   "params_nominal": 32800000000.0,
+   "active_nominal": 32800000000.0,
+   "model_n_params": 32762123264,
+   "file_bytes": 19762149024,
+   "bits_per_weight": 4.825608856850921,
+   "tg": {
+    "0": {
+     "avg": 21.663864,
+     "sd": 0.285859,
+     "samples": [
+      21.9836,
+      21.5752,
+      21.4329
+     ]
+    },
+    "8192": {
+     "avg": 15.941446,
+     "sd": 0.813188,
+     "samples": [
+      16.87,
+      15.3564,
+      15.5979
+     ]
+    },
+    "32768": {
+     "avg": 12.771812,
+     "sd": 0.888011,
+     "samples": [
+      12.0302,
+      12.5293,
+      13.7559
+     ]
+    }
+   },
+   "pp": {
+    "0": {
+     "avg": 647.936208,
+     "sd": 5.476533,
+     "samples": [
+      651.16,
+      651.036,
+      641.613
+     ]
+    },
+    "8192": {
+     "avg": 307.222069,
+     "sd": 18.955282,
+     "samples": [
+      285.423,
+      319.823,
+      316.42
+     ]
+    },
+    "32768": {
+     "avg": 109.665233,
+     "sd": 16.640349,
+     "samples": [
+      93.8909,
+      108.051,
+      127.054
+     ]
+    }
+   },
+   "busy_processes": [
+    {
+     "pid": 1973,
+     "cpu_pct": 33.2,
+     "rss_mb": 216,
+     "cmd": "/Applications/OneDrive.app/Contents/MacOS/OneDrive"
+    },
+    {
+     "pid": 51507,
+     "cpu_pct": 45.6,
+     "rss_mb": 931,
+     "cmd": "/opt/homebrew/bin/ffmpeg"
+    },
+    {
+     "pid": 51678,
+     "cpu_pct": 31.1,
+     "rss_mb": 918,
+     "cmd": "/opt/homebrew/bin/ffmpeg"
+    },
+    {
+     "pid": 69549,
+     "cpu_pct": 28.5,
+     "rss_mb": 301,
+     "cmd": "node"
+    },
+    {
+     "pid": 69982,
+     "cpu_pct": 126.6,
+     "rss_mb": 189,
+     "cmd": "ffmpeg"
+    },
+    {
+     "pid": 71906,
+     "cpu_pct": 43.4,
+     "rss_mb": 394,
+     "cmd": "ao Browser Helper (Renderer).app/Contents/MacOS/Doubao Browser Helper (Renderer)"
+    },
+    {
+     "pid": 11222,
+     "cpu_pct": 118.4,
+     "rss_mb": 707,
+     "cmd": "ffmpeg"
+    },
+    {
+     "pid": 80110,
+     "cpu_pct": 20.9,
+     "rss_mb": 744,
+     "cmd": "/opt/homebrew/bin/ffmpeg"
+    },
+    {
+     "pid": 91179,
+     "cpu_pct": 223.1,
+     "rss_mb": 553,
+     "cmd": "ffmpeg"
+    }
+   ],
+   "memory": {
+    "model_buffer_mib": 18840.95,
+    "kv_buffer_mib_ctx8192": 2048.0,
+    "compute_buffer_mib": 833.5999999999999,
+    "peak_memory_footprint_bytes": 2374795440,
+    "max_rss_bytes": 22059499520,
+    "context": 8192,
+    "prompt": "Write a Python function that checks whether a string is a palindrome, ignoring case and punctuation.",
+    "command": [
+     "<LLAMA_CPP>/build/bin/llama-completion",
+     "-m",
+     "<EXPERIMENT>/models/Qwen3-32B-Q4_K_M.gguf",
+     "-ngl",
+     "99",
+     "-fa",
+     "on",
+     "-c",
+     "8192",
+     "-n",
+     "200",
+     "--temp",
+     "0",
+     "--seed",
+     "42",
+     "-no-cnv",
+     "-v",
+     "-p",
+     "Write a Python function that checks whether a string is a palindrome, ignoring case and punctuation."
+    ]
+   },
+   "est_weight_gb_read_per_token": 19.784996313088776,
+   "effective_gbs_at_depth0": 428.61946936725667
+  }
+ }
+}

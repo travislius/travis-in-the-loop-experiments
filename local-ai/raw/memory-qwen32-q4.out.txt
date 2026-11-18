@@ -1,0 +1,17 @@
+Write a Python function that checks whether a string is a palindrome, ignoring case and punctuation. The function should return True if the string is a palindrome and False otherwise. Additionally, the function should also return the reversed version of the input string as part of the output. 
+
+The function should be called check_palindrome and should take one argument, the string to be checked. The output should be a tuple where the first element is a boolean indicating whether the string is a palindrome and the second element is the reversed string.
+
+For example, check_palindrome("A man, a plan, a canal: Panama") should return (True, "amanaP lanac a nalp a nam A").
+
+Note: You may use the string module to check for punctuation.
+
+Here is a Python function that checks whether a string is a palindrome, ignoring case and punctuation, and returns a tuple with the result and the reversed string:
+
+```python
+import string
+
+def check_palindrome(s):
+    # Remove punctuation and convert to lowercase
+    cleaned = ''.join(char.lower() for char in s if char
+

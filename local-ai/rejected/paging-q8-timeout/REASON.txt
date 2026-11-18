@@ -1,0 +1,1 @@
+Generation-only Q8 llama-bench (3x128 tokens) under vm_stat ran >16 min without finishing while sibling renders used memory; killed to release the shared GPU/TTS lock. Itself evidence of heavy paging; no numbers recorded.

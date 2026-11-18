@@ -1,0 +1,24 @@
+{
+ "ppl": 21.6755,
+ "ppl_err": 0.70081,
+ "chunks": 60,
+ "ctx": 512,
+ "dataset": "WikiText-2 raw test",
+ "command": [
+  "<LLAMA_CPP>/build/bin/llama-perplexity",
+  "-m",
+  "<EXPERIMENT>/models/Flint-Q4_K_M.gguf",
+  "-ngl",
+  "99",
+  "-fa",
+  "on",
+  "-f",
+  "<EXPERIMENT>/data/wikitext-2-raw/wiki.test.raw",
+  "-c",
+  "512",
+  "--chunks",
+  "60",
+  "-b",
+  "512"
+ ]
+}

@@ -1,0 +1,89 @@
+{
+ "command": [
+  "<LLAMA_CPP>/build/bin/llama-bench",
+  "-m",
+  "<EXPERIMENT>/models/Flint-Q4_K_M.gguf",
+  "-ngl",
+  "99",
+  "-fa",
+  "1",
+  "-p",
+  "0",
+  "-n",
+  "128",
+  "-r",
+  "3",
+  "-o",
+  "json"
+ ],
+ "seconds": 16.325316190719604,
+ "vm_before": {
+  "pageins": 90496525,
+  "free_pages": 220379,
+  "wired_pages": 847259,
+  "page_size": 16384
+ },
+ "vm_after": {
+  "pageins": 90503949,
+  "free_pages": 334747,
+  "wired_pages": 1479031,
+  "page_size": 16384
+ },
+ "pagein_gb_during_run": 0.121634816,
+ "tg": 36.607324,
+ "tg_samples": [
+  40.9149,
+  35.9387,
+  32.9684
+ ],
+ "busy_processes": [
+  {
+   "pid": 621,
+   "cpu_pct": 43.5,
+   "rss_mb": 87,
+   "cmd": "/System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer"
+  },
+  {
+   "pid": 1973,
+   "cpu_pct": 26.0,
+   "rss_mb": 177,
+   "cmd": "/Applications/OneDrive.app/Contents/MacOS/OneDrive"
+  },
+  {
+   "pid": 22075,
+   "cpu_pct": 81.0,
+   "rss_mb": 467,
+   "cmd": "/opt/homebrew/bin/ffmpeg"
+  },
+  {
+   "pid": 22104,
+   "cpu_pct": 21.1,
+   "rss_mb": 390,
+   "cmd": "hell/mac_arm-152.0.7977.30/chrome-headless-shell-mac-arm64/chrome-headless-shell"
+  },
+  {
+   "pid": 22115,
+   "cpu_pct": 42.1,
+   "rss_mb": 396,
+   "cmd": "hell/mac_arm-152.0.7977.30/chrome-headless-shell-mac-arm64/chrome-headless-shell"
+  },
+  {
+   "pid": 22116,
+   "cpu_pct": 23.5,
+   "rss_mb": 400,
+   "cmd": "hell/mac_arm-152.0.7977.30/chrome-headless-shell-mac-arm64/chrome-headless-shell"
+  },
+  {
+   "pid": 22133,
+   "cpu_pct": 24.9,
+   "rss_mb": 394,
+   "cmd": "hell/mac_arm-152.0.7977.30/chrome-headless-shell-mac-arm64/chrome-headless-shell"
+  },
+  {
+   "pid": 25716,
+   "cpu_pct": 133.2,
+   "rss_mb": 186,
+   "cmd": "ffmpeg"
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+Write a Python function that checks whether a string is a palindrome, ignoring case and punctuation. The function should return True if the lowercase version of the alphanumeric characters in the is a palindrome, and False otherwise. The function should be named `is_palindrome`. Write the character by character comparison logic.
+
+We need answer user. Need provide Python function. Need likely include code. Need maybe explain. Must satisfy: checks string palindrome ignoring case and punctuation. Return True if lowercase version of alphanumeric chars in string is palindrome, False otherwise. Function named is_palindrome. Write character by character comparison logic.
+
+Need craft final answer maybe code only? We can include code block.
+
+Need think about requirements: ignoring case and punctuation. Alphanumeric characters only. Lowercase version. Palindrome. Character by character comparison logic. Could implement:
+
+def is_palindrome(s):
+    cleaned = ''.join(ch.lower() for ch in s if ch.isalnum())
+    left, right = 0, len(cleaned) - 1
+    while left < right:
+        if cleaned[left] != cleaned[right]:
+            return False
+       
+

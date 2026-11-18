@@ -1,0 +1,30 @@
+{
+ "model_buffer_mib": 22299.239999999998,
+ "kv_buffer_mib_ctx8192": 311.5,
+ "compute_buffer_mib": 712.8799999999999,
+ "peak_memory_footprint_bytes": 553518504,
+ "max_rss_bytes": 23427235840,
+ "context": 8192,
+ "prompt": "Write a Python function that checks whether a string is a palindrome, ignoring case and punctuation.",
+ "command": [
+  "<LLAMA_CPP>/build/bin/llama-completion",
+  "-m",
+  "<EXPERIMENT>/models/Flint-Q4_K_M.gguf",
+  "-ngl",
+  "99",
+  "-fa",
+  "on",
+  "-c",
+  "8192",
+  "-n",
+  "200",
+  "--temp",
+  "0",
+  "--seed",
+  "42",
+  "-no-cnv",
+  "-v",
+  "-p",
+  "Write a Python function that checks whether a string is a palindrome, ignoring case and punctuation."
+ ]
+}

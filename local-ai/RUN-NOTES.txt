@@ -1,0 +1,1 @@
+run_all.sh stopped after verifying Q4 and Qwen hashes; replaced by run_all2.sh to measure ready models while Q8 downloads.
