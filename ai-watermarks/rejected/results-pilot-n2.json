@@ -1,0 +1,89 @@
+{
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "device": "mps",
+ "gamma": 0.25,
+ "delta": 2.0,
+ "temperature": 0.7,
+ "max_new_tokens": 200,
+ "z_threshold": 4.0,
+ "n_prompts": 2,
+ "seeding": "previous token id x secret key -> torch RNG permutation (context width 1)",
+ "paraphraser": "Qwen/Qwen2.5-1.5B-Instruct (same model, no watermark)",
+ "edit_attack": "30% of words replaced by random words from human pool",
+ "human_source": "wikitext-2-raw-v1 test split, first 150 words of 40 random long paragraphs",
+ "conditions": {
+  "human": {
+   "n": 2,
+   "mean_z": -0.42140109633694994,
+   "median_z": -0.42140109633694994,
+   "min_z": -0.5706366656979912,
+   "max_z": -0.2721655269759087,
+   "flag_rate": 0.0,
+   "mean_green_frac": 0.23597730678655532,
+   "mean_tokens": 167.5,
+   "z": [
+    -0.2721655269759087,
+    -0.5706366656979912
+   ]
+  },
+  "plain": {
+   "n": 2,
+   "mean_z": -0.08024758809570248,
+   "median_z": -0.08024758809570248,
+   "min_z": -0.848528137423857,
+   "max_z": 0.6880329612324521,
+   "flag_rate": 0.0,
+   "mean_green_frac": 0.24865546218487394,
+   "mean_tokens": 134.5,
+   "z": [
+    -0.848528137423857,
+    0.6880329612324521
+   ]
+  },
+  "watermarked": {
+   "n": 2,
+   "mean_z": 4.7090467398759035,
+   "median_z": 4.7090467398759035,
+   "min_z": 2.8323527714997336,
+   "max_z": 6.5857407082520725,
+   "flag_rate": 0.5,
+   "mean_green_frac": 0.4241545893719807,
+   "mean_tokens": 136.5,
+   "z": [
+    2.8323527714997336,
+    6.5857407082520725
+   ]
+  },
+  "paraphrased": {
+   "n": 2,
+   "mean_z": 1.938239369024051,
+   "median_z": 1.938239369024051,
+   "min_z": 1.8664031075296776,
+   "max_z": 2.010075630518424,
+   "flag_rate": 0.0,
+   "mean_green_frac": 0.32318413139023827,
+   "mean_tokens": 131.5,
+   "z": [
+    2.010075630518424,
+    1.8664031075296776
+   ]
+  },
+  "edited30": {
+   "n": 2,
+   "mean_z": 2.706414926925521,
+   "median_z": 2.706414926925521,
+   "min_z": 2.0947696058260292,
+   "max_z": 3.318060248025013,
+   "flag_rate": 0.0,
+   "mean_green_frac": 0.3498933901918977,
+   "mean_tokens": 137,
+   "z": [
+    2.0947696058260292,
+    3.318060248025013
+   ]
+  }
+ },
+ "runtime_s": 38.7764151096344,
+ "run_date": "2026-11-17 19:53 PST",
+ "torch": "2.15.0"
+}

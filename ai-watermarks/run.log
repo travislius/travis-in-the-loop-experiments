@@ -1,0 +1,105 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+W1117 20:13:47.434000 382 .venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   0%|          | 1/338 [00:00<01:28,  3.82it/s]Loading weights:   8%|▊         | 28/338 [00:00<00:06, 49.07it/s]Loading weights:  26%|██▋       | 89/338 [00:01<00:02, 88.13it/s]Loading weights:  35%|███▌      | 119/338 [00:01<00:02, 92.75it/s]Loading weights:  40%|████      | 136/338 [00:01<00:02, 75.65it/s]Loading weights:  51%|█████     | 173/338 [00:02<00:01, 93.81it/s]Loading weights:  57%|█████▋    | 194/338 [00:02<00:01, 94.10it/s]Loading weights:  60%|██████    | 204/338 [00:02<00:01, 83.50it/s]Loading weights:  65%|██████▍   | 219/338 [00:02<00:01, 92.78it/s]Loading weights:  68%|██████▊   | 230/338 [00:02<00:01, 70.47it/s]Loading weights:  72%|███████▏  | 245/338 [00:03<00:01, 48.55it/s]Loading weights:  82%|████████▏ | 276/338 [00:03<00:00, 62.96it/s]Loading weights:  87%|████████▋ | 293/338 [00:03<00:00, 66.83it/s]Loading weights:  97%|█████████▋| 328/338 [00:04<00:00, 74.48it/s]Loading weights: 100%|██████████| 338/338 [00:04<00:00, 76.91it/s]
+0 why the sky is blue {'human': 1.18, 'plain': 1.6, 'watermarked': 7.19, 'paraphrased': 4.44, 'edited30': 3.51, 'translated_roundtrip': 0.17} 192 s
+1 how bread rises {'human': 1.19, 'plain': 0.05, 'watermarked': 4.59, 'paraphrased': 2.81, 'edited30': 3.99, 'translated_roundtrip': 2.69} 432 s
+2 the history of the bicycle {'human': 2.14, 'plain': 0.16, 'watermarked': 3.48, 'paraphrased': -0.05, 'edited30': 1.84, 'translated_roundtrip': 1.0} 648 s
+3 how vaccines train the immune system {'human': -1.02, 'plain': 1.92, 'watermarked': 7.67, 'paraphrased': 3.72, 'edited30': 3.53, 'translated_roundtrip': 4.08} 859 s
+4 why cats purr {'human': -1.65, 'plain': 0.05, 'watermarked': 7.62, 'paraphrased': 4.31, 'edited30': 4.44, 'translated_roundtrip': 3.1} 1111 s
+5 how a refrigerator works {'human': 0.33, 'plain': 0.44, 'watermarked': 3.33, 'paraphrased': 0.0, 'edited30': 2.71, 'translated_roundtrip': 0.3} 1310 s
+6 the causes of ocean tides {'human': -1.14, 'plain': -0.09, 'watermarked': 5.62, 'paraphrased': 2.67, 'edited30': 1.63, 'translated_roundtrip': 1.55} 1504 s
+7 how coffee is roasted {'human': -0.2, 'plain': 0.38, 'watermarked': 8.63, 'paraphrased': 5.7, 'edited30': 4.83, 'translated_roundtrip': 4.22} 1804 s
+8 why leaves change color {'human': -0.23, 'plain': 1.13, 'watermarked': 5.99, 'paraphrased': 0.1, 'edited30': 3.5, 'translated_roundtrip': -1.11} 2040 s
+9 how GPS finds your location {'human': 1.08, 'plain': 0.09, 'watermarked': 9.21, 'paraphrased': 6.92, 'edited30': 5.71, 'translated_roundtrip': 5.17} 2113 s
+10 the life cycle of a star {'human': 2.46, 'plain': 0.2, 'watermarked': 4.5, 'paraphrased': 1.21, 'edited30': 3.84, 'translated_roundtrip': 1.45} 2143 s
+11 how bees make honey {'human': 0.77, 'plain': 0.37, 'watermarked': 4.99, 'paraphrased': 2.09, 'edited30': 4.21, 'translated_roundtrip': 2.18} 2176 s
+12 why we dream {'human': -0.14, 'plain': -1.18, 'watermarked': 6.05, 'paraphrased': 2.54, 'edited30': 3.86, 'translated_roundtrip': 1.24} 2229 s
+13 how a bill becomes law {'human': 1.97, 'plain': 0.2, 'watermarked': 4.6, 'paraphrased': -0.57, 'edited30': 2.86, 'translated_roundtrip': 2.25} 2278 s
+14 the invention of the printing press {'human': 0.37, 'plain': -0.55, 'watermarked': 6.88, 'paraphrased': 3.69, 'edited30': 3.61, 'translated_roundtrip': 2.74} 2389 s
+15 how solar panels make electricity {'human': -1.35, 'plain': 1.74, 'watermarked': 4.82, 'paraphrased': 2.38, 'edited30': 3.67, 'translated_roundtrip': -0.11} 2520 s
+16 why the Roman Empire fell {'human': -2.23, 'plain': 3.29, 'watermarked': 7.71, 'paraphrased': 6.08, 'edited30': 3.63, 'translated_roundtrip': 2.44} 2625 s
+17 how earthquakes happen {'human': -2.08, 'plain': 2.14, 'watermarked': 6.82, 'paraphrased': 3.55, 'edited30': 3.96, 'translated_roundtrip': 2.74} 2715 s
+18 how credit scores work {'human': -0.95, 'plain': -0.47, 'watermarked': 3.51, 'paraphrased': 0.71, 'edited30': 1.98, 'translated_roundtrip': 1.01} 2801 s
+19 the rules of chess for beginners {'human': 0.9, 'plain': -0.78, 'watermarked': 3.97, 'paraphrased': 0.9, 'edited30': 2.26, 'translated_roundtrip': 1.53} 2864 s
+20 how airplanes stay in the air {'human': -1.23, 'plain': -1.28, 'watermarked': 2.82, 'paraphrased': 1.39, 'edited30': -0.56, 'translated_roundtrip': 2.14} 2941 s
+21 why music gives us chills {'human': -1.43, 'plain': 0.04, 'watermarked': 6.99, 'paraphrased': 3.93, 'edited30': 3.93, 'translated_roundtrip': 2.01} 3005 s
+22 how glaciers carve valleys {'human': 1.39, 'plain': 1.34, 'watermarked': 6.59, 'paraphrased': 2.6, 'edited30': 3.54, 'translated_roundtrip': 1.78} 3048 s
+23 the benefits of walking every day {'human': -0.55, 'plain': -0.58, 'watermarked': 4.53, 'paraphrased': 0.64, 'edited30': 1.02, 'translated_roundtrip': 1.23} 3087 s
+24 how the internet routes a message {'human': -0.93, 'plain': -0.18, 'watermarked': 5.33, 'paraphrased': 1.41, 'edited30': 1.99, 'translated_roundtrip': 1.81} 3133 s
+25 how to care for a houseplant {'human': -0.21, 'plain': 1.88, 'watermarked': 5.18, 'paraphrased': 1.05, 'edited30': 2.41, 'translated_roundtrip': 1.63} 3270 s
+26 why some people are left-handed {'human': 2.01, 'plain': -0.59, 'watermarked': 4.11, 'paraphrased': -1.18, 'edited30': 1.44, 'translated_roundtrip': 2.4} 3378 s
+27 how rainbows form {'human': -0.69, 'plain': 2.26, 'watermarked': 8.01, 'paraphrased': 5.63, 'edited30': 4.42, 'translated_roundtrip': 2.15} 3424 s
+28 how electric cars charge {'human': 0.38, 'plain': -0.05, 'watermarked': 9.4, 'paraphrased': 3.39, 'edited30': 7.29, 'translated_roundtrip': 4.35} 3558 s
+29 the history of the Olympic Games {'human': -0.65, 'plain': 1.1, 'watermarked': 3.74, 'paraphrased': 0.09, 'edited30': 1.77, 'translated_roundtrip': 1.46} 3613 s
+30 how batteries store energy {'human': 1.59, 'plain': 1.51, 'watermarked': 8.66, 'paraphrased': 6.76, 'edited30': 4.48, 'translated_roundtrip': 4.49} 3668 s
+31 why onions make you cry {'human': -0.28, 'plain': -0.68, 'watermarked': 6.69, 'paraphrased': 1.79, 'edited30': 2.0, 'translated_roundtrip': 2.4} 3709 s
+32 how a camera lens focuses {'human': 1.28, 'plain': 2.01, 'watermarked': 9.52, 'paraphrased': 6.01, 'edited30': 4.23, 'translated_roundtrip': 2.25} 3812 s
+33 how recycling is sorted {'human': 0.4, 'plain': -1.27, 'watermarked': 4.94, 'paraphrased': -0.05, 'edited30': 2.88, 'translated_roundtrip': 3.5} 3892 s
+34 why the Moon has phases {'human': -0.55, 'plain': 0.09, 'watermarked': 7.49, 'paraphrased': 3.45, 'edited30': 3.23, 'translated_roundtrip': 3.9} 3956 s
+35 how the heart pumps blood {'human': 0.66, 'plain': 1.55, 'watermarked': 5.77, 'paraphrased': 5.28, 'edited30': 1.54, 'translated_roundtrip': 2.46} 4083 s
+36 how a volcano erupts {'human': 0.4, 'plain': -0.29, 'watermarked': 6.13, 'paraphrased': 1.02, 'edited30': 2.41, 'translated_roundtrip': 1.07} 4158 s
+37 how sourdough starter works {'human': 0.72, 'plain': -0.1, 'watermarked': 7.9, 'paraphrased': 5.44, 'edited30': 3.61, 'translated_roundtrip': 4.22} 4249 s
+38 why exercise improves mood {'human': -0.65, 'plain': -1.41, 'watermarked': 4.93, 'paraphrased': 3.75, 'edited30': 2.75, 'translated_roundtrip': 0.76} 4332 s
+39 how lighthouses guided ships {'human': -2.11, 'plain': -1.11, 'watermarked': 5.92, 'paraphrased': 4.63, 'edited30': 2.6, 'translated_roundtrip': -0.38} 4407 s
+{
+ "human": {
+  "n": 40,
+  "mean_z": 0.0237138860169226,
+  "median_z": -0.16864207456510916,
+  "min_z": -2.2258224804071225,
+  "max_z": 2.4597315564119877,
+  "flag_rate": 0.0,
+  "mean_green_frac": 0.25091711664077904,
+  "mean_tokens": 173.55
+ },
+ "plain": {
+  "n": 40,
+  "mean_z": 0.37490452524154305,
+  "median_z": 0.09245573173738608,
+  "min_z": -1.4087214501209981,
+  "max_z": 3.2862799182776636,
+  "flag_rate": 0.0,
+  "mean_green_frac": 0.2634790525327707,
+  "mean_tokens": 156.875
+ },
+ "watermarked": {
+  "n": 40,
+  "mean_z": 6.046122739412221,
+  "median_z": 5.956394748308284,
+  "min_z": 2.8239820062917005,
+  "max_z": 9.516138199266807,
+  "flag_rate": 0.85,
+  "mean_green_frac": 0.4527443687856326,
+  "mean_tokens": 168.65
+ },
+ "paraphrased": {
+  "n": 40,
+  "mean_z": 2.7561694420472045,
+  "median_z": 2.636616828747207,
+  "min_z": -1.1824594246010054,
+  "max_z": 6.916709551641991,
+  "flag_rate": 0.275,
+  "mean_green_frac": 0.34526915518490214,
+  "mean_tokens": 156.025
+ },
+ "edited30": {
+  "n": 40,
+  "mean_z": 3.164680956136708,
+  "median_z": 3.5069702363423723,
+  "min_z": -0.5577733510227171,
+  "max_z": 7.292888298835542,
+  "flag_rate": 0.2,
+  "mean_green_frac": 0.354595288183334,
+  "mean_tokens": 174.475
+ },
+ "translated_roundtrip": {
+  "n": 40,
+  "mean_z": 2.10753808530119,
+  "median_z": 2.1484588096295765,
+  "min_z": -1.1050364372445785,
+  "max_z": 5.168865612218189,
+  "flag_rate": 0.15,
+  "mean_green_frac": 0.33029621121978225,
+  "mean_tokens": 127.475
+ }
+}

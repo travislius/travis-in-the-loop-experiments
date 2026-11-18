@@ -1,0 +1,453 @@
+{
+ "topic": "why leaves change color",
+ "row": 8,
+ "tokens": [
+  [
+   "Le",
+   false
+  ],
+  [
+   "aves",
+   true
+  ],
+  [
+   " change",
+   false
+  ],
+  [
+   " color",
+   false
+  ],
+  [
+   " in",
+   false
+  ],
+  [
+   " the",
+   true
+  ],
+  [
+   " fall",
+   false
+  ],
+  [
+   " due",
+   false
+  ],
+  [
+   " to",
+   false
+  ],
+  [
+   " the",
+   true
+  ],
+  [
+   " reduction",
+   true
+  ],
+  [
+   " of",
+   true
+  ],
+  [
+   " chlor",
+   true
+  ],
+  [
+   "oph",
+   false
+  ],
+  [
+   "yll",
+   true
+  ],
+  [
+   ",",
+   false
+  ],
+  [
+   " the",
+   false
+  ],
+  [
+   " pigment",
+   true
+  ],
+  [
+   " responsible",
+   true
+  ],
+  [
+   " for",
+   false
+  ],
+  [
+   " the",
+   true
+  ],
+  [
+   " green",
+   false
+  ],
+  [
+   " color",
+   false
+  ],
+  [
+   " in",
+   false
+  ],
+  [
+   " leaves",
+   true
+  ],
+  [
+   ".",
+   true
+  ],
+  [
+   " As",
+   false
+  ],
+  [
+   " summer",
+   false
+  ],
+  [
+   " progresses",
+   false
+  ],
+  [
+   ",",
+   true
+  ],
+  [
+   " shorter",
+   false
+  ],
+  [
+   " days",
+   false
+  ],
+  [
+   " and",
+   false
+  ],
+  [
+   " cooler",
+   true
+  ],
+  [
+   " nights",
+   true
+  ],
+  [
+   " trigger",
+   false
+  ],
+  [
+   " a",
+   true
+  ],
+  [
+   " process",
+   false
+  ],
+  [
+   " called",
+   false
+  ],
+  [
+   " ab",
+   true
+  ],
+  [
+   "sc",
+   true
+  ],
+  [
+   "ission",
+   false
+  ],
+  [
+   ",",
+   true
+  ],
+  [
+   " where",
+   false
+  ],
+  [
+   " leaves",
+   false
+  ],
+  [
+   " detach",
+   false
+  ],
+  [
+   " from",
+   false
+  ],
+  [
+   " their",
+   true
+  ],
+  [
+   " stems",
+   false
+  ],
+  [
+   ".",
+   false
+  ],
+  [
+   " Sim",
+   true
+  ],
+  [
+   "ult",
+   false
+  ],
+  [
+   "aneously",
+   true
+  ],
+  [
+   ",",
+   true
+  ],
+  [
+   " the",
+   false
+  ],
+  [
+   " levels",
+   true
+  ],
+  [
+   " of",
+   false
+  ],
+  [
+   " chlor",
+   true
+  ],
+  [
+   "oph",
+   false
+  ],
+  [
+   "yll",
+   true
+  ],
+  [
+   " decrease",
+   false
+  ],
+  [
+   ",",
+   true
+  ],
+  [
+   " allowing",
+   false
+  ],
+  [
+   " the",
+   true
+  ],
+  [
+   " underlying",
+   false
+  ],
+  [
+   " pig",
+   false
+  ],
+  [
+   "ments",
+   false
+  ],
+  [
+   " to",
+   true
+  ],
+  [
+   " be",
+   false
+  ],
+  [
+   " exposed",
+   true
+  ],
+  [
+   ".",
+   false
+  ],
+  [
+   " The",
+   false
+  ],
+  [
+   " car",
+   true
+  ],
+  [
+   "oten",
+   false
+  ],
+  [
+   "oids",
+   false
+  ],
+  [
+   ",",
+   false
+  ],
+  [
+   " which",
+   false
+  ],
+  [
+   " give",
+   true
+  ],
+  [
+   " yellow",
+   true
+  ],
+  [
+   " and",
+   false
+  ],
+  [
+   " orange",
+   false
+  ],
+  [
+   " colors",
+   false
+  ],
+  [
+   ",",
+   false
+  ],
+  [
+   " are",
+   true
+  ],
+  [
+   " more",
+   true
+  ],
+  [
+   " visible",
+   true
+  ],
+  [
+   " compared",
+   true
+  ],
+  [
+   " to",
+   true
+  ],
+  [
+   " the",
+   true
+  ],
+  [
+   " red",
+   false
+  ],
+  [
+   " pig",
+   false
+  ],
+  [
+   "ments",
+   false
+  ],
+  [
+   " produced",
+   false
+  ],
+  [
+   " during",
+   false
+  ],
+  [
+   " winter",
+   true
+  ],
+  [
+   " because",
+   false
+  ],
+  [
+   " they",
+   false
+  ],
+  [
+   " are",
+   true
+  ],
+  [
+   " less",
+   true
+  ],
+  [
+   " diluted",
+   false
+  ],
+  [
+   ".",
+   false
+  ],
+  [
+   " Additionally",
+   false
+  ],
+  [
+   ",",
+   false
+  ],
+  [
+   " warmer",
+   true
+  ],
+  [
+   " temperatures",
+   false
+  ],
+  [
+   " cause",
+   true
+  ],
+  [
+   " red",
+   false
+  ],
+  [
+   " pig",
+   false
+  ],
+  [
+   "ments",
+   false
+  ],
+  [
+   " in",
+   true
+  ],
+  [
+   "\u2026",
+   false
+  ]
+ ],
+ "tokens_n": 152,
+ "green": 70,
+ "z": 5.9941491941228415
+}

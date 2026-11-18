@@ -1,0 +1,22 @@
+{
+ "u17": {
+  "tts": "Now let's build one. I used Qwen 2.5, a small open model with one and a half billion parameters, running on my Mac. Green list a quarter of the vocabulary, a bonus of two, temperature zero point seven. I asked it for forty short paragraphs, on topics like why cats purr. For each one, I kept six versions: a human Wikipedia paragraph, the model without a watermark, with a watermark, and three attacks.",
+  "text": "Now let's build one. I used Qwen2.5, a small open model with 1.5 billion parameters, running on my Mac. Green list: a quarter of the vocabulary, a bonus of 2, temperature 0.7. I asked it for 40 short paragraphs, on topics like why cats purr. For each one, I kept six versions: a human Wikipedia paragraph, the model without a watermark, with a watermark, and three attacks."
+ },
+ "u18": {
+  "tts": "Here's what the detector sees. Green tokens are highlighted, and there are clearly too many of them. Across all forty prompts, human text averaged a z of about zero. The model without a watermark: zero point four. With the watermark: six point zero, and thirty-four of forty crossed the line of four. Zero human texts did.",
+  "text": "Here's what the detector sees. Green tokens are highlighted, and there are clearly too many of them. Across all 40 prompts, human text averaged a z of about 0. The model without a watermark: 0.4. With the watermark: 6.0, and 34 of 40 crossed the line of 4. Zero human texts did."
+ },
+ "u19": {
+  "tts": "Then I attacked it. When the same small model paraphrased the text, the average z fell to two point eight, and only eleven of forty stayed flagged. Swapping thirty percent of the words at random: three point two, eight flagged. Translating to French and back: two point one, six flagged. The signal fades, it doesn't vanish all at once.",
+  "text": "Then I attacked it. When the same small model paraphrased the text, the average z fell to 2.8, and only 11 of 40 stayed flagged. Swapping 30% of the words at random: 3.2, 8 flagged. Translating to French and back: 2.1, 6 flagged. The signal fades; it doesn't vanish all at once."
+ },
+ "u20": {
+  "tts": "Length shows up too. On just the first ten tokens of watermarked text, the average z was one point two. At fifty tokens, three point two. At a hundred, four point five. A one-line reply simply doesn't carry enough evidence.",
+  "text": "Length shows up too. On just the first 10 tokens of watermarked text, the average z was 1.2. At 50 tokens, 3.2. At 100, 4.5. A one-line reply simply doesn't carry enough evidence."
+ },
+ "u21": {
+  "tts": "Some honest limits. This is the textbook green list on a tiny model, not Synth I D, and not what Anthropic or Open A I deploy. It's forty prompts, one key, and a weak paraphraser. A stronger rewrite would likely erase more. And zero false positives out of forty can't prove a one in thirty thousand rate. That needs far more human text.",
+  "text": "Some honest limits. This is the textbook green list on a tiny model, not SynthID, and not what Anthropic or OpenAI deploy. It's 40 prompts, one key, and a weak paraphraser. A stronger rewrite would likely erase more. And zero false positives out of 40 can't prove a 1-in-30,000 rate. That needs far more human text."
+ }
+}

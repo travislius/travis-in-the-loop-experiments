@@ -1,0 +1,1 @@
+Aborted after 2/40 prompts: randperm-based green list (151k-vocab permutation per token on CPU) ran ~200 s/prompt; replaced with an equivalent vectorized keyed hash. Same gamma/delta/temperature.
